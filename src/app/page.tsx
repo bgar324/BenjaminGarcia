@@ -19,6 +19,7 @@ import { useState, useEffect } from "react";
 import PastVersions from "./components/PastVersions";
 import "./globals.css";
 import { motion } from "framer-motion";
+import ThemeToggle from "./components/ThemeToggle";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -69,7 +70,7 @@ export default function Home() {
             className="h-auto w-32 md:w-28 lg:w-48 rounded-xl"
           />
           <div className="ml-2 pt-2 pr-2 lg:ml-1 lg:pt-0 lg:pr-0">
-            <h1 className="text-gray-900 text-2xl lg:text-2xl font-semibold lg:font-semibold tracking-tight leading-none">
+            <h1 className="text-gray-900 text-2xl lg:text-2xl font-semibold lg:font-semibold tracking-tight leading-none dark:text-white">
               Hello I'm
             </h1>
             <h1 className="text-gray-900 text-2xl lg:text-2xl font-semibold lg:font-semibold tracking-tight">
@@ -139,7 +140,7 @@ export default function Home() {
               <a
                 href="https://open.spotify.com/user/13loawolnhae7wiuu1ficd51g"
                 target="_blank"
-                title = "Spotify"
+                title="Spotify"
               >
                 <SpotifyIcon />
               </a>
@@ -148,7 +149,7 @@ export default function Home() {
               className="bg-black text-white rounded-xl px-4 py-1 text-sm w-fit mx-auto items-center justify-center hover:bg-black/90 font-semibold duration-300 transition ease-in-out"
               href="/static/resume.pdf"
               target="_blank"
-              title = "Resume"
+              title="Resume"
             >
               Download My CV
             </a>
@@ -159,7 +160,7 @@ export default function Home() {
           <div>
             <a
               href="#about"
-              title = "Go to About"
+              title="Go to About"
               className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
                 activeSection === "about"
                   ? "bg-gray-100 text-gray-900"
@@ -170,7 +171,7 @@ export default function Home() {
             </a>
             <a
               href="#experience"
-              title = "Go to Experience"
+              title="Go to Experience"
               className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
                 activeSection === "experience"
                   ? "bg-gray-100 text-gray-900"
@@ -183,7 +184,7 @@ export default function Home() {
           <div>
             <a
               href="#tech-stack"
-              title  = "Go to Tech Stack"
+              title="Go to Tech Stack"
               className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
                 activeSection === "tech-stack"
                   ? "bg-gray-100 text-gray-900"
@@ -194,7 +195,7 @@ export default function Home() {
             </a>
             <a
               href="#projects"
-              title = "Go to Projects"
+              title="Go to Projects"
               className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
                 activeSection === "projects"
                   ? "bg-gray-100 text-gray-900"
@@ -214,9 +215,13 @@ export default function Home() {
         className="flex-1 flex-col lg:w-2/3 lg:py-13"
       >
         <section id="about" className="flex flex-col">
-          <p className="w-fit border border-gray-300 rounded-md px-2 py-1 lg:py-[.5px] text-xs lg:text-sm uppercase mt-10 lg:mt-0 lg:mb-5 font-semibold tracking-wider">
-            about
-          </p>
+          <div className = "flex flex-row justify-between items-center">
+            <p className="w-fit border border-gray-300 rounded-md px-2 py-1 lg:py-[.5px] text-xs lg:text-sm uppercase mt-10 lg:mt-0 lg:mb-5 font-semibold tracking-wider">
+              about
+            </p>
+            {/* <ThemeToggle /> */}
+          </div>
+
           <p className="text-gray-600 lg:text-lg leading-snug mt-4">
             I'm Benjamin Garcia, a second-year Computer Science major at Mt. San
             Antonio College, preparing to transfer to a four-year institution
@@ -229,7 +234,15 @@ export default function Home() {
           </p>
           <p className="mt-2 text-gray-600 lg:text-lg leading-snug ">
             Outside of coding, you can find me at the gym, hanging out with my
-            dog, or exploring the <a className = "font-medium" href = "/static/image.png" target = "_blank" title = "Elden Ring">Lands Between.</a>
+            dog, or exploring the{" "}
+            <a
+              className="font-medium"
+              href="/static/image.png"
+              target="_blank"
+              title="Elden Ring"
+            >
+              Lands Between.
+            </a>
           </p>
         </section>
 
