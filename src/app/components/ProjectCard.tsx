@@ -22,7 +22,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const [isExpanded, setIsExpanded] = useState(false);
   
   return (
-    <div className="bg-white rounded-xl shadow-sm w-auto h-96 flex flex-col p-2">
+    <div className="bg-white rounded-xl shadow-sm w-auto h-auto flex flex-col p-2">
       <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
         <Image 
           src={imageSrc} 
