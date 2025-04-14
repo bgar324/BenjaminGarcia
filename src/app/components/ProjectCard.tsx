@@ -22,7 +22,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const [isExpanded, setIsExpanded] = useState(false);
   
   return (
-    <div className="bg-white rounded-xl shadow-sm w-auto h-auto flex flex-col p-2">
+    <div className="bg-white rounded-xl shadow-sm w-auto h-96 flex flex-col p-2">
       <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
         <Image 
           src={imageSrc} 
@@ -47,7 +47,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <p className={`${isExpanded ? '' : 'line-clamp-3'}`}>{description}</p>
         <button 
           onClick={() => setIsExpanded(!isExpanded)} 
-          className="text-blue-500 hover:text-blue-700 text-xs mt-1 font-medium"
+          className="text-blue-500 hover:text-blue-700 text-xs mt-1 font-medium hover:cursor-pointer transition-all duration-300 ease-in-out"
+          title = "Read more"
         >
           {isExpanded ? 'Show less' : 'Read more'}
         </button>

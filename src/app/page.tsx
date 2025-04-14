@@ -229,7 +229,7 @@ export default function Home() {
           </p>
           <p className="mt-2 text-gray-600 lg:text-lg leading-snug ">
             Outside of coding, you can find me at the gym, hanging out with my
-            dog, or exploring the Lands Between.
+            dog, or exploring the <a className = "font-medium" href = "/static/image.png" target = "_blank" title = "Elden Ring">Lands Between.</a>
           </p>
         </section>
 
