@@ -105,6 +105,7 @@ export default function Home() {
             <a
               className="flex items-center gap-2 hover:underline text-sm mb-1 truncate"
               href="https://www.bentgarcia.com/"
+              title="bentgarcia.com"
               target="_blank"
             >
               <GlobeIcon /> <span className="truncate">www.bentgarcia.com</span>
@@ -112,6 +113,7 @@ export default function Home() {
             <a
               className="flex items-center gap-2 hover:underline transition duration-300 ease-in-out text-sm truncate"
               href="mailto:bentgarcia05@gmail.com"
+              title="bentgarcia05@gmail.com"
               target="_blank"
             >
               <MailIcon />{" "}
@@ -120,15 +122,24 @@ export default function Home() {
           </div>
           <div className="items-center flex flex-col mt-2 lg:mt-0 md:mt-0 sm:pr-12 md:pr-0 lg:pr-0">
             <div className="flex flex-row items-center justify-center gap-6 mb-3">
-              <a href="https://www.linkedin.com/in/btgarcia05/" target="_blank">
+              <a
+                href="https://www.linkedin.com/in/btgarcia05/"
+                target="_blank"
+                title="LinkedIn"
+              >
                 <LinkedInIcon />
               </a>
-              <a href="https://github.com/bgar324" target="_blank">
+              <a
+                href="https://github.com/bgar324"
+                target="_blank"
+                title="Github"
+              >
                 <GithubIcon />
               </a>
               <a
                 href="https://open.spotify.com/user/13loawolnhae7wiuu1ficd51g"
                 target="_blank"
+                title = "Spotify"
               >
                 <SpotifyIcon />
               </a>
@@ -137,6 +148,7 @@ export default function Home() {
               className="bg-black text-white rounded-xl px-4 py-1 text-sm w-fit mx-auto items-center justify-center hover:bg-black/90 font-semibold duration-300 transition ease-in-out"
               href="/static/resume.pdf"
               target="_blank"
+              title = "Resume"
             >
               Download My CV
             </a>
@@ -147,6 +159,7 @@ export default function Home() {
           <div>
             <a
               href="#about"
+              title = "Go to About"
               className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
                 activeSection === "about"
                   ? "bg-gray-100 text-gray-900"
@@ -157,6 +170,7 @@ export default function Home() {
             </a>
             <a
               href="#experience"
+              title = "Go to Experience"
               className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
                 activeSection === "experience"
                   ? "bg-gray-100 text-gray-900"
@@ -169,6 +183,7 @@ export default function Home() {
           <div>
             <a
               href="#tech-stack"
+              title  = "Go to Tech Stack"
               className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
                 activeSection === "tech-stack"
                   ? "bg-gray-100 text-gray-900"
@@ -179,6 +194,7 @@ export default function Home() {
             </a>
             <a
               href="#projects"
+              title = "Go to Projects"
               className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
                 activeSection === "projects"
                   ? "bg-gray-100 text-gray-900"
@@ -366,8 +382,8 @@ export default function Home() {
               >
                 Vercel
               </a>
-              . <span className = "sm:hidden">All text is in</span>{" "}
-              <span className = "sm:hidden">
+              . <span className="sm:hidden">All text is in</span>{" "}
+              <span className="sm:hidden">
                 <a
                   className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
                   href="https://www.fontshare.com/fonts/cabinet-grotesk"

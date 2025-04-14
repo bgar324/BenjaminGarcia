@@ -5,17 +5,17 @@ import Image from "next/image";
 const PastVersions = () => {
   const versions = [
     {
-      link: "https://v1benjamingarcia.vercel.app/",
+      link: "https://v1.bentgarcia.com",
       favicon: "/static/previous favicons/faviconv1.webp",
       version: 1,
     },
     {
-      link: "https://v2benjamingarcia.vercel.app/",
+      link: "https://v2.bentgarcia.com",
       favicon: "/static/previous favicons/faviconv2.webp",
       version: 2,
     },
     {
-      link: "https://v3benjamingarcia.vercel.app/",
+      link: "https://v3.bentgarcia.com",
       favicon: "/static/previous favicons/faviconv3.webp",
       version: 3,
     },
@@ -26,6 +26,7 @@ const PastVersions = () => {
       {versions.slice(0, 2).map((item, index) => (
         <a
           key={index}
+          title = {`View v${item.version}`}
           href={item.link}
           target="_blank"
           rel="noopener noreferrer"
@@ -49,6 +50,7 @@ const PastVersions = () => {
       ))}
       <a
         href={versions[2].link}
+        title = "View v3"
         target="_blank"
         rel="noopener noreferrer"
         className="col-span-2 flex items-center justify-center gap-x-2 text-gray-900 hover:bg-[#f6f7f7] transition-colors duration-300 bg-white border border-dotted border-gray-300 rounded-lg px-4 py-2 cursor-pointer touch-manipulation w-full"

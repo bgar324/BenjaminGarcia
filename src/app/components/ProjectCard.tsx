@@ -35,7 +35,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
       <div className="flex flex-row gap-2 items-center mt-2">
         {projectLink ? (
-          <a href={projectLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1">
+          <a href={projectLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1" title = {title}>
             <h1 className = "font-medium hover:underline lg:text-base">{title}</h1>
             <ArrowUpRight />
           </a>
