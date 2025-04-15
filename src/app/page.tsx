@@ -227,7 +227,7 @@ export default function Home() {
             Antonio College, preparing to transfer to a four-year institution
             this fall. Currently a{" "}
             <span className="font-medium">
-              Backend Software Developer Intern at Todd
+              Full Stack Software Developer Intern at Todd
             </span>
             , I build fast, scalable websites that bridge design and
             functionality.
@@ -252,12 +252,12 @@ export default function Home() {
           </p>
           <div className="flex flex-col gap-4">
             <Dropdown
-              role="Backend Software Development Intern"
+              role="Full Stack Software Development Intern"
               position="Todd"
               startDate="Apr 2025"
               endDate="Present"
               src="/static/companies/todd.webp"
-              description="Developing backend solutions that leverage AI and machine learning to automate large-scale agricultural data analysis and optimization."
+              description="Designed and implemented a client-facing dashboard for real-time agricultural insights while integrating AI/ML backend services to automate crop data analysis; also built the company website from scratch using Next.js, Tailwind CSS, and Framer Motion in a fast-paced startup environment."
             />
             <Dropdown
               role="Front-End Developer"
