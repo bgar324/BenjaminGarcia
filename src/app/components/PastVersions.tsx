@@ -1,6 +1,7 @@
 import React from "react";
-import { ArrowUpRight } from "../svgs/Icons";
+// import { ArrowUpRight } from "../svgs/Icons";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 
 const PastVersions = () => {
   const versions = [
@@ -45,7 +46,7 @@ const PastVersions = () => {
             />
             v{item.version}
           </span>
-          <ArrowUpRight />
+          <ArrowUpRight strokeWidth = "1" size = {16} absoluteStrokeWidth = {true}/>
         </a>
       ))}
       <a
@@ -68,7 +69,7 @@ const PastVersions = () => {
           />
           v{versions[2].version}
         </span>
-        <ArrowUpRight />
+        <ArrowUpRight strokeWidth = "1" size = {16} absoluteStrokeWidth = {true}/>
       </a>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ArrowUpRight } from '../svgs/Icons'
+import { ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
 
 interface ProjectCardProps {
@@ -37,7 +37,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         {projectLink ? (
           <a href={projectLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1" title = {title}>
             <h1 className = "font-medium hover:underline lg:text-base">{title}</h1>
-            <ArrowUpRight />
+            <ArrowUpRight strokeWidth = "1" size = {16} absoluteStrokeWidth = {true}/>
           </a>
         ) : (
           <h1 className = "font-medium hover:underline lg:text-base">{title}</h1>

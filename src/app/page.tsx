@@ -20,6 +20,8 @@ import PastVersions from "./components/PastVersions";
 import "./globals.css";
 import { motion } from "framer-motion";
 import ThemeToggle from "./components/ThemeToggle";
+import ProjectItem from "./components/SelectedProject";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -215,7 +217,7 @@ export default function Home() {
         className="flex-1 flex-col lg:w-2/3 lg:py-13"
       >
         <section id="about" className="flex flex-col">
-          <div className = "flex flex-row justify-between items-center">
+          <div className="flex flex-row justify-between items-center">
             <p className="w-fit border border-gray-300 rounded-md px-2 py-1 lg:py-[.5px] text-xs lg:text-sm uppercase mt-10 lg:mt-0 lg:mb-5 font-semibold tracking-wider">
               about
             </p>
@@ -303,10 +305,64 @@ export default function Home() {
         </section>
 
         <section id="projects">
-          <p className="w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm">
-            projects
-          </p>
-          <Carousel />
+          <div className="flex flex-row justify-between">
+            <p className="w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm">
+              selected projects
+            </p>
+            <a
+              className="w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm flex items-center gap-1"
+              href="/archive"
+            >
+              project archive
+              <ArrowRight size={14} strokeWidth={1} />
+            </a>
+          </div>
+
+          <div className="flex flex-col gap-y-3">
+            <ProjectItem
+              src="/static/project-previews/csclubwebsite-preview.webp"
+              title="Mt. SAC Computer Science Club Website"
+              description="Redesigned and developed the Mt. SAC Computer Science Club website using React.JS and Bootstrap to improve functionality, accessibility, and responsiveness. The site serves as a hub for members, providing resources, event details, officer contacts, and Discord access."
+              link="https://mtsaccs.netlify.app/"
+              tags={["React", "Boostrap", "Netlify"]}
+            />
+            <ProjectItem
+              src="/static/project-previews/logit-preview.webp"
+              title="logit"
+              description="A full-stack workout logging app designed for a minimal and efficient tracking experience. Users can log workouts, edit past sessions with a React-calendar, and track progress with Recharts visualizations. Workouts are stored in a PostgreSQL database, with support for tags, comments, and dropsets. Built with Next.js, Tailwind CSS, and Prisma, it streamlines workout management while enabling progressive overload tracking."
+              link="https://github.com/bgar324/logit"
+              tags={[
+                "Next",
+                "React",
+                "Tailwind",
+                "react-calendar",
+                "Recharts",
+                "Supabase",
+                "PostgreSQL",
+                "Prisma",
+              ]}
+            />
+            <ProjectItem
+              src="/static/project-previews/teaspots.webp"
+              title="Tea Spots"
+              description="Collaborated with video production and graphic design teams to redesign a client's website using Square Online, integrating custom CSS, embedded code, and POS systems to support high traffic and dozens of weekly orders. Optimized multimedia assets for a cohesive, brand-aligned experience, resulting in thousands of page views and 200+ unique visits in the first week."
+              link="https://www.myteaspots.com/"
+              tags={[
+                "Square Online",
+                "Square Sites",
+                "Photopea",
+                "Graphic Design",
+                "Video Production",
+              ]}
+            />
+            <ProjectItem
+              src="/static/project-previews/caduceus.webp"
+              title="15th Annual HPC Website"
+              description="Developed a mobile-first website for Mt. SAC's 15th Annual Health Professions Conference. Designed to help attendees quickly access and submit feedback forms for each session."
+              link="https://github.com/bgar324/caduceus-club-website"
+              tags={["Next", "Typescript", "Tailwind", "Vercel"]}
+            />
+          </div>
         </section>
 
         <section id="education">

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { NavDown, XIcon } from "../svgs/Icons";
+import { ChevronDown, X } from "lucide-react";
 
 interface DropdownProps {
   role: string;
@@ -56,7 +57,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                     isOpen ? 'rotate-180' : ''
                   }`}
                 >
-                  {isOpen ? <XIcon /> : <NavDown />}
+                  {isOpen ? <X strokeWidth = "1" size = {16} absoluteStrokeWidth = {true}/> : <ChevronDown strokeWidth = "1" size = {16} absoluteStrokeWidth = {true} />}
                 </button>
               )}
             </div>
