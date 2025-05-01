@@ -374,11 +374,11 @@ export default function Home() {
           </p>
           <div className="flex flex-col gap-4">
             <Dropdown
-              role="UCLA"
-              position="Junior Level Transfer"
+              role="UC Irvine"
+              position="Bachelor of Science - Computer Science"
               startDate="Sep 2025"
               endDate="Present"
-              src="/static/schools/ucla.webp"
+              src="/static/schools/uci.webp"
             />
             <Dropdown
               role="Mount San Antonio College"
