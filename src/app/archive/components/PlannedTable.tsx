@@ -23,6 +23,12 @@ interface PlannedProject {
 
 const plannedProjects: PlannedProject[] = [
   {
+    title: "CS Club v2",
+    plannedFor: "2025",
+    stack: ["Next.js", "Tailwind", "framer-motion"],
+    madeAt: "Mt. SAC"
+  },
+  {
     title: "LLU Attendee Lookup",
     plannedFor: "2025",
     stack: ["Next.js", "Tailwind", "Firebase", "Google Vision API"],

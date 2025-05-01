@@ -360,7 +360,7 @@ export default function Home() {
               title="15th Annual HPC Website"
               description="Developed a mobile-first website for Mt. SAC's 15th Annual Health Professions Conference. Designed to help attendees quickly access and submit feedback forms for each session."
               link="https://github.com/bgar324/caduceus-club-website"
-              tags={["Next", "Typescript", "Tailwind", "Vercel"]}
+              tags={["Next", "Tailwind", "Vercel", "shadcn-ui"]}
             />
           </div>
         </section>
