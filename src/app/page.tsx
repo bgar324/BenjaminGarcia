@@ -343,16 +343,19 @@ export default function Home() {
               ]}
             />
             <ProjectItem
-              src="/static/project-previews/teaspots.webp"
-              title="Tea Spots"
-              description="Collaborated with video production and graphic design teams to redesign a client's website using Square Online, integrating custom CSS, embedded code, and POS systems to support high traffic and dozens of weekly orders. Optimized multimedia assets for a cohesive, brand-aligned experience, resulting in thousands of page views and 200+ unique visits in the first week."
-              link="https://www.myteaspots.com/"
+              src="/static/project-previews/hetai.webp"
+              title="het.ai | hacktech 2025"
+              description="Collaborated in a team of four to build het.ai (Hand Ergonomic Tracker) during HackTech 2025, a real-time wrist diagnostic platform that visualizes hand posture and calculates ergonomic risk using the Leap Motion Controller. I led the frontend development using Next.js and Tailwind CSS, building interactive visualizations and a dynamic dashboard that interfaces with a FastAPI backend and Firebase Firestore. The platform outputs flexion, deviation, and pronation angles, enabling users to receive live feedback and long-term session insights for improving typing ergonomics."
+              link="https://hetai.vercel.app/"
               tags={[
-                "Square Online",
-                "Square Sites",
-                "Photopea",
-                "Graphic Design",
-                "Video Production",
+                "Next.js",
+                "Tailwind",
+                "Python",
+                "Leap Motion",
+                "FastAPI",
+                "Firebase",
+                "Real-Time Data",
+                "Data Visualization & Diagnostics",
               ]}
             />
             <ProjectItem
