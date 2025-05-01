@@ -61,7 +61,7 @@ const Marquee: React.FC<MarqueeProps> = ({
 
   return (
     <div className={`overflow-hidden whitespace-nowrap relative ${className}`}>
-      <div className="absolute -left-0.5 top-0 h-full w-24 bg-gradient-to-r from-[#f7f6f7] to-transparent z-10"></div>
+      <div className="absolute -left-0.5 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10"></div>
       
       <div 
         ref={containerRef} 
@@ -80,7 +80,7 @@ const Marquee: React.FC<MarqueeProps> = ({
         </div>
       </div>
 
-      <div className="absolute -right-0.5 top-0 h-full w-24 bg-gradient-to-l from-[#f7f6f7] to-transparent z-10"></div>
+      <div className="absolute -right-0.5 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10"></div>
     </div>
   );
 };
