@@ -374,11 +374,12 @@ export default function Home() {
           </p>
           <div className="flex flex-col gap-4">
             <Dropdown
-              role="UC Irvine"
+              role="University of California, Irvine"
               position="BS, Computer Science"
               startDate="Sep 2025"
               endDate="Present"
               src="/static/schools/uci.webp"
+              description = "Campuswide Honors Collegium"
             />
             <Dropdown
               role="Mount San Antonio College"
