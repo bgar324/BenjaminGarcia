@@ -376,24 +376,24 @@ export default function Home() {
             <Dropdown
               role="University of California, Irvine"
               position="BS, Computer Science"
-              startDate="Sep 2025"
+              startDate="2025"
               endDate="Present"
               src="/static/schools/uci.webp"
               description = "Campuswide Honors Collegium"
             />
             <Dropdown
               role="Mount San Antonio College"
-              position="Honors Student"
-              startDate="Jun 2023"
-              endDate="Jun 2025"
+              position="Honors"
+              startDate="2023"
+              endDate="2025"
               src="/static/schools/mtsac.webp"
               description="Outreach Officer & Front-End Developer for the Computer Science Club."
             />
             <Dropdown
               role="Walnut High School"
               position="High School Diploma"
-              startDate="Aug 2019"
-              endDate="May 2023"
+              startDate="2019"
+              endDate="2023"
               src="/static/schools/whs.webp"
             />
           </div>
