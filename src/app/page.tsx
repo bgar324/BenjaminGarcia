@@ -324,7 +324,7 @@ export default function Home() {
               title="Mt. SAC Computer Science Club Website"
               description="Redesigned and developed the Mt. SAC Computer Science Club website using React.JS and Bootstrap to improve functionality, accessibility, and responsiveness. The site serves as a hub for members, providing resources, event details, officer contacts, and Discord access."
               link="https://mtsaccs.netlify.app/"
-              tags={["React", "Boostrap", "Netlify"]}
+              tags={["React", "Bootstrap", "Netlify"]}
             />
             <ProjectItem
               src="/static/project-previews/logit-preview.webp"
