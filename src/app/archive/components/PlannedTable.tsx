@@ -96,10 +96,6 @@ export default function ArchiveTable() {
                   className="font-medium hover:underline flex items-center gap-1 text-base"
                 >
                   {title}
-                  <ArrowUpRightFromSquareIcon
-                    className="inline-block md:hidden"
-                    size={14}
-                  />
                 </a>
               </TableCell>
 
