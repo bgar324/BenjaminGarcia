@@ -225,9 +225,7 @@ export default function Home() {
           </div>
 
           <p className="text-gray-600 lg:text-lg leading-snug mt-4">
-            I'm Benjamin Garcia, a second-year Computer Science major at Mt. San
-            Antonio College, preparing to transfer to a four-year institution
-            this fall. Currently a{" "}
+            I'm Benjamin Garcia, a junior majoring in Computer Science at <span className = "font-medium" style={{background: 'linear-gradient(to right, #1e3a8a, #b45309)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', display: 'inline'}}>University of California, Irvine</span>. Currently a{" "}
             <span className="font-medium">
               Full Stack Software Developer Intern at Todd
             </span>
