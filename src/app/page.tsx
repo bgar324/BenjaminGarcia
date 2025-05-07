@@ -3,8 +3,6 @@
 import Image from "next/image";
 import Dropdown from "./components/Dropdown";
 import Marquee from "./components/Marquee";
-import ProjectCard from "./components/ProjectCard";
-import Carousel from "./components/Carousel";
 import {
   LocationIcon,
   MailIcon,
@@ -19,7 +17,6 @@ import { useState, useEffect } from "react";
 import PastVersions from "./components/PastVersions";
 import "./globals.css";
 import { motion } from "framer-motion";
-import ThemeToggle from "./components/ThemeToggle";
 import ProjectItem from "./components/SelectedProject";
 import { ArrowRight } from "lucide-react";
 
@@ -221,7 +218,6 @@ export default function Home() {
             <p className="w-fit border border-gray-300 rounded-md px-2 py-1 lg:py-[.5px] text-xs lg:text-sm uppercase mt-10 lg:mt-0 lg:mb-5 font-semibold tracking-wider">
               about
             </p>
-            {/* <ThemeToggle /> */}
           </div>
 
           <p className="text-gray-600 lg:text-lg leading-snug mt-4">
