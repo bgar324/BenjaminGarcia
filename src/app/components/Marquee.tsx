@@ -17,13 +17,15 @@ const Marquee: React.FC<MarqueeProps> = ({
   const techImages = [
     { src: "/static/tech/react.webp", alt: "React" },
     { src: "/static/tech/next.webp", alt: "Next.js" },
-    { src: "/static/tech/javascript.webp", alt: "JavaScript" },
+    { src: "/static/tech/typescript.png", alt: "TypeScript" },
     { src: "/static/tech/tailwind.webp", alt: "Tailwind CSS" },
-    { src: "/static/tech/bootstrap.webp", alt: "Bootstrap" },
+    { src: "/static/tech/prisma.svg", alt: "Prisma" },
     { src: "/static/tech/c++.webp", alt: "C++" },
-    { src: "/static/tech/html.webp", alt: "HTML5" },
+    { src: "/static/tech/firebase.png", alt: "Firebase" },
     { src: "/static/tech/python.webp", alt: "Python" }
   ];
+
+  // remove: html, javascript, bootstrap. replace with: firebase, typescript, prisma
 
   useEffect(() => {
     if (!containerRef.current || !contentRef.current) return;
@@ -60,7 +62,7 @@ const Marquee: React.FC<MarqueeProps> = ({
   }, [speed]);
 
   return (
-    <div className={`overflow-hidden whitespace-nowrap relative ${className}`}>
+    <div className={`overflow-hidden whitespace-nowrap relative select-none pointer-events-none ${className}`}>
       <div className="absolute -left-0.5 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10"></div>
       
       <div 
