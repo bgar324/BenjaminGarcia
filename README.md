@@ -1,4 +1,7 @@
-# Personal Portfolio Website v6
+# Personal Portfolio Website v4
+[![Next.js](https://img.shields.io/badge/Next.js-13%2B-black)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.0-38bdf8)](https://tailwindcss.com)
 
 A modern, responsive personal portfolio website built with Next.js 15 and Tailwind CSS. This website showcases professional experience, projects, and technical skills in an elegant and interactive interface.
 
