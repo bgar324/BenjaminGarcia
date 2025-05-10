@@ -314,11 +314,11 @@ export default function Home() {
 
           <div className="flex flex-col gap-y-3">
             <ProjectItem
-              src="/static/project-previews/csclubwebsite-preview.webp"
+              src="/static/project-previews/mtsaccsprev.png"
               title="Mt. SAC Computer Science Club Website"
-              description="Redesigned and developed the Mt. SAC Computer Science Club website using React.JS and Bootstrap to improve functionality, accessibility, and responsiveness. The site serves as a hub for members, providing resources, event details, officer contacts, and Discord access."
-              link="https://mtsaccs.netlify.app/"
-              tags={["React", "Bootstrap", "Netlify"]}
+              description="Rebuilt the Mt. SAC Computer Science Club website (v2) using Next.js, TypeScript, and Tailwind CSS, replacing the previous Bootstrap-based build. Engineered modular, reusable components and implemented mobile-first design, semantic HTML, and static optimization. Integrated structured data-driven rendering for events, directories, and dynamic routes to enhance scalability and maintainability across the 900+ member platform."
+              link="https://mtsaccs.org"
+              tags={["Next.js", "Tailwind CSS", "TypeScript", "Vercel"]}
             />
             <ProjectItem
               src="/static/project-previews/logit-preview.webp"

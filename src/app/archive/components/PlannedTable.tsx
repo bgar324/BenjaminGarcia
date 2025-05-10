@@ -23,17 +23,10 @@ interface ProjectEntry {
 const archiveProjects: ProjectEntry[] = [
   {
     year: 2025,
-    title: "CS Club v2",
-    builtWith: ["Next.js", "Tailwind", "framer-motion"],
-    madeAt: "Mt. SAC",
-    status: "Building"
-  },
-  {
-    year: 2025,
     title: "LLU Attendee Lookup",
     builtWith: ["Next.js", "Tailwind", "Firebase", "Google Vision API"],
     madeAt: "LLU Dental School",
-    status: "In Progress"
+    status: "Building"
   },
   {
     year: 2025,

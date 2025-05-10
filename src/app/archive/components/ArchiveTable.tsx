@@ -23,6 +23,18 @@ interface ProjectEntry {
 const archiveProjects: ProjectEntry[] = [
   {
     year: 2025,
+    title: "Mt. SAC Computer Science Website",
+    madeAt: "Mt. SAC",
+    builtWith: [
+      "React.js",
+      "Bootstrap",
+      "Netlify",
+    ],
+    link: "https://www.mtsaccs.org",
+    label: "Website",
+  },
+  {
+    year: 2025,
     title: "Tea Spots",
     madeAt: "AdeptEye",
     builtWith: [
@@ -41,7 +53,7 @@ const archiveProjects: ProjectEntry[] = [
     madeAt: "Independent",
     builtWith: ["Next.js", "Typescript", "Tailwind", "Vercel"],
     link: "https://bentgarcia.com/",
-    label: "GitHub",
+    label: "Website",
   },
   {
     year: 2024,
@@ -65,7 +77,7 @@ const archiveProjects: ProjectEntry[] = [
     madeAt: "Independent",
     builtWith: ["HTML", "CSS", "JavaScript", "OpenWeather API"],
     link: "https://beautiful-gumption-a0ca0e.netlify.app/",
-    label: "GitHub",
+    label: "Website",
   },
 ];
 
