@@ -385,7 +385,7 @@ export default function Home() {
               src="/static/project-previews/caduceus.webp"
               title="15th Annual HPC Website"
               description="Designed and launched a mobile-first website for the 15th Annual Health Professions Conference, partnering with the Caduceus Club and backed by a grant and Kaiser Permanente sponsorship. Engineered the site to centralize and streamline over 700 attendees’ access to feedback forms for 36 speakers and 83 vendors/exhibitors, prioritizing accessibility, responsiveness, and frictionless UX. The system was so effective it’s being adopted for future conferences. Received direct praise from organizers for its impact—no technical issues, only a need for greater form visibility. Site significantly improved attendee and staff workflow, simplifying form submission and centralizing event feedback at scale."
-              link="https://github.com/bgar324/caduceus-club-website"
+              link="https://caduceuswebsitev1.vercel.app"
               githubLink="https://github.com/bgar324/caduceus-club-website"
               tags={["Next.js", "Tailwind CSS", "Vercel", "shadcn-ui"]}
             />
