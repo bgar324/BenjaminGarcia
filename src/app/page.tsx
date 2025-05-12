@@ -255,8 +255,7 @@ export default function Home() {
                 Tensorstax
               </span>
             </span>
-            . I build fast, scalable websites that bridge design and
-            functionality.
+            . I build performant, accessible interfaces and engineer systems that translate design into impact.
           </p>
           <p className="mt-2 text-gray-600 lg:text-lg leading-snug ">
             Outside of coding, you can find me at the gym, hanging out with my
