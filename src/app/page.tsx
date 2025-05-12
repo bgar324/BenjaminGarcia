@@ -387,7 +387,7 @@ export default function Home() {
               description="Designed and launched a mobile-first website for the 15th Annual Health Professions Conference, partnering with the Caduceus Club and backed by a grant and Kaiser Permanente sponsorship. Engineered the site to centralize and streamline over 700 attendees’ access to feedback forms for 36 speakers and 83 vendors/exhibitors, prioritizing accessibility, responsiveness, and frictionless UX. The system was so effective it’s being adopted for future conferences. Received direct praise from organizers for its impact—no technical issues, only a need for greater form visibility. Site significantly improved attendee and staff workflow, simplifying form submission and centralizing event feedback at scale."
               link="https://github.com/bgar324/caduceus-club-website"
               githubLink="https://github.com/bgar324/caduceus-club-website"
-              tags={["Next", "Tailwind", "Vercel", "shadcn-ui"]}
+              tags={["Next.js", "Tailwind CSS", "Vercel", "shadcn-ui"]}
             />
           </div>
         </section>
