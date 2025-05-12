@@ -346,17 +346,17 @@ export default function Home() {
               title="Mt. SAC Computer Science Club Website"
               description="Rebuilt the Mt. SAC Computer Science Club website (v2) using Next.js, TypeScript, and Tailwind CSS, replacing the previous Bootstrap-based build. Engineered modular, reusable components and implemented mobile-first design, semantic HTML, and static optimization. Integrated structured data-driven rendering for events, directories, and dynamic routes to enhance scalability and maintainability across the 900+ member platform."
               link="https://mtsaccs.org"
+              githubLink="https://github.com/bgar324/mtsaccs-v2"
               tags={["Next.js", "Tailwind CSS", "TypeScript", "Vercel"]}
             />
             <ProjectItem
               src="/static/project-previews/logit-preview.webp"
               title="logit"
               description="A full-stack workout logging app designed for a minimal and efficient tracking experience. Users can log workouts, edit past sessions with a React-calendar, and track progress with Recharts visualizations. Workouts are stored in a PostgreSQL database, with support for tags, comments, and dropsets. Built with Next.js, Tailwind CSS, and Prisma, it streamlines workout management while enabling progressive overload tracking."
-              link="https://github.com/bgar324/logit"
+              githubLink="https://github.com/bgar324/logit"
               tags={[
-                "Next",
-                "React",
-                "Tailwind",
+                "Next.js",
+                "Tailwind CSS",
                 "react-calendar",
                 "Recharts",
                 "Supabase",
@@ -369,9 +369,10 @@ export default function Home() {
               title="het.ai | hacktech 2025"
               description="Collaborated in a team of four to build het.ai (Hand Ergonomic Tracker) during HackTech 2025, a real-time wrist diagnostic platform that visualizes hand posture and calculates ergonomic risk using the Leap Motion Controller. I led the frontend development using Next.js and Tailwind CSS, building interactive visualizations and a dynamic dashboard that interfaces with a FastAPI backend and Firebase Firestore. The platform outputs flexion, deviation, and pronation angles, enabling users to receive live feedback and long-term session insights for improving typing ergonomics."
               link="https://hetai.vercel.app/"
+              githubLink="https://github.com/bgar324/hacktech-25-brjk"
               tags={[
                 "Next.js",
-                "Tailwind",
+                "Tailwind CSS",
                 "Python",
                 "Leap Motion",
                 "FastAPI",
@@ -383,8 +384,9 @@ export default function Home() {
             <ProjectItem
               src="/static/project-previews/caduceus.webp"
               title="15th Annual HPC Website"
-              description="Developed a mobile-first website for Mt. SAC's 15th Annual Health Professions Conference. Designed to help attendees quickly access and submit feedback forms for each session."
+              description="Designed and launched a mobile-first website for the 15th Annual Health Professions Conference, partnering with the Caduceus Club and backed by a grant and Kaiser Permanente sponsorship. Engineered the site to centralize and streamline over 700 attendees’ access to feedback forms for 36 speakers and 83 vendors/exhibitors, prioritizing accessibility, responsiveness, and frictionless UX. The system was so effective it’s being adopted for future conferences. Received direct praise from organizers for its impact—no technical issues, only a need for greater form visibility. Site significantly improved attendee and staff workflow, simplifying form submission and centralizing event feedback at scale."
               link="https://github.com/bgar324/caduceus-club-website"
+              githubLink="https://github.com/bgar324/caduceus-club-website"
               tags={["Next", "Tailwind", "Vercel", "shadcn-ui"]}
             />
           </div>
