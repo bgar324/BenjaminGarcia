@@ -69,7 +69,7 @@ export default function Home() {
             className="h-auto w-32 md:w-28 lg:w-48 rounded-xl"
           />
           <div className="ml-2 pt-2 pr-2 lg:ml-1 lg:pt-0 lg:pr-0">
-            <h1 className="text-gray-900 text-2xl lg:text-2xl font-semibold lg:font-semibold tracking-tight leading-none dark:text-white">
+            <h1 className="text-gray-900 text-2xl lg:text-2xl font-semibold lg:font-semibold tracking-tight leading-none">
               Hello I'm
             </h1>
             <h1 className="text-gray-900 text-2xl lg:text-2xl font-semibold lg:font-semibold tracking-tight">
@@ -221,11 +221,41 @@ export default function Home() {
           </div>
 
           <p className="text-gray-600 lg:text-lg leading-snug mt-4">
-            I'm Benjamin Garcia, a junior majoring in Computer Science at <span className = "font-medium" style={{background: 'linear-gradient(to right, #1e3a8a, #b45309)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', display: 'inline'}}>University of California, Irvine</span>. Currently a{" "}
-            <span className="font-medium">
-              Full Stack Software Developer Intern at Todd
+            I'm Benjamin Garcia, a junior majoring in Computer Science at{" "}
+            <span
+              className="font-medium"
+              style={{
+                background: "linear-gradient(to right, #1e3a8a, #b45309)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                display: "inline",
+              }}
+            >
+              University of California, Irvine
             </span>
-            , I build fast, scalable websites that bridge design and
+            . Currently a{" "}
+            <span className="font-medium">
+              Full Stack Engineer Intern at{" "}
+              <span className="text-black">Todd</span>
+            </span>
+            {""} and an{" "}
+            <span className="font-medium">
+              incoming Frontend Engineer Intern at{" "}
+              <span
+                style={{
+                  background: "linear-gradient(to right, #ee512d, #000000)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  display: "inline",
+                }}
+              >
+                {" "}
+                Tensorstax
+              </span>
+            </span>
+            . I build fast, scalable websites that bridge design and
             functionality.
           </p>
           <p className="mt-2 text-gray-600 lg:text-lg leading-snug ">
@@ -248,7 +278,14 @@ export default function Home() {
           </p>
           <div className="flex flex-col gap-4">
             <Dropdown
-              role="Full Stack Software Development Intern"
+              role="Frontend Engineer Intern"
+              position="Tensorstax"
+              startDate="June 2025"
+              endDate="Present"
+              src="/static/companies/tensorstax.png"
+            />
+            <Dropdown
+              role="Full Stack Engineer Intern"
               position="Todd"
               startDate="Apr 2025"
               endDate="Present"
@@ -270,14 +307,6 @@ export default function Home() {
               endDate="Apr 2025"
               src="/static/companies/realityai.webp"
               description="Building full-stack systems for Marvel AI and Sky AI, using React, Node.js, and Python with Firestore, Firebase, and Redis to manage data and real-time workflows."
-            />
-            <Dropdown
-              role="Front-End Developer"
-              position="AdeptEye"
-              startDate="Sep 2024"
-              endDate="Apr 2025"
-              src="/static/companies/adepteye.webp"
-              description="Revamped and optimized client websites on Shopify and Squarespace, improving UX, reducing load times by 40–50%, and launching scalable e-commerce platforms with POS integration and 1,800+ page views in the first week."
             />
             <Dropdown
               role="AI Engineer"
@@ -373,7 +402,7 @@ export default function Home() {
               startDate="2025"
               endDate="Present"
               src="/static/schools/uci.webp"
-              description = "Campuswide Honors Collegium"
+              description="Campuswide Honors Collegium"
             />
             <Dropdown
               role="Mount San Antonio College"

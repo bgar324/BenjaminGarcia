@@ -5,7 +5,7 @@
 
 A modern, responsive personal portfolio website built with Next.js 15 and Tailwind CSS. This website showcases professional experience, projects, and technical skills in an elegant and interactive interface.
 
-## Tech Stack
+## Tech Stack 
 
 - **Framework:** Next.js 15
 - **Styling:** Tailwind CSS
