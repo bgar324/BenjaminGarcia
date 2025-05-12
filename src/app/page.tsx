@@ -343,7 +343,7 @@ export default function Home() {
           <div className="flex flex-col gap-y-3">
             <ProjectItem
               src="/static/project-previews/mtsaccsprev.png"
-              title="Mt. SAC Computer Science Club Website"
+              title="Computer Science Club Website"
               description="Rebuilt the Mt. SAC Computer Science Club website (v2) using Next.js, TypeScript, and Tailwind CSS, replacing the previous Bootstrap-based build. Engineered modular, reusable components and implemented mobile-first design, semantic HTML, and static optimization. Integrated structured data-driven rendering for events, directories, and dynamic routes to enhance scalability and maintainability across the 900+ member platform."
               link="https://mtsaccs.org"
               githubLink="https://github.com/bgar324/mtsaccs-v2"
