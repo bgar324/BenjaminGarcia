@@ -252,7 +252,7 @@ export default function Home() {
                 }}
               >
                 {" "}
-                Tensorstax
+                TensorStax
               </span>
             </span>
             . I build performant, accessible interfaces and engineer systems that translate design into impact.
@@ -278,7 +278,7 @@ export default function Home() {
           <div className="flex flex-col gap-4">
             <Dropdown
               role="Frontend Engineer Intern"
-              position="Tensorstax"
+              position="TensorStax"
               startDate="June 2025"
               endDate="Present"
               src="/static/companies/tensorstax.png"
