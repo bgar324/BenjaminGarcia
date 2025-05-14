@@ -239,9 +239,9 @@ export default function Home() {
               Full Stack Engineer Intern at{" "}
               <span className="text-black">Todd</span>
             </span>
-            {""} and an{" "}
+            {""} & a{" "}
             <span className="font-medium">
-              incoming Frontend Engineer Intern at{" "}
+              Software Engineer Intern at{" "}
               <span
                 style={{
                   background: "linear-gradient(to right, #ee512d, #000000)",
@@ -277,7 +277,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col gap-4">
             <Dropdown
-              role="Frontend Engineer Intern"
+              role="Software Engineer Intern"
               position="TensorStax"
               startDate="June 2025"
               endDate="Present"
