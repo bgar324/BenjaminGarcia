@@ -300,12 +300,12 @@ export default function Home() {
               description="Redesigned and rebuilt the Mt. SAC CS Club website using React and Bootstrap, enhancing UX, responsiveness, and access to events, officers, and contact info for 900+ members."
             />
             <Dropdown
-              role="Software Developer"
-              position="Reality AI Lab"
-              startDate="Feb"
+              role="Front-End Developer"
+              position="AdeptEye"
+              startDate="Sep 2024"
               endDate="Apr 2025"
-              src="/static/companies/realityai.webp"
-              description="Building full-stack systems for Marvel AI and Sky AI, using React, Node.js, and Python with Firestore, Firebase, and Redis to manage data and real-time workflows."
+              src="/static/companies/adepteye.webp"
+              description="Revamped and optimized client websites on Shopify and Squarespace, improving UX, reducing load times by 40–50%, and launching scalable e-commerce platforms with POS integration and 1,800+ page views in the first week."
             />
             <Dropdown
               role="AI Engineer"
