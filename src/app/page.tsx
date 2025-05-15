@@ -292,7 +292,7 @@ export default function Home() {
               description="Designed and implemented a client-facing dashboard for real-time agricultural insights while integrating AI/ML backend services to automate crop data analysis; also built the company website from scratch using Next.js, Tailwind CSS, and Framer Motion in a fast-paced startup environment."
             />
             <Dropdown
-              role="Front-End Developer"
+              role="Frontend Developer"
               position="Mt. SAC CS Club"
               startDate="Sep 2024"
               endDate="Present"
@@ -300,7 +300,7 @@ export default function Home() {
               description="Redesigned and rebuilt the Mt. SAC CS Club website using React and Bootstrap, enhancing UX, responsiveness, and access to events, officers, and contact info for 900+ members."
             />
             <Dropdown
-              role="Front-End Developer"
+              role="Frontend Developer"
               position="AdeptEye"
               startDate="Sep 2024"
               endDate="Apr 2025"
