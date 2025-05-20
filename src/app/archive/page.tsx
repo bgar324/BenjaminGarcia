@@ -12,14 +12,14 @@ export default function ArchivePage() {
         <ArrowLeft className="arrow-icon" size={14} />
         Benjamin Garcia
       </a>
-      <div className="relative mt-5 mb-10">
+      <div className="flex justify-between items-start mt-5 mb-10">
         <h1 className="w-fit border border-gray-300 rounded-md px-2 py-1 uppercase tracking-wider lg:py-[.5px] flex items-center gap-1 text-xl md:text-3xl font-bold">
           All Projects
         </h1>
-        <div className="hidden md:block absolute top-0 right-0 text-xs text-gray-500 text-start">
-          <div className = "leading-loose"><span className="font-medium">In Progress</span> – Currently being developed</div>
-          <div className = "leading-loose"><span className="font-medium">Planned</span> – Upcoming, scoped but not started</div>
-          <div className = "leading-loose"><span className="font-medium">Backlog</span> – Paused or deprioritized</div>
+        <div className="hidden md:flex flex-col gap-2 text-xs text-gray-500 text-start">
+          <div><span className = "font-medium">In Progress</span> – Currently being developed</div>
+          <div><span className = "font-medium">Planned</span> – Upcoming, scoped but not started</div>
+          <div><span className = "font-medium">Backlog</span> – Paused or deprioritized</div>
         </div>
       </div>
       <section className="mt-10">
