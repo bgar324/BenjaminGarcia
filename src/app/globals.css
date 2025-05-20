@@ -145,3 +145,21 @@ body {
 .animate-slow-ping {
   animation: slow-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
+
+.dotted-link {
+  border-bottom: 1px dotted currentColor;
+  text-decoration: none;
+}
+
+.dotted-link:hover {
+  border-bottom-color: var(--accent-foreground);
+}
+
+.arrow-icon {
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+}
+
+.arrow-link:hover .arrow-icon {
+  transform: translateX(-4px);
+}

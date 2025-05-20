@@ -23,14 +23,14 @@ interface ProjectEntry {
 const archiveProjects: ProjectEntry[] = [
   {
     year: 2025,
-    title: "Mt. SAC Computer Science Website",
+    title: "Computer Science Website (v1)",
     madeAt: "Mt. SAC",
     builtWith: [
       "React.js",
       "Bootstrap",
       "Netlify",
     ],
-    link: "https://www.mtsaccs.org",
+    link: "https://v1.mtsaccs.org",
     label: "Website",
   },
   {
@@ -51,7 +51,7 @@ const archiveProjects: ProjectEntry[] = [
     year: 2025,
     title: "Benjamin Garcia",
     madeAt: "Independent",
-    builtWith: ["Next.js", "Typescript", "Tailwind", "Vercel"],
+    builtWith: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
     link: "https://bentgarcia.com/",
     label: "Website",
   },
@@ -59,7 +59,7 @@ const archiveProjects: ProjectEntry[] = [
     year: 2024,
     title: "Roadmap Maker",
     madeAt: "Independent",
-    builtWith: ["Next", "Tailwind", "Material UI", "pdfmake"],
+    builtWith: ["Next.js", "Tailwind CSS", "Material UI", "pdfmake"],
     link: "https://github.com/bgar324/roadmapMaker",
     label: "GitHub",
   },

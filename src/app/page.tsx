@@ -237,12 +237,18 @@ export default function Home() {
             . Currently a{" "}
             <span className="font-medium">
               Full Stack Engineer Intern at{" "}
-              <span className="text-black">Todd</span>
+              <a
+                className = "text-black"
+                href="https://toddagriscience.com"
+                target="_blank"
+              >
+                Todd
+              </a>
             </span>
             {""} & a{" "}
             <span className="font-medium">
               Software Engineer Intern at{" "}
-              <span
+              <a
                 style={{
                   background: "linear-gradient(to right, #ee512d, #000000)",
                   WebkitBackgroundClip: "text",
@@ -250,12 +256,14 @@ export default function Home() {
                   backgroundClip: "text",
                   display: "inline",
                 }}
+                href = "https://tensorstax.com"
+                target="_blank"
               >
-                {" "}
                 TensorStax
-              </span>
+              </a>
             </span>
-            . I build performant, accessible interfaces and engineer systems that translate design into impact.
+            . I build performant, accessible interfaces and engineer systems
+            that translate design into impact.
           </p>
           <p className="mt-2 text-gray-600 lg:text-lg leading-snug ">
             Outside of coding, you can find me at the gym, hanging out with my

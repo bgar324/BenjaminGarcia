@@ -23,29 +23,50 @@ interface ProjectEntry {
 const archiveProjects: ProjectEntry[] = [
   {
     year: 2025,
-    title: "LLU Attendee Lookup",
-    builtWith: ["Next.js", "Tailwind", "Firebase", "Google Vision API"],
+    title: "Loma Lookup",
+    builtWith: ["Next.js", "Tailwind CSS", "Firebase", "Google Vision API"],
     madeAt: "LLU Dental School",
-    status: "Building"
+    status: "In Progress",
   },
   {
     year: 2025,
     title: "log•it v2",
-    builtWith: ["Next.js", "Tailwind", "Firebase"],
-    status: "Coming soon"
+    builtWith: ["Next.js", "Tailwind CSS", "Firebase"],
+    status: "Planned",
+  },
+  {
+    year: 2025,
+    title: "Git Proof",
+    builtWith: [
+      "Next.js",
+      "Tailwind CSS",
+      "FastAPI",
+      "PostgreSQL",
+      "GitHub API",
+      "Celery",
+      "Redis",
+    ],
+    status: "Planned",
+  },
+  {
+    year: 2025,
+    title: "TeaSpots v2",
+    builtWith: ["Astro", "Tailwind CSS", "Square"],
+    madeAt: "AdeptEye",
+    status: "Backlog"
   },
   {
     year: 2025,
     title: "Tax Mavericks",
-    builtWith: ["Next.js", "Tailwind", "Firebase"],
+    builtWith: ["Next.js", "Tailwind CSS", "Firebase"],
     madeAt: "AdeptEye",
-    status: "Coming soon"
+    status: "Backlog",
   },
   {
     year: 2025,
     title: "Open CV AI Squat Analyzer",
-    builtWith: ["Next.js", "Tailwind", "Firebase", "Python", "OpenCV"],
-    status: "Coming soon"
+    builtWith: ["Next.js", "Tailwind CSS", "Firebase", "Python", "OpenCV"],
+    status: "Backlog",
   },
 ];
 
@@ -68,9 +89,11 @@ export default function ArchiveTable() {
             Made at
           </TableHead>
           <TableHead className="hidden md:table-cell text-base">
-            Built With
+            Planned stack
           </TableHead>
-          <TableHead className="hidden md:table-cell text-base">Status</TableHead>
+          <TableHead className="hidden md:table-cell text-base">
+            Status
+          </TableHead>
         </TableRow>
       </TableHeader>
 
@@ -87,7 +110,7 @@ export default function ArchiveTable() {
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium hover:underline flex items-center gap-1 text-base"
+                    className="font-medium flex items-center gap-1 text-base"
                   >
                     {title}
                   </a>
