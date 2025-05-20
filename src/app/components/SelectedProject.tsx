@@ -82,7 +82,7 @@ export default function ProjectItem({
             </div>
           </div>
           {note && <span className="text-[#d87474] text-sm">{note}</span>}
-          <p className={`text-gray-600 text-sm md:text-base ${isExpanded ? '' : 'line-clamp-3'}`}>
+          <p className={`text-gray-600 text-sm md:text-base ${isExpanded ? '' : 'line-clamp-2'}`}>
             {description}
           </p>
           <button
@@ -99,7 +99,7 @@ export default function ProjectItem({
             {tags.map((tag, index) => (
               <span
                 key={index}
-                className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs md:text-sm dark:bg-gray-700 dark:text-white"
+                className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
               >
                 {tag}
               </span>
