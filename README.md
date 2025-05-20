@@ -68,3 +68,7 @@ The website is deployed on Vercel for optimal performance and reliability.
 ## License
 
 All rights reserved. This is a personal portfolio project.
+
+## Developer Notes
+
+> 🚧 **Future Update**: This project is planned to be refactored into Astro.js for improved performance and bundle size optimization. The refactor will leverage Astro's partial hydration and static site generation capabilities.
