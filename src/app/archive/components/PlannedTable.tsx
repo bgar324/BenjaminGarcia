@@ -101,7 +101,7 @@ export default function ArchiveTable() {
         {archiveProjects.map(
           ({ year, title, madeAt, builtWith, status, label }) => (
             <TableRow key={title}>
-              <TableCell className="whitespace-nowrap text-base py-4">
+              <TableCell className="whitespace-nowrap text-base py-4 cursor-default">
                 {year}
               </TableCell>
 
@@ -110,7 +110,7 @@ export default function ArchiveTable() {
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium flex items-center gap-1 text-base"
+                    className="font-medium flex items-center gap-1 text-base cursor-default"
                   >
                     {title}
                   </a>
@@ -123,7 +123,7 @@ export default function ArchiveTable() {
                 </div>
               </TableCell>
 
-              <TableCell className="hidden lg:table-cell text-gray-600 text-base">
+              <TableCell className="hidden lg:table-cell text-gray-600 text-base cursor-default">
                 {madeAt}
               </TableCell>
 
@@ -132,7 +132,7 @@ export default function ArchiveTable() {
                   {builtWith.map((t) => (
                     <span
                       key={t}
-                      className="bg-gray-200 text-black px-2 py-1 rounded-full text-xs"
+                      className="bg-gray-200 text-black px-2 py-1 rounded-full text-xs cursor-default"
                     >
                       {t}
                     </span>
@@ -140,7 +140,7 @@ export default function ArchiveTable() {
                 </div>
               </TableCell>
 
-              <TableCell className="hidden md:table-cell text-base">
+              <TableCell className="hidden md:table-cell text-base cursor-default">
                 {status || "—"}
               </TableCell>
             </TableRow>

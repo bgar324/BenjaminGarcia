@@ -50,7 +50,7 @@ const archiveProjects: ProjectEntry[] = [
   {
     year: 2025,
     title: "Benjamin Garcia",
-    madeAt: "Independent",
+    madeAt: "",
     builtWith: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
     link: "https://bentgarcia.com/",
     label: "Website",
@@ -58,7 +58,7 @@ const archiveProjects: ProjectEntry[] = [
   {
     year: 2024,
     title: "Roadmap Maker",
-    madeAt: "Independent",
+    madeAt: "",
     builtWith: ["Next.js", "Tailwind CSS", "Material UI", "pdfmake"],
     link: "https://github.com/bgar324/roadmapMaker",
     label: "GitHub",
@@ -66,7 +66,7 @@ const archiveProjects: ProjectEntry[] = [
   {
     year: 2024,
     title: "Suika Remake",
-    madeAt: "Independent",
+    madeAt: "",
     builtWith: ["Python", "Pygame", "Pymunk"],
     link: "https://github.com/bgar324/suika",
     label: "GitHub",
@@ -74,7 +74,7 @@ const archiveProjects: ProjectEntry[] = [
   {
     year: 2024,
     title: "Weather Display",
-    madeAt: "Independent",
+    madeAt: "",
     builtWith: ["HTML", "CSS", "JavaScript", "OpenWeather API"],
     link: "https://beautiful-gumption-a0ca0e.netlify.app/",
     label: "Website",
@@ -110,16 +110,15 @@ export default function ArchiveTable() {
         {archiveProjects.map(
           ({ year, title, madeAt, builtWith, link, label }) => (
             <TableRow key={title}>
-              <TableCell className="whitespace-nowrap text-base py-4">
+              <TableCell className="whitespace-nowrap text-base py-4 cursor-default">
                 {year}
               </TableCell>
 
               <TableCell>
                 <a
-                  href={link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium hover:underline flex items-center gap-1 text-base"
+                  className="font-medium flex items-center gap-1 text-base cursor-default"
                 >
                   {title}
                   <ArrowUpRightFromSquareIcon
@@ -129,7 +128,7 @@ export default function ArchiveTable() {
                 </a>
               </TableCell>
 
-              <TableCell className="hidden lg:table-cell text-gray-600 text-base">
+              <TableCell className="hidden lg:table-cell text-gray-600 text-base cursor-default">
                 {madeAt}
               </TableCell>
 
@@ -138,7 +137,7 @@ export default function ArchiveTable() {
                   {builtWith.map((t) => (
                     <span
                       key={t}
-                      className="bg-gray-200 text-black px-2 py-1 rounded-full text-xs"
+                      className="bg-gray-200 text-black px-2 py-1 rounded-full text-xs cursor-default"
                     >
                       {t}
                     </span>
