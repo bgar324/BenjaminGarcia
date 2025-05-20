@@ -387,10 +387,11 @@ export default function Home() {
                     >
                       <Image
                         src="/static/hacktech-logo.png"
-                        width={16}
-                        height={16}
+                        width={24}
+                        height={24}
                         alt="HackTech logo"
                         className="w-[1.25rem] h-[1.25rem]"
+                        quality={100}
                       />
                       <span>
                         HackTech 2025
