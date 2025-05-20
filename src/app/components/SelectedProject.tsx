@@ -3,9 +3,12 @@
 import { useState } from "react";
 import { ArrowUpRightFromSquare } from "lucide-react";
 
+import { ReactNode } from "react";
+
 interface ProjectItemProps {
   src: string;
-  title: string;
+  title: ReactNode;
+  alt?: string;
   description: string;
   link?: string;
   githubLink?: string;
@@ -18,6 +21,7 @@ interface ProjectItemProps {
 export default function ProjectItem({
   src,
   title,
+  alt,
   description,
   link,
   githubLink,
@@ -42,7 +46,7 @@ export default function ProjectItem({
       <div className="w-full md:w-1/3 flex items-start justify-center">
         <img
           src={src}
-          alt={title}
+          alt={alt || (typeof title === 'string' ? title : 'Project preview')}
           className="w-full h-auto rounded-lg border border-gray-300 dark:border-gray-700 cursor-pointer object-cover max-h-48"
           onClick={(e) => {
             e.preventDefault();

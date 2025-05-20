@@ -238,7 +238,7 @@ export default function Home() {
             <span className="font-medium">
               Full Stack Engineer Intern at{" "}
               <a
-                className = "text-black"
+                className="text-black"
                 href="https://toddagriscience.com"
                 target="_blank"
               >
@@ -256,7 +256,7 @@ export default function Home() {
                   backgroundClip: "text",
                   display: "inline",
                 }}
-                href = "https://tensorstax.com"
+                href="https://tensorstax.com"
                 target="_blank"
               >
                 TensorStax
@@ -374,7 +374,31 @@ export default function Home() {
             />
             <ProjectItem
               src="/static/project-previews/hetai.webp"
-              title="het.ai | hacktech 2025"
+              alt="het.ai project preview"
+              title={
+                <>
+                  <div className = "flex flex-row items-center">
+                    het.ai |{" "}
+                    <a
+                      href="https://hack.caltech.edu/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="border-gray-500 hover:text-orange-500 transition-colors duration-300 flex flex-row gap-2 ml-2 items-center text-center justify-center"
+                    >
+                      <Image
+                        src="/static/hacktech-logo.png"
+                        width={16}
+                        height={16}
+                        alt="HackTech logo"
+                        className="w-[1.25rem] h-[1.25rem]"
+                      />
+                      <span>
+                        HackTech 2025
+                      </span>
+                    </a>
+                  </div>
+                </>
+              }
               description="Collaborated in a team of four to build het.ai (Hand Ergonomic Tracker) during HackTech 2025, a real-time wrist diagnostic platform that visualizes hand posture and calculates ergonomic risk using the Leap Motion Controller. I led the frontend development using Next.js and Tailwind CSS, building interactive visualizations and a dynamic dashboard that interfaces with a FastAPI backend and Firebase Firestore. The platform outputs flexion, deviation, and pronation angles, enabling users to receive live feedback and long-term session insights for improving typing ergonomics."
               link="https://hetai.vercel.app/"
               githubLink="https://github.com/bgar324/hacktech-25-brjk"
