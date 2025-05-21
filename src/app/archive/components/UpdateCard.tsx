@@ -16,7 +16,7 @@ export default function UpdateCard({ href, title, description }: UpdateCardProps
       className="group flex items-center gap-2 w-fit p-4 rounded-lg border border-gray-200 hover:border-gray-300 transition-all"
     >
       <div>
-        <h3 className="font-medium text-lg group-hover:text-gray-600 transition-colors">
+        <h3 className="font-medium text-lg text-gray-800 group-hover:text-gray-900 transition-colors">
           {title}
         </h3>
         <p className="text-gray-600 text-sm">
