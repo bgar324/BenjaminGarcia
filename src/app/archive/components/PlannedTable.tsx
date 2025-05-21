@@ -23,16 +23,9 @@ interface ProjectEntry {
 const archiveProjects: ProjectEntry[] = [
   {
     year: 2025,
-    title: "Loma Lookup",
-    builtWith: ["Next.js", "Tailwind CSS", "Firebase", "Google Vision API"],
-    madeAt: "LLU Dental School",
-    status: "In Progress",
-  },
-  {
-    year: 2025,
     title: "log•it v2",
     builtWith: ["Next.js", "Tailwind CSS", "Firebase"],
-    status: "Planned",
+    status: "In Progress",
   },
   {
     year: 2025,
@@ -46,14 +39,14 @@ const archiveProjects: ProjectEntry[] = [
       "Celery",
       "Redis",
     ],
-    status: "Planned",
+    status: "In Progress",
   },
   {
     year: 2025,
     title: "TeaSpots v2",
     builtWith: ["Astro", "Tailwind CSS", "Square"],
     madeAt: "AdeptEye",
-    status: "Backlog"
+    status: "Backlog",
   },
   {
     year: 2025,
@@ -67,6 +60,13 @@ const archiveProjects: ProjectEntry[] = [
     title: "Open CV AI Squat Analyzer",
     builtWith: ["Next.js", "Tailwind CSS", "Firebase", "Python", "OpenCV"],
     status: "Backlog",
+  },
+  {
+    year: 2025,
+    title: "Loma Lookup",
+    builtWith: ["Next.js", "Tailwind CSS", "Firebase", "Google Vision API"],
+    madeAt: "LLU Dental School",
+    status: "Scrapped",
   },
 ];
 

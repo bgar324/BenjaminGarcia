@@ -1,5 +1,6 @@
 import ArchiveTable from "./components/ArchiveTable";
 import PlannedTable from "./components/PlannedTable";
+import UpdateCard from "./components/UpdateCard";
 import { ArrowLeft } from "lucide-react";
 
 export default function ArchivePage() {
@@ -17,16 +18,37 @@ export default function ArchivePage() {
           All Projects
         </h1>
         <div className="hidden md:flex flex-col gap-2 text-xs text-gray-500 text-start">
-          <div><span className = "font-medium">In Progress</span> – Currently being developed</div>
-          <div><span className = "font-medium">Planned</span> – Upcoming, scoped but not started</div>
-          <div><span className = "font-medium">Backlog</span> – Paused or deprioritized</div>
+          <div>
+            <span className="font-medium">In Progress</span> – Currently being
+            developed
+          </div>
+          <div>
+            <span className="font-medium">Planned</span> – Upcoming, scoped but
+            not started
+          </div>
+          <div>
+            <span className="font-medium">Backlog</span> – Paused or
+            deprioritized
+          </div>
+          <div>
+            <span className="font-medium">Scrapped</span> – Explored but intentionally discontinued
+          </div>
         </div>
       </div>
+      <section>
+        <h2 className="w-fit border border-gray-300 rounded-md px-2 py-1  uppercase mt-10 tracking-wider lg:py-[.5px] flex items-center gap-1 text-lg md:text-xl font-bold mb-5">
+          Recent Updates
+        </h2>
+        <UpdateCard 
+          href="/blog/loma-lookup-retrospective"
+          title="Loma Lookup Project Retrospective"
+          description="A look back at what I learned from the Loma Lookup project"
+        />
+      </section>
       <section className="mt-10">
         <h2 className="w-fit border border-gray-300 rounded-md px-2 py-1  uppercase mt-10 tracking-wider lg:py-[.5px] flex items-center gap-1 text-lg md:text-xl font-bold mb-5">
           Planned Projects
         </h2>
-
         <PlannedTable />
       </section>
       <section>
