@@ -36,7 +36,7 @@ const blogPosts: Record<string, BlogPost> = {
     stack: ["Next.js", "Tailwind CSS", "Firebase", "Google Vision API", "Google Document AI", "LLaVA", "4o", "Python"],
     image: "/static/blog-images/loma-lookup_blog-image.png",
     imageDescription:
-      "Sample data, believe it or not, this was one of the better/easier images to work with.",
+      "Sample data. Believe it or not, this was one of the better/easier images to work with.",
     sections: [
       {
         subheading: "Problem Statement",
@@ -76,7 +76,7 @@ const blogPosts: Record<string, BlogPost> = {
         content: [
           "This project looked simple on paper—turn a photo into JSON. In practice, it revealed a deeper truth: some tasks remain on the **edge of AI's capabilities**, especially those requiring spatial logic, semantic interpretation, and structural inference.",
           "Loma Lookup is now retired, but it serves as a technical postmortem on where automation fails, and how critical human verification still is when pushing past the bounds of AI reliability.",
-          "What's next? **log it v2.**"
+          "What's next? **log it v2. & Git Proof**"
         ],
       },
     ],
