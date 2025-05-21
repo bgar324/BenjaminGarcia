@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 
 export default function ArchivePage() {
   return (
-    <main className="max-w-7xl mx-auto px-6 pt-24 pb-16">
+    <main className="max-w-7xl mx-auto px-6 pt-6 md:pt-12 lg:pt-24 pb-16">
       <a
         href="/"
         className="flex flex-row gap-2 items-center text-center hover:text-black mb-4 arrow-link"
