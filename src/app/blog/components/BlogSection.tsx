@@ -19,7 +19,7 @@ export default function BlogSection({ subheading, content, image }: BlogSectionP
       <h2 className="text-xl md:text-2xl font-semibold mb-6 text-gray-900">
         {subheading}
       </h2>
-      <div className="text-gray-600 leading-relaxed text-base md:text-lg space-y-8">
+      <div className="text-gray-800 leading-relaxed text-base md:text-lg space-y-8">
         {/* First paragraph */}
         {content.length > 0 && (
           <ReactMarkdown
