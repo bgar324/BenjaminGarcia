@@ -61,7 +61,7 @@ const blogPosts: Record<string, BlogPost> = {
         image: {
           src: "/static/blog-images/loma-lookup_blog-image-preprocessed.png",
           alt: "Preprocessed of the raw image through a custom Python script.",
-          caption: "Preprocessed output of the raw image through a custom Python script."
+          caption: "Preprocessed image."
         },
       },
       {
