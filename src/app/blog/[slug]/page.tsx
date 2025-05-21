@@ -83,12 +83,16 @@ const blogPosts: Record<string, BlogPost> = {
   },
 };
 
-export default async function BlogPost({
-  params,
-}: {
-  params: { slug: string };
-}) {
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export default async function BlogPost({ params }: PageProps) {
   const { slug } = await params;
+  
+  if (slug !== "loma-lookup-retrospective") {
+    return null;
+  }
   const post = blogPosts[slug];
 
   if (!post) {
