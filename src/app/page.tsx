@@ -81,7 +81,7 @@ export default function Home() {
             <div className="flex flex-row gap-1 items-center mt-2">
               <LocationIcon />
               <p className="text-sm text-gray-500 hover:underline">
-                Los Angeles, California
+                Irvine, California
               </p>
             </div>
             <button
@@ -287,9 +287,10 @@ export default function Home() {
             <Dropdown
               role="Software Engineer Intern"
               position="TensorStax"
-              startDate="June 2025"
+              startDate="May 2025"
               endDate="Present"
               src="/static/companies/tensorstax.png"
+              description="Engineered real-time frontend systems (Next.js, Redux, WebSockets) for low-latency agentic interfaces and dynamic pipeline configuration. Designed and implemented a secure credential submission UI with HashiCorp Vault, Python, and Redis. Collaborated in a fast-paced startup to ship complex internal tooling with asynchronous task flows."
             />
             <Dropdown
               role="Full Stack Engineer Intern"
@@ -297,7 +298,7 @@ export default function Home() {
               startDate="Apr 2025"
               endDate="Present"
               src="/static/companies/todd.webp"
-              description="Designed and implemented a client-facing dashboard for real-time agricultural insights while integrating AI/ML backend services to automate crop data analysis; also built the company website from scratch using Next.js, Tailwind CSS, and Framer Motion in a fast-paced startup environment."
+              description="Built and deployed a responsive, client-facing dashboard and website (Next.js, Tailwind CSS, Framer Motion) with interactive data visualizations for agricultural insights. Integrated Palantir Foundry and AWS Lambda to stream AI-analyzed crop data into real-time UI components. Designed scalable, accessible UI architecture and modular components."
             />
             <Dropdown
               role="Frontend Developer"

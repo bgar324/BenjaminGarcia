@@ -8,21 +8,24 @@ interface MarqueeProps {
 }
 
 const Marquee: React.FC<MarqueeProps> = ({ 
-  speed = -30,
+  speed = -50,
   className = ""
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   const techImages = [
-    { src: "/static/tech/react.webp", alt: "React" },
     { src: "/static/tech/next.webp", alt: "Next.js" },
+    { src: "/static/tech/react.webp", alt: "React" },
     { src: "/static/tech/typescript.png", alt: "TypeScript" },
+    { src: "/static/tech/python.webp", alt: "Python" },
+    { src: "/static/tech/postgres.png", alt: "PostgreSQL" },
+    { src: "/static/tech/lambda.png", alt: "Lambda" },
     { src: "/static/tech/tailwind.webp", alt: "Tailwind CSS" },
+    { src: "/static/tech/redux.png", alt: "Redux" },
     { src: "/static/tech/prisma.svg", alt: "Prisma" },
-    { src: "/static/tech/c++.webp", alt: "C++" },
     { src: "/static/tech/firebase.png", alt: "Firebase" },
-    { src: "/static/tech/python.webp", alt: "Python" }
+    { src: "/static/tech/c++.webp", alt: "C++" }
   ];
 
   // remove: html, javascript, bootstrap. replace with: firebase, typescript, prisma
