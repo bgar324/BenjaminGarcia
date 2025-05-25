@@ -1,9 +1,9 @@
 # Personal Portfolio Website v4
-[![Next.js](https://img.shields.io/badge/Next.js-13%2B-black)](https://nextjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.0-38bdf8)](https://tailwindcss.com)
 
-A modern, responsive personal portfolio website built with Next.js 15 and Tailwind CSS. This website showcases professional experience, projects, and technical skills in an elegant and interactive interface.
+A modern, responsive personal portfolio website built with Next.js 15 and Tailwind CSS. This website showcases professional experience, projects, technical skills, education, and past portfolio versions in an elegant and interactive interface with smooth animations.
 
 ## Tech Stack 
 
@@ -20,8 +20,13 @@ A modern, responsive personal portfolio website built with Next.js 15 and Tailwi
 - Smooth animations and transitions using Framer Motion
 - Dynamic navigation with scroll tracking
 - Interactive project showcase
-- Mobile-friendly navigation with hamburger menu
+- Mobile-friendly navigation
 - Performance optimized with Next.js
+- Blog section with Markdown support
+- Archive section for project updates
+- Past portfolio versions showcase
+- Education and experience timeline
+- Tech stack visualization
 
 ## Project Structure
 
