@@ -294,8 +294,8 @@ export default function Home() {
             />
             <Dropdown
               role="Full Stack Engineer Intern"
-              position="Todd"
-              startDate="Apr 2025"
+              position="Todd Agriscience"
+              startDate="Mar. 2025"
               endDate="Present"
               src="/static/companies/todd.webp"
               description="Built and deployed a responsive, client-facing dashboard and website (Next.js, Tailwind CSS, Framer Motion) with interactive data visualizations for agricultural insights. Integrated Palantir Foundry and AWS Lambda to stream AI-analyzed crop data into real-time UI components. Designed scalable, accessible UI architecture and modular components."
@@ -303,7 +303,7 @@ export default function Home() {
             <Dropdown
               role="Frontend Developer"
               position="Mt. SAC CS Club"
-              startDate="Sep 2024"
+              startDate="Sep. 2024"
               endDate="Present"
               src="/static/companies/mtsaccs.webp"
               description="Redesigned and rebuilt the Mt. SAC CS Club website using React and Bootstrap, enhancing UX, responsiveness, and access to events, officers, and contact info for 900+ members."
@@ -311,16 +311,16 @@ export default function Home() {
             <Dropdown
               role="Frontend Developer"
               position="AdeptEye"
-              startDate="Sep 2024"
-              endDate="Apr 2025"
+              startDate="Sep. 2024"
+              endDate="Apr. 2025"
               src="/static/companies/adepteye.webp"
               description="Revamped and optimized client websites on Shopify and Squarespace, improving UX, reducing load times by 40–50%, and launching scalable e-commerce platforms with POS integration and 1,800+ page views in the first week."
             />
             <Dropdown
               role="AI Engineer"
               position="Outlier AI"
-              startDate="Mar 2024"
-              endDate="Apr 2025"
+              startDate="Mar. 2024"
+              endDate="Apr. 2025"
               src="/static/companies/outlier.webp"
               description="Developed a recursive self-improvement method that reduced trend-based LLM errors by 15–20%, enhancing reasoning through failure-based prompt refinement. Optimized AI response pipelines by analyzing 30–50 outputs per session, leveraging A/B testing, hallucination detection, and effectiveness evaluation to boost accuracy."
             />
