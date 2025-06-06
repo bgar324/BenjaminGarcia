@@ -524,7 +524,7 @@ export default function Home() {
           <div className="w-full justify-between flex flex-row items-center text-center pt-16">
             <button 
               onClick={() => setIsVideoOpen(true)}
-              className="relative inline-block transition-all duration-300 hover:-translate-y-2 focus:outline-none cursor-pointer group"
+              className="hidden relative md:inline-block transition-all duration-300 hover:-translate-y-2 focus:outline-none cursor-pointer group"
               aria-label="Watch video"
             >
               <Image
