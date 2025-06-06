@@ -300,7 +300,7 @@ export default function Home() {
                   backgroundClip: "text",
                   display: "inline",
                 }}
-                href="https://tensorstax.com"
+                href="https://www.bonterratech.com/"
                 target="_blank"
               >
                 Bonterra
