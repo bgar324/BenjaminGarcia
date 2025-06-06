@@ -16,13 +16,57 @@ import {
 import { useState, useEffect } from "react";
 import PastVersions from "./components/PastVersions";
 import "./globals.css";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import ProjectItem from "./components/SelectedProject";
 import { ArrowRight } from "lucide-react";
+
+const YouTubeModal = ({ isOpen, onClose, videoId }: { isOpen: boolean; onClose: () => void; videoId: string }) => {
+  if (!isOpen) return null;
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+      >
+        <motion.div
+          className="relative w-full max-w-4xl bg-gray-900 rounded-lg overflow-hidden shadow-2xl"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            onClick={onClose}
+            className="absolute top-2 -right-2 -translate-x-1/2 z-10 p-2 text-gray-100 hover:text-white transition-colors bg-black/10 rounded-full backdrop-blur-sm hover:bg-black/50 cursor-pointer"
+            aria-label="Close video"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div className="aspect-video w-full">
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0&fs=1`}
+              className="w-full h-full"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+};
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -477,55 +521,82 @@ export default function Home() {
         </section>
 
         <section id="closing-note">
-          <div className="sm:text-right max-w-full sm:max-w-[365px] sm:ml-auto text-gray-600 pt-16 text-sm">
-            <p>
-              Loosely inspired by{" "}
-              <a
-                className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
-                href="https://www.framer.com/marketplace/templates/monocv/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                MonoCV
-              </a>{" "}
-              and coded in{" "}
-              <a
-                className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
-                href="https://code.visualstudio.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Visual Studio Code
-              </a>
-              . Built with{" "}
-              <a
-                className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
-                href="https://nextjs.org/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Next.js
-              </a>{" "}
-              and{" "}
-              <a
-                className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
-                href="https://tailwindcss.com/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Tailwind CSS
-              </a>
-              , deployed with{" "}
-              <a
-                className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
-                href="https://vercel.com/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Vercel
-              </a>
-              . <span className="sm:hidden">All text is in</span>{" "}
-              <span className="sm:hidden">
+          <div className="w-full justify-between flex flex-row items-center text-center pt-16">
+            <button 
+              onClick={() => setIsVideoOpen(true)}
+              className="inline-block transition-transform duration-300 hover:-translate-y-2 focus:outline-none cursor-pointer"
+              aria-label="Watch video"
+            >
+              <Image
+                src="/static/hom.png"
+                width={45}
+                height={45}
+                alt="Watch me defeat Malenia!"
+                className="inline-block ml-2"
+              />
+            </button>
+            <div className="sm:text-right max-w-full sm:max-w-[365px] sm:ml-auto text-gray-600  text-sm">
+              <p>
+                Loosely inspired by{" "}
+                <a
+                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
+                  href="https://www.framer.com/marketplace/templates/monocv/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  MonoCV
+                </a>{" "}
+                and coded in{" "}
+                <a
+                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
+                  href="https://code.visualstudio.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visual Studio Code
+                </a>
+                . Built with{" "}
+                <a
+                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
+                  href="https://nextjs.org/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Next.js
+                </a>{" "}
+                and{" "}
+                <a
+                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
+                  href="https://tailwindcss.com/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Tailwind CSS
+                </a>
+                , deployed with{" "}
+                <a
+                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
+                  href="https://vercel.com/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Vercel
+                </a>
+                . <span className="sm:hidden">All text is in</span>{" "}
+                <span className="sm:hidden">
+                  <a
+                    className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
+                    href="https://www.fontshare.com/fonts/cabinet-grotesk"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    Cabinet Grotesk
+                  </a>{" "}
+                  typeface.
+                </span>
+              </p>
+              <p className="hidden sm:block">
+                All text is in{" "}
                 <a
                   className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
                   href="https://www.fontshare.com/fonts/cabinet-grotesk"
@@ -535,22 +606,16 @@ export default function Home() {
                   Cabinet Grotesk
                 </a>{" "}
                 typeface.
-              </span>
-            </p>
-            <p className="hidden sm:block">
-              All text is in{" "}
-              <a
-                className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
-                href="https://www.fontshare.com/fonts/cabinet-grotesk"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Cabinet Grotesk
-              </a>{" "}
-              typeface.
-            </p>
+              </p>
+            </div>
           </div>
         </section>
+        
+        <YouTubeModal 
+          isOpen={isVideoOpen} 
+          onClose={() => setIsVideoOpen(false)} 
+          videoId="YWdbfy231n0"
+        />
       </motion.main>
     </div>
   );
