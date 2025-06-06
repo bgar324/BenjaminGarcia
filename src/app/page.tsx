@@ -524,7 +524,7 @@ export default function Home() {
           <div className="w-full justify-between flex flex-row items-center text-center pt-16">
             <button 
               onClick={() => setIsVideoOpen(true)}
-              className="inline-block transition-transform duration-300 hover:-translate-y-2 focus:outline-none cursor-pointer"
+              className="relative inline-block transition-all duration-300 hover:-translate-y-2 focus:outline-none cursor-pointer group"
               aria-label="Watch video"
             >
               <Image
@@ -532,8 +532,17 @@ export default function Home() {
                 width={45}
                 height={45}
                 alt="Watch me defeat Malenia!"
-                className="inline-block ml-2"
+                className="relative z-10 inline-block group-hover:scale-105 transition-transform duration-300"
               />
+              <div className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-75 transition-opacity duration-300 bg-gradient-to-r from-red-300 via-yellow-300 to-red-300 rounded-full animate-aurora" style={{
+                filter: 'blur(12px)',
+                width: 'calc(100% + 20px)',
+                height: 'calc(100% + 20px)',
+                top: '-10px',
+                left: '-10px',
+                backgroundSize: '200% 200%',
+                animation: 'aurora 2.5s ease infinite'
+              }} />
             </button>
             <div className="sm:text-right max-w-full sm:max-w-[365px] sm:ml-auto text-gray-600  text-sm">
               <p>
