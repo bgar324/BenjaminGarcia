@@ -236,7 +236,7 @@ export default function Home() {
             </span>
             . Currently a{" "}
             <span className="font-medium">
-              Full Stack Engineer Intern at{" "}
+              Senior Software Engineer at{" "}
               <a
                 className="text-black"
                 href="https://toddagriscience.com"
@@ -247,10 +247,10 @@ export default function Home() {
             </span>
             {""} & a{" "}
             <span className="font-medium">
-              Software Engineer Intern at{" "}
+              Research and Development Engineer Intern at{" "}
               <a
                 style={{
-                  background: "linear-gradient(to right, #ee512d, #000000)",
+                  background: "linear-gradient(to right, #feb6b2, #420c7d)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -259,11 +259,11 @@ export default function Home() {
                 href="https://tensorstax.com"
                 target="_blank"
               >
-                TensorStax
+                Bonterra
               </a>
             </span>
-            . I build performant, accessible interfaces and engineer systems
-            that translate design into impact.
+            . I thrive in fast-paced, collaborative teams and build performant,
+            accessible interfaces that drive real-world impact.
           </p>
           <p className="mt-2 text-gray-600 lg:text-lg leading-snug ">
             Outside of coding, you can find me at the gym, hanging out with my
@@ -285,20 +285,27 @@ export default function Home() {
           </p>
           <div className="flex flex-col gap-4">
             <Dropdown
-              role="Software Engineer Intern"
-              position="TensorStax"
-              startDate="May 2025"
+              role="Research and Development Engineer Intern"
+              position="Bonterra"
+              startDate="incoming Jul. 2025"
               endDate="Present"
-              src="/static/companies/tensorstax.png"
-              description="Engineered real-time frontend systems (Next.js, Redux, WebSockets) for low-latency agentic interfaces and dynamic pipeline configuration. Designed and implemented a secure credential submission UI with HashiCorp Vault, Python, and Redis. Collaborated in a fast-paced startup to ship complex internal tooling with asynchronous task flows."
+              src="/static/companies/bonterra.png"
             />
             <Dropdown
-              role="Full Stack Engineer Intern"
+              role="Senior Software Engineer"
               position="Todd Agriscience"
-              startDate="Mar. 2025"
+              startDate="Jun. 2025"
               endDate="Present"
               src="/static/companies/todd.webp"
               description="Built and deployed a responsive, client-facing dashboard and website (Next.js, Tailwind CSS, Framer Motion) with interactive data visualizations for agricultural insights. Integrated Palantir Foundry and AWS Lambda to stream AI-analyzed crop data into real-time UI components. Designed scalable, accessible UI architecture and modular components."
+            />
+            <Dropdown
+              role="Software Engineer Intern"
+              position="TensorStax"
+              startDate="May 2025"
+              endDate="Jun. 2025"
+              src="/static/companies/tensorstax.png"
+              description="Engineered real-time frontend systems (Next.js, Redux, WebSockets) for low-latency agentic interfaces and dynamic pipeline configuration. Designed and implemented a secure credential submission UI with HashiCorp Vault, Python, and Redis. Collaborated in a fast-paced startup to ship complex internal tooling with asynchronous task flows."
             />
             <Dropdown
               role="Frontend Developer"
@@ -307,14 +314,6 @@ export default function Home() {
               endDate="Present"
               src="/static/companies/mtsaccs.webp"
               description="Redesigned and rebuilt the Mt. SAC CS Club website using React and Bootstrap, enhancing UX, responsiveness, and access to events, officers, and contact info for 900+ members."
-            />
-            <Dropdown
-              role="Frontend Developer"
-              position="AdeptEye"
-              startDate="Sep. 2024"
-              endDate="Apr. 2025"
-              src="/static/companies/adepteye.webp"
-              description="Revamped and optimized client websites on Shopify and Squarespace, improving UX, reducing load times by 40–50%, and launching scalable e-commerce platforms with POS integration and 1,800+ page views in the first week."
             />
             <Dropdown
               role="AI Engineer"
@@ -351,6 +350,20 @@ export default function Home() {
 
           <div className="flex flex-col gap-y-3">
             <ProjectItem
+              src="/static/project-previews/git-proof.png"
+              title="Git Proof"
+              description="An AI-powered GitHub analytics and report generation tool that transforms public repositories into recruiter-ready summaries. Users can generate commit heatmaps, analyze tech stacks, and receive AI-generated repository insights and README suggestions using Google Gemini. Built with Next.js, Tailwind CSS, and TypeScript, Git Proof also offers professional PDF exports powered by jsPDF and @react-pdf/renderer, all wrapped in a secure, OAuth-authenticated experience. Originally developed and presented during the final round of Bonterra’s R&D internship interview."
+              githubLink="https://github.com/bgar324/gitproof"
+              tags={[
+                "Next.js",
+                "Tailwind CSS",
+                "TypeScript",
+                "Gemini API",
+                "GitHub API",
+                "React PDF",
+              ]}
+            />
+            <ProjectItem
               src="/static/project-previews/mtsaccsprev.png"
               title="Computer Science Club Website"
               description="Rebuilt the Mt. SAC Computer Science Club website (v2) using Next.js, TypeScript, and Tailwind CSS, replacing the previous Bootstrap-based build. Engineered modular, reusable components and implemented mobile-first design, semantic HTML, and static optimization. Integrated structured data-driven rendering for events, directories, and dynamic routes to enhance scalability and maintainability across the 900+ member platform."
@@ -378,7 +391,7 @@ export default function Home() {
               alt="het.ai project preview"
               title={
                 <>
-                  <div className = "flex flex-row items-center">
+                  <div className="flex flex-row items-center">
                     het.ai |{" "}
                     <a
                       href="https://hack.caltech.edu/"
@@ -394,9 +407,7 @@ export default function Home() {
                         className="w-[1.25rem] h-[1.25rem]"
                         quality={100}
                       />
-                      <span>
-                        HackTech 2025
-                      </span>
+                      <span>HackTech 2025</span>
                     </a>
                   </div>
                 </>
