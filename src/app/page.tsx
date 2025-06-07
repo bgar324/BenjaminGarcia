@@ -266,7 +266,7 @@ export default function Home() {
 
           <p className="text-gray-600 lg:text-lg leading-snug mt-4">
             I'm Benjamin Garcia, a junior majoring in Computer Science at{" "}
-            <span
+            <a
               className="font-medium"
               style={{
                 background: "linear-gradient(to right, #1e3a8a, #b45309)",
@@ -275,18 +275,19 @@ export default function Home() {
                 backgroundClip: "text",
                 display: "inline",
               }}
+              href = "https://uci.edu/"
             >
               University of California, Irvine
-            </span>
+            </a>
             . Currently a{" "}
             <span className="font-medium">
-              Senior Software Engineer at{" "}
+              Senior Software Development Intern at{" "}
               <a
                 className="text-black"
                 href="https://toddagriscience.com"
                 target="_blank"
               >
-                Todd
+                Todd Agriscience
               </a>
             </span>
             {""} & a{" "}
@@ -336,7 +337,7 @@ export default function Home() {
               src="/static/companies/bonterra.png"
             />
             <Dropdown
-              role="Senior Software Engineer"
+              role="Senior Software Development Intern"
               position="Todd Agriscience"
               startDate="Mar. 2025"
               endDate="Present"
