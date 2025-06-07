@@ -276,6 +276,7 @@ export default function Home() {
                 display: "inline",
               }}
               href = "https://uci.edu/"
+              target = "_blank"
             >
               University of California, Irvine
             </a>
