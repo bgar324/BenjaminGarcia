@@ -338,7 +338,7 @@ export default function Home() {
             <Dropdown
               role="Senior Software Engineer"
               position="Todd Agriscience"
-              startDate="Jun. 2025"
+              startDate="Mar. 2025"
               endDate="Present"
               src="/static/companies/todd.webp"
               description="Built and deployed a responsive, client-facing dashboard and website (Next.js, Tailwind CSS, Framer Motion) with interactive data visualizations for agricultural insights. Integrated Palantir Foundry and AWS Lambda to stream AI-analyzed crop data into real-time UI components. Designed scalable, accessible UI architecture and modular components."
