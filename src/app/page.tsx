@@ -20,7 +20,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import ProjectItem from "./components/SelectedProject";
 import { ArrowRight } from "lucide-react";
 
-const YouTubeModal = ({ isOpen, onClose, videoId }: { isOpen: boolean; onClose: () => void; videoId: string }) => {
+const YouTubeModal = ({
+  isOpen,
+  onClose,
+  videoId,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  videoId: string;
+}) => {
   if (!isOpen) return null;
 
   return (
@@ -44,8 +52,19 @@ const YouTubeModal = ({ isOpen, onClose, videoId }: { isOpen: boolean; onClose: 
             className="absolute top-2 -right-2 -translate-x-1/2 z-10 p-2 text-gray-100 hover:text-white transition-colors bg-black/10 rounded-full backdrop-blur-sm hover:bg-black/50 cursor-pointer"
             aria-label="Close video"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
           <div className="aspect-video w-full">
@@ -67,6 +86,7 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [videoId, setVideoId] = useState<string | null>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -275,8 +295,8 @@ export default function Home() {
                 backgroundClip: "text",
                 display: "inline",
               }}
-              href = "https://uci.edu/"
-              target = "_blank"
+              href="https://uci.edu/"
+              target="_blank"
             >
               University of California, Irvine
             </a>
@@ -523,11 +543,11 @@ export default function Home() {
         </section>
 
         <section id="closing-note">
-          <div className="w-full justify-between flex flex-row items-center text-center pt-16">
-            <button 
-              onClick={() => setIsVideoOpen(true)}
+          <div className="w-full justify-between flex flex-row items-center text-center pt-16 gap-3">
+            <button
+              onClick={() => setVideoId("YWdbfy231n0")}
               className="hidden relative md:inline-block transition-all duration-300 hover:-translate-y-2 focus:outline-none cursor-pointer group"
-              aria-label="Watch video"
+              aria-label="Watch Malenia video"
             >
               <Image
                 src="/static/hom.png"
@@ -536,15 +556,45 @@ export default function Home() {
                 alt="Watch me defeat Malenia!"
                 className="relative z-10 inline-block group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-75 transition-opacity duration-300 bg-gradient-to-r from-red-300 via-yellow-300 to-red-300 rounded-full animate-aurora" style={{
-                filter: 'blur(12px)',
-                width: 'calc(100% + 20px)',
-                height: 'calc(100% + 20px)',
-                top: '-10px',
-                left: '-10px',
-                backgroundSize: '200% 200%',
-                animation: 'aurora 2.5s ease infinite'
-              }} />
+              <div
+                className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-75 transition-opacity duration-300 bg-gradient-to-r from-red-300 via-yellow-300 to-red-300 rounded-full animate-aurora"
+                style={{
+                  filter: "blur(12px)",
+                  width: "calc(100% + 20px)",
+                  height: "calc(100% + 20px)",
+                  top: "-10px",
+                  left: "-10px",
+                  backgroundSize: "200% 200%",
+                  animation: "aurora 3s ease infinite",
+                }}
+              />
+            </button>
+            <button
+              onClick={() => setVideoId("NaVNh79V4F4")}
+              className="hidden relative md:inline-block transition-all duration-300 hover:-translate-y-2 focus:outline-none cursor-pointer group"
+              aria-label="Watch Radahn video"
+            >
+              <Image
+                src="/static/rg.png"
+                width={45}
+                height={45}
+                alt="Watch me defeat Promised Consort Radahn!"
+                className="relative z-10 inline-block group-hover:scale-105 transition-transform duration-300"
+              />
+              <div
+                className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-75 transition-opacity duration-300 rounded-full animate-aurora"
+                style={{
+                  background:
+                    "linear-gradient(90deg, #FFD600 0%, #FFB300 50%, #8B0000 100%)",
+                  filter: "blur(12px)",
+                  width: "calc(100% + 20px)",
+                  height: "calc(100% + 20px)",
+                  top: "-10px",
+                  left: "-10px",
+                  backgroundSize: "200% 200%",
+                  animation: "aurora 3s ease infinite",
+                }}
+              />
             </button>
             <div className="sm:text-right max-w-full sm:max-w-[365px] sm:ml-auto text-gray-600  text-sm">
               <p>
@@ -621,11 +671,11 @@ export default function Home() {
             </div>
           </div>
         </section>
-        
-        <YouTubeModal 
-          isOpen={isVideoOpen} 
-          onClose={() => setIsVideoOpen(false)} 
-          videoId="YWdbfy231n0"
+
+        <YouTubeModal
+          isOpen={!!videoId}
+          onClose={() => setVideoId(null)}
+          videoId={videoId || ""}
         />
       </motion.main>
     </div>
