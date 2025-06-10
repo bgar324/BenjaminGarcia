@@ -366,20 +366,20 @@ export default function Home() {
               description="Built and deployed a responsive, client-facing dashboard and website (Next.js, Tailwind CSS, Framer Motion) with interactive data visualizations for agricultural insights. Integrated Palantir Foundry and AWS Lambda to stream AI-analyzed crop data into real-time UI components. Designed scalable, accessible UI architecture and modular components."
             />
             <Dropdown
-              role="Software Engineer Intern"
-              position="TensorStax"
-              startDate="May 2025"
-              endDate="Jun. 2025"
-              src="/static/companies/tensorstax.png"
-              description="Engineered real-time frontend systems (Next.js, Redux, WebSockets) for low-latency agentic interfaces and dynamic pipeline configuration. Designed and implemented a secure credential submission UI with HashiCorp Vault, Python, and Redis. Collaborated in a fast-paced startup to ship complex internal tooling with asynchronous task flows."
-            />
-            <Dropdown
               role="Frontend Developer"
               position="Mt. SAC CS Club"
               startDate="Sep. 2024"
               endDate="Present"
               src="/static/companies/mtsaccs.webp"
               description="Redesigned and rebuilt the Mt. SAC CS Club website using React and Bootstrap, enhancing UX, responsiveness, and access to events, officers, and contact info for 900+ members."
+            />
+            <Dropdown
+              role="Software Engineer Intern"
+              position="TensorStax"
+              startDate="May 2025"
+              endDate="Jun. 2025"
+              src="/static/companies/tensorstax.png"
+              description="Engineered real-time frontend systems (Next.js, Redux, WebSockets) for low-latency agentic interfaces and dynamic pipeline configuration. Designed and implemented a secure credential submission UI with HashiCorp Vault, Python, and Redis. Collaborated in a fast-paced startup to ship complex internal tooling with asynchronous task flows."
             />
             <Dropdown
               role="AI Engineer"
