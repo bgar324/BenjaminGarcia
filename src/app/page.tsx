@@ -543,59 +543,66 @@ export default function Home() {
         </section>
 
         <section id="closing-note">
-          <div className="w-full justify-between flex flex-row items-center text-center pt-16 gap-3">
-            <button
-              onClick={() => setVideoId("YWdbfy231n0")}
-              className="hidden relative md:inline-block transition-all duration-300 hover:-translate-y-2 focus:outline-none cursor-pointer group"
-              aria-label="Watch Malenia video"
-            >
-              <Image
-                src="/static/hom.png"
-                width={45}
-                height={45}
-                alt="Watch me defeat Malenia!"
-                className="relative z-10 inline-block group-hover:scale-105 transition-transform duration-300"
-              />
-              <div
-                className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-75 transition-opacity duration-300 bg-gradient-to-r from-red-300 via-yellow-300 to-red-300 rounded-full animate-aurora"
-                style={{
-                  filter: "blur(12px)",
-                  width: "calc(100% + 20px)",
-                  height: "calc(100% + 20px)",
-                  top: "-10px",
-                  left: "-10px",
-                  backgroundSize: "200% 200%",
-                  animation: "aurora 3s ease infinite",
-                }}
-              />
-            </button>
-            <button
-              onClick={() => setVideoId("NaVNh79V4F4")}
-              className="hidden relative md:inline-block transition-all duration-300 hover:-translate-y-2 focus:outline-none cursor-pointer group"
-              aria-label="Watch Radahn video"
-            >
-              <Image
-                src="/static/rg.png"
-                width={45}
-                height={45}
-                alt="Watch me defeat Promised Consort Radahn!"
-                className="relative z-10 inline-block group-hover:scale-105 transition-transform duration-300"
-              />
-              <div
-                className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-75 transition-opacity duration-300 rounded-full animate-aurora"
-                style={{
-                  background:
-                    "linear-gradient(90deg, #FFD600 0%, #FFB300 50%, #8B0000 100%)",
-                  filter: "blur(12px)",
-                  width: "calc(100% + 20px)",
-                  height: "calc(100% + 20px)",
-                  top: "-10px",
-                  left: "-10px",
-                  backgroundSize: "200% 200%",
-                  animation: "aurora 3s ease infinite",
-                }}
-              />
-            </button>
+          <div className="w-full justify-between flex flex-col md:flex-row items-center text-center pt-16 gap-3">
+            <div className="flex flex-row gap-3">
+              <button
+                onClick={() => setVideoId("YWdbfy231n0")}
+                className="relative transition-all duration-300 hover:-translate-y-2 focus:outline-none cursor-pointer group p-1 md:p-2"
+                aria-label="Watch Malenia video"
+                style={{ minWidth: 0 }}
+              >
+                <Image
+                  src="/static/hom.png"
+                  width={0}
+                  height={0}
+                  sizes="(min-width: 768px) 48px, 36px"
+                  alt="Watch me defeat Malenia!"
+                  className="relative z-10 inline-block group-hover:scale-105 transition-transform duration-300 w-9 h-9 md:w-12 md:h-12"
+                />
+                <div
+                  className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-75 transition-opacity duration-300 bg-gradient-to-r from-red-300 via-yellow-300 to-red-300 rounded-full animate-aurora"
+                  style={{
+                    filter: "blur(12px)",
+                    width: "calc(100% + 20px)",
+                    height: "calc(100% + 20px)",
+                    top: "-10px",
+                    left: "-10px",
+                    backgroundSize: "200% 200%",
+                    animation: "aurora 3s ease infinite",
+                  }}
+                />
+              </button>
+              <button
+                onClick={() => setVideoId("NaVNh79V4F4")}
+                className="relative transition-all duration-300 hover:-translate-y-2 focus:outline-none cursor-pointer group p-1 md:p-2"
+                aria-label="Watch Radahn video"
+                style={{ minWidth: 0 }}
+              >
+                <Image
+                  src="/static/rg.png"
+                  width={0}
+                  height={0}
+                  sizes="(min-width: 768px) 48px, 36px"
+                  alt="Watch me defeat Promised Consort Radahn!"
+                  className="relative z-10 inline-block group-hover:scale-105 transition-transform duration-300 w-9 h-9 md:w-12 md:h-12"
+                />
+                <div
+                  className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-75 transition-opacity duration-300 rounded-full animate-aurora"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #FFD600 0%, #FFB300 50%, #8B0000 100%)",
+                    filter: "blur(12px)",
+                    width: "calc(100% + 20px)",
+                    height: "calc(100% + 20px)",
+                    top: "-10px",
+                    left: "-10px",
+                    backgroundSize: "200% 200%",
+                    animation: "aurora 3s ease infinite",
+                  }}
+                />
+              </button>
+            </div>
+
             <div className="sm:text-right max-w-full sm:max-w-[365px] sm:ml-auto text-gray-600  text-sm">
               <p>
                 Loosely inspired by{" "}
