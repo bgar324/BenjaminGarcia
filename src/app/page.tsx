@@ -210,7 +210,7 @@ export default function Home() {
             </div>
             <a
               className="bg-black text-white rounded-xl px-4 py-1 text-sm w-fit mx-auto items-center justify-center hover:bg-black/90 font-semibold duration-300 transition ease-in-out"
-              href="/static/resume.pdf"
+              href="/resume.pdf"
               target="_blank"
               title="Resume"
             >
