@@ -295,10 +295,10 @@ export default function Home() {
                 backgroundClip: "text",
                 display: "inline",
               }}
-              href="https://uci.edu/"
+              href="https://ucla.edu/"
               target="_blank"
             >
-              University of California, Irvine
+              University of California, Los Angeles
             </a>
             . Currently a{" "}
             <span className="font-medium">
@@ -509,12 +509,11 @@ export default function Home() {
           </p>
           <div className="flex flex-col gap-4">
             <Dropdown
-              role="University of California, Irvine"
+              role="University of California, Los Angeles"
               position="BS, Computer Science"
               startDate="2025"
               endDate="Present"
-              src="/static/schools/uci.webp"
-              description="Campuswide Honors Collegium"
+              src="/static/schools/ucla.png"
             />
             <Dropdown
               role="Mount San Antonio College"
