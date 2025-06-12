@@ -145,7 +145,7 @@ export default function Home() {
             <div className="flex flex-row gap-1 items-center mt-2">
               <LocationIcon />
               <p className="text-sm text-gray-500 hover:underline">
-                Irvine, California
+                Los Angeles, California
               </p>
             </div>
             <button
