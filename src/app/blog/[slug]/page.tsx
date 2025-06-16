@@ -76,7 +76,7 @@ const blogPosts: Record<string, BlogPost> = {
         content: [
           "This project looked simple on paper—turn a photo into JSON. In practice, it revealed a deeper truth: some tasks remain on the **edge of AI's capabilities**, especially those requiring spatial logic, semantic interpretation, and structural inference.",
           "Loma Lookup is now retired, but it serves as a technical postmortem on where automation fails, and how critical human verification still is when pushing past the bounds of AI reliability.",
-          "What's next? **log it v2. & Git Proof**"
+          "What's next? **log it v2 & Git Proof**"
         ],
       },
     ],
