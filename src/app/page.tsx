@@ -353,9 +353,10 @@ export default function Home() {
             <Dropdown
               role="Research and Development Engineer Intern"
               position="Bonterra"
-              startDate="incoming Jul. 2025"
+              startDate="Jul. 2025"
               endDate="Present"
               src="/static/companies/bonterra.png"
+              description =  "Researching tool calling, MCPs, and agentic AI for LLM systems and nonprofit use cases."
             />
             <Dropdown
               role="Senior Software Development Intern"
