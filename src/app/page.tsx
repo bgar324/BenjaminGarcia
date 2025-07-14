@@ -144,9 +144,9 @@ export default function Home() {
             </h3>
             <div className="flex flex-row gap-1 items-center mt-2">
               <LocationIcon />
-              <p className="text-sm text-gray-500 hover:underline">
+              <a className="text-sm text-gray-500 hover:underline" href = "https://www.google.com/maps/place/Westwood,+Los+Angeles,+CA/@34.0652211,-118.4610312,14z/data=!3m1!4b1!4m6!3m5!1s0x80c2bc86dafdc779:0x63e3f17ff5535356!8m2!3d34.0588075!4d-118.4439326!16zL20vMDIwdGQ2?entry=ttu&g_ep=EgoyMDI1MDcwOC4wIKXMDSoASAFQAw%3D%3D" target = "_blank">
                 Los Angeles, California
-              </p>
+              </a>
             </div>
             <button
               onClick={toggleMenu}
