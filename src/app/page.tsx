@@ -515,10 +515,11 @@ export default function Home() {
               startDate="2025"
               endDate="Present"
               src="/static/schools/ucla.png"
+              description="Transfer Research Entry Program"
             />
             <Dropdown
               role="Mount San Antonio College"
-              position="Honors"
+              position="Honors Transfer"
               startDate="2023"
               endDate="2025"
               src="/static/schools/mtsac.webp"
