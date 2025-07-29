@@ -17,7 +17,7 @@ export default function ArchivePage() {
         <h1 className="w-fit border border-gray-300 rounded-md px-2 py-1 uppercase tracking-wider lg:py-[.5px] flex items-center gap-1 text-xl md:text-3xl font-bold">
           All Projects
         </h1>
-        <div className="hidden md:flex flex-col gap-2 text-xs text-gray-500 text-start">
+        <div className="hidden md:flex flex-col gap-2 text-xs text-gray-500 text-start w-fit border border-gray-300 rounded-md px-2 py-1">
           <div>
             <span className="font-medium">In Progress</span> – Currently being
             developed

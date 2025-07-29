@@ -43,23 +43,23 @@ const archiveProjects: ProjectEntry[] = [
   },
   {
     year: 2025,
+    title: "Open CV AI Squat Analyzer",
+    builtWith: ["Next.js", "Tailwind CSS", "Firebase", "Python", "OpenCV"],
+    status: "Backlog",
+  },
+  {
+    year: 2025,
     title: "TeaSpots v2",
     builtWith: ["Astro", "Tailwind CSS", "Square"],
     madeAt: "AdeptEye",
-    status: "Backlog",
+    status: "Scrapped",
   },
   {
     year: 2025,
     title: "Tax Mavericks",
     builtWith: ["Next.js", "Tailwind CSS", "Firebase"],
     madeAt: "AdeptEye",
-    status: "Backlog",
-  },
-  {
-    year: 2025,
-    title: "Open CV AI Squat Analyzer",
-    builtWith: ["Next.js", "Tailwind CSS", "Firebase", "Python", "OpenCV"],
-    status: "Backlog",
+    status: "Scrapped",
   },
   {
     year: 2025,

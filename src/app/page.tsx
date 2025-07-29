@@ -134,7 +134,7 @@ export default function Home() {
           />
           <div className="ml-2 pt-2 pr-2 lg:ml-1 lg:pt-0 lg:pr-0">
             <h1 className="text-gray-900 text-2xl lg:text-2xl font-semibold lg:font-semibold tracking-tight leading-none">
-              Hello I'm
+              Hello, I'm
             </h1>
             <h1 className="text-gray-900 text-2xl lg:text-2xl font-semibold lg:font-semibold tracking-tight">
               Benjamin Garcia
@@ -332,7 +332,7 @@ export default function Home() {
             accessible interfaces that drive real-world impact.
           </p>
           <p className="mt-2 text-gray-600 lg:text-lg leading-snug ">
-            Outside of coding, you can find me at the gym, hanging out with my
+            Outside of building, you can find me at the gym, hanging out with my
             dog, or exploring the{" "}
             <a
               className="font-medium"
@@ -370,7 +370,7 @@ export default function Home() {
               role="Frontend Developer"
               position="Mt. SAC CS Club"
               startDate="Sep. 2024"
-              endDate="Present"
+              endDate="Jul. 2025"
               src="/static/companies/mtsaccs.webp"
               description="Redesigned and rebuilt the Mt. SAC CS Club website using React and Bootstrap, enhancing UX, responsiveness, and access to events, officers, and contact info for 900+ members."
             />
