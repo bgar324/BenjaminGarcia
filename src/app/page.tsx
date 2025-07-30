@@ -564,18 +564,6 @@ export default function Home() {
                   alt="Watch me defeat Malenia!"
                   className="relative z-10 inline-block group-hover:scale-105 transition-transform duration-300 w-9 h-9 md:w-12 md:h-12"
                 />
-                <div
-                  className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-75 transition-opacity duration-300 bg-gradient-to-r from-red-300 via-yellow-300 to-red-300 rounded-full animate-aurora"
-                  style={{
-                    filter: "blur(12px)",
-                    width: "calc(100% + 20px)",
-                    height: "calc(100% + 20px)",
-                    top: "-10px",
-                    left: "-10px",
-                    backgroundSize: "200% 200%",
-                    animation: "aurora 3s ease infinite",
-                  }}
-                />
               </button>
               <button
                 onClick={() => setVideoId("NaVNh79V4F4")}
@@ -590,20 +578,6 @@ export default function Home() {
                   sizes="(min-width: 768px) 48px, 36px"
                   alt="Watch me defeat Promised Consort Radahn!"
                   className="relative z-10 inline-block group-hover:scale-105 transition-transform duration-300 w-9 h-9 md:w-12 md:h-12"
-                />
-                <div
-                  className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-75 transition-opacity duration-300 rounded-full animate-aurora"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, #FFD600 0%, #FFB300 50%, #8B0000 100%)",
-                    filter: "blur(12px)",
-                    width: "calc(100% + 20px)",
-                    height: "calc(100% + 20px)",
-                    top: "-10px",
-                    left: "-10px",
-                    backgroundSize: "200% 200%",
-                    animation: "aurora 3s ease infinite",
-                  }}
                 />
               </button>
             </div>
