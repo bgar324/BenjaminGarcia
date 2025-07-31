@@ -372,7 +372,7 @@ export default function Home() {
             />
             <Dropdown
               role="Frontend Developer"
-              position="Mt. SAC CS Club"
+              position="Mt. SAC Computer Science Club"
               startDate="Sep. 2024"
               endDate="Jul. 2025"
               src="/static/companies/mtsaccs.webp"
@@ -526,7 +526,7 @@ export default function Home() {
               position="Honors Transfer"
               startDate="2023"
               endDate="2025"
-              src="/static/schools/mtsac.webp"
+              src="/static/schools/mtsac.png"
               description="Outreach Officer & Front-End Developer for the Computer Science Club."
             />
             <Dropdown
@@ -534,7 +534,7 @@ export default function Home() {
               position="High School Diploma"
               startDate="2019"
               endDate="2023"
-              src="/static/schools/whs.webp"
+              src="/static/schools/whs.png"
             />
           </div>
         </section>
