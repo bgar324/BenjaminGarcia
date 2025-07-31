@@ -129,7 +129,7 @@ export default function Home() {
       >
         <div className="bg-white rounded-xl shadow-md p-2 flex sm:flex-row lg:flex-col lg:gap-3 relative">
           <img
-            src="/static/IMG_7044.JPEG"
+            src="/static/IMG_7044.png"
             className="h-auto w-32 md:w-28 lg:w-48 rounded-xl"
           />
           <div className="ml-2 pt-2 pr-2 lg:ml-1 lg:pt-0 lg:pr-0">
