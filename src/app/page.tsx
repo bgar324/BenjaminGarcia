@@ -128,8 +128,11 @@ export default function Home() {
       mx-auto"
       >
         <div className="bg-white rounded-xl shadow-md p-2 flex sm:flex-row lg:flex-col lg:gap-3 relative">
-          <img
+          <Image
             src="/static/IMG_7044.png"
+            alt="me!"
+            width={1920}
+            height={1080}
             className="h-auto w-32 md:w-28 lg:w-48 rounded-xl"
           />
           <div className="ml-2 pt-2 pr-2 lg:ml-1 lg:pt-0 lg:pr-0">
