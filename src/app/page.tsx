@@ -168,9 +168,10 @@ export default function Home() {
 
         <div
           id="socials"
-          className={`bg-white rounded-xl shadow-md p-2 flex flex-row gap-3 lg:p-3
-              ${isMenuOpen ? "flex" : "hidden"} 
-              top-full left-0 right-0 mt-2 z-50 md:flex md:flex-col lg:flex lg:flex-col lg:mt-0 md:mt-0`}
+          className={`bg-white rounded-xl shadow-md p-2 gap-3 lg:p-3
+    ${isMenuOpen ? "flex" : "hidden"}  md:flex
+    md:flex-col lg:flex lg:flex-col
+    top-full left-0 right-0 mt-2 z-50 lg:mt-0 md:mt-0`}
         >
           <div className="flex flex-col gap-2 mt-3 md:mt-0 lg:mt-0 md:gap-1 lg:gap-1 w-full sm:pl-6 md:pl-0 lg:pl-0">
             <a
