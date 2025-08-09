@@ -167,7 +167,7 @@ export default function Home() {
         </div>
 
         <div
-          id="socials"
+          id="contact-links"
           className={`bg-white rounded-xl shadow-md p-2 gap-3 lg:p-3
     ${isMenuOpen ? "flex" : "hidden"}  md:flex
     md:flex-col lg:flex lg:flex-col
