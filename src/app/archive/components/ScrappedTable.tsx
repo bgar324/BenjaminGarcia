@@ -23,33 +23,28 @@ interface ProjectEntry {
 const archiveProjects: ProjectEntry[] = [
   {
     year: 2025,
-    title: "log•it v2",
+    title: "TeaSpots v2",
+    builtWith: ["Astro", "Tailwind CSS", "Square"],
+    madeAt: "AdeptEye",
+    status: "Scrapped",
+  },
+  {
+    year: 2025,
+    title: "Tax Mavericks",
     builtWith: ["Next.js", "Tailwind CSS", "Firebase"],
-    status: "In Progress",
+    madeAt: "AdeptEye",
+    status: "Scrapped",
   },
   {
     year: 2025,
-    title: "Git Proof",
-    builtWith: [
-      "Next.js",
-      "Tailwind CSS",
-      "FastAPI",
-      "PostgreSQL",
-      "GitHub API",
-      "Celery",
-      "Redis",
-    ],
-    status: "In Progress",
-  },
-  {
-    year: 2025,
-    title: "Open CV AI Squat Analyzer",
-    builtWith: ["Next.js", "Tailwind CSS", "Firebase", "Python", "OpenCV"],
-    status: "Backlog",
+    title: "Loma Lookup",
+    builtWith: ["Next.js", "Tailwind CSS", "Firebase", "Google Vision API"],
+    madeAt: "LLU Dental School",
+    status: "Scrapped",
   },
 ];
 
-export default function ArchiveTable() {
+export default function ScrappedTable() {
   return (
     <Table className="w-full table-fixed">
       <colgroup>
@@ -65,10 +60,10 @@ export default function ArchiveTable() {
           <TableHead className="text-base">Year</TableHead>
           <TableHead className="text-base">Project</TableHead>
           <TableHead className="hidden lg:table-cell text-base">
-            Made at
+            Scrapped at
           </TableHead>
           <TableHead className="hidden md:table-cell text-base">
-            Planned stack
+            Scrapped stack
           </TableHead>
           <TableHead className="hidden md:table-cell text-base">
             Status
