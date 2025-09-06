@@ -86,6 +86,9 @@ body {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --icon-muted: #6a7282;     /* e.g., LocationIcon gray */
+  --icon: #0f0f0f;           /* primary black-ish */
+  --icon-contrast: #ffffff;  /* white parts inside icons */
 }
 
 .dark {
@@ -120,6 +123,9 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --icon-muted: #cbd5e1;     /* slate-300 */
+  --icon: #e5e7eb;           /* slate-200 */
+  --icon-contrast: #0b0f19;  /* near-black for reversed fills */
 }
 
 @layer base {
@@ -174,4 +180,8 @@ body {
   100% {
     background-position: 0% 50%;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }

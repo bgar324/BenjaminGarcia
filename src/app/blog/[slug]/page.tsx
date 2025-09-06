@@ -35,8 +35,7 @@ const blogPosts: Record<string, BlogPost> = {
     status: "Scrapped",
     stack: ["Next.js", "Tailwind CSS", "Firebase", "Google Vision API", "Google Document AI", "LLaVA", "4o", "Python"],
     image: "/static/blog-images/loma-lookup_blog-image.png",
-    imageDescription:
-      "Sample data. Believe it or not, this was one of the better/easier images to work with.",
+    imageDescription: "Sample data. Believe it or not, this was one of the better/easier images to work with.",
     sections: [
       {
         subheading: "Problem Statement",
@@ -89,7 +88,7 @@ interface PageProps {
 
 export default async function BlogPost({ params }: PageProps) {
   const { slug } = await params;
-  
+
   if (slug !== "loma-lookup-retrospective") {
     return null;
   }
@@ -100,39 +99,42 @@ export default async function BlogPost({ params }: PageProps) {
   }
 
   return (
-    <main className="max-w-3xl mx-auto px-6 py-16 md:py-8 lg:pt-16 lg:pb-0">
-      <nav className="flex items-center gap-2 text-sm text-gray-600 mb-12">
-        <Link href="/" className="hover:text-gray-900 transition-colors">
+    <main className="max-w-3xl mx-auto px-6 py-16 md:py-8 lg:pt-16 lg:pb-0 text-gray-900 dark:text-slate-100">
+      <nav className="flex items-center gap-2 text-sm text-gray-600 dark:text-slate-400 mb-12">
+        <Link href="/" className="hover:text-gray-900 dark:hover:text-slate-200 transition-colors">
           Home
         </Link>
-        <span className="text-gray-400">/</span>
-        <Link href="/archive" className="hover:text-gray-900 transition-colors">
+        <span className="text-gray-400 dark:text-slate-600">/</span>
+        <Link href="/archive" className="hover:text-gray-900 dark:hover:text-slate-200 transition-colors">
           Archive
         </Link>
-        <span className="text-gray-400">/</span>
-        <span className="text-gray-900 truncate">{post.title}</span>
+        <span className="text-gray-400 dark:text-slate-600">/</span>
+        <span className="text-gray-900 dark:text-slate-100 truncate">{post.title}</span>
       </nav>
 
-      <article className="prose prose-gray max-w-none">
+      <article className="prose prose-gray dark:prose-invert max-w-none">
         <header className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-8">{post.title}</h1>
-          <div className="flex items-center justify-center gap-3 text-sm text-gray-600 mb-8">
+
+          <div className="flex items-center justify-center gap-3 text-sm text-gray-600 dark:text-slate-400 mb-8">
             <span>Benjamin Garcia</span>
-            <span className="text-gray-300">|</span>
+            <span className="text-gray-300 dark:text-slate-700">|</span>
             <time>{post.date}</time>
-            <span className="text-gray-300">|</span>
+            <span className="text-gray-300 dark:text-slate-700">|</span>
             <span>Status: {post.status}</span>
           </div>
+
           <div className="flex flex-wrap gap-2 justify-center mb-8 max-w-2xl mx-auto">
             {post.stack.map((tech) => (
               <span
                 key={tech}
-                className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-medium hover:bg-gray-200 transition-colors"
+                className="bg-gray-100 dark:bg-slate-800 text-gray-800 dark:text-slate-200 px-3 py-1 rounded-full text-xs font-medium transition-colors"
               >
                 {tech}
               </span>
             ))}
           </div>
+
           {post.image && (
             <figure className="mb-12">
               <div className="relative w-full h-[400px]">
@@ -145,7 +147,7 @@ export default async function BlogPost({ params }: PageProps) {
                 />
               </div>
               {post.imageDescription && (
-                <figcaption className="text-center mt-4 text-gray-500 italic text-sm">
+                <figcaption className="text-center mt-4 text-gray-500 dark:text-slate-400 italic text-sm">
                   {post.imageDescription}
                 </figcaption>
               )}
@@ -162,7 +164,7 @@ export default async function BlogPost({ params }: PageProps) {
                 image={section.image}
               />
               {index !== post.sections.length - 1 && (
-                <hr className="my-16 border-gray-100" />
+                <hr className="my-16 border-gray-100 dark:border-slate-800" />
               )}
             </div>
           ))}

@@ -1,5 +1,5 @@
-import ReactMarkdown from 'react-markdown';
-import Image from 'next/image';
+import ReactMarkdown from "react-markdown";
+import Image from "next/image";
 
 interface BlogSectionImage {
   src: string;
@@ -16,16 +16,19 @@ interface BlogSectionProps {
 export default function BlogSection({ subheading, content, image }: BlogSectionProps) {
   return (
     <section className="mb-12">
-      <h2 className="text-xl md:text-2xl font-semibold mb-6 text-gray-900">
+      <h2 className="text-xl md:text-2xl font-semibold mb-6 text-gray-900 dark:text-slate-100">
         {subheading}
       </h2>
-      <div className="text-gray-800 leading-relaxed text-base md:text-lg space-y-8">
+
+      <div className="text-gray-800 dark:text-slate-200 leading-relaxed text-base md:text-lg space-y-8">
         {/* First paragraph */}
         {content.length > 0 && (
           <ReactMarkdown
             components={{
               strong: ({ children }) => (
-                <strong className="font-semibold text-gray-900">{children}</strong>
+                <strong className="font-semibold text-gray-900 dark:text-slate-100">
+                  {children}
+                </strong>
               ),
             }}
           >
@@ -45,7 +48,7 @@ export default function BlogSection({ subheading, content, image }: BlogSectionP
               />
             </div>
             {image.caption && (
-              <figcaption className="text-center mt-4 text-gray-500 italic text-sm">
+              <figcaption className="text-center mt-4 text-gray-500 dark:text-slate-400 italic text-sm">
                 {image.caption}
               </figcaption>
             )}
@@ -58,7 +61,9 @@ export default function BlogSection({ subheading, content, image }: BlogSectionP
             key={index}
             components={{
               strong: ({ children }) => (
-                <span className="font-semibold text-gray-900">{children}</span>
+                <span className="font-semibold text-gray-900 dark:text-slate-100">
+                  {children}
+                </span>
               ),
             }}
           >

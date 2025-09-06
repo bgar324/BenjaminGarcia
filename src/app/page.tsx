@@ -19,6 +19,7 @@ import "./globals.css";
 import { motion, AnimatePresence } from "framer-motion";
 import ProjectItem from "./components/SelectedProject";
 import { ArrowRight } from "lucide-react";
+import ThemeToggle from "./components/ThemeToggle";
 
 const YouTubeModal = ({
   isOpen,
@@ -127,7 +128,14 @@ export default function Home() {
         className="lg:sticky lg:top-0 flex flex-col lg:max-h-screen md:flex md:flex-row lg:flex-col z-50 lg:w-[204px] lg:shrink-0 lg:gap-y-3 lg:py-10 md:gap-3 md:mx-auto 
       mx-auto"
       >
-        <div className="bg-white rounded-xl shadow-md p-2 flex sm:flex-row lg:flex-col lg:gap-3 relative">
+        <div
+          className="
+        bg-white dark:bg-gray-950
+          rounded-xl shadow-md dark:shadow-lg p-2 
+          flex sm:flex-row lg:flex-col lg:gap-3 relative 
+          transition-colors duration-300
+          "
+        >
           <Image
             src="/static/IMG_7044.png"
             alt="me!"
@@ -136,20 +144,20 @@ export default function Home() {
             className="h-auto w-32 md:w-28 lg:w-48 rounded-xl"
           />
           <div className="ml-2 pt-2 pr-2 lg:ml-1 lg:pt-0 lg:pr-0">
-            <h1 className="text-gray-900 text-2xl lg:text-2xl font-semibold lg:font-semibold tracking-tight leading-none">
+            <h1 className="text-gray-900 dark:text-slate-100 text-2xl lg:text-2xl font-semibold tracking-tight leading-none">
               Hello, I'm
             </h1>
-            <h1 className="text-gray-900 text-2xl lg:text-2xl font-semibold lg:font-semibold tracking-tight">
+            <h1 className="text-gray-900 dark:text-slate-100 text-2xl lg:text-2xl font-semibold tracking-tight">
               Benjamin Garcia
             </h1>
-            <h3 className="text-gray-700 text-base lg:text-lg leading-tight mt-2 font-normal">
+            <h3 className="text-gray-700 dark:text-slate-300 text-base lg:text-lg leading-tight mt-2 font-normal">
               I turn code into meaningful creations.
             </h3>
             <div className="flex flex-row gap-1 items-center mt-2">
               <LocationIcon />
               <a
-                className="text-sm text-gray-500 hover:underline"
-                href="https://www.google.com/maps/place/Westwood,+Los+Angeles,+CA/@34.0652211,-118.4610312,14z/data=!3m1!4b1!4m6!3m5!1s0x80c2bc86dafdc779:0x63e3f17ff5535356!8m2!3d34.0588075!4d-118.4439326!16zL20vMDIwdGQ2?entry=ttu&g_ep=EgoyMDI1MDcwOC4wIKXMDSoASAFQAw%3D%3D"
+                className="text-sm text-gray-500 dark:text-slate-400 hover:underline"
+                href="https://www.google.com/maps/place/Westwood,+Los+Angeles,+CA/@34.0652211,-118.4610312,14z"
                 target="_blank"
               >
                 Los Angeles, California
@@ -157,9 +165,12 @@ export default function Home() {
             </div>
             <button
               onClick={toggleMenu}
-              className={`absolute top-2 right-2 md:hidden transition-all duration-300 hover:bg-gray-200 ease-in-out rounded-3xl ${
-                isMenuOpen ? "rotate-180" : ""
-              }`}
+              className={`
+        absolute top-2 right-2 md:hidden 
+        transition-all duration-300 ease-in-out 
+        hover:bg-gray-200 dark:hover:bg-slate-700 
+        rounded-3xl ${isMenuOpen ? "rotate-180" : ""}
+      `}
             >
               {isMenuOpen ? <XIcon /> : <Hamburger />}
             </button>
@@ -168,14 +179,18 @@ export default function Home() {
 
         <div
           id="contact-links"
-          className={`bg-white rounded-xl shadow-md p-2 gap-3 lg:p-3
-    ${isMenuOpen ? "flex" : "hidden"}  md:flex
+          className={`
+    bg-white dark:bg-gray-950 
+    rounded-xl shadow-md p-2 gap-3 lg:p-3
+    ${isMenuOpen ? "flex" : "hidden"} md:flex
     md:flex-col lg:flex lg:flex-col
-    top-full left-0 right-0 mt-2 z-50 lg:mt-0 md:mt-0`}
+    top-full left-0 right-0 mt-2 z-50 lg:mt-0 md:mt-0
+    transition-colors duration-300
+  `}
         >
           <div className="flex flex-col gap-2 mt-3 md:mt-0 lg:mt-0 md:gap-1 lg:gap-1 w-full sm:pl-6 md:pl-0 lg:pl-0">
             <a
-              className="flex items-center gap-2 hover:underline text-sm mb-1 truncate"
+              className="flex items-center gap-2 hover:underline text-sm mb-1 truncate text-gray-900 dark:text-slate-100"
               href="https://www.bentgarcia.com/"
               title="bentgarcia.com"
               target="_blank"
@@ -183,21 +198,23 @@ export default function Home() {
               <GlobeIcon /> <span className="truncate">www.bentgarcia.com</span>
             </a>
             <a
-              className="flex items-center gap-2 hover:underline transition duration-300 ease-in-out text-sm truncate"
+              className="flex items-center gap-2 hover:underline transition duration-300 ease-in-out text-sm truncate text-gray-900 dark:text-slate-100"
               href="mailto:bentgarcia05@gmail.com"
               title="bentgarcia05@gmail.com"
               target="_blank"
             >
-              <MailIcon />{" "}
+              <MailIcon />
               <span className="truncate">bentgarcia05@gmail.com</span>
             </a>
           </div>
+
           <div className="items-center flex flex-col mt-2 lg:mt-0 md:mt-0 sm:pr-12 md:pr-0 lg:pr-0">
             <div className="flex flex-row items-center justify-center gap-6 mb-3">
               <a
                 href="https://www.linkedin.com/in/btgarcia05/"
                 target="_blank"
                 title="LinkedIn"
+                className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition"
               >
                 <LinkedInIcon />
               </a>
@@ -205,6 +222,7 @@ export default function Home() {
                 href="https://github.com/bgar324"
                 target="_blank"
                 title="Github"
+                className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition"
               >
                 <GithubIcon />
               </a>
@@ -212,12 +230,21 @@ export default function Home() {
                 href="https://open.spotify.com/user/13loawolnhae7wiuu1ficd51g"
                 target="_blank"
                 title="Spotify"
+                className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition"
               >
                 <SpotifyIcon />
               </a>
             </div>
+
             <a
-              className="bg-black text-white rounded-xl px-4 py-1 text-sm w-fit mx-auto items-center justify-center hover:bg-black/90 font-semibold duration-300 transition ease-in-out"
+              className="
+        bg-black dark:bg-slate-100 
+        text-white dark:text-gray-950 
+        rounded-xl px-4 py-1 text-sm w-fit mx-auto 
+        items-center justify-center 
+        hover:bg-black/90 dark:hover:bg-slate-200 
+        font-semibold duration-300 transition ease-in-out
+      "
               href="/resume.pdf"
               target="_blank"
               title="Resume"
@@ -227,27 +254,29 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hidden lg:flex lg:flex-col lg:gap-2 lg:mt-1 bg-white rounded-xl shadow-md p-3">
+        <div className="hidden lg:flex lg:flex-col lg:gap-2 lg:mt-1 bg-white dark:bg-black rounded-xl shadow-md p-3 transition-colors">
           <div>
             <a
               href="#about"
               title="Go to About"
-              className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
-                activeSection === "about"
-                  ? "bg-gray-100 text-gray-900"
-                  : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"
-              }`}
+              className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors
+        ${
+          activeSection === "about"
+            ? "bg-gray-100 text-gray-900 dark:bg-slate-900 dark:text-slate-100"
+            : "text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-900"
+        }`}
             >
               About
             </a>
             <a
               href="#experience"
               title="Go to Experience"
-              className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
-                activeSection === "experience"
-                  ? "bg-gray-100 text-gray-900"
-                  : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"
-              }`}
+              className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors
+        ${
+          activeSection === "experience"
+            ? "bg-gray-100 text-gray-900 dark:bg-slate-900 dark:text-slate-100"
+            : "text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-900"
+        }`}
             >
               Experience
             </a>
@@ -256,22 +285,24 @@ export default function Home() {
             <a
               href="#tech-stack"
               title="Go to Tech Stack"
-              className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
-                activeSection === "tech-stack"
-                  ? "bg-gray-100 text-gray-900"
-                  : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"
-              }`}
+              className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors
+        ${
+          activeSection === "tech-stack"
+            ? "bg-gray-100 text-gray-900 dark:bg-slate-900 dark:text-slate-100"
+            : "text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-900"
+        }`}
             >
               Tech Stack
             </a>
             <a
               href="#projects"
               title="Go to Projects"
-              className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
-                activeSection === "projects"
-                  ? "bg-gray-100 text-gray-900"
-                  : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"
-              }`}
+              className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors
+        ${
+          activeSection === "projects"
+            ? "bg-gray-100 text-gray-900 dark:bg-slate-900 dark:text-slate-100"
+            : "text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-900"
+        }`}
             >
               Projects
             </a>
@@ -290,9 +321,10 @@ export default function Home() {
             <p className="w-fit border border-gray-300 rounded-md px-2 py-1 lg:py-[.5px] text-xs lg:text-sm uppercase mt-10 lg:mt-0 lg:mb-5 font-semibold tracking-wider">
               about
             </p>
+            <ThemeToggle />
           </div>
 
-          <p className="text-gray-600 lg:text-lg leading-snug mt-4">
+          <p className="text-gray-600 dark:text-slate-400 lg:text-lg leading-snug mt-4">
             I'm Benjamin Garcia, a junior majoring in Computer Science at{" "}
             <a
               className="font-medium"
@@ -312,7 +344,7 @@ export default function Home() {
             <span className="font-medium">
               Senior Software Development Intern at{" "}
               <a
-                className="text-black"
+                className="text-black dark:text-white/80"
                 href="https://toddagriscience.com"
                 target="_blank"
               >
@@ -339,7 +371,7 @@ export default function Home() {
             . I thrive in fast-paced, collaborative teams and build performant,
             accessible interfaces that drive real-world impact.
           </p>
-          <p className="mt-2 text-gray-600 lg:text-lg leading-snug ">
+          <p className="mt-2 text-gray-600 dark:text-slate-400 lg:text-lg leading-snug ">
             Outside of building, you can find me at the gym, hanging out with my
             dog, or exploring the{" "}
             <a
@@ -586,7 +618,7 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="sm:text-right max-w-full sm:max-w-[365px] sm:ml-auto text-gray-600  text-sm">
+            <div className="sm:text-right max-w-full sm:max-w-[365px] sm:ml-auto text-gray-600 dark:text-slate-400 text-sm">
               <p>
                 Loosely inspired by{" "}
                 <a
