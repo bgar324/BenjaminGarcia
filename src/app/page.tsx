@@ -351,23 +351,6 @@ export default function Home() {
                 Todd Agriscience
               </a>
             </span>
-            {""} & a{" "}
-            <span className="font-medium">
-              Research and Development Engineer Intern at{" "}
-              <a
-                style={{
-                  background: "linear-gradient(to right, #feb6b2, #420c7d)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  display: "inline",
-                }}
-                href="https://www.bonterratech.com/"
-                target="_blank"
-              >
-                Bonterra
-              </a>
-            </span>
             . I thrive in fast-paced, collaborative teams and build performant,
             accessible interfaces that drive real-world impact.
           </p>
@@ -391,20 +374,20 @@ export default function Home() {
           </p>
           <div className="flex flex-col gap-4">
             <Dropdown
-              role="Research and Development Engineer Intern"
-              position="Bonterra"
-              startDate="Jul. 2025"
-              endDate="Present"
-              src="/static/companies/bonterra.png"
-              description="Researching tool calling, MCPs, and agentic AI for LLM systems and nonprofit use cases."
-            />
-            <Dropdown
               role="Senior Software Development Intern"
               position="Todd Agriscience"
               startDate="Mar. 2025"
               endDate="Present"
               src="/static/companies/todd.webp"
               description="Built and deployed a responsive, client-facing dashboard and website (Next.js, Tailwind CSS, Framer Motion) with interactive data visualizations for agricultural insights. Integrated Palantir Foundry and AWS Lambda to stream AI-analyzed crop data into real-time UI components. Designed scalable, accessible UI architecture and modular components."
+            />
+            <Dropdown
+              role="Research and Development Engineer Intern"
+              position="Bonterra"
+              startDate="Jul. 2025"
+              endDate="Aug. 2025"
+              src="/static/companies/bonterra.png"
+              description="Researching tool calling, MCPs, and agentic AI for LLM systems and nonprofit use cases."
             />
             <Dropdown
               role="Frontend Developer"
