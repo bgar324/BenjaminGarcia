@@ -284,7 +284,7 @@ export default function Home() {
           <div>
             <a
               href="#tech-stack"
-              title="Go to Tech Stack"
+              title="Go to Technologies"
               className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors
         ${
           activeSection === "tech-stack"
@@ -292,7 +292,7 @@ export default function Home() {
             : "text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-900"
         }`}
             >
-              Tech Stack
+              Technologies
             </a>
             <a
               href="#projects"
@@ -387,7 +387,7 @@ export default function Home() {
               startDate="Jul. 2025"
               endDate="Aug. 2025"
               src="/static/companies/bonterra.png"
-              description="Researching tool calling, MCPs, and agentic AI for LLM systems and nonprofit use cases."
+              description="Investigated tool calling frameworks, Model Context Protocols (MCPs), and agentic AI architectures for large language models. Prototyped workflows enabling multi-tool orchestration, contextual reasoning, and autonomous decision-making, with emphasis on scalable deployment for nonprofit use cases such as donor engagement and operational efficiency."
             />
             <Dropdown
               role="Frontend Developer"
@@ -418,7 +418,7 @@ export default function Home() {
 
         <section id="tech-stack" className="flex flex-col">
           <p className="w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase my-10 font-semibold tracking-wider lg:py-[.5px] lg:text-sm">
-            tech stack
+            technologies
           </p>
           <Marquee />
           <div className="mb-8" />
