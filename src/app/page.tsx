@@ -340,7 +340,7 @@ export default function Home() {
             >
               University of California, Los Angeles
             </a>
-            . Currently a{" "}
+            . Currently, I'm a{" "}
             <span className="font-medium">
               Senior Software Development Intern at{" "}
               <a
