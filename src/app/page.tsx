@@ -214,7 +214,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/btgarcia05/"
                 target="_blank"
                 title="LinkedIn"
-                className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition"
+                className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition hover:text-blue-500"
               >
                 <LinkedInIcon />
               </a>
@@ -227,12 +227,17 @@ export default function Home() {
                 <GithubIcon />
               </a>
               <a
-                href="https://open.spotify.com/user/13loawolnhae7wiuu1ficd51g"
+                href="https://app.joinhandshake.com/profiles/x7c7f5"
                 target="_blank"
-                title="Spotify"
+                title="Handshake Careers"
                 className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition"
               >
-                <SpotifyIcon />
+                <Image
+                  src="static/handshake.svg"
+                  alt="Handshake"
+                  height="12"
+                  width="12"
+                />
               </a>
             </div>
 

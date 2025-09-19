@@ -39,7 +39,7 @@ export const GlobeIcon = () => (
 export const LinkedInIcon = () => (
   <svg
     viewBox="0 0 24 24"
-    fill="none"
+    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
     width="18"
     height="18"
