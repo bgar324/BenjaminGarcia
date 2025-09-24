@@ -259,7 +259,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hidden lg:flex lg:flex-col lg:gap-2 lg:mt-1 bg-white dark:bg-black rounded-xl shadow-md p-3 transition-colors">
+        {/* <div className="hidden lg:flex lg:flex-col lg:gap-2 lg:mt-1 bg-white dark:bg-black rounded-xl shadow-md p-3 transition-colors">
           <div>
             <a
               href="#about"
@@ -312,7 +312,7 @@ export default function Home() {
               Projects
             </a>
           </div>
-        </div>
+        </div> */}
       </motion.header>
 
       <motion.main
@@ -330,7 +330,7 @@ export default function Home() {
           </div>
 
           <p className="text-gray-600 dark:text-slate-400 lg:text-lg leading-snug mt-4">
-            I'm Benjamin Garcia, a junior majoring in Computer Science at{" "}
+            I’m a junior studying Computer Science at{" "}
             <a
               className="font-medium"
               style={{
@@ -345,7 +345,7 @@ export default function Home() {
             >
               University of California, Los Angeles
             </a>
-            . Currently, I'm a{" "}
+            . I’m currently a{" "}
             <span className="font-medium">
               Senior Software Development Intern at{" "}
               <a
@@ -356,20 +356,21 @@ export default function Home() {
                 Todd Agriscience
               </a>
             </span>
-            . I thrive in fast-paced, collaborative teams and build performant,
-            accessible interfaces that drive real-world impact.
+            , where I thrive in fast-paced, collaborative teams and build
+            performant, accessible interfaces that create real-world impact.
           </p>
-          <p className="mt-2 text-gray-600 dark:text-slate-400 lg:text-lg leading-snug ">
-            Outside of building, you can find me at the gym, hanging out with my
-            dog, or exploring the{" "}
+          <p className="mt-2 text-gray-600 dark:text-slate-400 lg:text-lg leading-snug">
+            Outside of coding, I enjoy weightlifting, spending time with my dog,
+            and exploring the{" "}
             <a
               className="font-medium"
               href="/static/image.png"
               target="_blank"
               title="Elden Ring"
             >
-              Lands Between.
+              Lands Between
             </a>
+            .
           </p>
         </section>
 
@@ -381,6 +382,7 @@ export default function Home() {
             <Dropdown
               role="Senior Software Development Intern"
               position="Todd Agriscience"
+              companyLink="https://www.toddagriscience.com/"
               startDate="Mar. 2025"
               endDate="Present"
               src="/static/companies/todd.webp"
@@ -389,6 +391,7 @@ export default function Home() {
             <Dropdown
               role="Research and Development Engineer Intern"
               position="Bonterra"
+              companyLink="https://www.bonterratech.com/"
               startDate="Jul. 2025"
               endDate="Aug. 2025"
               src="/static/companies/bonterra.png"
@@ -397,6 +400,7 @@ export default function Home() {
             <Dropdown
               role="Frontend Developer"
               position="Mt. SAC Computer Science Club"
+              companyLink="https://www.mtsaccs.org"
               startDate="Sep. 2024"
               endDate="Jul. 2025"
               src="/static/companies/mtsaccs.webp"
@@ -405,6 +409,7 @@ export default function Home() {
             <Dropdown
               role="Software Engineer Intern"
               position="TensorStax"
+              companyLink="https://www.tensorstax.com"
               startDate="May 2025"
               endDate="Jun. 2025"
               src="/static/companies/tensorstax.png"
@@ -413,6 +418,7 @@ export default function Home() {
             <Dropdown
               role="AI Engineer"
               position="Outlier AI"
+              companyLink="https://outlier.ai/"
               startDate="Mar. 2024"
               endDate="Apr. 2025"
               src="/static/companies/outlier.webp"
@@ -540,6 +546,7 @@ export default function Home() {
             <Dropdown
               role="University of California, Los Angeles"
               position="BS, Computer Science"
+              companyLink="https://www.ucla.edu"
               startDate="2025"
               endDate="Present"
               src="/static/schools/ucla.png"
@@ -548,6 +555,7 @@ export default function Home() {
             <Dropdown
               role="Mount San Antonio College"
               position="Honors Transfer"
+              companyLink="https://www.mtsac.edu"
               startDate="2023"
               endDate="2025"
               src="/static/schools/mtsac.png"
@@ -556,6 +564,7 @@ export default function Home() {
             <Dropdown
               role="Walnut High School"
               position="High School Diploma"
+              companyLink="https://www.walnuths.net"
               startDate="2019"
               endDate="2023"
               src="/static/schools/whs.png"

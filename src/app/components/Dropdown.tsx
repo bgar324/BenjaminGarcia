@@ -11,6 +11,7 @@ interface DropdownProps {
   src: string
   link?: string
   description?: string
+  companyLink: string
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -21,6 +22,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   src,
   link,
   description,
+  companyLink
 }) => {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -46,9 +48,9 @@ const Dropdown: React.FC<DropdownProps> = ({
           </h1>
           <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row items-center">
-              <p className="text-sm text-gray-600 dark:text-slate-400 lg:text-base">
+              <a className="text-sm text-gray-600 dark:text-slate-400 lg:text-base hover:underline hover:cursor-pointer" href = {companyLink} target = "_blank" rel = "noreferrer">
                 {position}
-              </p>
+              </a>
               <p className="text-sm text-gray-600 dark:text-slate-400 ml-2 block sm:hidden">
                 | <span className="ml-1">{startDate} - {endDate}</span>
               </p>
