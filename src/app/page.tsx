@@ -546,7 +546,7 @@ export default function Home() {
             <Dropdown
               role="University of California, Los Angeles"
               position="BS, Computer Science"
-              companyLink="https://www.ucla.edu"
+              schoolLink="https://www.ucla.edu"
               startDate="2025"
               endDate="Present"
               src="/static/schools/ucla.png"
@@ -555,7 +555,7 @@ export default function Home() {
             <Dropdown
               role="Mount San Antonio College"
               position="Honors Transfer"
-              companyLink="https://www.mtsac.edu"
+              schoolLink="https://www.mtsac.edu"
               startDate="2023"
               endDate="2025"
               src="/static/schools/mtsac.png"
@@ -564,7 +564,7 @@ export default function Home() {
             <Dropdown
               role="Walnut High School"
               position="High School Diploma"
-              companyLink="https://www.walnuths.net"
+              schoolLink="https://www.walnuths.net"
               startDate="2019"
               endDate="2023"
               src="/static/schools/whs.png"
