@@ -254,7 +254,7 @@ export default function Home() {
               target="_blank"
               title="Resume"
             >
-              Download My CV
+              Download My Résumé
             </a>
           </div>
         </div>
