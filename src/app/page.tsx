@@ -451,6 +451,13 @@ export default function Home() {
 
           <div className="flex flex-col gap-y-3">
             <ProjectItem
+              src="/static/project-previews/rift-report.png"
+              title="Rift Report"
+              description="Built a full-stack analytics platform that aggregates and visualizes over 1,000+ ranked matches from the Riot Games API. The dashboard highlights role distribution, champion performance trends, and build efficiency, giving players a data-driven lens into their gameplay. To ensure responsiveness at scale, I implemented caching and rate-limiting strategies that reduced fetch times by 40%, while still delivering real-time timelines, item builds, and matchup insights. Designed with a clean, interactive interface, the tool helps users explore both aggregate trends and individual match breakdowns seamlessly."
+              githubLink="https://github.com/bgar324/Rift-Report"
+              tags={["Next.js", "Tailwind CSS", "TypeScript", "Riot API"]}
+            />
+            <ProjectItem
               src="/static/project-previews/git-proof.png"
               title="Git Proof"
               description="An AI-powered GitHub analytics and report generation tool that transforms public repositories into recruiter-ready summaries. Users can generate commit heatmaps, analyze tech stacks, and receive AI-generated repository insights and README suggestions using Google Gemini. Built with Next.js, Tailwind CSS, and TypeScript, Git Proof also offers professional PDF exports powered by jsPDF and @react-pdf/renderer, all wrapped in a secure, OAuth-authenticated experience. Originally developed and presented during the final round of Bonterra’s R&D internship interview."
@@ -474,7 +481,7 @@ export default function Home() {
             />
             <ProjectItem
               src="/static/project-previews/logit-preview.webp"
-              title="logit"
+              title="Logit"
               description="A full-stack workout logging app designed for a minimal and efficient tracking experience. Users can log workouts, edit past sessions with a React-calendar, and track progress with Recharts visualizations. Workouts are stored in a PostgreSQL database, with support for tags, comments, and dropsets. Built with Next.js, Tailwind CSS, and Prisma, it streamlines workout management while enabling progressive overload tracking."
               githubLink="https://github.com/bgar324/logit"
               tags={[
@@ -493,7 +500,7 @@ export default function Home() {
               title={
                 <>
                   <div className="flex flex-row items-center">
-                    het.ai |{" "}
+                    Het.AI |{" "}
                     <a
                       href="https://hack.caltech.edu/"
                       target="_blank"
@@ -526,14 +533,6 @@ export default function Home() {
                 "Real-Time Data",
                 "Data Visualization & Diagnostics",
               ]}
-            />
-            <ProjectItem
-              src="/static/project-previews/caduceus.webp"
-              title="15th Annual HPC Website"
-              description="Designed and launched a mobile-first website for the 15th Annual Health Professions Conference, partnering with the Caduceus Club and backed by a grant and Kaiser Permanente sponsorship. Engineered the site to centralize and streamline over 700 attendees’ access to feedback forms for 36 speakers and 83 vendors/exhibitors, prioritizing accessibility, responsiveness, and frictionless UX. The system was so effective it’s being adopted for future conferences. Received direct praise from organizers for its impact—no technical issues, only a need for greater form visibility. Site significantly improved attendee and staff workflow, simplifying form submission and centralizing event feedback at scale."
-              link="https://caduceuswebsitev1.vercel.app"
-              githubLink="https://github.com/bgar324/caduceus-club-website"
-              tags={["Next.js", "Tailwind CSS", "Vercel", "shadcn-ui"]}
             />
           </div>
         </section>

@@ -6,6 +6,14 @@ import ProjectTable, { Column, ProjectEntry } from "./ProjectTable";
 const archiveProjects: ProjectEntry[] = [
   {
     year: 2025,
+    title: "15th Annual HPC Website",
+    madeAt: "Mt. SAC",
+    builtWith: ["Next.js", "Tailwind CSS", "Vercel", "shadcn-ui"],
+    link: "https://caduceuswebsitev1.vercel.app/",
+    label: "Website",
+  },
+  {
+    year: 2025,
     title: "Computer Science Website (v1)",
     madeAt: "Mt. SAC",
     builtWith: ["React.js", "Bootstrap", "Netlify"],

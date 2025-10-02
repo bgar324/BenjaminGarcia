@@ -55,7 +55,7 @@ export default function ArchivePage() {
 
       <section>
         <h2 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase mt-10 tracking-wider lg:py-[.5px] flex items-center gap-1 text-lg md:text-xl font-bold mb-5">
-          Past Projects (6)
+          Past Projects (7)
         </h2>
         <ArchiveTable />
       </section>
