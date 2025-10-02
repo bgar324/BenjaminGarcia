@@ -386,7 +386,7 @@ export default function Home() {
               startDate="Mar. 2025"
               endDate="Present"
               src="/static/companies/todd.webp"
-              description="Built and deployed a responsive, client-facing dashboard and website (Next.js, Tailwind CSS, Framer Motion) with interactive data visualizations for agricultural insights. Integrated Palantir Foundry and AWS Lambda to stream AI-analyzed crop data into real-time UI components. Designed scalable, accessible UI architecture and modular components."
+              description="I built and deployed Todd’s first client-facing dashboard and landing site using Next.js, Tailwind CSS, and Framer Motion, creating a responsive interface for AI-powered crop insights. I linked backend inference pipelines directly into dynamic UI components, enabling farmers to visualize 20+ real-time data streams including soil, irrigation, weather, and yield metrics. The work helped the company’s initial 5–10 clients adopt the platform and was recognized by the founder for driving both product adoption and internal growth, scaling the team from just one intern to fourteen engineers after my internship."
             />
             <Dropdown
               role="Research and Development Engineer Intern"
@@ -395,7 +395,7 @@ export default function Home() {
               startDate="Jul. 2025"
               endDate="Aug. 2025"
               src="/static/companies/bonterra.png"
-              description="Investigated tool calling frameworks, Model Context Protocols (MCPs), and agentic AI architectures for large language models. Prototyped workflows enabling multi-tool orchestration, contextual reasoning, and autonomous decision-making, with emphasis on scalable deployment for nonprofit use cases such as donor engagement and operational efficiency."
+              description="At Bonterra, I researched and prototyped agentic AI systems tailored for nonprofit event analysis. I modeled key outcomes like attendance, retention, and fundraising while benchmarking orchestration pipelines across five agent frameworks to assess scalability and efficiency. My findings were presented to an audience of 40–50 cross-functional stakeholders—including engineers, analysts, and senior leadership—and directly shaped early strategies for adopting AI to improve nonprofit impact measurement."
             />
             <Dropdown
               role="Frontend Developer"
@@ -413,7 +413,7 @@ export default function Home() {
               startDate="May 2025"
               endDate="Jun. 2025"
               src="/static/companies/tensorstax.png"
-              description="Engineered real-time frontend systems (Next.js, Redux, WebSockets) for low-latency agentic interfaces and dynamic pipeline configuration. Designed and implemented a secure credential submission UI with HashiCorp Vault, Python, and Redis. Collaborated in a fast-paced startup to ship complex internal tooling with asynchronous task flows."
+              description="At TensorStax, I owned the design and development of a secure credential-submission UI integrated with HashiCorp Vault, which streamlined authentication across 50+ enterprise data sources such as AWS Glue, Snowflake, MongoDB, Postgres, Airflow, dbt, and Spark. I also built low-latency frontend systems with Next.js, Redux, and WebSockets that supported 100+ concurrent beta users with sub-100ms latency. Over the course of the internship, I contributed to 30+ reusable UI components and collaborated with a 10–15 person engineering team spanning frontend, machine learning, and infrastructure."
             />
             <Dropdown
               role="AI Engineer"
@@ -422,7 +422,7 @@ export default function Home() {
               startDate="Mar. 2024"
               endDate="Apr. 2025"
               src="/static/companies/outlier.webp"
-              description="Developed a recursive self-improvement method that reduced trend-based LLM errors by 15–20%, enhancing reasoning through failure-based prompt refinement. Optimized AI response pipelines by analyzing 30–50 outputs per session, leveraging A/B testing, hallucination detection, and effectiveness evaluation to boost accuracy."
+              description="I worked on optimizing LLM pipelines by running large-scale A/B testing, identifying hallucinations, and refining prompts to improve output quality and reasoning accuracy. During this time, I engineered a recursive self-improvement method that applied failure prompts to reduce trend-based errors by 20%. This combination of pipeline optimization, experimentation, and recursive refinement became a foundation for boosting the reliability of AI systems in production use cases."
             />
           </div>
         </section>
