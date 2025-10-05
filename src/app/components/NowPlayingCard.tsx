@@ -56,9 +56,9 @@ export default function NowPlayingCard() {
       aria-label={
         isPlaying ? `Now playing ${title} by ${artists}` : "Playback paused"
       }
-      className="bg-white dark:bg-gray-950
+      className="hidden lg:flex bg-white dark:bg-gray-950
           rounded-xl shadow-md dark:shadow-lg p-2 
-          flex sm:flex-row lg:flex-col lg:gap-3 relative 
+          sm:flex-row lg:flex-col lg:gap-3 relative 
           transition-colors duration-300"
     >
       <div className="flex items-center gap-3">
