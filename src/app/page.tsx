@@ -20,6 +20,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import ProjectItem from "./components/SelectedProject";
 import { ArrowRight } from "lucide-react";
 import ThemeToggle from "./components/ThemeToggle";
+import NowPlayingCard from "./components/NowPlayingCard";
 
 const YouTubeModal = ({
   isOpen,
@@ -258,6 +259,8 @@ export default function Home() {
             </a>
           </div>
         </div>
+
+          <NowPlayingCard />
 
         {/* <div className="hidden lg:flex lg:flex-col lg:gap-2 lg:mt-1 bg-white dark:bg-black rounded-xl shadow-md p-3 transition-colors">
           <div>
