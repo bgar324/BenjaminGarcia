@@ -260,7 +260,7 @@ export default function Home() {
           </div>
         </div>
 
-          <NowPlayingCard />
+        <NowPlayingCard />
 
         {/* <div className="hidden lg:flex lg:flex-col lg:gap-2 lg:mt-1 bg-white dark:bg-black rounded-xl shadow-md p-3 transition-colors">
           <div>
@@ -536,6 +536,41 @@ export default function Home() {
                 "Real-Time Data",
                 "Data Visualization & Diagnostics",
               ]}
+            />
+          </div>
+        </section>
+
+        <section id="education">
+          <p className="w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm">
+            leadership
+          </p>
+          <div className="flex flex-col gap-4">
+            <Dropdown
+              role="Campus Ambassador"
+              position="Intern Insider"
+              companyLink="http://www.interninsider.me/"
+              startDate="Sep. 2025"
+              endDate="Present"
+              src="/static/leadership/intern-insider.png"
+              description="Promote Intern Insider’s 93,000-member internship community and job board across UCLA, helping students access AI-powered tools that simplify the internship search. Collaborate directly with the founding team to share feedback, lead outreach initiatives, and represent the brand through digital and on-campus engagement."
+            />
+            <Dropdown
+              role="Ambassador"
+              position="Extern"
+              companyLink="https://www.extern.com/"
+              startDate="Apr. 2024"
+              endDate="Present"
+              src="/static/leadership/extern.png"
+              description="Represented Extern as a student liaison, introducing peers to remote externship opportunities that connect students with real industry experience. Partnered with campus clubs and student organizations to expand awareness of Extern’s programs and support students through the application process."
+            />
+            <Dropdown
+              role="Outreach Officer"
+              position="Mt. SAC Computer Science Club"
+              companyLink="https://www.extern.com/"
+              startDate="Sep. 2024"
+              endDate="Aug. 2025"
+              src="/static/companies/mtsaccs.webp"
+              description="Designed and led outreach for 7+ campus events, creating clear, engaging visuals and messaging. Initiated and orchestrated collaborations between the CS Club and groups like the Caduceus Health Professionals Club to bridge tech and healthcare communities."
             />
           </div>
         </section>
