@@ -103,7 +103,7 @@ export default function NowPlayingCard() {
               className={`h-full rounded-full transition-[width,background-color] duration-500 linear ${
                 isPlaying
                   ? "bg-black dark:bg-slate-300"
-                  : "bg-gray-400 dark:bg-slate-500"
+                  : "bg-white dark:bg-slate-500"
               }`}
               style={{ width: `${pct}%` }}
             />

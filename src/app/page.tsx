@@ -234,10 +234,18 @@ export default function Home() {
                 className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition"
               >
                 <Image
-                  src="static/handshake.svg"
+                  src="/static/handshake.svg"
                   alt="Handshake"
-                  height="12"
-                  width="12"
+                  height={12}
+                  width={12}
+                  className="dark:hidden"
+                />
+                <Image
+                  src="/static/handshakewhite.svg"
+                  alt="Handshake"
+                  height={12}
+                  width={12}
+                  className="hidden dark:block"
                 />
               </a>
             </div>
