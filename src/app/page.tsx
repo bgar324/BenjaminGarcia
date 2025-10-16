@@ -451,13 +451,41 @@ export default function Home() {
             <p className="w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm">
               selected projects
             </p>
-            <a
-              className="w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm flex items-center gap-1"
+            <motion.a
               href="/archive"
+              className="group relative flex items-center border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm cursor-pointer"
+              initial="collapsed"
+              whileHover="expanded"
+              variants={{
+                collapsed: { width: 32 },
+                expanded: { width: 165 },
+              }}
+              transition={{
+                duration: 0.35,
+                ease: [0.25, 0.1, 0.25, 1], // Smooth easeInOut, no bounce
+              }}
+              style={{ overflow: "hidden" }}
             >
-              project archive
-              <ArrowRight size={14} strokeWidth={1} />
-            </a>
+              <motion.span
+                className="whitespace-nowrap text-gray-700 dark:text-gray-300 pr-1"
+                variants={{
+                  collapsed: { opacity: 0, x: 30, width: 0 },
+                  expanded: { opacity: 1, x: 0, width: "auto" },
+                }}
+                transition={{
+                  duration: 0.35,
+                  ease: [0.25, 0.1, 0.25, 1],
+                  opacity: { duration: 0.25, ease: "easeOut" },
+                }}
+              >
+                project archive
+              </motion.span>
+              <ArrowRight
+                size={14}
+                strokeWidth={1}
+                className="absolute right-2 text-gray-700 dark:text-gray-300"
+              />
+            </motion.a>
           </div>
 
           <div className="flex flex-col gap-y-3">
