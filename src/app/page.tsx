@@ -269,61 +269,6 @@ export default function Home() {
         </div>
 
         <NowPlayingCard />
-
-        {/* <div className="hidden lg:flex lg:flex-col lg:gap-2 lg:mt-1 bg-white dark:bg-black rounded-xl shadow-md p-3 transition-colors">
-          <div>
-            <a
-              href="#about"
-              title="Go to About"
-              className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors
-        ${
-          activeSection === "about"
-            ? "bg-gray-100 text-gray-900 dark:bg-slate-900 dark:text-slate-100"
-            : "text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-900"
-        }`}
-            >
-              About
-            </a>
-            <a
-              href="#experience"
-              title="Go to Experience"
-              className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors
-        ${
-          activeSection === "experience"
-            ? "bg-gray-100 text-gray-900 dark:bg-slate-900 dark:text-slate-100"
-            : "text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-900"
-        }`}
-            >
-              Experience
-            </a>
-          </div>
-          <div>
-            <a
-              href="#tech-stack"
-              title="Go to Technologies"
-              className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors
-        ${
-          activeSection === "tech-stack"
-            ? "bg-gray-100 text-gray-900 dark:bg-slate-900 dark:text-slate-100"
-            : "text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-900"
-        }`}
-            >
-              Technologies
-            </a>
-            <a
-              href="#projects"
-              title="Go to Projects"
-              className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors
-        ${
-          activeSection === "projects"
-            ? "bg-gray-100 text-gray-900 dark:bg-slate-900 dark:text-slate-100"
-            : "text-gray-500 hover:text-gray-900 hover:bg-gray-50 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-900"
-        }`}
-            >
-              Projects
-            </a>
-          </div>
-        </div> */}
       </motion.header>
 
       <motion.main
@@ -391,12 +336,22 @@ export default function Home() {
           </p>
           <div className="flex flex-col gap-4">
             <Dropdown
+              role="Undergraduate Research Developer"
+              position="UCLA HCI Research Lab"
+              companyLink="https://hci.ucla.edu"
+              startDate="Joining Dec. 2025"
+              src="/static/companies/ucla-hci.png"
+              darkSrc="/static/companies/ucla-hci-dark.png"
+              description="Joining Professor Xiang “Anthony” Chen’s Human-Computer Interaction Lab in Winter 2026, where I’ll collaborate with designers and researchers to prototype and explore new interaction experiences."
+            />
+            <Dropdown
               role="Senior Software Development Intern"
               position="Todd Agriscience"
               companyLink="https://www.toddagriscience.com/"
               startDate="Mar. 2025"
               endDate="Present"
               src="/static/companies/todd.webp"
+              darkSrc="/static/companies/todd-dark.png"
               description="I built and deployed Todd’s first client-facing dashboard and landing site using Next.js, Tailwind CSS, and Framer Motion, creating a responsive interface for AI-powered crop insights. I linked backend inference pipelines directly into dynamic UI components, enabling farmers to visualize 20+ real-time data streams including soil, irrigation, weather, and yield metrics. The work helped the company’s initial 5–10 clients adopt the platform and was recognized by the founder for driving both product adoption and internal growth, scaling the team from just one intern to fourteen engineers after my internship."
             />
             <Dropdown
@@ -426,7 +381,7 @@ export default function Home() {
               src="/static/companies/tensorstax.png"
               description="At TensorStax, I owned the design and development of a secure credential-submission UI integrated with HashiCorp Vault, which streamlined authentication across 50+ enterprise data sources such as AWS Glue, Snowflake, MongoDB, Postgres, Airflow, dbt, and Spark. I also built low-latency frontend systems with Next.js, Redux, and WebSockets that supported 100+ concurrent beta users with sub-100ms latency. Over the course of the internship, I contributed to 30+ reusable UI components and collaborated with a 10–15 person engineering team spanning frontend, machine learning, and infrastructure."
             />
-            <Dropdown
+            {/* <Dropdown
               role="AI Engineer"
               position="Outlier AI"
               companyLink="https://outlier.ai/"
@@ -434,7 +389,7 @@ export default function Home() {
               endDate="Apr. 2025"
               src="/static/companies/outlier.webp"
               description="I worked on optimizing LLM pipelines by running large-scale A/B testing, identifying hallucinations, and refining prompts to improve output quality and reasoning accuracy. During this time, I engineered a recursive self-improvement method that applied failure prompts to reduce trend-based errors by 20%. This combination of pipeline optimization, experimentation, and recursive refinement became a foundation for boosting the reliability of AI systems in production use cases."
-            />
+            /> */}
           </div>
         </section>
 
@@ -572,41 +527,6 @@ export default function Home() {
                 "Real-Time Data",
                 "Data Visualization & Diagnostics",
               ]}
-            />
-          </div>
-        </section>
-
-        <section id="education">
-          <p className="w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm">
-            leadership
-          </p>
-          <div className="flex flex-col gap-4">
-            <Dropdown
-              role="Campus Ambassador"
-              position="Intern Insider"
-              companyLink="http://www.interninsider.me/"
-              startDate="Sep. 2025"
-              endDate="Present"
-              src="/static/leadership/intern-insider.png"
-              description="Promote Intern Insider’s 93,000-member internship community and job board across UCLA, helping students access AI-powered tools that simplify the internship search. Collaborate directly with the founding team to share feedback, lead outreach initiatives, and represent the brand through digital and on-campus engagement."
-            />
-            <Dropdown
-              role="Ambassador"
-              position="Extern"
-              companyLink="https://www.extern.com/"
-              startDate="Apr. 2024"
-              endDate="Present"
-              src="/static/leadership/extern.png"
-              description="Represented Extern as a student liaison, introducing peers to remote externship opportunities that connect students with real industry experience. Partnered with campus clubs and student organizations to expand awareness of Extern’s programs and support students through the application process."
-            />
-            <Dropdown
-              role="Outreach Officer"
-              position="Mt. SAC Computer Science Club"
-              companyLink="https://www.extern.com/"
-              startDate="Sep. 2024"
-              endDate="Aug. 2025"
-              src="/static/companies/mtsaccs.webp"
-              description="Designed and led outreach for 7+ campus events, creating clear, engaging visuals and messaging. Initiated and orchestrated collaborations between the CS Club and groups like the Caduceus Health Professionals Club to bridge tech and healthcare communities."
             />
           </div>
         </section>

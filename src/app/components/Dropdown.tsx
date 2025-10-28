@@ -1,18 +1,20 @@
-"use client"
+"use client";
 
-import React, { useState } from "react"
-import { ChevronDown, X } from "lucide-react"
+import React, { useState, useEffect } from "react";
+import { ChevronDown, X } from "lucide-react";
+import { useTheme } from "next-themes";
 
 interface DropdownProps {
-  role: string
-  position: string
-  startDate: string
-  endDate: string
-  src: string
-  link?: string
-  description?: string
-  companyLink?: string
-  schoolLink?: string
+  role: string;
+  position: string;
+  startDate: string;
+  endDate?: string;
+  src: string;
+  darkSrc?: string;
+  link?: string;
+  description?: string;
+  companyLink?: string;
+  schoolLink?: string;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -21,27 +23,53 @@ const Dropdown: React.FC<DropdownProps> = ({
   startDate,
   endDate,
   src,
+  darkSrc,
   link,
   description,
   companyLink,
-  schoolLink
+  schoolLink,
 }) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  const hasExpandableContent = Boolean(description || link)
-  const titleCls = "font-semibold w-full lg:text-lg text-gray-900 dark:text-slate-100"
-  const companyBase = "text-sm text-gray-600 dark:text-slate-400 lg:text-base"
-  const companyIsLink = !!companyLink?.trim()
+  useEffect(() => {
+    // To prevent hydration mismatch between SSR and client
+    setMounted(true);
+  }, []);
+
+  const hasExpandableContent = Boolean(description || link);
+  const titleCls =
+    "font-semibold w-full lg:text-lg text-gray-900 dark:text-slate-100";
+  const companyBase = "text-sm text-gray-600 dark:text-slate-400 lg:text-base";
+  const companyIsLink = !!companyLink?.trim();
+
+  // Select appropriate image based on theme (fade transition)
+  const imageSrc = mounted && theme === "dark" && darkSrc ? darkSrc : src;
 
   return (
     <div className="border border-gray-300 dark:border-gray-700 border-dotted bg-white dark:bg-black rounded-lg flex flex-col transition-colors duration-300">
       <div className="flex flex-row">
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center relative">
           <img
             src={src}
             alt=""
-            className="h-auto w-16 rounded-xl bg-white dark:bg-black items-center p-1 lg:ml-1"
+            className={`h-auto w-16 rounded-xl p-1 lg:ml-1 absolute transition-opacity duration-300 ${
+              theme === "dark" && darkSrc ? "opacity-0" : "opacity-100"
+            }`}
           />
+
+          {darkSrc && (
+            <img
+              src={darkSrc}
+              alt=""
+              className={`h-auto w-16 rounded-xl p-1 lg:ml-1 absolute transition-opacity duration-300 ${
+                theme === "dark" ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          )}
+
+          <div className="h-auto w-16 rounded-xl bg-transparent" />
         </div>
 
         <div className="flex flex-col w-full p-2">
@@ -75,23 +103,34 @@ const Dropdown: React.FC<DropdownProps> = ({
                 <span className={companyBase}>{position}</span>
               )}
               <p className="text-sm text-gray-600 dark:text-slate-400 ml-2 block sm:hidden">
-                | <span className="ml-1">{startDate} - {endDate}</span>
+                |{" "}
+                <span className="ml-1">
+                  {startDate}
+                  {endDate ? ` - ${endDate}` : ""}
+                </span>
               </p>
             </div>
 
             <div className="flex flex-row items-center">
               <p className="text-sm text-gray-600 dark:text-slate-400 hidden sm:block lg:text-base">
-                {startDate} - {endDate}
+                {startDate}
+                {endDate ? ` - ${endDate}` : ""}
               </p>
               {hasExpandableContent && (
                 <button
                   onClick={() => setIsOpen((v) => !v)}
-                  className={`hover:cursor-pointer ml-2 transition-all duration-300 ease-in-out rounded-3xl hover:bg-gray-200 dark:hover:bg-slate-700 ${isOpen ? "rotate-180" : ""}`}
+                  className={`hover:cursor-pointer ml-2 transition-all duration-300 ease-in-out rounded-3xl hover:bg-gray-200 dark:hover:bg-slate-700 ${
+                    isOpen ? "rotate-180" : ""
+                  }`}
                 >
                   {isOpen ? (
                     <X strokeWidth="1" size={16} absoluteStrokeWidth />
                   ) : (
-                    <ChevronDown strokeWidth="1" size={16} absoluteStrokeWidth />
+                    <ChevronDown
+                      strokeWidth="1"
+                      size={16}
+                      absoluteStrokeWidth
+                    />
                   )}
                 </button>
               )}
@@ -101,7 +140,9 @@ const Dropdown: React.FC<DropdownProps> = ({
       </div>
 
       <div
-        className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+        className={`overflow-hidden transition-all duration-500 ease-in-out ${
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
         style={{ transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)" }}
       >
         {hasExpandableContent && (
@@ -125,7 +166,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Dropdown
+export default Dropdown;
