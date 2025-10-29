@@ -1,20 +1,20 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from "react";
-import { ChevronDown, X } from "lucide-react";
-import { useTheme } from "next-themes";
+import React, { useState, useEffect } from "react"
+import { ChevronDown, X } from "lucide-react"
+import { useTheme } from "next-themes"
 
 interface DropdownProps {
-  role: string;
-  position: string;
-  startDate: string;
-  endDate?: string;
-  src: string;
-  darkSrc?: string;
-  link?: string;
-  description?: string;
-  companyLink?: string;
-  schoolLink?: string;
+  role: string
+  position: string
+  startDate: string
+  endDate?: string
+  src: string
+  darkSrc?: string
+  link?: string
+  description?: string
+  companyLink?: string
+  schoolLink?: string
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -27,49 +27,34 @@ const Dropdown: React.FC<DropdownProps> = ({
   link,
   description,
   companyLink,
-  schoolLink,
+  schoolLink
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    // To prevent hydration mismatch between SSR and client
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
-  const hasExpandableContent = Boolean(description || link);
-  const titleCls =
-    "font-semibold w-full lg:text-lg text-gray-900 dark:text-slate-100";
-  const companyBase = "text-sm text-gray-600 dark:text-slate-400 lg:text-base";
-  const companyIsLink = !!companyLink?.trim();
+  const hasExpandableContent = Boolean(description || link)
+  const titleCls = "font-semibold w-full lg:text-lg text-gray-900 dark:text-slate-100"
+  const companyBase = "text-sm text-gray-600 dark:text-slate-400 lg:text-base"
+  const companyIsLink = !!companyLink?.trim()
 
-  // Select appropriate image based on theme (fade transition)
-  const imageSrc = mounted && theme === "dark" && darkSrc ? darkSrc : src;
+  // choose correct image based on theme, no fade transition
+  const imageSrc =
+    mounted && theme === "dark" && darkSrc ? darkSrc : src
 
   return (
     <div className="border border-gray-300 dark:border-gray-700 border-dotted bg-white dark:bg-black rounded-lg flex flex-col transition-colors duration-300">
       <div className="flex flex-row">
-        <div className="flex justify-center items-center relative">
+        <div className="flex justify-center items-center">
           <img
-            src={src}
+            src={imageSrc}
             alt=""
-            className={`h-auto w-16 rounded-xl p-1 lg:ml-1 absolute transition-opacity duration-300 ${
-              theme === "dark" && darkSrc ? "opacity-0" : "opacity-100"
-            }`}
+            className="h-auto w-16 rounded-xl bg-white dark:bg-black items-center p-1 lg:ml-1"
           />
-
-          {darkSrc && (
-            <img
-              src={darkSrc}
-              alt=""
-              className={`h-auto w-16 rounded-xl p-1 lg:ml-1 absolute transition-opacity duration-300 ${
-                theme === "dark" ? "opacity-100" : "opacity-0"
-              }`}
-            />
-          )}
-
-          <div className="h-auto w-16 rounded-xl bg-transparent" />
         </div>
 
         <div className="flex flex-col w-full p-2">
@@ -119,18 +104,12 @@ const Dropdown: React.FC<DropdownProps> = ({
               {hasExpandableContent && (
                 <button
                   onClick={() => setIsOpen((v) => !v)}
-                  className={`hover:cursor-pointer ml-2 transition-all duration-300 ease-in-out rounded-3xl hover:bg-gray-200 dark:hover:bg-slate-700 ${
-                    isOpen ? "rotate-180" : ""
-                  }`}
+                  className={`hover:cursor-pointer ml-2 transition-all duration-300 ease-in-out rounded-3xl hover:bg-gray-200 dark:hover:bg-slate-700 ${isOpen ? "rotate-180" : ""}`}
                 >
                   {isOpen ? (
                     <X strokeWidth="1" size={16} absoluteStrokeWidth />
                   ) : (
-                    <ChevronDown
-                      strokeWidth="1"
-                      size={16}
-                      absoluteStrokeWidth
-                    />
+                    <ChevronDown strokeWidth="1" size={16} absoluteStrokeWidth />
                   )}
                 </button>
               )}
@@ -166,7 +145,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dropdown;
+export default Dropdown
