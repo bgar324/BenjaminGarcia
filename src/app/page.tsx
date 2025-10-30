@@ -286,7 +286,7 @@ export default function Home() {
           </div>
 
           <p className="text-gray-600 dark:text-slate-400 lg:text-lg leading-snug mt-4">
-            I’m a junior studying Computer Science at{" "}
+            I'm a junior studying Computer Science at the{" "}
             <a
               className="font-medium"
               style={{
@@ -298,23 +298,46 @@ export default function Home() {
               }}
               href="https://ucla.edu/"
               target="_blank"
+              rel="noopener noreferrer"
             >
               University of California, Los Angeles
             </a>
-            . I’m currently a{" "}
-            <span className="font-medium">
-              Senior Software Development Intern at{" "}
-              <a
-                className="text-black dark:text-white/80"
-                href="https://toddagriscience.com"
-                target="_blank"
-              >
-                Todd Agriscience
-              </a>
-            </span>
-            , where I thrive in fast-paced, collaborative teams and build
-            performant, accessible interfaces that create real-world impact.
+            . This December, I’ll be joining Professor Xiang “Anthony” Chen’s{" "}
+            <a
+              className="font-medium"
+              style={{
+                background: "linear-gradient(to right, #6366f1, #3b82f6)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                display: "inline",
+              }}
+              href="https://hci.ucla.edu"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Human-Computer Interaction Research Lab
+            </a>{" "}
+            and continuing my work with{" "}
+            <a
+              className="font-medium"
+              style={{
+                background: "linear-gradient(to right, #eab308, #1e3a8a)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                display: "inline",
+              }}
+              href="https://exploretech.la"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ExploreTech.LA
+            </a>
+            , where I help build responsive, accessible interfaces that bring
+            ideas to life.
           </p>
+
           <p className="mt-2 text-gray-600 dark:text-slate-400 lg:text-lg leading-snug">
             Outside of coding, I enjoy weightlifting, spending time with my dog,
             and exploring the{" "}
@@ -323,6 +346,7 @@ export default function Home() {
               href="/static/image.png"
               target="_blank"
               title="Elden Ring"
+              rel="noopener noreferrer"
             >
               Lands Between
             </a>
@@ -345,17 +369,26 @@ export default function Home() {
               description="Joining Professor Xiang “Anthony” Chen’s Human-Computer Interaction Lab in Winter 2026, where I’ll collaborate with designers and researchers to prototype and explore new interaction experiences."
             />
             <Dropdown
+              role="Web Developer"
+              position="exploretech.la"
+              companyLink="https://www.exploretech.la/"
+              startDate="Sep. 2025"
+              endDate="Present"
+              src="/static/companies/ela.png"
+              description="Member of the 5-person core web development team refactoring and rebuilding the organization's website using React, JavaScript, and Sass. Work with Jira, GitHub Actions, and CI/CD pipelines for collaborative development. Also serve on the Content Board within a 10-20 person team, contributing to workshops and events for our Ignite Program, the organization's flagship event happning Winter 2026."
+            />
+            <Dropdown
               role="Senior Software Development Intern"
               position="Todd Agriscience"
               companyLink="https://www.toddagriscience.com/"
               startDate="Mar. 2025"
-              endDate="Present"
+              endDate="Oct. 2025"
               src="/static/companies/todd.webp"
               darkSrc="/static/companies/todd-dark.png"
               description="I built and deployed Todd’s first client-facing dashboard and landing site using Next.js, Tailwind CSS, and Framer Motion, creating a responsive interface for AI-powered crop insights. I linked backend inference pipelines directly into dynamic UI components, enabling farmers to visualize 20+ real-time data streams including soil, irrigation, weather, and yield metrics. The work helped the company’s initial 5–10 clients adopt the platform and was recognized by the founder for driving both product adoption and internal growth, scaling the team from just one intern to fourteen engineers after my internship."
             />
             <Dropdown
-              role="Research and Development Engineer Intern"
+              role="Research & Development Engineer Intern"
               position="Bonterra"
               companyLink="https://www.bonterratech.com/"
               startDate="Jul. 2025"

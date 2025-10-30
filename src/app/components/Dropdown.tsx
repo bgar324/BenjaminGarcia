@@ -87,13 +87,6 @@ const Dropdown: React.FC<DropdownProps> = ({
               ) : (
                 <span className={companyBase}>{position}</span>
               )}
-              <p className="text-sm text-gray-600 dark:text-slate-400 ml-2 block sm:hidden">
-                |{" "}
-                <span className="ml-1">
-                  {startDate}
-                  {endDate ? ` - ${endDate}` : ""}
-                </span>
-              </p>
             </div>
 
             <div className="flex flex-row items-center">
