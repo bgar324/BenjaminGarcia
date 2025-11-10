@@ -254,7 +254,7 @@ export default function Home() {
               className="
         bg-black dark:bg-slate-100 
         text-white dark:text-gray-950 
-        rounded-xl px-4 py-1 text-sm w-fit mx-auto 
+        rounded-md px-4 py-1 text-sm w-fit mx-auto 
         items-center justify-center 
         hover:bg-black/90 dark:hover:bg-slate-200 
         font-semibold duration-300 transition ease-in-out
