@@ -62,43 +62,20 @@ export default function NowPlayingCard() {
           transition-colors duration-300"
     >
       <div className="flex items-center gap-3">
-        <div className="relative h-14 w-14 flex items-center justify-center">
-          {/* CD disc */}
-          <div
-            className={`absolute inset-0 rounded-full bg-gradient-to-br from-gray-300 via-gray-100 to-gray-300 dark:from-slate-700 dark:via-slate-600 dark:to-slate-700 shadow-md transition-transform duration-300 ${
-              isPlaying ? "animate-spin-slow" : ""
-            }`}
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at center, rgba(0,0,0,0.15) 25%, transparent 25%, transparent 40%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.1) 41%, transparent 41%)",
-            }}
-          >
-            {/* Center hole */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-3 h-3 rounded-full bg-white dark:bg-slate-900 shadow-inner" />
-            </div>
-          </div>
-
-          {/* Album art in center */}
-          <div
-            className={`relative h-13 w-13 overflow-hidden rounded-full bg-gray-200 dark:bg-slate-800 z-10 shadow-lg transition-transform duration-300 ${
-              isPlaying ? "animate-spin-slow" : ""
-            }`}
-          >
-            {albumArt && (
-              <Image
-                src={albumArt}
-                alt=""
-                fill
-                sizes="36px"
-                className={`object-cover transition duration-500 ${
-                  isPlaying
-                    ? "saturate-100 blur-0 opacity-100"
-                    : "saturate-0 blur-[1.0px] opacity-80"
-                }`}
-              />
-            )}
-          </div>
+        <div className="relative h-14 w-14 overflow-hidden rounded-md bg-gray-200 dark:bg-slate-800">
+          {albumArt && (
+            <Image
+              src={albumArt}
+              alt=""
+              fill
+              sizes="56px"
+              className={`object-cover transition duration-500 ${
+                isPlaying
+                  ? "saturate-100 blur-0 opacity-100"
+                  : "saturate-0 blur-[1.0px] opacity-80"
+              }`}
+            />
+          )}
         </div>
 
         <div className="min-w-0 flex-1">
