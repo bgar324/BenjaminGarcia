@@ -13,111 +13,24 @@ import {
   Hamburger,
   XIcon,
 } from "./svgs/Icons";
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import PastVersions from "./components/PastVersions";
 import "./globals.css";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import ProjectItem from "./components/SelectedProject";
 import { ArrowRight } from "lucide-react";
 import ThemeToggle from "./components/ThemeToggle";
 import NowPlayingCard from "./components/NowPlayingCard";
-
-const YouTubeModal = ({
-  isOpen,
-  onClose,
-  videoId,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-  videoId: string;
-}) => {
-  if (!isOpen) return null;
-
-  return (
-    <AnimatePresence>
-      <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={onClose}
-      >
-        <motion.div
-          className="relative w-full max-w-4xl bg-gray-900 rounded-lg overflow-hidden shadow-2xl"
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <button
-            onClick={onClose}
-            className="absolute top-2 -right-2 -translate-x-1/2 z-10 p-2 text-gray-100 hover:text-white transition-colors bg-black/10 rounded-full backdrop-blur-sm hover:bg-black/50 cursor-pointer"
-            aria-label="Close video"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-          <div className="aspect-video w-full">
-            <iframe
-              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0&fs=1`}
-              className="w-full h-full"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
-  );
-};
+import SectionHeader from "./components/SectionHeader";
+import GradientLink from "./components/GradientLink";
+import YouTubeModal from "./components/YouTubeModal";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("about");
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [videoId, setVideoId] = useState<string | null>(null);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = [
-        "about",
-        "experience",
-        "tech-stack",
-        "projects",
-        "education",
-      ];
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen((prev) => !prev);
   }, []);
 
   return (
@@ -279,61 +192,23 @@ export default function Home() {
       >
         <section id="about" className="flex flex-col">
           <div className="flex flex-row justify-between items-center">
-            <p className="w-fit border border-gray-300 rounded-md px-2 py-1 lg:py-[.5px] text-xs lg:text-sm uppercase mt-10 lg:mt-0 lg:mb-5 font-semibold tracking-wider">
-              about
-            </p>
+            <SectionHeader className="lg:mt-0">about</SectionHeader>
             <ThemeToggle />
           </div>
 
           <p className="text-gray-600 dark:text-slate-400 lg:text-lg leading-snug mt-4">
             I'm a junior studying Computer Science at the{" "}
-            <a
-              className="font-medium"
-              style={{
-                background: "linear-gradient(to right, #1e3a8a, #b45309)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                display: "inline",
-              }}
-              href="https://ucla.edu/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <GradientLink href="https://ucla.edu/" gradient="linear-gradient(to right, #1e3a8a, #b45309)">
               University of California, Los Angeles
-            </a>
-            . This December, I’ll be joining Professor Xiang “Anthony” Chen’s{" "}
-            <a
-              className="font-medium"
-              style={{
-                background: "linear-gradient(to right, #6366f1, #3b82f6)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                display: "inline",
-              }}
-              href="https://hci.ucla.edu"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            </GradientLink>
+            . This December, I'll be joining Professor Xiang "Anthony" Chen's{" "}
+            <GradientLink href="https://hci.ucla.edu" gradient="linear-gradient(to right, #6366f1, #3b82f6)">
               Human-Computer Interaction Research Lab
-            </a>{" "}
+            </GradientLink>{" "}
             and continuing my work with{" "}
-            <a
-              className="font-medium"
-              style={{
-                background: "linear-gradient(to right, #eab308, #1e3a8a)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                display: "inline",
-              }}
-              href="https://exploretech.la"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <GradientLink href="https://exploretech.la" gradient="linear-gradient(to right, #eab308, #1e3a8a)">
               ExploreTech.LA
-            </a>
+            </GradientLink>
             , where I help build responsive, accessible interfaces that bring
             ideas to life.
           </p>
@@ -355,9 +230,7 @@ export default function Home() {
         </section>
 
         <section id="experience" className="flex flex-col">
-          <p className="w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm">
-            experience
-          </p>
+          <SectionHeader>experience</SectionHeader>
           <div className="flex flex-col gap-4">
             <Dropdown
               role="Undergraduate Research Developer"
@@ -427,18 +300,14 @@ export default function Home() {
         </section>
 
         <section id="tech-stack" className="flex flex-col">
-          <p className="w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase my-10 font-semibold tracking-wider lg:py-[.5px] lg:text-sm">
-            technologies
-          </p>
+          <SectionHeader className="my-10">technologies</SectionHeader>
           <Marquee />
           <div className="mb-8" />
         </section>
 
         <section id="projects">
           <div className="flex flex-row justify-between">
-            <p className="w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm">
-              selected projects
-            </p>
+            <SectionHeader>selected projects</SectionHeader>
             <motion.a
               href="/archive"
               className="group relative flex items-center border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm cursor-pointer"
@@ -565,9 +434,7 @@ export default function Home() {
         </section>
 
         <section id="education">
-          <p className="w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm">
-            education
-          </p>
+          <SectionHeader>education</SectionHeader>
           <div className="flex flex-col gap-4">
             <Dropdown
               role="University of California, Los Angeles"
@@ -598,9 +465,7 @@ export default function Home() {
           </div>
         </section>
         <section id="past-iterations">
-          <p className="w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm">
-            past versions
-          </p>
+          <SectionHeader>past versions</SectionHeader>
           <div className="flex mx-auto items-center justify-center">
             <PastVersions />
           </div>

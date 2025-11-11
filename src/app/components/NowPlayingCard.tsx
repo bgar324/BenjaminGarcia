@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import Image from "next/image";
 
 type NowPlaying = {
@@ -17,6 +17,8 @@ type NowPlaying = {
 export default function NowPlayingCard() {
   const [data, setData] = useState<NowPlaying | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef<HTMLAnchorElement>(null);
 
   async function fetchNow() {
     const res = await fetch("/api/now-playing", { cache: "no-store" });
@@ -26,10 +28,31 @@ export default function NowPlayingCard() {
   }
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     fetchNow();
     const id = setInterval(fetchNow, 2000);
     return () => clearInterval(id);
-  }, []);
+  }, [isVisible]);
 
   const effectiveProgress = useMemo(() => {
     if (!data?.isPlaying) return 0;
@@ -50,6 +73,7 @@ export default function NowPlayingCard() {
 
   return (
     <a
+      ref={cardRef}
       href={href}
       target={href ? "_blank" : undefined}
       rel={href ? "noreferrer" : undefined}
@@ -57,8 +81,8 @@ export default function NowPlayingCard() {
         isPlaying ? `Now playing ${title} by ${artists}` : "Playback paused"
       }
       className="hidden lg:flex bg-white dark:bg-gray-950
-          rounded-xl shadow-md dark:shadow-lg p-2 
-          sm:flex-row lg:flex-col lg:gap-3 relative 
+          rounded-xl shadow-md dark:shadow-lg p-2
+          sm:flex-row lg:flex-col lg:gap-3 relative
           transition-colors duration-300"
     >
       <div className="flex items-center gap-3">

@@ -1,6 +1,4 @@
-import ArchiveTable from "./components/ArchiveTable";
-import PlannedTable from "./components/PlannedTable";
-import ScrappedTable from "./components/ScrappedTable";
+import ConfigurableProjectTable from "./components/ConfigurableProjectTable";
 import UpdateCard from "./components/UpdateCard";
 import { ArrowLeft } from "lucide-react";
 
@@ -50,21 +48,21 @@ export default function ArchivePage() {
         <h2 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase mt-10 tracking-wider lg:py-[.5px] flex items-center gap-1 text-lg md:text-xl font-bold mb-5">
           Planned Projects (3)
         </h2>
-        <PlannedTable />
+        <ConfigurableProjectTable type="planned" />
       </section>
 
       <section>
         <h2 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase mt-10 tracking-wider lg:py-[.5px] flex items-center gap-1 text-lg md:text-xl font-bold mb-5">
           Past Projects (7)
         </h2>
-        <ArchiveTable />
+        <ConfigurableProjectTable type="archive" />
       </section>
 
       <section>
         <h2 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase mt-10 tracking-wider lg:py-[.5px] flex items-center gap-1 text-lg md:text-xl font-bold mb-5">
           Scrapped Projects (3)
         </h2>
-        <ScrappedTable />
+        <ConfigurableProjectTable type="scrapped" />
       </section>
     </main>
   );
