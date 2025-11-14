@@ -32,46 +32,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={cabinet.variable} suppressHydrationWarning>
       <head>
-        <link
-          rel="preload"
-          as="image"
-          href="/static/project-previews/csclubwebsite-preview.webp"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/static/project-previews/logit-preview.webp"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/static/project-previews/teaspots.webp"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/static/project-previews/suika-preview.webp"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/static/project-previews/portfoliov5.webp"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/static/project-previews/caduceus.webp"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/static/project-previews/image.webp"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/static/project-previews/weather-preview.webp"
-        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-black`}
