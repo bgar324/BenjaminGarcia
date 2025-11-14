@@ -198,15 +198,24 @@ export default function Home() {
 
           <p className="text-gray-600 dark:text-slate-400 lg:text-lg leading-snug mt-4">
             I'm a junior studying Computer Science at the{" "}
-            <GradientLink href="https://ucla.edu/" gradient="linear-gradient(to right, #1e3a8a, #b45309)">
+            <GradientLink
+              href="https://ucla.edu/"
+              gradient="linear-gradient(to right, #1e3a8a, #b45309)"
+            >
               University of California, Los Angeles
             </GradientLink>
             . This December, I'll be joining Professor Xiang "Anthony" Chen's{" "}
-            <GradientLink href="https://hci.ucla.edu" gradient="linear-gradient(to right, #6366f1, #3b82f6)">
+            <GradientLink
+              href="https://hci.ucla.edu"
+              gradient="linear-gradient(to right, #6366f1, #3b82f6)"
+            >
               Human-Computer Interaction Research Lab
             </GradientLink>{" "}
             and continuing my work with{" "}
-            <GradientLink href="https://exploretech.la" gradient="linear-gradient(to right, #eab308, #1e3a8a)">
+            <GradientLink
+              href="https://exploretech.la"
+              gradient="linear-gradient(to right, #eab308, #1e3a8a)"
+            >
               ExploreTech.LA
             </GradientLink>
             , where I help build responsive, accessible interfaces that bring
@@ -287,15 +296,6 @@ export default function Home() {
               src="/static/companies/tensorstax.png"
               description="At TensorStax, I owned the design and development of a secure credential-submission UI integrated with HashiCorp Vault, which streamlined authentication across 50+ enterprise data sources such as AWS Glue, Snowflake, MongoDB, Postgres, Airflow, dbt, and Spark. I also built low-latency frontend systems with Next.js, Redux, and WebSockets that supported 100+ concurrent beta users with sub-100ms latency. Over the course of the internship, I contributed to 30+ reusable UI components and collaborated with a 10–15 person engineering team spanning frontend, machine learning, and infrastructure."
             />
-            {/* <Dropdown
-              role="AI Engineer"
-              position="Outlier AI"
-              companyLink="https://outlier.ai/"
-              startDate="Mar. 2024"
-              endDate="Apr. 2025"
-              src="/static/companies/outlier.webp"
-              description="I worked on optimizing LLM pipelines by running large-scale A/B testing, identifying hallucinations, and refining prompts to improve output quality and reasoning accuracy. During this time, I engineered a recursive self-improvement method that applied failure prompts to reduce trend-based errors by 20%. This combination of pipeline optimization, experimentation, and recursive refinement became a foundation for boosting the reliability of AI systems in production use cases."
-            /> */}
           </div>
         </section>
 
@@ -308,41 +308,16 @@ export default function Home() {
         <section id="projects">
           <div className="flex flex-row justify-between">
             <SectionHeader>selected projects</SectionHeader>
-            <motion.a
+            <a
               href="/archive"
-              className="group relative flex items-center border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm cursor-pointer"
-              initial="collapsed"
-              whileHover="expanded"
-              variants={{
-                collapsed: { width: 32 },
-                expanded: { width: 165 },
-              }}
-              transition={{
-                duration: 0.35,
-                ease: [0.25, 0.1, 0.25, 1], // Smooth easeInOut, no bounce
-              }}
-              style={{ overflow: "hidden" }}
+              className="group w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm flex items-center gap-1 text-center"
             >
-              <motion.span
-                className="whitespace-nowrap text-gray-700 dark:text-gray-300 pr-1"
-                variants={{
-                  collapsed: { opacity: 0, x: 30, width: 0 },
-                  expanded: { opacity: 1, x: 0, width: "auto" },
-                }}
-                transition={{
-                  duration: 0.35,
-                  ease: [0.25, 0.1, 0.25, 1],
-                  opacity: { duration: 0.25, ease: "easeOut" },
-                }}
-              >
-                project archive
-              </motion.span>
+              project archive
               <ArrowRight
                 size={14}
-                strokeWidth={1}
-                className="absolute right-2 text-gray-700 dark:text-gray-300"
+                className="transform transition-transform duration-200 group-hover:translate-x-[1px]"
               />
-            </motion.a>
+            </a>
           </div>
 
           <div className="flex flex-col gap-y-3">

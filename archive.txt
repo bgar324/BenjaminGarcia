@@ -87,3 +87,39 @@
             />
           </div>
         </section>
+
+              {/* <section>
+        <h2 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase mt-10 tracking-wider lg:py-[.5px] flex items-center gap-1 text-lg md:text-xl font-bold mb-5">
+          Recent Updates
+        </h2>
+        <UpdateCard
+          href="/blog/loma-lookup-retrospective"
+          title="Loma Lookup Project Retrospective"
+          description="A look back at what I learned from the Loma Lookup project"
+        />
+      </section> */}
+
+              {/* <div className="hidden md:flex flex-col gap-2 text-xs text-gray-500 dark:text-slate-400 text-start w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1">
+          <div>
+            <span className="font-medium text-gray-900 dark:text-slate-100">In Progress</span> – Currently being developed
+          </div>
+          <div>
+            <span className="font-medium text-gray-900 dark:text-slate-100">Planned</span> – Upcoming, scoped but not started
+          </div>
+          <div>
+            <span className="font-medium text-gray-900 dark:text-slate-100">Backlog</span> – Paused or deprioritized
+          </div>
+          <div>
+            <span className="font-medium text-gray-900 dark:text-slate-100">Scrapped</span> – Explored but intentionally discontinued
+          </div>
+        </div> */}
+
+                    {/* <Dropdown
+              role="AI Engineer"
+              position="Outlier AI"
+              companyLink="https://outlier.ai/"
+              startDate="Mar. 2024"
+              endDate="Apr. 2025"
+              src="/static/companies/outlier.webp"
+              description="I worked on optimizing LLM pipelines by running large-scale A/B testing, identifying hallucinations, and refining prompts to improve output quality and reasoning accuracy. During this time, I engineered a recursive self-improvement method that applied failure prompts to reduce trend-based errors by 20%. This combination of pipeline optimization, experimentation, and recursive refinement became a foundation for boosting the reliability of AI systems in production use cases."
+            /> */}
