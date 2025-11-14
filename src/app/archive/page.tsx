@@ -1,44 +1,66 @@
+"use client";
+
 import ConfigurableProjectTable from "./components/ConfigurableProjectTable";
-import UpdateCard from "./components/UpdateCard";
 import { ArrowLeft } from "lucide-react";
+import { motion } from "framer-motion";
+import SectionHeader from "../components/SectionHeader";
 
 export default function ArchivePage() {
   return (
     <main className="max-w-5xl mx-auto px-6 pt-6 md:pt-12 lg:pt-24 pb-16 text-gray-900 dark:text-slate-100 transition-colors">
-      <a
-        href="/"
-        className="flex flex-row gap-2 items-center text-center hover:text-black dark:hover:text-slate-200 mb-4 arrow-link"
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <ArrowLeft className="arrow-icon" size={14} />
-        Benjamin Garcia
-      </a>
+        <a
+          href="/"
+          className="flex flex-row gap-2 items-center text-center hover:text-black dark:hover:text-slate-200 mb-4 arrow-link transition-colors duration-300"
+        >
+          <ArrowLeft className="arrow-icon" size={14} />
+          Benjamin Garcia
+        </a>
 
-      <div className="flex justify-between items-start mt-5 mb-10">
-        <h1 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase tracking-wider lg:py-[.5px] flex items-center gap-1 text-xl md:text-3xl font-bold">
-          All Projects
-        </h1>
-      </div>
+        <div className="flex justify-between items-start mt-5 mb-10">
+          <h1 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase tracking-wider lg:py-[.5px] flex items-center gap-1 text-xl md:text-3xl font-bold">
+            All Projects
+          </h1>
+        </div>
+      </motion.div>
 
-      <section className="mt-10">
-        <h2 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase mt-10 tracking-wider lg:py-[.5px] flex items-center gap-1 text-lg md:text-xl font-bold mb-5">
-          Planned Projects (3)
-        </h2>
-        <ConfigurableProjectTable type="planned" />
-      </section>
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+        className="mt-10"
+      >
+        <SectionHeader>Planned Projects (3)</SectionHeader>
+        <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
+          <ConfigurableProjectTable type="planned" />
+        </div>
+      </motion.section>
 
-      <section>
-        <h2 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase mt-10 tracking-wider lg:py-[.5px] flex items-center gap-1 text-lg md:text-xl font-bold mb-5">
-          Past Projects (7)
-        </h2>
-        <ConfigurableProjectTable type="archive" />
-      </section>
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+      >
+        <SectionHeader>Past Projects (7)</SectionHeader>
+        <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
+          <ConfigurableProjectTable type="archive" />
+        </div>
+      </motion.section>
 
-      <section>
-        <h2 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase mt-10 tracking-wider lg:py-[.5px] flex items-center gap-1 text-lg md:text-xl font-bold mb-5">
-          Scrapped Projects (3)
-        </h2>
-        <ConfigurableProjectTable type="scrapped" />
-      </section>
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+      >
+        <SectionHeader>Scrapped Projects (3)</SectionHeader>
+        <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
+          <ConfigurableProjectTable type="scrapped" />
+        </div>
+      </motion.section>
     </main>
   );
 }
