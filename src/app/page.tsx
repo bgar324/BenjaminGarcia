@@ -256,15 +256,6 @@ export default function Home() {
               description="Joining Professor Xiang “Anthony” Chen’s Human-Computer Interaction Lab in Winter 2026, where I’ll collaborate with designers and researchers to prototype and explore new interaction experiences."
             />
             <Dropdown
-              role="Web Developer"
-              position="exploretech.la"
-              companyLink="https://www.exploretech.la/"
-              startDate="Sep. 2025"
-              endDate="Present"
-              src="/static/companies/ela.png"
-              description="Member of the 5-person core web development team refactoring and rebuilding the organization's website using React, JavaScript, and Sass. Work with Jira, GitHub Actions, and CI/CD pipelines for collaborative development. Also serve on the Content Board within a 10-20 person team, contributing to workshops and events for our Ignite Program, the organization's flagship event happning Winter 2026."
-            />
-            <Dropdown
               role="Senior Software Development Intern"
               position="Todd Agriscience"
               companyLink="https://www.toddagriscience.com/"
@@ -284,15 +275,6 @@ export default function Home() {
               description="At Bonterra, I researched and prototyped agentic AI systems tailored for nonprofit event analysis. I modeled key outcomes like attendance, retention, and fundraising while benchmarking orchestration pipelines across five agent frameworks to assess scalability and efficiency. My findings were presented to an audience of 40–50 cross-functional stakeholders—including engineers, analysts, and senior leadership—and directly shaped early strategies for adopting AI to improve nonprofit impact measurement."
             />
             <Dropdown
-              role="Frontend Developer"
-              position="Mt. SAC Computer Science Club"
-              companyLink="https://www.mtsaccs.org"
-              startDate="Sep. 2024"
-              endDate="Jul. 2025"
-              src="/static/companies/mtsaccs.webp"
-              description="Redesigned and rebuilt the Mt. SAC CS Club website using React and Bootstrap, enhancing UX, responsiveness, and access to events, officers, and contact info for 900+ members."
-            />
-            <Dropdown
               role="Software Engineer Intern"
               position="TensorStax"
               companyLink="https://www.tensorstax.com"
@@ -300,6 +282,42 @@ export default function Home() {
               endDate="Jun. 2025"
               src="/static/companies/tensorstax.png"
               description="At TensorStax, I owned the design and development of a secure credential-submission UI integrated with HashiCorp Vault, which streamlined authentication across 50+ enterprise data sources such as AWS Glue, Snowflake, MongoDB, Postgres, Airflow, dbt, and Spark. I also built low-latency frontend systems with Next.js, Redux, and WebSockets that supported 100+ concurrent beta users with sub-100ms latency. Over the course of the internship, I contributed to 30+ reusable UI components and collaborated with a 10–15 person engineering team spanning frontend, machine learning, and infrastructure."
+            />
+          </div>
+        </section>
+
+        <section
+          id="leadership-and-campus-involement"
+          className="flex flex-col"
+        >
+          <SectionHeader>leadership & campus involvement</SectionHeader>
+          <div className="flex flex-col gap-4">
+            <Dropdown
+              role="Officer"
+              position="ACM Hack"
+              companyLink="https://www.hack.uclaacm.com/"
+              startDate="Nov. 2025"
+              endDate="Present"
+              src="/static/leadership/hack.png"
+              description="Supporting ACM Hack's engineering initiatives through contributing to cross-team projects, workshops, and events."
+            />
+            <Dropdown
+              role="Web Developer"
+              position="exploretech.la"
+              companyLink="https://www.exploretech.la/"
+              startDate="Sep. 2025"
+              endDate="Present"
+              src="/static/companies/ela.png"
+              description="Core member of a 5-person web development team rebuilding the organization’s website with React and JavaScript. Contribute to Jira-driven workflows, GitHub Actions, and CI/CD pipelines. Also support the 10–20 person Content Board, helping run workshops and prepare for the Ignite Program in Winter 2026."
+            />
+            <Dropdown
+              role="Frontend Developer"
+              position="Mt. SAC Computer Science Club"
+              companyLink="https://www.mtsaccs.org"
+              startDate="Sep. 2024"
+              endDate="Jul. 2025"
+              src="/static/companies/mtsaccs.webp"
+              description="Redesigned and rebuilt the Mt. SAC CS Club website using React and Bootstrap, enhancing UX, responsiveness, and access to events, officers, and contact info for 900+ members."
             />
           </div>
         </section>
