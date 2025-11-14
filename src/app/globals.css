@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url("/public/fonts/CabinetGrotesk_Complete/Fonts/WEB/css/cabinet-grotesk.css");
 @import "tw-animate-css";
 
 /* @theme inline {
@@ -12,7 +11,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 body {
-  font-family: "CabinetGrotesk-Variable", Arial, Helvetica, sans-serif;
+  font-family: var(--font-cabinet), Arial, Helvetica, sans-serif;
 }
 
 @theme inline {
