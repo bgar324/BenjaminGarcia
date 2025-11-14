@@ -51,7 +51,7 @@ export default function Home() {
           "
         >
           <Image
-            src="/static/IMG_7044.png"
+            src="/static/IMG_7044.jpg"
             alt="me!"
             width={1920}
             height={1080}
