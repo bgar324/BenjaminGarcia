@@ -197,3 +197,17 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-scroll linear infinite;
+  will-change: transform;
+}

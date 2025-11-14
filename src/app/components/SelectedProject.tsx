@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ReactNode } from "react";
+import Image from "next/image";
 
 interface ProjectItemProps {
   src: string;
@@ -48,14 +49,17 @@ export default function ProjectItem({
     "
     >
       {/* Image */}
-      <div className="w-full md:w-1/3 flex items-start justify-center">
-        <img
+      <div className="w-full md:w-1/3 flex items-start justify-center relative aspect-video">
+        <Image
           src={src}
           alt={alt || (typeof title === "string" ? title : "Project preview")}
+          fill
+          quality={90}
+          sizes="(max-width: 768px) 100vw, 33vw"
           className="
-            w-full h-auto rounded-lg 
-            border border-gray-300 dark:border-gray-700 
-            cursor-pointer object-cover max-h-48
+            rounded-lg
+            border border-gray-300 dark:border-gray-700
+            cursor-pointer object-cover
           "
           onClick={(e) => {
             e.preventDefault();

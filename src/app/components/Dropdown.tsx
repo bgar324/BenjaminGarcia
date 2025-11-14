@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react"
 import { ChevronDown, X } from "lucide-react"
 import { useTheme } from "next-themes"
+import Image from "next/image"
 
 interface DropdownProps {
   role: string
@@ -50,9 +51,12 @@ const Dropdown: React.FC<DropdownProps> = ({
     <div className="border border-gray-300 dark:border-gray-700 border-dotted bg-white dark:bg-black rounded-lg flex flex-col transition-colors duration-300">
       <div className="flex flex-row">
         <div className="flex justify-center items-center">
-          <img
+          <Image
             src={imageSrc}
-            alt=""
+            alt={`${position} logo`}
+            width={64}
+            height={64}
+            quality={95}
             className="h-auto w-16 rounded-xl bg-white dark:bg-black items-center p-1 lg:ml-1"
           />
         </div>
