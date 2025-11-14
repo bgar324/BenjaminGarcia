@@ -45,11 +45,19 @@ export default function ProjectItem({
       className="
       flex flex-col md:flex-row gap-4 group rounded-xl border border-gray-300 dark:border-gray-700 
       px-2 py-4 transition-all duration-300 
-      bg-white dark:bg-black border-dotted
+      bg-white dark:bg-black border-dotted md:items-start
     "
     >
       {/* Image */}
-      <div className="w-full md:w-1/3 flex items-start justify-center relative aspect-video">
+      <div
+        className="
+    w-full md:w-1/3   
+    relative 
+    aspect-video md:aspect-auto 
+    md:h-[130px]
+    flex-shrink-0
+  "
+      >
         <Image
           src={src}
           alt={alt || (typeof title === "string" ? title : "Project preview")}
@@ -57,10 +65,10 @@ export default function ProjectItem({
           quality={90}
           sizes="(max-width: 768px) 100vw, 33vw"
           className="
-            rounded-lg
-            border border-gray-300 dark:border-gray-700
-            cursor-pointer object-cover
-          "
+      rounded-lg
+      border border-gray-300 dark:border-gray-700
+      cursor-pointer object-cover
+    "
           onClick={(e) => {
             e.preventDefault();
             handleImageClick();
