@@ -302,7 +302,7 @@ export default function Home() {
             <Dropdown
               role="Officer"
               position="ACM Hack"
-              companyLink="https://www.hack.uclaacm.com/"
+              companyLink="https://hack.uclaacm.com/"
               startDate="Nov. 2025"
               endDate="Present"
               src="/static/companies/hack.png"
