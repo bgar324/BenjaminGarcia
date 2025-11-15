@@ -209,22 +209,30 @@ export default function Home() {
             >
               University of California, Los Angeles
             </GradientLink>
-            . This December, I'll be joining Professor Xiang "Anthony" Chen's{" "}
+            . I currently serve as an officer for{" "}
             <GradientLink
-              href="https://hci.ucla.edu"
-              gradient="linear-gradient(to right, #6366f1, #3b82f6)"
+              href="https://hack.uclaacm.com"
+              gradient="linear-gradient(to right, hsla(196,67%,45%,1), hsla(280,100%,69%,1))"
             >
-              Human-Computer Interaction Research Lab
+              ACM Hack
             </GradientLink>{" "}
-            and continuing my work with{" "}
+            and contribute to{" "}
             <GradientLink
               href="https://exploretech.la"
               gradient="linear-gradient(to right, #eab308, #1e3a8a)"
             >
-              ExploreTech.LA
+              exploretech.la
             </GradientLink>
             , where I help build responsive, accessible interfaces that bring
-            ideas to life.
+            ideas to life. In winter, I'll be joining Professor Xiang "Anthony"
+            Chen's{" "}
+            <GradientLink
+              href="https://hci.ucla.edu"
+              gradient="linear-gradient(to right, hsla(36,52%,60%,1), hsla(210,64%,61%,1))"
+            >
+              Human-Computer Interaction Research Lab
+            </GradientLink>
+            .
           </p>
 
           <p className="mt-2 text-gray-600 dark:text-slate-400 lg:text-lg leading-snug">
