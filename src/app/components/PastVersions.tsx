@@ -36,7 +36,7 @@ const PastVersions = () => {
             hover:bg-[#f6f7f7] dark:hover:bg-slate-900 
             transition-colors duration-300 
             bg-white dark:bg-black
-            border border-dotted border-gray-300 dark:border-gray-700 
+            border border-gray-200 dark:border-gray-600 
             rounded-lg px-4 py-2 cursor-pointer touch-manipulation w-full
           "
           onClick={(e) => {
@@ -68,7 +68,7 @@ const PastVersions = () => {
           hover:bg-[#f6f7f7] dark:hover:bg-slate-900 
           transition-colors duration-300 
           bg-white dark:bg-black
-          border border-dotted border-gray-300 dark:border-gray-700 
+          border border-gray-200 dark:border-gray-600 
           rounded-lg px-4 py-2 cursor-pointer touch-manipulation w-full
         "
         onClick={(e) => {

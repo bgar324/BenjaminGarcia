@@ -48,7 +48,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     mounted && theme === "dark" && darkSrc ? darkSrc : src
 
   return (
-    <div className="border border-gray-300 dark:border-gray-700 border-dotted bg-white dark:bg-black rounded-lg flex flex-col transition-colors duration-300">
+    <div className="border border-gray-200 dark:border-gray-600 bg-white dark:bg-black rounded-lg flex flex-col transition-colors duration-300">
       <div className="flex flex-row">
         <div className="flex justify-center items-center">
           <Image

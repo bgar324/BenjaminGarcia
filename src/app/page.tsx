@@ -261,8 +261,7 @@ export default function Home() {
               companyLink="https://www.toddagriscience.com/"
               startDate="Mar. 2025"
               endDate="Oct. 2025"
-              src="/static/companies/todd.webp"
-              darkSrc="/static/companies/todd-dark.png"
+              src="/static/companies/todd-dark.png"
               description="I built and deployed Todd’s first client-facing dashboard and landing site using Next.js, Tailwind CSS, and Framer Motion, creating a responsive interface for AI-powered crop insights. I linked backend inference pipelines directly into dynamic UI components, enabling farmers to visualize 20+ real-time data streams including soil, irrigation, weather, and yield metrics. The work helped the company’s initial 5–10 clients adopt the platform and was recognized by the founder for driving both product adoption and internal growth, scaling the team from just one intern to fourteen engineers after my internship."
             />
             <Dropdown
@@ -298,7 +297,7 @@ export default function Home() {
               companyLink="https://www.hack.uclaacm.com/"
               startDate="Nov. 2025"
               endDate="Present"
-              src="/static/leadership/hack.png"
+              src="/static/companies/hack.png"
               description="Supporting ACM Hack's engineering initiatives through contributing to cross-team projects, workshops, and events."
             />
             <Dropdown

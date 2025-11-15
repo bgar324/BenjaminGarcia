@@ -43,9 +43,9 @@ export default function ProjectItem({
   return (
     <div
       className="
-      flex flex-col md:flex-row gap-4 group rounded-xl border border-gray-300 dark:border-gray-700 
+      flex flex-col md:flex-row gap-4 group rounded-xl border border-gray-200 dark:border-gray-600 
       px-2 py-4 transition-all duration-300 
-      bg-white dark:bg-black border-dotted md:items-start
+      bg-white dark:bg-black md:items-start
     "
     >
       {/* Image */}
