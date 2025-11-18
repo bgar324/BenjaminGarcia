@@ -18,7 +18,7 @@ import PastVersions from "./components/PastVersions";
 import "./globals.css";
 import { motion } from "framer-motion";
 import ProjectItem from "./components/SelectedProject";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { Mail, Globe, ArrowUpRight } from "lucide-react";
 import ThemeToggle from "./components/ThemeToggle";
 import NowPlayingCard from "./components/NowPlayingCard";
 import SectionHeader from "./components/SectionHeader";
@@ -100,90 +100,66 @@ export default function Home() {
           id="contact-links"
           className={`
     bg-white dark:bg-gray-950 
-    rounded-xl shadow-md p-2 gap-3 lg:p-3
+    rounded-xl shadow-md p-3 flex flex-col items-center gap-3
     ${isMenuOpen ? "flex" : "hidden"} md:flex
-    md:flex-col lg:flex lg:flex-col
-    top-full left-0 right-0 mt-2 z-50 lg:mt-0 md:mt-0
     transition-colors duration-300
   `}
         >
-          <div className="flex flex-col gap-2 mt-3 md:mt-0 lg:mt-0 md:gap-1 lg:gap-1 w-full sm:pl-6 md:pl-0 lg:pl-0">
+          {/* Icon Row */}
+          <div className="flex flex-row justify-between items-center w-full px-2 ">
             <a
-              className="flex items-center gap-2 hover:underline text-sm mb-1 truncate text-gray-900 dark:text-slate-100"
               href="https://www.bentgarcia.com/"
-              title="bentgarcia.com"
               target="_blank"
+              title="Website"
+              className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition"
             >
-              <GlobeIcon /> <span className="truncate">www.bentgarcia.com</span>
+              <Globe size = {18}/>
             </a>
+
             <a
-              className="flex items-center gap-2 hover:underline transition duration-300 ease-in-out text-sm truncate text-gray-900 dark:text-slate-100"
               href="mailto:bentgarcia05@gmail.com"
-              title="bentgarcia05@gmail.com"
               target="_blank"
+              title="Email"
+              className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition"
             >
-              <MailIcon />
-              <span className="truncate">bentgarcia05@gmail.com</span>
+              <Mail size = {18}/>
             </a>
-          </div>
-
-          <div className="items-center flex flex-col mt-2 lg:mt-0 md:mt-0 sm:pr-12 md:pr-0 lg:pr-0">
-            <div className="flex flex-row items-center justify-center gap-6 mb-3">
-              <a
-                href="https://www.linkedin.com/in/btgarcia05/"
-                target="_blank"
-                title="LinkedIn"
-                className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition hover:text-blue-500"
-              >
-                <LinkedInIcon />
-              </a>
-              <a
-                href="https://github.com/bgar324"
-                target="_blank"
-                title="Github"
-                className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition"
-              >
-                <GithubIcon />
-              </a>
-              <a
-                href="https://app.joinhandshake.com/profiles/x7c7f5"
-                target="_blank"
-                title="Handshake Careers"
-                className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition"
-              >
-                <Image
-                  src="/static/handshake.svg"
-                  alt="Handshake"
-                  height={12}
-                  width={12}
-                  className="dark:hidden"
-                />
-                <Image
-                  src="/static/handshakewhite.svg"
-                  alt="Handshake"
-                  height={12}
-                  width={12}
-                  className="hidden dark:block"
-                />
-              </a>
-            </div>
 
             <a
-              className="
-        bg-black dark:bg-slate-100 
-        text-white dark:text-gray-950 
-        rounded-md px-4 py-1 text-sm w-fit mx-auto 
-        items-center justify-center 
-        hover:bg-black/90 dark:hover:bg-slate-200 
-        font-semibold duration-300 transition ease-in-out
-      "
-              href="/resume.pdf"
+              href="https://www.linkedin.com/in/btgarcia05/"
               target="_blank"
-              title="Resume"
+              title="LinkedIn"
+              className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition hover:text-blue-500"
             >
-              Download My Résumé
+              <LinkedInIcon />
+            </a>
+
+            <a
+              href="https://github.com/bgar324"
+              target="_blank"
+              title="GitHub"
+              className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition"
+            >
+              <GithubIcon />
             </a>
           </div>
+
+          {/* CTA */}
+          <a
+            className="
+      bg-black dark:bg-slate-100 
+      text-white dark:text-gray-950 
+      rounded-md px-4 py-1 text-sm font-semibold 
+      w-full text-center 
+      hover:bg-black/90 dark:hover:bg-slate-200 
+      transition duration-300
+    "
+            href="/resume.pdf"
+            target="_blank"
+            title="Resume"
+          >
+            Download My Résumé
+          </a>
         </div>
 
         <NowPlayingCard />
@@ -448,7 +424,7 @@ export default function Home() {
               startDate="2025"
               endDate="Present"
               src="/static/schools/ucla.png"
-              description="Transfer Research Entry Program"
+              description="Transfer Research Entry Program, ACM Hack Intern, Content Member & Web Developer at exploretech.la, Undergraduate Research Developer for UCLA HCI Research Lab"
             />
             <Dropdown
               role="Mount San Antonio College"
