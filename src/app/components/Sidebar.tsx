@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+// 1. Import useEffect
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin,
@@ -15,6 +16,22 @@ import NowPlayingCard from "./NowPlayingCard";
 
 export default function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // 2. Add Scroll Lock Effect
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      // Disable scrolling on the body
+      document.body.style.overflow = "hidden";
+    } else {
+      // Re-enable scrolling
+      document.body.style.overflow = "";
+    }
+
+    // Cleanup: ensure scrolling is enabled if component unmounts
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
 
   const socialLinks = [
     {
@@ -95,6 +112,8 @@ export default function Sidebar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+            // Note: overflow-hidden stops the menu itself from scrolling. 
+            // If your menu content gets very tall, switch this to overflow-y-auto.
             className="fixed inset-0 z-[60] bg-white dark:bg-black p-6 flex flex-col lg:hidden overflow-hidden"
           >
             <div className="flex justify-between items-center mb-8 relative z-10">
@@ -140,7 +159,7 @@ export default function Sidebar() {
         )}
       </AnimatePresence>
 
-      {/* DESKTOP: Sidebar (Animation Removed) */}
+      {/* DESKTOP SIDEBAR */}
       <aside
         className="hidden lg:flex flex-col lg:w-[204px] lg:shrink-0 lg:gap-y-3 lg:sticky lg:top-10 h-fit"
       >
