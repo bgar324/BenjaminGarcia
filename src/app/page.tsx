@@ -14,31 +14,37 @@ import SectionHeader from "./components/SectionHeader";
 import GradientLink from "./components/GradientLink";
 import YouTubeModal from "./components/YouTubeModal";
 import Sidebar from "./components/Sidebar";
+import RandomImageHover from "./components/RandomImageHover";
+const UCLA_IMAGES = [
+  "/static/ucla/overhead-ucla.png",
+  "/static/ucla/bruin-bear.png",
+  "/static/ucla/powell.png",
+  "/static/ucla/e6.png",
+];
+
+const ELDEN_RING_IMAGES = [
+  "/static/elden/sote.png",
+  "/static/elden/miquella.png",
+  "/static/elden/erdtree.png",
+  "/static/elden/mountaintop.png",
+];
 
 export default function Home() {
   const [videoId, setVideoId] = useState<string | null>(null);
 
   return (
-    // CHANGED: This outer div is now a motion.div handling the entry animation for BOTH columns
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="px-5 pt-2 md:pt-4 lg:pt-0 pb-8 lg:pb-0 lg:px-8 md:px-20 sm:px-6 max-w-5xl mx-auto flex flex-col min-h-screen lg:flex-row lg:gap-7 lg:justify-between"
     >
-      
-      {/* 1. SIDEBAR */}
-      <div className="lg:py-10"> 
-         <Sidebar />
+      <div className="lg:py-10">
+        <Sidebar />
       </div>
 
-      {/* 2. MAIN CONTENT */}
-      {/* CHANGED: Switched from motion.main to main to avoid double animation */}
-      <main
-        className="flex-1 flex-col lg:w-2/3 lg:py-13 pt-6"
-      >
+      <main className="flex-1 flex-col lg:w-2/3 lg:py-13 pt-6">
         <section id="about" className="flex flex-col">
-          {/* Theme Toggle placement */}
           <div className="flex flex-row justify-between items-center">
             <SectionHeader className="lg:mt-0">about</SectionHeader>
             <ThemeToggle />
@@ -46,13 +52,14 @@ export default function Home() {
 
           <p className="text-gray-600 dark:text-slate-400 lg:text-lg leading-snug mt-4">
             I'm a junior studying Computer Science at the{" "}
-            {/* ... Rest of your code ... */}
-            <GradientLink
-              href="https://ucla.edu/"
-              gradient="linear-gradient(to right, #1e3a8a, #b45309)"
-            >
-              University of California, Los Angeles
-            </GradientLink>
+            <RandomImageHover images={UCLA_IMAGES}>
+              <GradientLink
+                href="https://ucla.edu/"
+                gradient="linear-gradient(to right, #1e3a8a, #b45309)"
+              >
+                University of California, Los Angeles
+              </GradientLink>
+            </RandomImageHover>
             . I currently serve as an officer for{" "}
             <GradientLink
               href="https://hack.uclaacm.com"
@@ -81,26 +88,25 @@ export default function Home() {
 
           <p className="mt-2 text-gray-600 dark:text-slate-400 lg:text-lg leading-snug">
             Outside of coding, I enjoy weightlifting, spending time with my dog,
-            and exploring the{" "}
-            <a
-              className="font-medium"
-              href="/static/image.png"
-              target="_blank"
-              title="Elden Ring"
-              rel="noopener noreferrer"
-            >
-              Lands Between
-            </a>
+            and exploring the 
+            <RandomImageHover images={ELDEN_RING_IMAGES}>
+              <GradientLink
+                href="https://ucla.edu/"
+                gradient="linear-gradient(to right, #092322, #996A48)"
+              >
+                Lands Between
+              </GradientLink> 
+            </RandomImageHover>
             .
           </p>
         </section>
-        
+
         {/* ... Keep all other sections (Experience, Projects, etc) exactly the same ... */}
-        
+
         <section id="experience" className="flex flex-col">
-            <SectionHeader>experience</SectionHeader>
-            {/* ... Dropdowns ... */}
-             <div className="flex flex-col gap-4">
+          <SectionHeader>experience</SectionHeader>
+          {/* ... Dropdowns ... */}
+          <div className="flex flex-col gap-4">
             <Dropdown
               role="Undergraduate Research Developer"
               position="UCLA HCI Research Lab"
@@ -175,15 +181,15 @@ export default function Home() {
             />
           </div>
         </section>
-        
+
         <section id="tech-stack" className="flex flex-col">
           <SectionHeader className="my-10">technologies</SectionHeader>
           <Marquee />
           <div className="mb-8" />
         </section>
-        
+
         <section id="projects">
-             <div className="flex flex-row justify-between">
+          <div className="flex flex-row justify-between">
             <SectionHeader>selected projects</SectionHeader>
             <a
               href="/archive"
@@ -196,7 +202,7 @@ export default function Home() {
               />
             </a>
           </div>
-           <div className="flex flex-col gap-y-3">
+          <div className="flex flex-col gap-y-3">
             <ProjectItem
               src="/static/project-previews/rift-report.png"
               title="Rift Report"
@@ -283,7 +289,7 @@ export default function Home() {
             />
           </div>
         </section>
-        
+
         <section id="education" className="mt-10">
           <SectionHeader>education</SectionHeader>
           <div className="flex flex-col gap-4">
@@ -315,16 +321,16 @@ export default function Home() {
             />
           </div>
         </section>
-        
+
         <section id="past-iterations" className="mt-10">
           <SectionHeader>past versions</SectionHeader>
           <div className="flex mx-auto items-center justify-center">
             <PastVersions />
           </div>
         </section>
-        
+
         <section id="closing-note">
-           <div className="w-full justify-between flex flex-col md:flex-row items-center text-center pt-16 gap-3">
+          <div className="w-full justify-between flex flex-col md:flex-row items-center text-center pt-16 gap-3">
             <div className="flex flex-row gap-3">
               <button
                 onClick={() => setVideoId("YWdbfy231n0")}
@@ -433,7 +439,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        
+
         <YouTubeModal
           isOpen={!!videoId}
           onClose={() => setVideoId(null)}
