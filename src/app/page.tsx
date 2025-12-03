@@ -3,175 +3,42 @@
 import Image from "next/image";
 import Dropdown from "./components/Dropdown";
 import Marquee from "./components/Marquee";
-import {
-  LocationIcon,
-  MailIcon,
-  GlobeIcon,
-  LinkedInIcon,
-  GithubIcon,
-  SpotifyIcon,
-  Hamburger,
-  XIcon,
-} from "./svgs/Icons";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import PastVersions from "./components/PastVersions";
 import "./globals.css";
 import { motion } from "framer-motion";
 import ProjectItem from "./components/SelectedProject";
-import { Mail, Globe, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import ThemeToggle from "./components/ThemeToggle";
-import NowPlayingCard from "./components/NowPlayingCard";
 import SectionHeader from "./components/SectionHeader";
 import GradientLink from "./components/GradientLink";
 import YouTubeModal from "./components/YouTubeModal";
+import Sidebar from "./components/Sidebar";
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [videoId, setVideoId] = useState<string | null>(null);
 
-  const toggleMenu = useCallback(() => {
-    setIsMenuOpen((prev) => !prev);
-  }, []);
-
   return (
-    <div className="px-5 pt-2 md:pt-4 lg:pt-0 pb-8 lg:pb-0 lg:px-8 md:px-20 sm:px-6 max-w-5xl mx-auto flex flex-col min-h-screen lg:flex-row lg:gap-7 lg:justify-between">
-      <motion.header
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="lg:sticky lg:top-0 flex flex-col lg:max-h-screen md:flex md:flex-row lg:flex-col z-50 lg:w-[204px] lg:shrink-0 lg:gap-y-3 lg:py-10 md:gap-3 md:mx-auto 
-      mx-auto"
-      >
-        <div
-          className="
-        bg-white dark:bg-gray-950
-          rounded-xl shadow-md dark:shadow-lg p-2 
-          flex sm:flex-row lg:flex-col lg:gap-3 relative 
-          transition-colors duration-300
-          "
-        >
-          <Image
-            src="/static/IMG_7044_tiny.jpg"
-            alt="Benjamin Garcia"
-            width={698}
-            height={800}
-            priority
-            quality={90}
-            placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAQAA4DASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEBf/EACQQAAEDAwMEAwAAAAAAAAAAAAECAwQABREhEjFBBhMiURQyYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAGhEAAgMBAQAAAAAAAAAAAAAAAAECAxEhIv/aAAwDAQACEQMRAD8A3qKKKyNDBooooA//2Q=="
-            sizes="(max-width: 768px) 128px, (max-width: 1024px) 112px, 192px"
-            className="h-auto w-32 md:w-28 lg:w-48 rounded-xl"
-          />
-          <div className="ml-2 pt-2 pr-2 lg:ml-1 lg:pt-0 lg:pr-0">
-            <h1 className="text-gray-900 dark:text-slate-100 text-2xl lg:text-2xl font-semibold tracking-tight leading-none">
-              Hello, I'm
-            </h1>
-            <h1 className="text-gray-900 dark:text-slate-100 text-2xl lg:text-2xl font-semibold tracking-tight">
-              Benjamin Garcia
-            </h1>
-            <h3 className="text-gray-700 dark:text-slate-300 text-base lg:text-lg leading-tight mt-2 font-normal">
-              I turn code into meaningful creations.
-            </h3>
-            <div className="flex flex-row gap-1 items-center mt-2">
-              <LocationIcon />
-              <a
-                className="text-sm text-gray-500 dark:text-slate-400 hover:underline"
-                href="https://www.google.com/maps/place/Westwood,+Los+Angeles,+CA/@34.0652211,-118.4610312,14z"
-                target="_blank"
-              >
-                Los Angeles, California
-              </a>
-            </div>
-            <button
-              onClick={toggleMenu}
-              className={`
-        absolute top-2 right-2 md:hidden 
-        transition-all duration-300 ease-in-out 
-        hover:bg-gray-200 dark:hover:bg-slate-700 
-        rounded-3xl ${isMenuOpen ? "rotate-180" : ""}
-      `}
-            >
-              {isMenuOpen ? <XIcon /> : <Hamburger />}
-            </button>
-          </div>
-        </div>
+    // CHANGED: This outer div is now a motion.div handling the entry animation for BOTH columns
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="px-5 pt-2 md:pt-4 lg:pt-0 pb-8 lg:pb-0 lg:px-8 md:px-20 sm:px-6 max-w-5xl mx-auto flex flex-col min-h-screen lg:flex-row lg:gap-7 lg:justify-between"
+    >
+      
+      {/* 1. SIDEBAR */}
+      <div className="lg:py-10"> 
+         <Sidebar />
+      </div>
 
-        <div
-          id="contact-links"
-          className={`
-    bg-white dark:bg-gray-950 
-    rounded-xl shadow-md p-3 flex flex-col items-center gap-3
-    ${isMenuOpen ? "flex" : "hidden"} md:flex
-    transition-colors duration-300
-  `}
-        >
-          {/* Icon Row */}
-          <div className="flex flex-row justify-between items-center w-full px-2 ">
-            <a
-              href="https://www.bentgarcia.com/"
-              target="_blank"
-              title="Website"
-              className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition"
-            >
-              <Globe size = {18}/>
-            </a>
-
-            <a
-              href="mailto:bentgarcia05@gmail.com"
-              target="_blank"
-              title="Email"
-              className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition"
-            >
-              <Mail size = {18}/>
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/btgarcia05/"
-              target="_blank"
-              title="LinkedIn"
-              className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition hover:text-blue-500"
-            >
-              <LinkedInIcon />
-            </a>
-
-            <a
-              href="https://github.com/bgar324"
-              target="_blank"
-              title="GitHub"
-              className="text-gray-900 dark:text-slate-100 hover:opacity-80 transition"
-            >
-              <GithubIcon />
-            </a>
-          </div>
-
-          {/* CTA */}
-          <a
-            className="
-      bg-black dark:bg-slate-100 
-      text-white dark:text-gray-950 
-      rounded-md px-4 py-1 text-sm font-semibold 
-      w-full text-center 
-      hover:bg-black/90 dark:hover:bg-slate-200 
-      transition duration-300
-    "
-            href="/resume.pdf"
-            target="_blank"
-            title="Resume"
-          >
-            Download My Résumé
-          </a>
-        </div>
-
-        <NowPlayingCard />
-      </motion.header>
-
-      <motion.main
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex-1 flex-col lg:w-2/3 lg:py-13"
+      {/* 2. MAIN CONTENT */}
+      {/* CHANGED: Switched from motion.main to main to avoid double animation */}
+      <main
+        className="flex-1 flex-col lg:w-2/3 lg:py-13 pt-6"
       >
         <section id="about" className="flex flex-col">
+          {/* Theme Toggle placement */}
           <div className="flex flex-row justify-between items-center">
             <SectionHeader className="lg:mt-0">about</SectionHeader>
             <ThemeToggle />
@@ -179,6 +46,7 @@ export default function Home() {
 
           <p className="text-gray-600 dark:text-slate-400 lg:text-lg leading-snug mt-4">
             I'm a junior studying Computer Science at the{" "}
+            {/* ... Rest of your code ... */}
             <GradientLink
               href="https://ucla.edu/"
               gradient="linear-gradient(to right, #1e3a8a, #b45309)"
@@ -226,10 +94,13 @@ export default function Home() {
             .
           </p>
         </section>
-
+        
+        {/* ... Keep all other sections (Experience, Projects, etc) exactly the same ... */}
+        
         <section id="experience" className="flex flex-col">
-          <SectionHeader>experience</SectionHeader>
-          <div className="flex flex-col gap-4">
+            <SectionHeader>experience</SectionHeader>
+            {/* ... Dropdowns ... */}
+             <div className="flex flex-col gap-4">
             <Dropdown
               role="Undergraduate Research Developer"
               position="UCLA HCI Research Lab"
@@ -304,15 +175,15 @@ export default function Home() {
             />
           </div>
         </section>
-
+        
         <section id="tech-stack" className="flex flex-col">
           <SectionHeader className="my-10">technologies</SectionHeader>
           <Marquee />
           <div className="mb-8" />
         </section>
-
+        
         <section id="projects">
-          <div className="flex flex-row justify-between">
+             <div className="flex flex-row justify-between">
             <SectionHeader>selected projects</SectionHeader>
             <a
               href="/archive"
@@ -325,8 +196,7 @@ export default function Home() {
               />
             </a>
           </div>
-
-          <div className="flex flex-col gap-y-3">
+           <div className="flex flex-col gap-y-3">
             <ProjectItem
               src="/static/project-previews/rift-report.png"
               title="Rift Report"
@@ -413,8 +283,8 @@ export default function Home() {
             />
           </div>
         </section>
-
-        <section id="education">
+        
+        <section id="education" className="mt-10">
           <SectionHeader>education</SectionHeader>
           <div className="flex flex-col gap-4">
             <Dropdown
@@ -445,15 +315,16 @@ export default function Home() {
             />
           </div>
         </section>
-        <section id="past-iterations">
+        
+        <section id="past-iterations" className="mt-10">
           <SectionHeader>past versions</SectionHeader>
           <div className="flex mx-auto items-center justify-center">
             <PastVersions />
           </div>
         </section>
-
+        
         <section id="closing-note">
-          <div className="w-full justify-between flex flex-col md:flex-row items-center text-center pt-16 gap-3">
+           <div className="w-full justify-between flex flex-col md:flex-row items-center text-center pt-16 gap-3">
             <div className="flex flex-row gap-3">
               <button
                 onClick={() => setVideoId("YWdbfy231n0")}
@@ -562,13 +433,13 @@ export default function Home() {
             </div>
           </div>
         </section>
-
+        
         <YouTubeModal
           isOpen={!!videoId}
           onClose={() => setVideoId(null)}
           videoId={videoId || ""}
         />
-      </motion.main>
-    </div>
+      </main>
+    </motion.div>
   );
 }
