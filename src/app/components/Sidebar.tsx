@@ -12,7 +12,7 @@ import {
   Menu,
 } from "lucide-react";
 import { LinkedInIcon, GitHubMarkIcon } from "../svgs/Icons";
-import NowPlayingCard from "./NowPlayingCard";
+// import NowPlayingCard from "./NowPlayingCard";
 
 export default function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -112,8 +112,6 @@ export default function Sidebar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-            // Note: overflow-hidden stops the menu itself from scrolling. 
-            // If your menu content gets very tall, switch this to overflow-y-auto.
             className="fixed inset-0 z-[60] bg-white dark:bg-black p-6 flex flex-col lg:hidden overflow-hidden"
           >
             <div className="flex justify-between items-center mb-8 relative z-10">
@@ -145,10 +143,10 @@ export default function Sidebar() {
                 View Resume
               </a>
             </div>
-
+{/* 
             <div className="w-full relative z-10">
               <NowPlayingCard />
-            </div>
+            </div> */}
 
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.03] dark:opacity-[0.05] z-0">
               <span className="text-[35vh] font-bold text-black dark:text-white leading-none tracking-tighter pr-6">
@@ -243,9 +241,9 @@ export default function Sidebar() {
           </a>
         </div>
 
-        <div className="w-full">
+        {/* <div className="w-full">
           <NowPlayingCard />
-        </div>
+        </div> */}
       </aside>
     </>
   );
