@@ -91,7 +91,7 @@ export default function Home() {
             and exploring the 
             <RandomImageHover images={ELDEN_RING_IMAGES}>
               <GradientLink
-                href="https://ucla.edu/"
+                href="https://en.bandainamcoent.eu/elden-ring/elden-ring"
                 gradient="linear-gradient(to right, #092322, #996A48)"
               >
                 Lands Between

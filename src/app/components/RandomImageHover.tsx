@@ -2,6 +2,8 @@
 
 import { motion, useMotionValue } from 'framer-motion';
 import React, { useState, useRef, MouseEvent } from 'react';
+// 1. Import the Next.js Image component
+import Image from 'next/image';
 
 interface RandomImageHoverProps {
   children: React.ReactNode;
@@ -53,6 +55,7 @@ export default function RandomImageHover({ children, images }: RandomImageHoverP
 
       {activeImage && (
         <motion.span
+          // The container keeps its fixed dimensions (w-200 h-150)
           className="fixed z-50 w-[200px] h-[150px] rounded-lg pointer-events-none shadow-xl border border-neutral-200 dark:border-neutral-800 bg-white overflow-hidden" 
           style={{
             x,
@@ -69,10 +72,18 @@ export default function RandomImageHover({ children, images }: RandomImageHoverP
           animate={{ opacity: opacity, scale: opacity === 1 ? 1 : 0.8 }}
           transition={{ duration: 0.2 }}
         >
-          <img
+          {/* 2. Replace <img> with <Image /> */}
+          <Image
             src={activeImage}
             alt="Preview"
-            className="w-full h-full object-cover" 
+            // Use 'fill' prop to fill the parent container
+            fill
+            // Keep object-cover so it crops correctly within the 200x150 box
+            className="object-cover" 
+            // Optional: since these load on hover, you might want to prioritize them slightly, 
+            // but default lazy loading is usually fine here.
+            // priority 
+             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </motion.span>
       )}
