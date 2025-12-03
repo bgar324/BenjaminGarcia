@@ -2,7 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import { useTheme } from "next-themes";
+// We no longer need useTheme, removing it fixes the hydration mismatch
+// import { useTheme } from "next-themes"; 
 
 interface MarqueeProps {
   speed?: number;
@@ -28,7 +29,7 @@ const techImages = [
 ];
 
 export default function Marquee({ speed = 3, className = "" }: MarqueeProps) {
-  const { resolvedTheme } = useTheme();
+  // Removed the useTheme hook
 
   return (
     <div
@@ -45,18 +46,44 @@ export default function Marquee({ speed = 3, className = "" }: MarqueeProps) {
         style={{ animationDuration: `${Math.max(5, 100 / speed)}s` }}
       >
         {[...techImages, ...techImages].map((img, i) => {
-          const src =
-            resolvedTheme === "dark" && img.darkSrc ? img.darkSrc : img.src;
+          // CHECK: If the image has a darkSrc, we render BOTH versions
+          // and use CSS to toggle visibility.
+          if (img.darkSrc) {
+            return (
+              <React.Fragment key={i}>
+                {/* Light Mode Image: Hidden when 'dark' class is present */}
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={48}
+                  height={48}
+                  className="h-12 w-auto mx-8 dark:hidden"
+                  priority={i < 6}
+                />
+                
+                {/* Dark Mode Image: Hidden by default, Block when 'dark' class is present */}
+                <Image
+                  src={img.darkSrc}
+                  alt={img.alt}
+                  width={48}
+                  height={48}
+                  className="h-12 w-auto mx-8 hidden dark:block"
+                  priority={i < 6}
+                />
+              </React.Fragment>
+            );
+          }
 
+          // Fallback for regular images (no dark variant)
           return (
             <Image
               key={i}
-              src={src}
+              src={img.src}
               alt={img.alt}
               width={48}
               height={48}
               className="h-12 w-auto mx-8"
-              priority={i < 6} // only first row loads eagerly
+              priority={i < 6}
             />
           );
         })}
