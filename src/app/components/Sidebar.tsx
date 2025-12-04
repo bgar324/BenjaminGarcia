@@ -4,15 +4,10 @@ import Image from "next/image";
 // 1. Import useEffect
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  MapPin,
-  Mail,
-  Globe,
-  X,
-  Menu,
-} from "lucide-react";
+import { MapPin, Mail, Globe, X, Menu } from "lucide-react";
 import { LinkedInIcon, GitHubMarkIcon } from "../svgs/Icons";
 // import NowPlayingCard from "./NowPlayingCard";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -59,7 +54,7 @@ export default function Sidebar() {
   return (
     <>
       {/* MOBILE: Fixed "Island" Header */}
-      <div 
+      <div
         className="lg:hidden fixed top-0 left-0 right-0 h-16 z-40 pointer-events-none 
         bg-gradient-to-b from-white/90 via-white/60 to-transparent 
         dark:from-black/90 dark:via-black/60 dark:to-transparent"
@@ -67,13 +62,15 @@ export default function Sidebar() {
       />
 
       <div className="lg:hidden fixed top-2 left-0 right-0 z-50 flex justify-center px-5 md:px-20 pointer-events-none">
-        <div className="
+        <div
+          className="
           w-full max-w-5xl pointer-events-auto
           border border-gray-200 dark:border-gray-600 
           bg-white/85 dark:bg-black/85 backdrop-blur-xl
           rounded-lg flex flex-row items-center justify-between 
           p-3 shadow-md transition-colors duration-300
-        ">
+        "
+        >
           <div className="flex items-center gap-3">
             <Image
               src="/static/IMG_7044_tiny.jpg"
@@ -91,7 +88,7 @@ export default function Sidebar() {
               </p>
             </div>
           </div>
-          
+
           <button
             onClick={() => setIsMobileMenuOpen(true)}
             className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
@@ -140,10 +137,10 @@ export default function Sidebar() {
                 target="_blank"
                 className="mt-4 px-8 py-3 rounded-md bg-black dark:bg-slate-100 text-white dark:text-gray-950 font-medium text-lg active:scale-95 transition-transform"
               >
-                View Resume
+                View Résumé
               </a>
             </div>
-{/* 
+            {/* 
             <div className="w-full relative z-10">
               <NowPlayingCard />
             </div> */}
@@ -158,9 +155,7 @@ export default function Sidebar() {
       </AnimatePresence>
 
       {/* DESKTOP SIDEBAR */}
-      <aside
-        className="hidden lg:flex flex-col lg:w-[204px] lg:shrink-0 lg:gap-y-3 lg:sticky lg:top-10 h-fit"
-      >
+      <aside className="hidden lg:flex flex-col lg:w-[204px] lg:shrink-0 lg:gap-y-3 lg:sticky lg:top-10 h-fit">
         <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-2 transition-colors duration-300">
           <Image
             src="/static/IMG_7044_tiny.jpg"
@@ -238,6 +233,10 @@ export default function Sidebar() {
             title="Resume"
           >
             View My Résumé
+            <ArrowUpRight
+              size={14}
+              className="transform transition-transform duration-200 group-hover:translate-x-[1px]"
+            />
           </a>
         </div>
 
