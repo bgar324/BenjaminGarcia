@@ -237,7 +237,7 @@ export default function Sidebar() {
             target="_blank"
             title="Resume"
           >
-            Download My Résumé
+            View My Résumé
           </a>
         </div>
 
