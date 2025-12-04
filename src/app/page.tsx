@@ -16,17 +16,17 @@ import YouTubeModal from "./components/YouTubeModal";
 import Sidebar from "./components/Sidebar";
 import RandomImageHover from "./components/RandomImageHover";
 const UCLA_IMAGES = [
-  "/static/ucla/overhead-ucla.png",
-  "/static/ucla/bruin-bear.png",
-  "/static/ucla/powell.png",
-  "/static/ucla/e6.png",
+  "/static/ucla/overhead-ucla.jpg",
+  "/static/ucla/bruin-bear.jpg",
+  "/static/ucla/powell.jpg",
+  "/static/ucla/e6.jpg",
 ];
 
 const ELDEN_RING_IMAGES = [
-  "/static/elden/sote.png",
-  "/static/elden/miquella.png",
-  "/static/elden/erdtree.png",
-  "/static/elden/mountaintop.png",
+  "/static/elden/sote.jpg",
+  "/static/elden/miquella.jpg",
+  "/static/elden/erdtree.jpg",
+  "/static/elden/mountaintop.jpg",
 ];
 
 export default function Home() {
