@@ -94,7 +94,7 @@ export default function Home() {
                 href="https://en.bandainamcoent.eu/elden-ring/elden-ring"
                 gradient="linear-gradient(to right, #092322, #996A48)"
               >
-                Lands Between
+                 Lands Between
               </GradientLink> 
             </RandomImageHover>
             .
