@@ -331,7 +331,7 @@ export default function Home() {
         </section>
 
         <section id="closing-note">
-          <div className="w-full justify-between flex flex-col md:flex-row items-center text-center pt-16 gap-3">
+          <div className="w-full justify-between flex flex-col sm:flex-row items-center text-center pt-16 gap-3">
             <div className="flex flex-row gap-3">
               <button
                 onClick={() => setVideoId("YWdbfy231n0")}
@@ -365,7 +365,7 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="sm:text-right max-w-full sm:max-w-[365px] sm:ml-auto text-gray-600 dark:text-slate-400 text-sm">
+            <div className="md:text-right max-w-full sm:max-w-[365px] md:ml-auto text-gray-600 dark:text-slate-400 text-sm">
               <p>
                 Loosely inspired by{" "}
                 <a
