@@ -88,13 +88,14 @@ export default function Home() {
 
           <p className="mt-2 text-gray-600 dark:text-slate-400 lg:text-lg leading-snug">
             Outside of coding, I enjoy weightlifting, spending time with my dog,
-            and exploring the 
+            and exploring the{" "}
             <RandomImageHover images={ELDEN_RING_IMAGES}>
+              
               <GradientLink
                 href="https://en.bandainamcoent.eu/elden-ring/elden-ring"
                 gradient="linear-gradient(to right, #092322, #996A48)"
               >
-                 Lands Between
+                Lands Between
               </GradientLink> 
             </RandomImageHover>
             .
