@@ -15,6 +15,7 @@ import GradientLink from "./components/GradientLink";
 import YouTubeModal from "./components/YouTubeModal";
 import Sidebar from "./components/Sidebar";
 import RandomImageHover from "./components/RandomImageHover";
+import TechStack from "./components/TechStack";
 const UCLA_IMAGES = [
   "/static/ucla/overhead-ucla.jpg",
   "/static/ucla/bruin-bear.jpg",
@@ -184,9 +185,9 @@ export default function Home() {
         </section>
 
         <section id="tech-stack" className="flex flex-col">
-          <SectionHeader className="my-10">technologies</SectionHeader>
-          <Marquee />
-          <div className="mb-8" />
+          <SectionHeader>technologies</SectionHeader>
+          <TechStack />
+          <div className = "mb-6" />
         </section>
 
         <section id="projects">

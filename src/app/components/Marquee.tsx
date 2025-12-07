@@ -2,8 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-// We no longer need useTheme, removing it fixes the hydration mismatch
-// import { useTheme } from "next-themes"; 
 
 interface MarqueeProps {
   speed?: number;
@@ -28,65 +26,70 @@ const techImages = [
   { src: "/static/tech/c++.webp", alt: "C++" },
 ];
 
-export default function Marquee({ speed = 3, className = "" }: MarqueeProps) {
-  // Removed the useTheme hook
+const TechIcon = ({ item, priority }: { item: typeof techImages[0], priority: boolean }) => {
+  const baseClass = "object-contain h-8 w-auto mx-4 md:h-12 md:mx-8 transition-all duration-300";
+  
+  if (item.darkSrc) {
+    return (
+      <>
+        {/* Light Mode */}
+        <Image
+          src={item.src}
+          alt={item.alt}
+          width={48}
+          height={48}
+          className={`${baseClass} dark:hidden`}
+          priority={priority}
+        />
+        {/* Dark Mode */}
+        <Image
+          src={item.darkSrc}
+          alt={item.alt}
+          width={48}
+          height={48}
+          className={`${baseClass} hidden dark:block`}
+          priority={priority}
+        />
+      </>
+    );
+  }
+
+  return (
+    <Image
+      src={item.src}
+      alt={item.alt}
+      width={48}
+      height={48}
+      className={baseClass}
+      priority={priority}
+    />
+  );
+};
+
+export default function Marquee({ speed = 30, className = "" }: MarqueeProps) {
+  const marqueeContent = [...techImages, ...techImages, ...techImages];
 
   return (
     <div
-      className={`relative overflow-hidden whitespace-nowrap select-none pointer-events-none ${className}`}
+      className={`relative overflow-hidden whitespace-nowrap select-none group ${className}`}
     >
-      {/* Left Fade */}
-      <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white dark:from-black to-transparent z-10" />
+      {/* Left Fade - Responsive width */}
+      <div className="absolute left-0 top-0 h-full w-12 md:w-24 bg-gradient-to-r from-white dark:from-black to-transparent z-10 pointer-events-none" />
 
-      {/* Right Fade */}
-      <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white dark:from-black to-transparent z-10" />
+      {/* Right Fade - Responsive width */}
+      <div className="absolute right-0 top-0 h-full w-12 md:w-24 bg-gradient-to-l from-white dark:from-black to-transparent z-10 pointer-events-none" />
 
       <div
-        className="flex w-max animate-marquee"
-        style={{ animationDuration: `${Math.max(5, 100 / speed)}s` }}
+        className="flex w-max animate-marquee transform-gpu group-hover:[animation-play-state:paused]"
+        style={{ animationDuration: `${speed}s` }}
       >
-        {[...techImages, ...techImages].map((img, i) => {
-          // CHECK: If the image has a darkSrc, we render BOTH versions
-          // and use CSS to toggle visibility.
-          if (img.darkSrc) {
-            return (
-              <React.Fragment key={i}>
-                {/* Light Mode Image: Hidden when 'dark' class is present */}
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  width={48}
-                  height={48}
-                  className="h-12 w-auto mx-8 dark:hidden"
-                  priority={i < 6}
-                />
-                
-                {/* Dark Mode Image: Hidden by default, Block when 'dark' class is present */}
-                <Image
-                  src={img.darkSrc}
-                  alt={img.alt}
-                  width={48}
-                  height={48}
-                  className="h-12 w-auto mx-8 hidden dark:block"
-                  priority={i < 6}
-                />
-              </React.Fragment>
-            );
-          }
-
-          // Fallback for regular images (no dark variant)
-          return (
-            <Image
-              key={i}
-              src={img.src}
-              alt={img.alt}
-              width={48}
-              height={48}
-              className="h-12 w-auto mx-8"
-              priority={i < 6}
-            />
-          );
-        })}
+        {marqueeContent.map((img, i) => (
+          <TechIcon 
+            key={`${img.alt}-${i}`} 
+            item={img} 
+            priority={i < 10} 
+          />
+        ))}
       </div>
     </div>
   );
