@@ -3,8 +3,18 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-// FIXED: Changed 'icon' to 'src' to match the component logic
-const STACK = {
+// 1. Define strict types
+interface TechItem {
+  name: string;
+  src: string;
+  darkSrc?: string;
+}
+
+interface TechCategory {
+  [key: string]: TechItem[];
+}
+
+const STACK: TechCategory = {
   Frontend: [
     {
       name: "Next.js",
@@ -23,75 +33,88 @@ const STACK = {
     { name: "Prisma", src: "/static/tech/prisma.png" },
     { name: "Firebase", src: "/static/tech/firebase.png" },
   ],
-  "Languages & Tools": [
-    { name: "C++", src: "/static/tech/c++.webp" },
-    { name: "Git", src: "/static/tech/git.png" },
-  ],
+};
+
+// Animation Variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0 },
 };
 
 export default function TechStack() {
   return (
     <div
       className="
-        flex flex-col gap-6 rounded-xl border border-gray-200 dark:border-gray-600 
-        p-6 transition-all duration-300 
-        bg-white dark:bg-black
-      "
+        flex flex-col rounded-xl border border-gray-200 dark:border-gray-700 
+        bg-white dark:bg-black overflow-hidden"
     >
-      {Object.entries(STACK).map(([category, items], i) => (
-        <StackRow key={category} category={category} items={items} index={i} />
+      {Object.entries(STACK).map(([category, items]) => (
+        <StackRow key={category} category={category} items={items} />
       ))}
     </div>
   );
 }
 
-// Sub-component for each row
 function StackRow({
   category,
   items,
-  index,
 }: {
   category: string;
-  items: any[];
-  index: number;
+  items: TechItem[];
 }) {
   return (
     <div
-      className="flex flex-col md:flex-row md:items-start gap-3 md:gap-10 border-b border-gray-100 dark:border-gray-800 pb-6 last:border-0 last:pb-0"
+      className="
+        flex flex-col md:grid md:grid-cols-[120px_1fr] gap-4 
+        p-6 border-b border-gray-100 dark:border-gray-800 last:border-0
+      "
     >
       {/* Category Label */}
-      <div className="md:w-32 shrink-0">
-        <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">
+      <div className="flex items-center">
+        <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest">
           {category}
         </h3>
       </div>
 
       {/* Tech Pills Area */}
-      <div className="flex flex-wrap gap-2.5">
+      <ul className="flex flex-wrap gap-2.5">
         {items.map((item) => (
-          <TechPill key={item.name} item={item} />
+          <motion.li key={item.name} variants={itemVariants}>
+            <TechPill item={item} />
+          </motion.li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
 
-// The "Upgraded Tag" Component
-function TechPill({ item }: { item: any }) {
+function TechPill({ item }: { item: TechItem }) {
   return (
     <div
       className="
         group flex items-center gap-2 
-        bg-gray-100 dark:bg-gray-900 
-        border border-gray-200 dark:border-gray-700
+        bg-gray-50 dark:bg-gray-900
+        border border-gray-200 dark:border-gray-800
         px-3 py-1.5 rounded-full 
-        transition-all duration-200 
-        hover:border-gray-300 dark:hover:border-gray-500
-        cursor-default
+        transition-all duration-300
+        hover:border-gray-300 dark:hover:border-gray-600
+        hover:bg-gray-100 dark:hover:bg-gray-800
+        cursor-default select-none
       "
     >
       {/* Icon Wrapper */}
-      <div className="relative w-4 h-4 grayscale group-hover:grayscale-0 transition-all duration-300">
+      <div className="relative w-4 h-4 grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100">
+        {/* Dual Image strategy for Dark Mode hydration safety */}
         {item.darkSrc ? (
           <>
             <Image
@@ -121,7 +144,7 @@ function TechPill({ item }: { item: any }) {
       </div>
 
       {/* Text */}
-      <span className="text-xs font-medium text-gray-600 dark:text-slate-300">
+      <span className="text-xs font-medium text-gray-600 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors">
         {item.name}
       </span>
     </div>
