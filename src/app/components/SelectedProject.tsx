@@ -165,7 +165,7 @@ export default function ProjectItem({
             {tags.map((tag, index) => (
               <span
                 key={index}
-                className="bg-gray-100 dark:bg-slate-900 text-gray-500 dark:text-slate-300 px-2.5 py-1 rounded-full text-xs font-medium cursor-default border border-gray-200 dark:border-gray-700 transition-colors duration-200 whitespace-nowrap"
+                className="bg-gray-100 dark:bg-gray-900 text-gray-500 dark:text-slate-300 px-2.5 py-1 rounded-full text-xs font-medium cursor-default border border-gray-200 dark:border-gray-700 transition-colors duration-200 whitespace-nowrap"
               >
                 {tag}
               </span>

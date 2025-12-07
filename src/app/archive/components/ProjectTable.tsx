@@ -63,7 +63,7 @@ export default function ProjectTable({
           {rows.map((row) => (
             <TableRow
               key={`${row.title}-${row.year}`}
-              className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-slate-900/50 transition-colors duration-200"
+              className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors duration-200"
             >
               {columns.map((c, i) => {
                 const commonCellClasses = [
@@ -135,7 +135,7 @@ export default function ProjectTable({
                         {row.builtWith.map((t) => (
                           <span
                             key={t}
-                            className="bg-gray-100 dark:bg-slate-900 text-gray-700 dark:text-slate-300 px-2.5 py-1 rounded-full text-xs font-medium cursor-default border border-gray-200 dark:border-gray-700 transition-colors duration-200 whitespace-nowrap"
+                            className="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-slate-300 px-2.5 py-1 rounded-full text-xs font-medium cursor-default border border-gray-200 dark:border-gray-700 transition-colors duration-200 whitespace-nowrap"
                           >
                             {t}
                           </span>

@@ -206,7 +206,7 @@ export default function Sidebar() {
                   flex items-center justify-center aspect-square rounded-md
                   bg-gray-50 dark:bg-gray-900 
                   text-gray-600 dark:text-slate-400 
-                  hover:bg-gray-100 dark:hover:bg-gray-800 
+                  hover:bg-gray-100 dark:hover:bg-gray-900 
                   hover:text-black dark:hover:text-white 
                   transition-all duration-200 ease-in-out
                 "

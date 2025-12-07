@@ -33,7 +33,7 @@ const PastVersions = () => {
           className="
             flex items-center justify-center gap-x-2 
             text-gray-900 dark:text-slate-100 
-            hover:bg-[#f6f7f7] dark:hover:bg-slate-900 
+            hover:bg-[#f6f7f7] dark:hover:bg-gray-900 
             transition-colors duration-300 
             bg-white dark:bg-black
             border border-gray-200 dark:border-gray-600 
@@ -65,7 +65,7 @@ const PastVersions = () => {
         className="
           col-span-2 flex items-center justify-center gap-x-2 
           text-gray-900 dark:text-slate-100 
-          hover:bg-gray-100 dark:hover:bg-slate-900 
+          hover:bg-gray-100 dark:hover:bg-gray-900 
           transition-colors duration-300 
           bg-white dark:bg-black
           border border-gray-200 dark:border-gray-600 
