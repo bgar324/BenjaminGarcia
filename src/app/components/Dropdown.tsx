@@ -43,22 +43,34 @@ const Dropdown: React.FC<DropdownProps> = ({
   const companyBase = "text-sm text-gray-600 dark:text-slate-400 lg:text-base"
   const companyIsLink = !!companyLink?.trim()
 
-  // choose correct image based on theme, no fade transition
-  const imageSrc =
-    mounted && theme === "dark" && darkSrc ? darkSrc : src
+  const showDark = mounted && theme === "dark" && darkSrc
 
   return (
     <div className="border border-gray-200 dark:border-gray-600 bg-white dark:bg-black rounded-lg flex flex-col transition-colors duration-300">
       <div className="flex flex-row">
         <div className="flex justify-center items-center">
+          {/* Light mode image */}
           <Image
-            src={imageSrc}
+            src={src}
             alt={`${position} logo`}
             width={64}
             height={64}
             quality={95}
-            className="h-auto w-16 rounded-xl bg-white dark:bg-black items-center p-1 lg:ml-1"
+            priority
+            className={`h-auto w-16 rounded-xl items-center p-1 lg:ml-1 ${showDark ? "hidden" : ""}`}
           />
+          {/* Dark mode image (preloaded if provided) */}
+          {darkSrc && (
+            <Image
+              src={darkSrc}
+              alt={`${position} logo`}
+              width={64}
+              height={64}
+              quality={95}
+              priority
+              className={`h-auto w-16 rounded-xl items-center p-1 lg:ml-1 ${showDark ? "" : "hidden"}`}
+            />
+          )}
         </div>
 
         <div className="flex flex-col w-full p-2">
