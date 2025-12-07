@@ -187,7 +187,7 @@ export default function Home() {
         <section id="tech-stack" className="flex flex-col">
           <SectionHeader>technologies</SectionHeader>
           <TechStack />
-          <div className = "mb-6" />
+          {/* <div className = "mb-6" /> */}
         </section>
 
         <section id="projects">
