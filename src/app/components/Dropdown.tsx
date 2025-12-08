@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react"
 import { ChevronDown, X } from "lucide-react"
 import { useTheme } from "next-themes"
 import Image from "next/image"
+import { motion, AnimatePresence } from "framer-motion"
 
 interface DropdownProps {
   role: string
@@ -110,16 +111,42 @@ const Dropdown: React.FC<DropdownProps> = ({
                 {startDate}
                 {endDate ? ` - ${endDate}` : ""}
               </p>
+              
               {hasExpandableContent && (
                 <button
                   onClick={() => setIsOpen((v) => !v)}
-                  className={`hover:cursor-pointer ml-2 transition-all duration-300 ease-in-out rounded-3xl hover:bg-gray-200 dark:hover:bg-slate-700 ${isOpen ? "rotate-180" : ""}`}
+                  className="hover:cursor-pointer ml-2 transition-all duration-300 ease-in-out rounded-3xl hover:bg-gray-200 dark:hover:bg-slate-700"
                 >
-                  {isOpen ? (
-                    <X strokeWidth="1" size={16} absoluteStrokeWidth />
-                  ) : (
-                    <ChevronDown strokeWidth="1" size={16} absoluteStrokeWidth />
-                  )}
+                  {/* We use a wrapper exactly size 4 (16px) to match the icon size=16.
+                     This prevents the button from becoming larger than it was in your original code.
+                  */}
+                  <div className="relative w-4 h-4">
+                    <motion.div
+                      initial={false}
+                      animate={{ 
+                        rotate: isOpen ? -90 : 0, 
+                        opacity: isOpen ? 0 : 1, 
+                        scale: isOpen ? 0.5 : 1 
+                      }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute inset-0"
+                    >
+                      <ChevronDown strokeWidth="1" size={16} absoluteStrokeWidth />
+                    </motion.div>
+                    
+                    <motion.div
+                      initial={false}
+                      animate={{ 
+                        rotate: isOpen ? 0 : 90, 
+                        opacity: isOpen ? 1 : 0, 
+                        scale: isOpen ? 1 : 0.5 
+                      }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute inset-0"
+                    >
+                      <X strokeWidth="1" size={16} absoluteStrokeWidth />
+                    </motion.div>
+                  </div>
                 </button>
               )}
             </div>
@@ -127,32 +154,36 @@ const Dropdown: React.FC<DropdownProps> = ({
         </div>
       </div>
 
-      <div
-        className={`overflow-hidden transition-all duration-500 ease-in-out ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
-        style={{ transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)" }}
-      >
-        {hasExpandableContent && (
-          <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-            {description && (
-              <p className="text-sm lg:text-base text-gray-800 dark:text-slate-200">
-                {description}
-              </p>
-            )}
-            {link && (
-              <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 dark:text-blue-400 hover:underline text-sm mt-2 inline-block"
-              >
-                Visit website
-              </a>
-            )}
-          </div>
+      <AnimatePresence initial={false}>
+        {hasExpandableContent && isOpen && (
+          <motion.div
+            key="content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="overflow-hidden"
+          >
+            <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+              {description && (
+                <p className="text-sm lg:text-base text-gray-800 dark:text-slate-200">
+                  {description}
+                </p>
+              )}
+              {link && (
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 dark:text-blue-400 hover:underline text-sm mt-2 inline-block"
+                >
+                  Visit website
+                </a>
+              )}
+            </div>
+          </motion.div>
         )}
-      </div>
+      </AnimatePresence>
     </div>
   )
 }
