@@ -119,7 +119,7 @@ export default function Home() {
               description="Joining Professor Xiang “Anthony” Chen’s Human-Computer Interaction Lab in Winter 2026, where I’ll collaborate with designers and researchers to prototype and explore new interaction experiences."
             />
             <Dropdown
-              role="Senior Software Development Intern"
+              role="Software Engineer Intern"
               position="Todd Agriscience"
               companyLink="https://www.toddagriscience.com/"
               startDate="Mar. 2025"
