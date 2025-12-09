@@ -164,7 +164,7 @@ export default function Home() {
               description="Supporting ACM Hack's engineering initiatives through contributing to cross-team projects, workshops, and events."
             />
             <Dropdown
-              role="Web Developer"
+              role="Frontend Developer"
               position="exploretech.la"
               companyLink="https://www.exploretech.la/"
               startDate="Sep. 2025"
@@ -302,7 +302,7 @@ export default function Home() {
               startDate="2025"
               endDate="Present"
               src="/static/schools/ucla.png"
-              description="Transfer Research Entry Program, ACM Hack Intern, Content Member & Web Developer at exploretech.la, Undergraduate Research Developer for UCLA HCI Research Lab"
+              description="Transfer Research Entry Program, ACM Hack Intern, Content Member & Frontend Developer at exploretech.la, Undergraduate Research Developer for UCLA HCI Research Lab"
             />
             <Dropdown
               role="Mount San Antonio College"
