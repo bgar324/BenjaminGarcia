@@ -91,13 +91,12 @@ export default function Home() {
             Outside of coding, I enjoy weightlifting, spending time with my dog,
             and exploring the{" "}
             <RandomImageHover images={ELDEN_RING_IMAGES}>
-              
               <GradientLink
                 href="https://en.bandainamcoent.eu/elden-ring/elden-ring"
                 gradient="linear-gradient(to right, #092322, #996A48)"
               >
                 Lands Between
-              </GradientLink> 
+              </GradientLink>
             </RandomImageHover>
             .
           </p>
@@ -206,11 +205,18 @@ export default function Home() {
           </div>
           <div className="flex flex-col gap-y-3">
             <ProjectItem
-              src="/static/project-previews/rift-report.png"
-              title="Rift Report"
-              description="Built a full-stack analytics platform that aggregates and visualizes over 1,000+ ranked matches from the Riot Games API. The dashboard highlights role distribution, champion performance trends, and build efficiency, giving players a data-driven lens into their gameplay. To ensure responsiveness at scale, I implemented caching and rate-limiting strategies that reduced fetch times by 40%, while still delivering real-time timelines, item builds, and matchup insights. Designed with a clean, interactive interface, the tool helps users explore both aggregate trends and individual match breakdowns seamlessly."
-              githubLink="https://github.com/bgar324/Rift-Report"
-              tags={["Next.js", "Tailwind CSS", "TypeScript", "Riot API"]}
+              src="/static/project-previews/poly-clubs.png"
+              title="Poly Clubs"
+              description="Poly Clubs is an independent directory and review platform for Cal Poly's 486+ student organizations. I built it to provide transparent, peer-driven insights that official channels lack—addressing the real questions students have about time commitment, social atmosphere, and career value. The platform features a unique 'Vibe Check' system for anonymous, multi-dimensional club ratings and real-time review aggregation. Built with Next.js, TypeScript, Tailwind CSS, and Supabase, it combines static generation for performance with dynamic review functionality, creating an essential resource for students seeking authentic perspectives on campus involvement."
+              link="https://poly-clubs.vercel.app/"
+              githubLink="https://github.com/bgar324/poly-clubs"
+              tags={[
+                "Next.js",
+                "Tailwind CSS",
+                "TypeScript",
+                "Supabase",
+                "Framer Motion"
+              ]}
             />
             <ProjectItem
               src="/static/project-previews/git-proof.png"

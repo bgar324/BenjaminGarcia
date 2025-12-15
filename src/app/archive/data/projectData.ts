@@ -3,6 +3,14 @@ import { ProjectEntry, Column } from "../components/ProjectTable";
 export const archiveProjects: ProjectEntry[] = [
   {
     year: 2025,
+    title: "Rift Report",
+    madeAt: "",
+    builtWith: ["Next.js", "Tailwind CSS", "TypeScript", "Riot API"],
+    link: "https://github.com/bgar324/Rift-Report/",
+    label: "GitHub",
+  },
+  {
+    year: 2025,
     title: "15th Annual HPC Website",
     madeAt: "Mt. SAC",
     builtWith: ["Next.js", "Tailwind CSS", "Vercel", "shadcn-ui"],
@@ -21,7 +29,13 @@ export const archiveProjects: ProjectEntry[] = [
     year: 2025,
     title: "Tea Spots",
     madeAt: "AdeptEye",
-    builtWith: ["Square Online", "Square Sites", "Photopea", "Graphic Design", "Video Production"],
+    builtWith: [
+      "Square Online",
+      "Square Sites",
+      "Photopea",
+      "Graphic Design",
+      "Video Production",
+    ],
     link: "https://www.myteaspots.com/",
     label: "Website",
   },
@@ -69,7 +83,15 @@ export const plannedProjects: ProjectEntry[] = [
   {
     year: 2025,
     title: "Git Proof",
-    builtWith: ["Next.js", "Tailwind CSS", "FastAPI", "PostgreSQL", "GitHub API", "Celery", "Redis"],
+    builtWith: [
+      "Next.js",
+      "Tailwind CSS",
+      "FastAPI",
+      "PostgreSQL",
+      "GitHub API",
+      "Celery",
+      "Redis",
+    ],
     status: "In Progress",
   },
   {

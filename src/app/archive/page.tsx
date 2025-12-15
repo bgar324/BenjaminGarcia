@@ -45,7 +45,7 @@ export default function ArchivePage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
       >
-        <SectionHeader>Past Projects (7)</SectionHeader>
+        <SectionHeader>Past Projects (8)</SectionHeader>
         <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
           <ConfigurableProjectTable type="archive" />
         </div>

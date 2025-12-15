@@ -123,3 +123,11 @@
               src="/static/companies/outlier.webp"
               description="I worked on optimizing LLM pipelines by running large-scale A/B testing, identifying hallucinations, and refining prompts to improve output quality and reasoning accuracy. During this time, I engineered a recursive self-improvement method that applied failure prompts to reduce trend-based errors by 20%. This combination of pipeline optimization, experimentation, and recursive refinement became a foundation for boosting the reliability of AI systems in production use cases."
             /> */}
+
+                        <ProjectItem
+              src="/static/project-previews/rift-report.png"
+              title="Rift Report"
+              description="Built a full-stack analytics platform that aggregates and visualizes over 1,000+ ranked matches from the Riot Games API. The dashboard highlights role distribution, champion performance trends, and build efficiency, giving players a data-driven lens into their gameplay. To ensure responsiveness at scale, I implemented caching and rate-limiting strategies that reduced fetch times by 40%, while still delivering real-time timelines, item builds, and matchup insights. Designed with a clean, interactive interface, the tool helps users explore both aggregate trends and individual match breakdowns seamlessly."
+              githubLink="https://github.com/bgar324/Rift-Report"
+              tags={["Next.js", "Tailwind CSS", "TypeScript", "Riot API"]}
+            />
