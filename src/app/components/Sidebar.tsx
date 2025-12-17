@@ -4,7 +4,7 @@ import Image from "next/image";
 // 1. Import useEffect
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Mail, Globe, X, Menu } from "lucide-react";
+import { MapPin, Mail, Globe, X, Menu, GitGraph } from "lucide-react";
 import { LinkedInIcon, GitHubMarkIcon } from "../svgs/Icons";
 // import NowPlayingCard from "./NowPlayingCard";
 import { ArrowUpRight } from "lucide-react";
@@ -29,11 +29,11 @@ export default function Sidebar() {
   }, [isMobileMenuOpen]);
 
   const socialLinks = [
-    {
-      icon: <Globe size={18} />,
-      label: "Website",
-      href: "https://www.bentgarcia.com/",
-    },
+    // {
+    //   icon: <Globe size={18} />,
+    //   label: "Website",
+    //   href: "https://www.bentgarcia.com/",
+    // },
     {
       icon: <Mail size={18} />,
       label: "Email",
@@ -48,6 +48,11 @@ export default function Sidebar() {
       icon: <GitHubMarkIcon />,
       label: "GitHub",
       href: "https://github.com/bgar324",
+    },
+    {
+      icon: <GitGraph size={18} />,
+      label: "GitProof",
+      href: "https://gitproof-2.vercel.app/u/bgar324",
     },
   ];
 
