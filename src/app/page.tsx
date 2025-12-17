@@ -205,7 +205,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col gap-y-3">
             <ProjectItem
-              src="/static/project-previews/poly-clubs.png"
+              src="/static/project-previews/poly-clubs-2.png"
               title="Poly Clubs"
               description="Poly Clubs is an independent directory and review platform for Cal Poly's 486+ student organizations. I built it to provide transparent, peer-driven insights that official channels lack—addressing the real questions students have about time commitment, social atmosphere, and career value. The platform features a unique 'Vibe Check' system for anonymous, multi-dimensional club ratings and real-time review aggregation. Built with Next.js, TypeScript, Tailwind CSS, and Supabase, it combines static generation for performance with dynamic review functionality, creating an essential resource for students seeking authentic perspectives on campus involvement."
               link="https://poly-clubs.vercel.app/"
@@ -215,21 +215,23 @@ export default function Home() {
                 "Tailwind CSS",
                 "TypeScript",
                 "Supabase",
-                "Framer Motion"
+                "Framer Motion",
               ]}
             />
             <ProjectItem
-              src="/static/project-previews/git-proof.png"
+              src="/static/project-previews/gitproof-2.png"
               title="Git Proof"
-              description="An AI-powered GitHub analytics and report generation tool that transforms public repositories into recruiter-ready summaries. Users can generate commit heatmaps, analyze tech stacks, and receive AI-generated repository insights and README suggestions using Google Gemini. Built with Next.js, Tailwind CSS, and TypeScript, Git Proof also offers professional PDF exports powered by jsPDF and @react-pdf/renderer, all wrapped in a secure, OAuth-authenticated experience. Originally developed and presented during the final round of Bonterra’s R&D internship interview."
-              githubLink="https://github.com/bgar324/gitproof"
+              description="A full-stack developer analytics platform that evaluates public GitHub profiles using deterministic metrics, heuristic scoring, and secure OAuth-based data access. GitProof generates public, shareable profile reports with impact scores, consistency analysis, archetype classification, and recruiter-facing summaries, backed by PostgreSQL and the GitHub GraphQL API. The system integrates Gemini 2.5 Flash for bounded, AI-assisted insight generation while enforcing strict privacy guarantees, rate limiting, and public/private visibility controls."
+              link="https://gitproof-2.vercel.app/"
+              githubLink="https://github.com/bgar324/gitproof-2"
               tags={[
                 "Next.js",
-                "Tailwind CSS",
                 "TypeScript",
-                "Gemini API",
-                "GitHub API",
-                "React PDF",
+                "PostgreSQL",
+                "Prisma",
+                "OAuth",
+                "GitHub GraphQL API",
+                "Gemini 2.5 Flash",
               ]}
             />
             <ProjectItem
