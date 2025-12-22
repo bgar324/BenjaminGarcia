@@ -52,7 +52,7 @@ export default function Sidebar() {
     {
       icon: <GitGraph size={18} />,
       label: "GitProof",
-      href: "https://gitproof-2.vercel.app/u/bgar324",
+      href: "https://gitproof.dev/u/bgar324",
     },
   ];
 

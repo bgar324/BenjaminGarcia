@@ -222,7 +222,7 @@ export default function Home() {
               src="/static/project-previews/gitproof-2.png"
               title="Git Proof"
               description="A full-stack developer analytics platform that evaluates public GitHub profiles using deterministic metrics, heuristic scoring, and secure OAuth-based data access. GitProof generates public, shareable profile reports with impact scores, consistency analysis, archetype classification, and recruiter-facing summaries, backed by PostgreSQL and the GitHub GraphQL API. The system integrates Gemini 2.5 Flash for bounded, AI-assisted insight generation while enforcing strict privacy guarantees, rate limiting, and public/private visibility controls."
-              link="https://gitproof-2.vercel.app/"
+              link="https://gitproof.dev"
               githubLink="https://github.com/bgar324/gitproof-2"
               tags={[
                 "Next.js",
