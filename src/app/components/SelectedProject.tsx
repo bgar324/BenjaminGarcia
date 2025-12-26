@@ -89,7 +89,7 @@ export default function ProjectItem({
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 transition-colors duration-200 flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                  className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 transition-colors duration-200 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   title="Visit Site"
                 >
                   {/* globe icon */}
@@ -115,7 +115,7 @@ export default function ProjectItem({
                   href={githubLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 transition-colors duration-200 flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                  className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 transition-colors duration-200 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   title="View on GitHub"
                 >
                   {/* github icon */}
@@ -153,7 +153,7 @@ export default function ProjectItem({
           </p>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-xs mt-1 font-medium hover:cursor-pointer transition-all duration-300 ease-in-out w-fit focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+            className="text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-xs mt-1 font-medium hover:cursor-pointer transition-all duration-300 ease-in-out w-fit focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
             title="Read more"
           >
             {isExpanded ? "Show less" : "Read more"}

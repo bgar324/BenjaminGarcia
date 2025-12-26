@@ -4,7 +4,7 @@ import Image from "next/image";
 // 1. Import useEffect
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Mail, Globe, X, Menu, GitGraph } from "lucide-react";
+import { MapPin, Mail, X, Menu, GitGraph } from "lucide-react";
 import { LinkedInIcon, GitHubMarkIcon } from "../svgs/Icons";
 import { ArrowUpRight } from "lucide-react";
 
@@ -90,7 +90,7 @@ export default function Sidebar() {
 
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
           >
             <Menu size={20} className="text-gray-600 dark:text-gray-300" />
           </button>
@@ -114,7 +114,7 @@ export default function Sidebar() {
               <span className="text-lg font-bold text-gray-400">Menu</span>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 rounded-full bg-gray-100 dark:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                className="p-2 rounded-full bg-gray-100 dark:bg-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
               >
                 <X size={24} />
               </button>
@@ -126,7 +126,7 @@ export default function Sidebar() {
                   key={idx}
                   href={link.href}
                   target="_blank"
-                  className="text-2xl font-semibold text-gray-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                  className="text-2xl font-semibold text-gray-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 >
                   {link.label}
                 </a>
@@ -134,7 +134,7 @@ export default function Sidebar() {
               <a
                 href="/resume.pdf"
                 target="_blank"
-                className="mt-4 px-8 py-3 rounded-md bg-black dark:bg-slate-100 text-white dark:text-gray-950 font-medium text-lg active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                className="mt-4 px-8 py-3 rounded-md bg-black dark:bg-slate-100 text-white dark:text-gray-950 font-medium text-lg active:scale-95 transition-transform focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
               >
                 View Résumé
               </a>
@@ -179,7 +179,7 @@ export default function Sidebar() {
             <div className="flex flex-row gap-1 items-center mt-2">
               <MapPin size={16} className="text-gray-500 dark:text-slate-400" />
               <a
-                className="text-sm text-gray-500 dark:text-slate-400 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                className="text-sm text-gray-500 dark:text-slate-400 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 href="https://www.google.com/maps/place/Westwood,+Los+Angeles,+CA/@34.0652211,-118.4610312,14z"
                 target="_blank"
               >
@@ -204,7 +204,7 @@ export default function Sidebar() {
                   hover:bg-gray-100 dark:hover:bg-gray-900
                   hover:text-black dark:hover:text-white
                   transition-all duration-200 ease-in-out
-                  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
+                  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
                 "
               >
                 {link.icon}
