@@ -22,8 +22,8 @@ export default function ArchivePage() {
         </a>
 
         <div className="flex justify-between items-start mt-5 mb-10">
-          <h1 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase tracking-wider lg:py-[.5px] flex items-center gap-1 text-xl md:text-3xl font-bold">
-            All Projects
+          <h1 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 lowercase tracking-wider lg:py-[.5px] flex items-center gap-1 text-xl md:text-3xl font-bold">
+            all projects
           </h1>
         </div>
       </motion.div>
@@ -34,7 +34,7 @@ export default function ArchivePage() {
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
         className="mt-10"
       >
-        <SectionHeader>Planned Projects (3)</SectionHeader>
+        <SectionHeader>planned projects (3)</SectionHeader>
         <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
           <ConfigurableProjectTable type="planned" />
         </div>
@@ -45,22 +45,12 @@ export default function ArchivePage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
       >
-        <SectionHeader>Past Projects (8)</SectionHeader>
+        <SectionHeader>past projects (8)</SectionHeader>
         <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
           <ConfigurableProjectTable type="archive" />
         </div>
       </motion.section>
 
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-      >
-        <SectionHeader>Scrapped Projects (3)</SectionHeader>
-        <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
-          <ConfigurableProjectTable type="scrapped" />
-        </div>
-      </motion.section>
     </main>
   );
 }

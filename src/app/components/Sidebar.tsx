@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Mail, Globe, X, Menu, GitGraph } from "lucide-react";
 import { LinkedInIcon, GitHubMarkIcon } from "../svgs/Icons";
-// import NowPlayingCard from "./NowPlayingCard";
 import { ArrowUpRight } from "lucide-react";
 
 export default function Sidebar() {
@@ -29,11 +28,6 @@ export default function Sidebar() {
   }, [isMobileMenuOpen]);
 
   const socialLinks = [
-    // {
-    //   icon: <Globe size={18} />,
-    //   label: "Website",
-    //   href: "https://www.bentgarcia.com/",
-    // },
     {
       icon: <Mail size={18} />,
       label: "Email",
@@ -96,7 +90,7 @@ export default function Sidebar() {
 
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
           >
             <Menu size={20} className="text-gray-600 dark:text-gray-300" />
           </button>
@@ -120,7 +114,7 @@ export default function Sidebar() {
               <span className="text-lg font-bold text-gray-400">Menu</span>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 rounded-full bg-gray-100 dark:bg-gray-900"
+                className="p-2 rounded-full bg-gray-100 dark:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
               >
                 <X size={24} />
               </button>
@@ -132,7 +126,7 @@ export default function Sidebar() {
                   key={idx}
                   href={link.href}
                   target="_blank"
-                  className="text-2xl font-semibold text-gray-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  className="text-2xl font-semibold text-gray-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 >
                   {link.label}
                 </a>
@@ -140,15 +134,11 @@ export default function Sidebar() {
               <a
                 href="/resume.pdf"
                 target="_blank"
-                className="mt-4 px-8 py-3 rounded-md bg-black dark:bg-slate-100 text-white dark:text-gray-950 font-medium text-lg active:scale-95 transition-transform"
+                className="mt-4 px-8 py-3 rounded-md bg-black dark:bg-slate-100 text-white dark:text-gray-950 font-medium text-lg active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
               >
                 View Résumé
               </a>
             </div>
-            {/* 
-            <div className="w-full relative z-10">
-              <NowPlayingCard />
-            </div> */}
 
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.03] dark:opacity-[0.05] z-0">
               <span className="text-[35vh] font-bold text-black dark:text-white leading-none tracking-tighter pr-6">
@@ -189,7 +179,7 @@ export default function Sidebar() {
             <div className="flex flex-row gap-1 items-center mt-2">
               <MapPin size={16} className="text-gray-500 dark:text-slate-400" />
               <a
-                className="text-sm text-gray-500 dark:text-slate-400 hover:underline"
+                className="text-sm text-gray-500 dark:text-slate-400 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 href="https://www.google.com/maps/place/Westwood,+Los+Angeles,+CA/@34.0652211,-118.4610312,14z"
                 target="_blank"
               >
@@ -209,11 +199,12 @@ export default function Sidebar() {
                 title={link.label}
                 className="
                   flex items-center justify-center aspect-square rounded-md
-                  bg-gray-50 dark:bg-gray-900 
-                  text-gray-600 dark:text-slate-400 
-                  hover:bg-gray-100 dark:hover:bg-gray-900 
-                  hover:text-black dark:hover:text-white 
+                  bg-gray-50 dark:bg-gray-900
+                  text-gray-600 dark:text-slate-400
+                  hover:bg-gray-100 dark:hover:bg-gray-900
+                  hover:text-black dark:hover:text-white
                   transition-all duration-200 ease-in-out
+                  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
                 "
               >
                 {link.icon}
@@ -224,14 +215,15 @@ export default function Sidebar() {
           <a
             className="
               flex items-center justify-center gap-2
-              bg-black/90 dark:bg-slate-100 
-              text-white dark:text-gray-950 
+              bg-black/90 dark:bg-slate-100
+              text-white dark:text-gray-950
               dark:hover:bg-white
               hover:bg-black
-              rounded-md px-4 py-2 text-sm font-semibold 
-              w-full text-center 
+              rounded-md px-4 py-2 text-sm font-semibold
+              w-full text-center
               active:scale-[0.98]
               transition duration-200
+              focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
             "
             href="/resume.pdf"
             target="_blank"
@@ -244,10 +236,6 @@ export default function Sidebar() {
             />
           </a>
         </div>
-
-        {/* <div className="w-full">
-          <NowPlayingCard />
-        </div> */}
       </aside>
     </>
   );

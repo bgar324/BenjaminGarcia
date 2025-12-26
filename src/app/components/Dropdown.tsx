@@ -81,7 +81,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                 href={schoolLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:underline"
+                className="hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
               >
                 {role}
               </a>
@@ -94,7 +94,7 @@ const Dropdown: React.FC<DropdownProps> = ({
             <div className="flex flex-row items-center">
               {companyIsLink ? (
                 <a
-                  className={`${companyBase} hover:underline hover:cursor-pointer`}
+                  className={`${companyBase} hover:underline hover:cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm`}
                   href={companyLink}
                   target="_blank"
                   rel="noreferrer"
@@ -115,7 +115,7 @@ const Dropdown: React.FC<DropdownProps> = ({
               {hasExpandableContent && (
                 <button
                   onClick={() => setIsOpen((v) => !v)}
-                  className="hover:cursor-pointer ml-2 transition-all duration-300 ease-in-out rounded-3xl hover:bg-gray-200 dark:hover:bg-slate-700"
+                  className="hover:cursor-pointer ml-2 transition-all duration-300 ease-in-out rounded-3xl hover:bg-gray-200 dark:hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                 >
                   {/* We use a wrapper exactly size 4 (16px) to match the icon size=16.
                      This prevents the button from becoming larger than it was in your original code.
@@ -175,7 +175,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 dark:text-blue-400 hover:underline text-sm mt-2 inline-block"
+                  className="text-blue-500 dark:text-blue-400 hover:underline text-sm mt-2 inline-block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 >
                   Visit website
                 </a>

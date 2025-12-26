@@ -102,53 +102,50 @@ export default function Home() {
           </p>
         </section>
 
-        {/* ... Keep all other sections (Experience, Projects, etc) exactly the same ... */}
-
         <section id="experience" className="flex flex-col">
           <SectionHeader>experience</SectionHeader>
-          {/* ... Dropdowns ... */}
           <div className="flex flex-col gap-4">
             <Dropdown
               role="Undergraduate Research Developer"
               position="UCLA HCI Research Lab"
               companyLink="https://hci.ucla.edu"
-              startDate="Joining Dec. 2025"
+              startDate="Dec 2025 (Starting)"
               src="/static/companies/ucla-hci.png"
               darkSrc="/static/companies/ucla-hci-dark.png"
-              description="Joining Professor Xiang “Anthony” Chen’s Human-Computer Interaction Lab in Winter 2026, where I’ll collaborate with designers and researchers to prototype and explore new interaction experiences."
+              description="Joining Professor Xiang 'Anthony' Chen's Human-Computer Interaction Lab in Winter 2026, where I'll collaborate with designers and researchers to prototype and explore new interaction experiences."
             />
             <Dropdown
               role="Software Engineer Intern"
               position="Todd Agriscience"
               companyLink="https://www.toddagriscience.com/"
-              startDate="Mar. 2025"
-              endDate="Oct. 2025"
+              startDate="Mar 2025"
+              endDate="Oct 2025"
               src="/static/companies/todd-dark.png"
-              description="I built and deployed Todd’s first client-facing dashboard and landing site using Next.js, Tailwind CSS, and Framer Motion, creating a responsive interface for AI-powered crop insights. I linked backend inference pipelines directly into dynamic UI components, enabling farmers to visualize 20+ real-time data streams including soil, irrigation, weather, and yield metrics. The work helped the company’s initial 5–10 clients adopt the platform and was recognized by the founder for driving both product adoption and internal growth, scaling the team from just one intern to fourteen engineers after my internship."
+              description="Built and deployed Todd's first client-facing dashboard using Next.js, enabling 5–10 early customers to visualize AI-powered crop insights. Work contributed to scaling the team from 1 to 14 engineers and drove initial product adoption."
             />
             <Dropdown
               role="Research & Development Engineer Intern"
               position="Bonterra"
               companyLink="https://www.bonterratech.com/"
-              startDate="Jul. 2025"
-              endDate="Aug. 2025"
+              startDate="Jul 2025"
+              endDate="Aug 2025"
               src="/static/companies/bonterra.png"
-              description="At Bonterra, I researched and prototyped agentic AI systems tailored for nonprofit event analysis. I modeled key outcomes like attendance, retention, and fundraising while benchmarking orchestration pipelines across five agent frameworks to assess scalability and efficiency. My findings were presented to an audience of 40–50 cross-functional stakeholders—including engineers, analysts, and senior leadership—and directly shaped early strategies for adopting AI to improve nonprofit impact measurement."
+              description="Researched and prototyped agentic AI pipelines for nonprofit event analysis. Presented findings to 40+ cross-functional stakeholders, shaping early AI adoption strategy."
             />
             <Dropdown
               role="Software Engineer Intern"
               position="TensorStax"
               companyLink="https://www.tensorstax.com"
               startDate="May 2025"
-              endDate="Jun. 2025"
+              endDate="Jun 2025"
               src="/static/companies/tensorstax.png"
-              description="At TensorStax, I owned the design and development of a secure credential-submission UI integrated with HashiCorp Vault, which streamlined authentication across 50+ enterprise data sources such as AWS Glue, Snowflake, MongoDB, Postgres, Airflow, dbt, and Spark. I also built low-latency frontend systems with Next.js, Redux, and WebSockets that supported 100+ concurrent beta users with sub-100ms latency. Over the course of the internship, I contributed to 30+ reusable UI components and collaborated with a 10–15 person engineering team spanning frontend, machine learning, and infrastructure."
+              description="Designed secure credential-submission UI integrated with HashiCorp Vault, streamlining auth across 50+ enterprise data sources. Built low-latency frontend (Next.js, Redux, WebSockets) supporting 100+ concurrent beta users with sub-100ms response times."
             />
           </div>
         </section>
 
         <section
-          id="leadership-and-campus-involement"
+          id="leadership-and-campus-involvement"
           className="flex flex-col"
         >
           <SectionHeader>leadership & campus involvement</SectionHeader>
@@ -157,26 +154,26 @@ export default function Home() {
               role="Officer"
               position="ACM Hack"
               companyLink="https://hack.uclaacm.com/"
-              startDate="Nov. 2025"
+              startDate="Nov 2025"
               endDate="Present"
               src="/static/companies/hack.png"
-              description="Supporting ACM Hack's engineering initiatives through contributing to cross-team projects, workshops, and events."
+              description="Contributing to cross-team projects and workshops for UCLA's premier software engineering community. Collaborating with 10+ officers to organize hackathons and technical events for 200+ students."
             />
             <Dropdown
               role="Frontend Developer"
               position="exploretech.la"
               companyLink="https://www.exploretech.la/"
-              startDate="Sep. 2025"
+              startDate="Sep 2025"
               endDate="Present"
               src="/static/companies/ela.png"
-              description="Core member of a 5-person web development team rebuilding the organization’s website with React and JavaScript. Contribute to Jira-driven workflows, GitHub Actions, and CI/CD pipelines. Also support the 10–20 person Content Board, helping run workshops and prepare for the Ignite Program in Winter 2026."
+              description="Core member of 5-person web development team rebuilding the organization's website with React and JavaScript. Support Content Board of 10–20 members, helping run workshops and prepare for the Ignite Program in Winter 2026."
             />
             <Dropdown
               role="Frontend Developer"
               position="Mt. SAC Computer Science Club"
               companyLink="https://www.mtsaccs.org"
-              startDate="Sep. 2024"
-              endDate="Jul. 2025"
+              startDate="Sep 2024"
+              endDate="Jul 2025"
               src="/static/companies/mtsaccs.webp"
               description="Redesigned and rebuilt the Mt. SAC CS Club website using React and Bootstrap, enhancing UX, responsiveness, and access to events, officers, and contact info for 900+ members."
             />
@@ -186,7 +183,6 @@ export default function Home() {
         <section id="tech-stack" className="flex flex-col">
           <SectionHeader>technologies</SectionHeader>
           <TechStack />
-          {/* <div className = "mb-6" /> */}
         </section>
 
         <section id="projects">
@@ -194,7 +190,7 @@ export default function Home() {
             <SectionHeader>selected projects</SectionHeader>
             <a
               href="/archive"
-              className="group w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm flex items-center gap-1 text-center"
+              className="group w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm flex items-center gap-1 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
             >
               project archive
               <ArrowUpRight
@@ -207,7 +203,7 @@ export default function Home() {
             <ProjectItem
               src="/static/project-previews/poly-clubs-2.png"
               title="Poly Clubs"
-              description="Poly Clubs is an independent directory and review platform for Cal Poly's 486+ student organizations. I built it to provide transparent, peer-driven insights that official channels lack—addressing the real questions students have about time commitment, social atmosphere, and career value. The platform features a unique 'Vibe Check' system for anonymous, multi-dimensional club ratings and real-time review aggregation. Built with Next.js, TypeScript, Tailwind CSS, and Supabase, it combines static generation for performance with dynamic review functionality, creating an essential resource for students seeking authentic perspectives on campus involvement."
+              description="Cal Poly students had no way to get honest peer reviews of 486+ campus clubs. Built a transparent review platform with anonymous multi-dimensional ratings ('Vibe Check') and real-time aggregation, helping students make informed decisions about campus involvement."
               link="https://poly-clubs.vercel.app/"
               githubLink="https://github.com/bgar324/poly-clubs"
               tags={[
@@ -221,7 +217,7 @@ export default function Home() {
             <ProjectItem
               src="/static/project-previews/gitproof-2.png"
               title="Git Proof"
-              description="A full-stack developer analytics platform that evaluates public GitHub profiles using deterministic metrics, heuristic scoring, and secure OAuth-based data access. GitProof generates public, shareable profile reports with impact scores, consistency analysis, archetype classification, and recruiter-facing summaries, backed by PostgreSQL and the GitHub GraphQL API. The system integrates Gemini 2.5 Flash for bounded, AI-assisted insight generation while enforcing strict privacy guarantees, rate limiting, and public/private visibility controls."
+              description="Developers struggle to showcase GitHub contributions effectively to recruiters. GitProof generates shareable, recruiter-facing profile reports with impact scores, consistency analysis, and archetype classification using the GitHub GraphQL API, PostgreSQL, and Gemini 2.5 Flash for AI-assisted insights."
               link="https://gitproof.dev"
               githubLink="https://github.com/bgar324/gitproof-2"
               tags={[
@@ -237,7 +233,7 @@ export default function Home() {
             <ProjectItem
               src="/static/project-previews/mtsaccsprev.png"
               title="Computer Science Club Website"
-              description="Rebuilt the Mt. SAC Computer Science Club website (v2) using Next.js, TypeScript, and Tailwind CSS, replacing the previous Bootstrap-based build. Engineered modular, reusable components and implemented mobile-first design, semantic HTML, and static optimization. Integrated structured data-driven rendering for events, directories, and dynamic routes to enhance scalability and maintainability across the 900+ member platform."
+              description="Mt. SAC's CS Club needed a modern, maintainable website to serve 900+ members. Rebuilt the site with Next.js, TypeScript, and Tailwind CSS, implementing modular components and data-driven rendering for events and officer directories. Replaced legacy Bootstrap build with mobile-first design and static optimization."
               link="https://mtsaccs.org"
               githubLink="https://github.com/bgar324/mtsaccs-v2"
               tags={["Next.js", "Tailwind CSS", "TypeScript", "Vercel"]}
@@ -245,7 +241,7 @@ export default function Home() {
             <ProjectItem
               src="/static/project-previews/logit-preview.webp"
               title="Logit"
-              description="A full-stack workout logging app designed for a minimal and efficient tracking experience. Users can log workouts, edit past sessions with a React-calendar, and track progress with Recharts visualizations. Workouts are stored in a PostgreSQL database, with support for tags, comments, and dropsets. Built with Next.js, Tailwind CSS, and Prisma, it streamlines workout management while enabling progressive overload tracking."
+              description="Most workout apps are bloated with features users don't need. Built a minimal workout logger focused on efficient tracking with calendar-based editing, progress visualizations, and PostgreSQL storage for tags, comments, and dropsets. Enables progressive overload tracking without complexity."
               githubLink="https://github.com/bgar324/logit"
               tags={[
                 "Next.js",
@@ -283,7 +279,7 @@ export default function Home() {
                   </div>
                 </>
               }
-              description="Collaborated in a team of four to build het.ai (Hand Ergonomic Tracker) during HackTech 2025, a real-time wrist diagnostic platform that visualizes hand posture and calculates ergonomic risk using the Leap Motion Controller. I led the frontend development using Next.js and Tailwind CSS, building interactive visualizations and a dynamic dashboard that interfaces with a FastAPI backend and Firebase Firestore. The platform outputs flexion, deviation, and pronation angles, enabling users to receive live feedback and long-term session insights for improving typing ergonomics."
+              description="Desk workers lack real-time feedback on wrist posture, leading to repetitive strain injuries. Built het.ai at HackTech 2025—a real-time wrist diagnostic platform using Leap Motion to visualize hand posture and calculate ergonomic risk. Led frontend with Next.js, creating interactive visualizations and dashboard integrated with FastAPI backend. Outputs flexion, deviation, and pronation angles for live feedback and long-term session insights."
               link="https://hetai.vercel.app/"
               githubLink="https://github.com/bgar324/hacktech-25-brjk"
               tags={[
@@ -344,7 +340,7 @@ export default function Home() {
             <div className="flex flex-row gap-3">
               <button
                 onClick={() => setVideoId("YWdbfy231n0")}
-                className="relative transition-all duration-300 hover:-translate-y-2 focus:outline-none cursor-pointer group p-1 md:p-2"
+                className="relative transition-all duration-300 hover:-translate-y-2 cursor-pointer group p-1 md:p-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-md"
                 aria-label="Watch Malenia video"
                 style={{ minWidth: 0 }}
               >
@@ -359,7 +355,7 @@ export default function Home() {
               </button>
               <button
                 onClick={() => setVideoId("NaVNh79V4F4")}
-                className="relative transition-all duration-300 hover:-translate-y-2 focus:outline-none cursor-pointer group p-1 md:p-2"
+                className="relative transition-all duration-300 hover:-translate-y-2 cursor-pointer group p-1 md:p-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-md"
                 aria-label="Watch Radahn video"
                 style={{ minWidth: 0 }}
               >
@@ -378,7 +374,7 @@ export default function Home() {
               <p>
                 Loosely inspired by{" "}
                 <a
-                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
+                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   href="https://www.framer.com/marketplace/templates/monocv/"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -387,7 +383,7 @@ export default function Home() {
                 </a>{" "}
                 and coded in{" "}
                 <a
-                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
+                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   href="https://code.visualstudio.com/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -396,7 +392,7 @@ export default function Home() {
                 </a>
                 . Built with{" "}
                 <a
-                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
+                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   href="https://nextjs.org/"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -405,7 +401,7 @@ export default function Home() {
                 </a>{" "}
                 and{" "}
                 <a
-                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
+                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   href="https://tailwindcss.com/"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -414,7 +410,7 @@ export default function Home() {
                 </a>
                 , deployed with{" "}
                 <a
-                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
+                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   href="https://vercel.com/"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -424,7 +420,7 @@ export default function Home() {
                 . <span className="sm:hidden">All text is in</span>{" "}
                 <span className="sm:hidden">
                   <a
-                    className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
+                    className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                     href="https://www.fontshare.com/fonts/cabinet-grotesk"
                     rel="noopener noreferrer"
                     target="_blank"
@@ -437,7 +433,7 @@ export default function Home() {
               <p className="hidden sm:block">
                 All text is in{" "}
                 <a
-                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474]"
+                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   href="https://www.fontshare.com/fonts/cabinet-grotesk"
                   rel="noopener noreferrer"
                   target="_blank"

@@ -31,17 +31,15 @@ const PastVersions = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="
-            flex items-center justify-center gap-x-2 
-            text-gray-900 dark:text-slate-100 
-            hover:bg-[#f6f7f7] dark:hover:bg-gray-900 
-            transition-colors duration-300 
+            flex items-center justify-center gap-x-2
+            text-gray-900 dark:text-slate-100
+            hover:bg-[#f6f7f7] dark:hover:bg-gray-900
+            transition-colors duration-300
             bg-white dark:bg-black
-            border border-gray-200 dark:border-gray-600 
+            border border-gray-200 dark:border-gray-600
             rounded-lg px-4 py-2 cursor-pointer touch-manipulation w-full
+            focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
           "
-          onClick={(e) => {
-            window.open(item.link, "_blank", "noopener,noreferrer")
-          }}
         >
           <span className="flex items-center">
             <Image
@@ -63,17 +61,15 @@ const PastVersions = () => {
         target="_blank"
         rel="noopener noreferrer"
         className="
-          col-span-2 flex items-center justify-center gap-x-2 
-          text-gray-900 dark:text-slate-100 
-          hover:bg-gray-100 dark:hover:bg-gray-900 
-          transition-colors duration-300 
+          col-span-2 flex items-center justify-center gap-x-2
+          text-gray-900 dark:text-slate-100
+          hover:bg-gray-100 dark:hover:bg-gray-900
+          transition-colors duration-300
           bg-white dark:bg-black
-          border border-gray-200 dark:border-gray-600 
+          border border-gray-200 dark:border-gray-600
           rounded-lg px-4 py-2 cursor-pointer touch-manipulation w-full
+          focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
         "
-        onClick={(e) => {
-          window.open(versions[2].link, "_blank", "noopener,noreferrer")
-        }}
       >
         <span className="flex items-center">
           <Image

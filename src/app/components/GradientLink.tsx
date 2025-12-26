@@ -17,7 +17,7 @@ export default function GradientLink({
 }: GradientLinkProps) {
   return (
     <a
-      className="font-medium"
+      className="font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
       style={{
         background: gradient,
         WebkitBackgroundClip: "text",
