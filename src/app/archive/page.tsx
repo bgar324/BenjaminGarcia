@@ -22,8 +22,8 @@ export default function ArchivePage() {
         </a>
 
         <div className="flex justify-between items-start mt-5 mb-10">
-          <h1 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 lowercase tracking-wider lg:py-[.5px] flex items-center gap-1 text-xl md:text-3xl font-bold">
-            all projects
+          <h1 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase tracking-wider lg:py-[.5px] flex items-center gap-1 text-xl md:text-3xl font-bold">
+            Project Archive
           </h1>
         </div>
       </motion.div>
