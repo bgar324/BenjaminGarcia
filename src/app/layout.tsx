@@ -7,7 +7,7 @@ import "./globals.css";
 
 
 export const metadata: Metadata = {
-  title: "Benjamin Garcia | Software Engineer",
+  title: "Benjamin Garcia",
   description: "Full-stack engineer building production interfaces at scale. Experience at Todd Agriscience, Bonterra, TensorStax. CS @ UCLA.",
   keywords: [
     "software engineer",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://bentgarcia.com",
-    title: "Benjamin Garcia | Software Engineer",
+    title: "Benjamin Garcia",
     description: "Full-stack engineer building production interfaces at scale. Experience at Todd Agriscience, Bonterra, TensorStax. CS @ UCLA.",
     siteName: "Benjamin Garcia",
     images: [
@@ -43,13 +43,13 @@ export const metadata: Metadata = {
         url: "/static/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Benjamin Garcia - Software Engineer",
+        alt: "Benjamin Garcia",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Benjamin Garcia | Software Engineer",
+    title: "Benjamin Garcia",
     description: "Full-stack engineer building production interfaces at scale. Experience at Todd Agriscience, Bonterra, TensorStax. CS @ UCLA.",
     images: ["/static/og-image.png"],
   },
