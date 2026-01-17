@@ -61,7 +61,7 @@ export default function AboutSection() {
       </p>
 
       <p className="mt-2 text-gray-600 dark:text-slate-400 lg:text-lg leading-snug">
-        Outside of coding, I enjoy weightlifting, spending time with my gf, and
+        Outside of coding, I enjoy weightlifting, spending time with my dog, and
         exploring the{" "}
         <RandomImageHover images={ELDEN_RING_IMAGES}>
           <GradientLink
