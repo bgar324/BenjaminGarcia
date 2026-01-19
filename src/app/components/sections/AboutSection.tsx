@@ -17,6 +17,8 @@ const ELDEN_RING_IMAGES = [
   "/static/elden/mountaintop.jpg",
 ];
 
+const KING = "/static/king.jpeg";
+
 export default function AboutSection() {
   return (
     <section id="about" className="flex flex-col">
@@ -61,8 +63,11 @@ export default function AboutSection() {
       </p>
 
       <p className="mt-2 text-gray-600 dark:text-slate-400 lg:text-lg leading-snug">
-        Outside of coding, I enjoy weightlifting, spending time with my dog, and
-        exploring the{" "}
+        Outside of coding, I enjoy weightlifting, spending time with my {" "}
+        <RandomImageHover images={[KING]}>
+          <p className="font-medium">dog</p>
+        </RandomImageHover>
+        , and exploring the{" "}
         <RandomImageHover images={ELDEN_RING_IMAGES}>
           <GradientLink
             href="https://en.bandainamcoent.eu/elden-ring/elden-ring"
