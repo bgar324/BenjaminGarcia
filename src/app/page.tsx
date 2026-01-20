@@ -31,7 +31,7 @@ export default function Home() {
         <TechStackSection />
         <ProjectsSection />
         <EducationSection />
-        <PastVersionsSection />
+        {/* <PastVersionsSection /> */}
         <FooterSection />
       </main>
     </motion.div>
