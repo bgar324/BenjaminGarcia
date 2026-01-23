@@ -23,15 +23,7 @@ export default function EducationSection() {
           endDate="2025"
           src="/static/schools/mtsac.png"
           description="Outreach Officer & Front-End Developer for the Computer Science Club."
-        />
-        <Dropdown
-          role="Walnut High School"
-          position="High School Diploma"
-          schoolLink="https://www.walnuths.net"
-          startDate="2019"
-          endDate="2023"
-          src="/static/schools/whs.png"
-        />
+        /> 
       </div>
     </section>
   );

@@ -8,7 +8,6 @@ import LeadershipSection from "./components/sections/LeadershipSection";
 import TechStackSection from "./components/sections/TechStackSection";
 import ProjectsSection from "./components/sections/ProjectsSection";
 import EducationSection from "./components/sections/EducationSection";
-import PastVersionsSection from "./components/sections/PastVersionsSection";
 import FooterSection from "./components/sections/FooterSection";
 import "./globals.css";
 
@@ -31,7 +30,6 @@ export default function Home() {
         <TechStackSection />
         <ProjectsSection />
         <EducationSection />
-        {/* <PastVersionsSection /> */}
         <FooterSection />
       </main>
     </motion.div>

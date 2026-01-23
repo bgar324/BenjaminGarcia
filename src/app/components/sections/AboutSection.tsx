@@ -65,7 +65,7 @@ export default function AboutSection() {
       <p className="mt-2 text-gray-600 dark:text-slate-400 lg:text-lg leading-snug">
         Outside of coding, I enjoy weightlifting, spending time with my {" "}
         <RandomImageHover images={[KING]}>
-          <p className="font-medium">dog</p>
+          <span className="font-medium">dog</span>
         </RandomImageHover>
         , and exploring the{" "}
         <RandomImageHover images={ELDEN_RING_IMAGES}>
