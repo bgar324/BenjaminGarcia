@@ -2,30 +2,83 @@
 
 import Image from "next/image";
 // 1. Import useEffect
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Mail, X, Menu, GitGraph } from "lucide-react";
+import { MapPin, Mail, X, Menu, GitGraph, Expand } from "lucide-react";
 import { LinkedInIcon, GitHubMarkIcon } from "../svgs/Icons";
 import { ArrowUpRight } from "lucide-react";
 
 export default function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
-  // 2. Add Scroll Lock Effect
+  // Track which element opened the modal so we can return focus on close
+  const imageModalTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const modalContentRef = useRef<HTMLDivElement>(null);
+
+  const openImageModal = useCallback((triggerEl: HTMLButtonElement) => {
+    imageModalTriggerRef.current = triggerEl;
+    setIsImageModalOpen(true);
+  }, []);
+
+  const closeImageModal = useCallback(() => {
+    setIsImageModalOpen(false);
+    // Return focus to the element that opened the modal
+    requestAnimationFrame(() => {
+      imageModalTriggerRef.current?.focus();
+    });
+  }, []);
+
+  // Scroll lock for mobile menu and image modal
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      // Disable scrolling on the body
+    if (isMobileMenuOpen || isImageModalOpen) {
       document.body.style.overflow = "hidden";
     } else {
-      // Re-enable scrolling
       document.body.style.overflow = "";
     }
 
-    // Cleanup: ensure scrolling is enabled if component unmounts
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, isImageModalOpen]);
+
+  // Close image modal on Escape + focus trap
+  useEffect(() => {
+    if (!isImageModalOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeImageModal();
+        return;
+      }
+
+      // Focus trap: cycle Tab within the modal
+      if (e.key === "Tab" && modalContentRef.current) {
+        const focusable = modalContentRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isImageModalOpen, closeImageModal]);
 
   const socialLinks = [
     {
@@ -71,13 +124,19 @@ export default function Sidebar() {
         "
         >
           <div className="flex items-center gap-3">
-            <Image
-              src="/static/IMG_7044_tiny.jpg"
-              alt="Benjamin Garcia"
-              width={40}
-              height={40}
-              className="rounded-lg object-cover"
-            />
+            <button
+              onClick={(e) => openImageModal(e.currentTarget)}
+              className="flex-shrink-0 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 cursor-pointer"
+              aria-label="View full photo of Benjamin Garcia"
+            >
+              <Image
+                src="/static/ben_2.jpeg"
+                alt="Benjamin Garcia"
+                width={40}
+                height={40}
+                className="rounded-lg object-cover"
+              />
+            </button>
             <div className="flex flex-col">
               <h1 className="text-sm font-bold text-gray-900 dark:text-slate-100 leading-tight">
                 Benjamin Garcia
@@ -152,18 +211,36 @@ export default function Sidebar() {
       {/* DESKTOP SIDEBAR */}
       <aside className="hidden lg:flex flex-col lg:w-[204px] lg:shrink-0 lg:gap-y-3 lg:sticky lg:top-10 h-fit">
         <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-2 transition-colors duration-300">
-          <Image
-            src="/static/IMG_7044_tiny.jpg"
-            alt="Benjamin Garcia"
-            width={698}
-            height={800}
-            priority
-            quality={90}
-            placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAQAA4DASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEBf/EACQQAAEDAwMEAwAAAAAAAAAAAAECAwQABREhEjFBBhMiURQyYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAGhEAAgMBAQAAAAAAAAAAAAAAAAECAxEhIv/aAAwDAQACEQMRAD8A3qKKKyNDBooooA//2Q=="
-            sizes="(max-width: 768px) 128px, (max-width: 1024px) 112px, 192px"
-            className="h-auto w-full rounded-xl mb-2"
-          />
+          <div className="relative group/img">
+            <Image
+              src="/static/ben_2.jpeg"
+              alt="Benjamin Garcia"
+              width={698}
+              height={800}
+              priority
+              quality={90}
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAQAA4DASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEBf/EACQQAAEDAwMEAwAAAAAAAAAAAAECAwQABREhEjFBBhMiURQyYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAGhEAAgMBAQAAAAAAAAAAAAAAAAECAxEhIv/aAAwDAQACEQMRAD8A3qKKKyNDBooooA//2Q=="
+              sizes="(max-width: 768px) 128px, (max-width: 1024px) 112px, 192px"
+              className="h-auto w-full rounded-xl mb-2"
+            />
+            <button
+              onClick={(e) => openImageModal(e.currentTarget)}
+              className="
+                absolute top-2 right-2 p-1.5 rounded-md
+                bg-black/40 backdrop-blur-sm
+                text-white/80 hover:text-white hover:bg-black/60
+                opacity-0 group-hover/img:opacity-100
+                transition-all duration-200 ease-in-out
+                cursor-pointer
+                focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
+              "
+              aria-label="Expand photo"
+              title="Expand photo"
+            >
+              <Expand size={14} strokeWidth={2.5} />
+            </button>
+          </div>
 
           <div className="p-1">
             <h1 className="text-gray-900 dark:text-slate-100 text-2xl font-semibold tracking-tight leading-none">
@@ -237,6 +314,65 @@ export default function Sidebar() {
           </a>
         </div>
       </aside>
+
+      {/* IMAGE EXPAND MODAL */}
+      <AnimatePresence>
+        {isImageModalOpen && (
+          <motion.div
+            className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            style={{ touchAction: "none" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeImageModal}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Expanded photo of Benjamin Garcia"
+          >
+            <motion.div
+              ref={modalContentRef}
+              className="relative max-w-lg w-full"
+              initial={{ scale: 0.92, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.92, opacity: 0 }}
+              transition={{ duration: 0.2, ease: [0.32, 0.72, 0, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={closeImageModal}
+                className="absolute top-2 right-2 z-10 p-2 text-gray-100 hover:text-white transition-colors bg-black/60 rounded-full backdrop-blur-sm hover:bg-black/80 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                aria-label="Close photo"
+                autoFocus
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+              <Image
+                src="/static/ben_2.jpeg"
+                alt="Benjamin Garcia"
+                width={698}
+                height={800}
+                quality={100}
+                className="w-full h-auto rounded-lg shadow-2xl select-none"
+                draggable={false}
+                sizes="(max-width: 512px) 100vw, 512px"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
