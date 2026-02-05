@@ -37,7 +37,7 @@ export default function AboutSection() {
             University of California, Los Angeles.
           </GradientLink>
         </RandomImageHover> 
-        I currently serve as an officer for{" "}
+        {" "}I currently serve as an officer for{" "}
         <GradientLink
           href="https://hack.uclaacm.com"
           gradient="linear-gradient(to right, hsla(196,67%,45%,1), hsla(280,100%,69%,1))"
@@ -51,7 +51,7 @@ export default function AboutSection() {
         >
           exploretech.la,
         </GradientLink>
-         where I help build responsive, accessible interfaces that bring ideas
+         {" "}where I help build responsive, accessible interfaces that bring ideas
         to life. In winter, I'll be joining Professor Xiang "Anthony" Chen's{" "}
         <GradientLink
           href="https://hci.ucla.edu"
