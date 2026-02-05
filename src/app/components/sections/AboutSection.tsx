@@ -34,10 +34,10 @@ export default function AboutSection() {
             href="https://ucla.edu/"
             gradient="linear-gradient(to right, #1e3a8a, #b45309)"
           >
-            University of California, Los Angeles
+            University of California, Los Angeles.
           </GradientLink>
-        </RandomImageHover>
-        . I currently serve as an officer for{" "}
+        </RandomImageHover> 
+        I currently serve as an officer for{" "}
         <GradientLink
           href="https://hack.uclaacm.com"
           gradient="linear-gradient(to right, hsla(196,67%,45%,1), hsla(280,100%,69%,1))"
@@ -49,17 +49,16 @@ export default function AboutSection() {
           href="https://exploretech.la"
           gradient="linear-gradient(to right, #eab308, #1e3a8a)"
         >
-          exploretech.la
+          exploretech.la,
         </GradientLink>
-        , where I help build responsive, accessible interfaces that bring ideas
+         where I help build responsive, accessible interfaces that bring ideas
         to life. In winter, I'll be joining Professor Xiang "Anthony" Chen's{" "}
         <GradientLink
           href="https://hci.ucla.edu"
           gradient="linear-gradient(to right, hsla(36,52%,60%,1), hsla(210,64%,61%,1))"
         >
-          Human-Computer Interaction Research Lab
+          Human-Computer Interaction Research Lab.
         </GradientLink>
-        .
       </p>
 
       <p className="mt-2 text-gray-600 dark:text-slate-400 lg:text-lg leading-snug">
@@ -73,10 +72,9 @@ export default function AboutSection() {
             href="https://en.bandainamcoent.eu/elden-ring/elden-ring"
             gradient="linear-gradient(to right, #092322, #996A48)"
           >
-            Lands Between
+            Lands Between.
           </GradientLink>
         </RandomImageHover>
-        .
       </p>
     </section>
   );

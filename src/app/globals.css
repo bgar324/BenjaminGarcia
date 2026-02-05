@@ -5,6 +5,9 @@
 
 body {
   font-family: var(--font-cabinet), Arial, Helvetica, sans-serif;
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-ease),
+    color var(--theme-transition-duration) var(--theme-transition-ease);
 }
 
 @theme inline {
@@ -47,6 +50,8 @@ body {
 
 :root {
   --radius: 0.625rem;
+  --theme-transition-duration: 220ms;
+  --theme-transition-ease: cubic-bezier(0.2, 0.6, 0.2, 1);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -203,4 +208,47 @@ html {
 .animate-marquee {
   animation: marquee-scroll linear infinite;
   will-change: transform;
+}
+
+/* Theme transition animation */
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.8 0 0);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.7 0 0);
+}
+
+.dark::-webkit-scrollbar-thumb {
+  background: oklch(0.3 0 0);
+}
+
+.dark::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.4 0 0);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.8 0 0) transparent;
+}
+
+.dark * {
+  scrollbar-color: oklch(0.3 0 0) transparent;
 }
