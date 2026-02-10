@@ -52,13 +52,14 @@ export default function AboutSection() {
           exploretech.la,
         </GradientLink>
          {" "}where I help build responsive, accessible interfaces that bring ideas
-        to life. In winter, I'll be joining Professor Xiang "Anthony" Chen's{" "}
+        to life. I work in Professor Xiang “Anthony” Chen’s{" "}
         <GradientLink
           href="https://hci.ucla.edu"
           gradient="linear-gradient(to right, hsla(36,52%,60%,1), hsla(210,64%,61%,1))"
         >
-          Human-Computer Interaction Research Lab.
+          Human-Computer Interaction Research Lab,
         </GradientLink>
+        {" "}advised by PhD researcher Youngseung Jeon, focusing on interactive systems for human–AI collaboration.
       </p>
 
       <p className="mt-2 text-gray-600 dark:text-slate-400 lg:text-lg leading-snug">

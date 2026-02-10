@@ -7,14 +7,14 @@ export default function ExperienceSection() {
       <SectionHeader>experience</SectionHeader>
       <div className="flex flex-col gap-4">
         <Dropdown
-          role="Undergraduate Research Developer"
+          role="Interface Undergraduate Researcher "
           position="UCLA HCI Research Lab"
           companyLink="https://hci.ucla.edu"
           startDate="Dec 2025"
           endDate="Present"
           src="/static/companies/ucla-hci.png"
           darkSrc="/static/companies/ucla-hci-dark.png"
-          description="Joining Professor Xiang 'Anthony' Chen's Human-Computer Interaction Lab in Winter 2026, where I'll collaborate with designers and researchers to prototype and explore new interaction experiences."
+          description="Working in Professor Xiang “Anthony” Chen’s Human–Computer Interaction Lab, advised by Youngseung Jeon, on interactive systems for human–AI collaboration and hypothesis exploration."
         />
         <Dropdown
           role="Software Engineer Intern"
