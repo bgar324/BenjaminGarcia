@@ -21,7 +21,7 @@ export default function LeadershipSection() {
           companyLink="https://www.exploretech.la/"
           startDate="Sep 2025"
           endDate="Present"
-          src="/static/companies/ela.png"
+          src="/static/companies/ela.webp"
           description="Core member of 5-person web development team rebuilding the organization's website with React and JavaScript. Support Content Board of 10–20 members, helping run workshops and prepare for the Ignite Program in Winter 2026."
         />
         <Dropdown

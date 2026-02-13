@@ -19,7 +19,7 @@ export default function FooterSection() {
               style={{ minWidth: 0 }}
             >
               <Image
-                src="/static/hom.png"
+                src="/static/hom.webp"
                 width={0}
                 height={0}
                 sizes="(min-width: 768px) 48px, 36px"
@@ -34,7 +34,7 @@ export default function FooterSection() {
               style={{ minWidth: 0 }}
             >
               <Image
-                src="/static/rg.png"
+                src="/static/rg.webp"
                 width={0}
                 height={0}
                 sizes="(min-width: 768px) 48px, 36px"

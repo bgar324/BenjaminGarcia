@@ -130,7 +130,7 @@ export default function Sidebar() {
               aria-label="View full photo of Benjamin Garcia"
             >
               <Image
-                src="/static/ben_2.jpeg"
+                src="/static/ben_2.webp"
                 alt="Benjamin Garcia"
                 width={40}
                 height={40}
@@ -213,12 +213,12 @@ export default function Sidebar() {
         <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-2 transition-colors duration-300">
           <div className="relative group/img">
             <Image
-              src="/static/ben_2.jpeg"
+              src="/static/ben_2.webp"
               alt="Benjamin Garcia"
               width={698}
               height={800}
               priority
-              quality={90}
+              quality={85}
               placeholder="blur"
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAQAA4DASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEBf/EACQQAAEDAwMEAwAAAAAAAAAAAAECAwQABREhEjFBBhMiURQyYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAGhEAAgMBAQAAAAAAAAAAAAAAAAECAxEhIv/aAAwDAQACEQMRAD8A3qKKKyNDBooooA//2Q=="
               sizes="(max-width: 768px) 128px, (max-width: 1024px) 112px, 192px"
@@ -360,11 +360,11 @@ export default function Sidebar() {
                 </svg>
               </button>
               <Image
-                src="/static/ben_2.jpeg"
+                src="/static/ben_2.webp"
                 alt="Benjamin Garcia"
                 width={698}
                 height={800}
-                quality={100}
+                quality={90}
                 className="w-full h-auto rounded-lg shadow-2xl select-none"
                 draggable={false}
                 sizes="(max-width: 512px) 100vw, 512px"

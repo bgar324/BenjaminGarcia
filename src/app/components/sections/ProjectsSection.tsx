@@ -23,7 +23,7 @@ export default function ProjectsSection() {
       </div>
       <div className="flex flex-col gap-y-3">
         <ProjectItem
-          src="/static/project-previews/poly-clubs-2.png"
+          src="/static/project-previews/poly-clubs-2.webp"
           title="Poly Clubs"
           description="Cal Poly students had no way to get honest peer reviews of 486+ campus clubs. Built a transparent review platform with anonymous multi-dimensional ratings ('Vibe Check') and real-time aggregation, helping students make informed decisions about campus involvement."
           link="https://poly-clubs.vercel.app/"
@@ -37,7 +37,7 @@ export default function ProjectsSection() {
           ]}
         />
         <ProjectItem
-          src="/static/project-previews/gitproof-2.png"
+          src="/static/project-previews/gitproof-2.webp"
           title="Git Proof"
           description="Developers struggle to showcase GitHub contributions effectively to recruiters. GitProof generates shareable, recruiter-facing profile reports with impact scores, consistency analysis, and archetype classification using the GitHub GraphQL API, PostgreSQL, and Gemini 2.5 Flash for AI-assisted insights."
           link="https://gitproof.dev"
@@ -53,7 +53,7 @@ export default function ProjectsSection() {
           ]}
         />
         <ProjectItem
-          src="/static/project-previews/mtsaccsprev.png"
+          src="/static/project-previews/mtsaccsprev.webp"
           title="Computer Science Club Website"
           description="Mt. SAC's CS Club needed a modern, maintainable website to serve 900+ members. Rebuilt the site with Next.js, TypeScript, and Tailwind CSS, implementing modular components and data-driven rendering for events and officer directories. Replaced legacy Bootstrap build with mobile-first design and static optimization."
           link="https://mtsaccs.org"
@@ -89,12 +89,12 @@ export default function ProjectsSection() {
                   className="border-gray-500 hover:text-orange-500 transition-colors duration-300 flex flex-row gap-2 ml-2 items-center text-center justify-center"
                 >
                   <Image
-                    src="/static/hacktech-logo.png"
+                    src="/static/hacktech-logo.webp"
                     width={24}
                     height={24}
                     alt="HackTech logo"
                     className="w-[1.25rem] h-[1.25rem]"
-                    quality={100}
+                    quality={88}
                   />
                   <span>HackTech 2025</span>
                 </a>

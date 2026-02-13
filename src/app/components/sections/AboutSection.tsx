@@ -4,20 +4,20 @@ import RandomImageHover from "../RandomImageHover";
 import GradientLink from "../GradientLink";
 
 const UCLA_IMAGES = [
-  "/static/ucla/overhead-ucla.jpg",
-  "/static/ucla/bruin-bear.jpg",
-  "/static/ucla/powell.jpg",
-  "/static/ucla/e6.jpg",
+  "/static/ucla/overhead-ucla.webp",
+  "/static/ucla/bruin-bear.webp",
+  "/static/ucla/powell.webp",
+  "/static/ucla/e6.webp",
 ];
 
 const ELDEN_RING_IMAGES = [
-  "/static/elden/sote.jpg",
-  "/static/elden/miquella.jpg",
-  "/static/elden/erdtree.jpg",
-  "/static/elden/mountaintop.jpg",
+  "/static/elden/sote.webp",
+  "/static/elden/miquella.webp",
+  "/static/elden/erdtree.webp",
+  "/static/elden/mountaintop.webp",
 ];
 
-const KING = "/static/king.jpeg";
+const KING = "/static/king.webp";
 
 export default function AboutSection() {
   return (

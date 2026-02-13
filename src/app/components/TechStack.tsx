@@ -19,19 +19,19 @@ const STACK: TechCategory = {
     {
       name: "Next.js",
       src: "/static/tech/next.webp",
-      darkSrc: "/static/tech/nextdark.png",
+      darkSrc: "/static/tech/nextdark.webp",
     },
     { name: "React", src: "/static/tech/react.webp" },
     { name: "Tailwind", src: "/static/tech/tailwind.webp" },
-    { name: "TypeScript", src: "/static/tech/typescript.png" },
-    { name: "Redux", src: "/static/tech/redux.png" },
+    { name: "TypeScript", src: "/static/tech/typescript.webp" },
+    { name: "Redux", src: "/static/tech/redux.webp" },
   ],
   Backend: [
     { name: "Python", src: "/static/tech/python.webp" },
-    { name: "Postgres", src: "/static/tech/postgres.png" },
-    { name: "Lambda", src: "/static/tech/lambda.png" },
-    { name: "Prisma", src: "/static/tech/prisma.png" },
-    { name: "Firebase", src: "/static/tech/firebase.png" },
+    { name: "Postgres", src: "/static/tech/postgres.webp" },
+    { name: "Lambda", src: "/static/tech/lambda.webp" },
+    { name: "Prisma", src: "/static/tech/prisma.webp" },
+    { name: "Firebase", src: "/static/tech/firebase.webp" },
   ],
 };
 

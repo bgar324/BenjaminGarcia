@@ -62,7 +62,7 @@ export default function ProjectItem({
           src={src}
           alt={alt || (typeof title === "string" ? title : "Project preview")}
           fill
-          quality={90}
+          quality={82}
           sizes="(max-width: 768px) 100vw, 33vw"
           className="
       rounded-lg

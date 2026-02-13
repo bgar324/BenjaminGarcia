@@ -7,6 +7,8 @@ const withAnalyzer = withBundleAnalyzer({
 
 const nextConfig: NextConfig = {
   images: {
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
     remotePatterns: [
       { protocol: 'https', hostname: 'i.scdn.co' },
       { protocol: 'https', hostname: 'mosaic.scdn.co' },

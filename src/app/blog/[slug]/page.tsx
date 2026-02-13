@@ -34,7 +34,7 @@ const blogPosts: Record<string, BlogPost> = {
     date: "May 20, 2025",
     status: "Scrapped",
     stack: ["Next.js", "Tailwind CSS", "Firebase", "Google Vision API", "Google Document AI", "LLaVA", "4o", "Python"],
-    image: "/static/blog-images/loma-lookup_blog-image.png",
+    image: "/static/blog-images/loma-lookup_blog-image.webp",
     imageDescription: "Sample data. Believe it or not, this was one of the better/easier images to work with.",
     sections: [
       {
@@ -58,7 +58,7 @@ const blogPosts: Record<string, BlogPost> = {
           "I began with **Google Vision OCR** to extract text from individual cells. When results became inconsistent, especially with merged cells or rotated entries, I switched to **Google Document AI's table processor**, which improved baseline accuracy but still lacked full structural understanding.",
         ],
         image: {
-          src: "/static/blog-images/loma-lookup_blog-image-preprocessed.png",
+          src: "/static/blog-images/loma-lookup_blog-image-preprocessed.webp",
           alt: "Preprocessed of the raw image through a custom Python script.",
           caption: "Preprocessed image."
         },

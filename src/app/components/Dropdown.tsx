@@ -56,8 +56,7 @@ const Dropdown: React.FC<DropdownProps> = ({
             alt={`${position} logo`}
             width={64}
             height={64}
-            quality={95}
-            priority
+            quality={88}
             className={`h-auto w-16 rounded-xl items-center p-1 lg:ml-1 ${showDark ? "hidden" : ""}`}
           />
           {/* Dark mode image (preloaded if provided) */}
@@ -67,8 +66,7 @@ const Dropdown: React.FC<DropdownProps> = ({
               alt={`${position} logo`}
               width={64}
               height={64}
-              quality={95}
-              priority
+              quality={88}
               className={`h-auto w-16 rounded-xl items-center p-1 lg:ml-1 ${showDark ? "" : "hidden"}`}
             />
           )}
