@@ -83,6 +83,8 @@ body {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --selection-bg: #000000;
+  --selection-foreground: #ffffff;
   --icon-muted: #6a7282;     /* e.g., LocationIcon gray */
   --icon: #0f0f0f;           /* primary black-ish */
   --icon-contrast: #ffffff;  /* white parts inside icons */
@@ -120,6 +122,8 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --selection-bg: #000000;
+  --selection-foreground: #ffffff;
   --icon-muted: #cbd5e1;     /* slate-300 */
   --icon: #e5e7eb;           /* slate-200 */
   --icon-contrast: #0b0f19;  /* near-black for reversed fills */
@@ -150,12 +154,17 @@ body {
 }
 
 .dotted-link {
-  border-bottom: 1px dotted currentColor;
+  --dotted-link-color: currentColor;
   text-decoration: none;
+  background-image: radial-gradient(circle, var(--dotted-link-color) 1px, transparent 1.5px);
+  background-repeat: repeat-x;
+  background-size: 8px 2px;
+  background-position: 0 calc(100% - 1px);
+  padding-bottom: 2px;
 }
 
 .dotted-link:hover {
-  border-bottom-color: var(--accent-foreground);
+  --dotted-link-color: var(--accent-foreground);
 }
 
 .arrow-icon {
@@ -194,6 +203,16 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-foreground);
+}
+
+::-moz-selection {
+  background: var(--selection-bg);
+  color: var(--selection-foreground);
 }
 
 @keyframes marquee-scroll {

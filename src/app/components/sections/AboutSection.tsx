@@ -38,27 +38,35 @@ export default function AboutSection() {
           </GradientLink>
         </RandomImageHover> 
         {" "}I currently serve as an officer for{" "}
-        <GradientLink
+        <a
           href="https://hack.uclaacm.com"
-          gradient="linear-gradient(to right, hsla(196,67%,45%,1), hsla(280,100%,69%,1))"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm hover:text-gray-700"
         >
           ACM Hack
-        </GradientLink>{" "}
+        </a>{" "}
         and contribute to{" "}
-        <GradientLink
+        <a
           href="https://exploretech.la"
-          gradient="linear-gradient(to right, #eab308, #1e3a8a)"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm hover:text-gray-700"
         >
-          exploretech.la,
-        </GradientLink>
+          exploretech.la
+        </a>
+        ,
          {" "}where I help build responsive, accessible interfaces that bring ideas
         to life. I work in Professor Xiang “Anthony” Chen’s{" "}
-        <GradientLink
+        <a
           href="https://hci.ucla.edu"
-          gradient="linear-gradient(to right, hsla(36,52%,60%,1), hsla(210,64%,61%,1))"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm hover:text-gray-700"
         >
-          Human-Computer Interaction Research Lab,
-        </GradientLink>
+          Human-Computer Interaction Research Lab
+        </a>
+        ,
         {" "}advised by PhD researcher Youngseung Jeon, focusing on interactive systems for human–AI collaboration.
       </p>
 
