@@ -77,29 +77,29 @@ export const plannedProjects: ProjectEntry[] = [
   {
     year: 2025,
     title: "log•it v2",
-    builtWith: ["Next.js", "Tailwind CSS", "Firebase"],
+    builtWith: ["Next.js", "Tailwind CSS", "Supabase"],
     status: "In Progress",
   },
-  {
-    year: 2025,
-    title: "Git Proof",
-    builtWith: [
-      "Next.js",
-      "Tailwind CSS",
-      "FastAPI",
-      "PostgreSQL",
-      "GitHub API",
-      "Celery",
-      "Redis",
-    ],
-    status: "In Progress",
-  },
-  {
-    year: 2025,
-    title: "Open CV AI Squat Analyzer",
-    builtWith: ["Next.js", "Tailwind CSS", "Firebase", "Python", "OpenCV"],
-    status: "Backlog",
-  },
+  // {
+  //   year: 2025,
+  //   title: "Git Proof",
+  //   builtWith: [
+  //     "Next.js",
+  //     "Tailwind CSS",
+  //     "FastAPI",
+  //     "PostgreSQL",
+  //     "GitHub API",
+  //     "Celery",
+  //     "Redis",
+  //   ],
+  //   status: "In Progress",
+  // },
+  // {
+  //   year: 2025,
+  //   title: "Open CV AI Squat Analyzer",
+  //   builtWith: ["Next.js", "Tailwind CSS", "Firebase", "Python", "OpenCV"],
+  //   status: "Backlog",
+  // },
 ];
 
 export const archiveColumns: Column[] = [
