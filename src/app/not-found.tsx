@@ -1,35 +1,138 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Link from "next/link";
+import React, { useState, useEffect, useRef } from "react";
+import { RotateCcw } from "lucide-react";
+
+const FONT_OPTIONS = [
+  "Impact, sans-serif",                // Heavy, Loud, Dramatic
+  "'Comic Sans MS', cursive",          // Whimsical, Playful
+  "'Courier New', monospace",          // Retro, Technical
+  "Georgia, serif",                    // Elegant, Traditional
+  "Papyrus, fantasy",                  // The "Legendary" Choice
+  "'Brush Script MT', cursive",        // Script, Artistic
+  "'Arial Black', sans-serif",         // Chunkier Sans
+  "Chalkduster, fantasy",              // Gritty, Hand-drawn (Mac)
+  "American Typewriter, serif",        // Classic, Textural
+  "Copperplate, sans-serif",           // Industrial, Sharp
+  "'Times New Roman', serif",          // Strict, Formal
+  "Baskerville, serif",                // Academic, Deep
+  "Luminari, fantasy",                 // Medieval, Gothic (Mac)
+  "Marker Felt, fantasy"               // Casual, Bold
+];
 
 export default function NotFound() {
+  const [resetKey, setResetKey] = useState(0);
+  const [hasInteracted, setHasInteracted] = useState(false);
+
+  const handleReset = () => {
+    setResetKey((prev) => prev + 1);
+  };
+
+  const onInteraction = () => {
+    if (!hasInteracted) setHasInteracted(true);
+  };
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="px-5 md:px-20 sm:px-6 max-w-5xl mx-auto flex flex-col items-center justify-center min-h-screen text-center"
+    <main className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden bg-white dark:bg-black">
+      <div className="relative z-10 flex flex-col items-center">
+        <div className="flex select-none" key={resetKey}>
+          <FlickerDigit char="4" onInteraction={onInteraction} />
+          <FlickerDigit char="0" onInteraction={onInteraction} />
+          <FlickerDigit char="4" onInteraction={onInteraction} />
+        </div>
+
+        <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300">
+          The page you are looking for has been moved or doesn't exist.
+        </p>
+
+        <button
+          onClick={handleReset}
+          aria-label="Reset view"
+          className={`mt-10 p-3 transition-all duration-1000 ease-in-out rounded-full group
+            ${
+              hasInteracted
+                ? "opacity-30 hover:opacity-100 pointer-events-auto translate-y-0"
+                : "opacity-0 pointer-events-none cursor-pointer"
+            }
+          `}
+        >
+          <RotateCcw
+            size={18}
+            className="text-black dark:text-white transition-transform duration-500 cursor-pointer"
+          />
+        </button>
+      </div>
+    </main>
+  );
+}
+
+function FlickerDigit({
+  char,
+  onInteraction,
+}: {
+  char: string;
+  onInteraction: () => void;
+}) {
+  const [currentFont, setCurrentFont] = useState<string>("inherit");
+  const [isLocked, setIsLocked] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const startFlicker = () => {
+    onInteraction();
+    if (isLocked) return;
+
+    intervalRef.current = setInterval(() => {
+      const randomFont =
+        FONT_OPTIONS[Math.floor(Math.random() * FONT_OPTIONS.length)];
+      setCurrentFont(randomFont);
+    }, 100);
+  };
+
+  const stopFlicker = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    if (!isLocked) {
+      setCurrentFont("inherit");
+    }
+  };
+
+  const toggleLock = (e: React.MouseEvent) => {
+    e.preventDefault();
+    onInteraction();
+    if (isLocked) {
+      setIsLocked(false);
+      if (isHovering) startFlicker();
+    } else {
+      setIsLocked(true);
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, []);
+
+  return (
+    <div
+      onMouseEnter={() => {
+        setIsHovering(true);
+        startFlicker();
+      }}
+      onMouseLeave={() => {
+        setIsHovering(false);
+        stopFlicker();
+      }}
+      onClick={toggleLock}
+      className={`cursor-pointer px-2 transition-all duration-150 ease-in-out ${
+        isLocked ? "scale-110" : "hover:scale-105"
+      }`}
+      style={{ fontFamily: currentFont }}
     >
-      <p className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 text-xs uppercase font-semibold tracking-wider lg:text-sm mb-6 text-black dark:text-white">
-        404
-      </p>
-
-      <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-black dark:text-white mb-3">
-        Page not found
+      <h1 className="text-[22vh] sm:text-[24vh] leading-none font-extrabold tracking-tighter text-black dark:text-white">
+        {char}
       </h1>
-
-      <p className="text-muted-foreground text-sm sm:text-base max-w-md mb-8">
-        The page you&apos;re looking for doesn&apos;t exist or has been moved.
-      </p>
-
-      <Link
-        href="/"
-        className="inline-flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-md px-4 py-2 text-sm font-medium text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 active:scale-95"
-      >
-        <span aria-hidden="true">&larr;</span>
-        Back to home
-      </Link>
-    </motion.div>
+    </div>
   );
 }
