@@ -1,6 +1,14 @@
 import { ProjectEntry, Column } from "../components/ProjectTable";
 
 export const archiveProjects: ProjectEntry[] = [
+    {
+    year: 2025,
+    title: "Computer Science Club Website",
+    madeAt: "Mt. SAC",
+    builtWith: ["Next.js", "Tailwind CSS", "TypeScript", "Vercel"],
+    link: "https:/mtsaccs.org/",
+    label: "Website",
+  },
   {
     year: 2025,
     title: "Rift Report",
@@ -19,7 +27,7 @@ export const archiveProjects: ProjectEntry[] = [
   },
   {
     year: 2025,
-    title: "Computer Science Website (v1)",
+    title: "Computer Science Club Website (v1)",
     madeAt: "Mt. SAC",
     builtWith: ["React.js", "Bootstrap", "Netlify"],
     link: "https://v1.mtsaccs.org",

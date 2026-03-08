@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Providers from "./providers";
 import { cabinet } from "./fonts/cabinet";
+import { NOT_FOUND_FONT_STYLESHEET } from "./fonts/not-found-fonts";
 import "./globals.css";
 
 
@@ -74,6 +75,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={cabinet.variable} suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="stylesheet" href={NOT_FOUND_FONT_STYLESHEET} />
       </head>
       <body
         className="antialiased bg-white dark:bg-black"

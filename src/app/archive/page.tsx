@@ -28,7 +28,7 @@ export default function ArchivePage() {
         </div>
       </motion.div>
 
-      <motion.section
+      {/* <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
@@ -38,14 +38,14 @@ export default function ArchivePage() {
         <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
           <ConfigurableProjectTable type="planned" />
         </div>
-      </motion.section>
+      </motion.section> */}
 
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
       >
-        <SectionHeader>past projects (8)</SectionHeader>
+        {/* <SectionHeader>past projects (8)</SectionHeader> */}
         <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
           <ConfigurableProjectTable type="archive" />
         </div>

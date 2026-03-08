@@ -2,23 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { RotateCcw } from "lucide-react";
-
-const FONT_OPTIONS = [
-  "Impact, sans-serif",                // Heavy, Loud, Dramatic
-  "'Comic Sans MS', cursive",          // Whimsical, Playful
-  "'Courier New', monospace",          // Retro, Technical
-  "Georgia, serif",                    // Elegant, Traditional
-  "Papyrus, fantasy",                  // The "Legendary" Choice
-  "'Brush Script MT', cursive",        // Script, Artistic
-  "'Arial Black', sans-serif",         // Chunkier Sans
-  "Chalkduster, fantasy",              // Gritty, Hand-drawn (Mac)
-  "American Typewriter, serif",        // Classic, Textural
-  "Copperplate, sans-serif",           // Industrial, Sharp
-  "'Times New Roman', serif",          // Strict, Formal
-  "Baskerville, serif",                // Academic, Deep
-  "Luminari, fantasy",                 // Medieval, Gothic (Mac)
-  "Marker Felt, fantasy"               // Casual, Bold
-];
+import { FONT_OPTIONS } from "./fonts/not-found-fonts";
 
 export default function NotFound() {
   const [resetKey, setResetKey] = useState(0);
@@ -86,7 +70,7 @@ function FlickerDigit({
       const randomFont =
         FONT_OPTIONS[Math.floor(Math.random() * FONT_OPTIONS.length)];
       setCurrentFont(randomFont);
-    }, 100);
+    }, 140);
   };
 
   const stopFlicker = () => {

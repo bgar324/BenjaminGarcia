@@ -53,23 +53,14 @@ export default function ProjectsSection() {
           ]}
         />
         <ProjectItem
-          src="/static/project-previews/mtsaccsprev.webp"
-          title="Computer Science Club Website"
-          description="Mt. SAC's CS Club needed a modern, maintainable website to serve 900+ members. Rebuilt the site with Next.js, TypeScript, and Tailwind CSS, implementing modular components and data-driven rendering for events and officer directories. Replaced legacy Bootstrap build with mobile-first design and static optimization."
-          link="https://mtsaccs.org"
-          githubLink="https://github.com/bgar324/mtsaccs-v2"
-          tags={["Next.js", "Tailwind CSS", "TypeScript", "Vercel"]}
-        />
-        <ProjectItem
-          src="/static/project-previews/logit-preview.webp"
+          src="/static/project-previews/logit-preview.png"
           title="Logit"
-          description="Most workout apps are bloated with features users don't need. Built a minimal workout logger focused on efficient tracking with calendar-based editing, progress visualizations, and PostgreSQL storage for tags, comments, and dropsets. Enables progressive overload tracking without complexity."
-          githubLink="https://github.com/bgar324/logit"
+          description="Logit is a lightweight workout tracker for logging sets, reps, weight, and training history without unnecessary friction. It lets users quickly record workouts, get exercise name suggestions and last-session comparisons while logging, and review their progress through dashboards, charts, personal bests, and exercise detail pages."
+          link = "https://logit-prod.vercel.app"
+          githubLink="https://github.com/bgar324/log-it"
           tags={[
             "Next.js",
             "Tailwind CSS",
-            "react-calendar",
-            "Recharts",
             "Supabase",
             "PostgreSQL",
             "Prisma",
