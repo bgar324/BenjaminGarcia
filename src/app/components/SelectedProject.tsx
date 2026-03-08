@@ -35,7 +35,7 @@ export default function ProjectItem({
     if (onImageClick) {
       onImageClick(
         galleryImages && galleryImages.length > 0 ? galleryImages : [src],
-        0
+        0,
       );
     }
   };
@@ -67,7 +67,7 @@ export default function ProjectItem({
           className="
       rounded-lg
       border border-gray-300 dark:border-gray-700
-      cursor-pointer object-cover
+      object-cover
     "
           onClick={(e) => {
             e.preventDefault();
