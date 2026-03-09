@@ -105,7 +105,6 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* MOBILE: Fixed "Island" Header */}
       <div
         className="lg:hidden fixed top-0 left-0 right-0 h-16 z-40 pointer-events-none 
         bg-gradient-to-b from-white/90 via-white/60 to-transparent 
@@ -130,7 +129,7 @@ export default function Sidebar() {
               aria-label="View full photo of Benjamin Garcia"
             >
               <Image
-                src="/static/ben_2.webp"
+                src="/static/me.jpeg"
                 alt="Benjamin Garcia"
                 width={40}
                 height={40}
@@ -213,7 +212,7 @@ export default function Sidebar() {
         <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-2 transition-colors duration-300">
           <div className="relative group/img">
             <Image
-              src="/static/ben_2.webp"
+              src="/static/me.jpeg"
               alt="Benjamin Garcia"
               width={698}
               height={800}
@@ -360,7 +359,7 @@ export default function Sidebar() {
                 </svg>
               </button>
               <Image
-                src="/static/ben_2.webp"
+                src="/static/me.jpeg"
                 alt="Benjamin Garcia"
                 width={698}
                 height={800}
