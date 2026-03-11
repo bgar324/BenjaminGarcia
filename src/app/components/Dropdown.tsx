@@ -47,10 +47,9 @@ const Dropdown: React.FC<DropdownProps> = ({
   const showDark = mounted && theme === "dark" && darkSrc
 
   return (
-    <div className="border border-gray-200 dark:border-gray-600 bg-white dark:bg-black rounded-lg flex flex-col transition-colors duration-300">
-      <div className="flex flex-row">
+    <div className="border border-gray-200 dark:border-gray-600 bg-white dark:bg-black rounded-[13px] flex flex-col transition-colors duration-300">
+      <div className="flex flex-row"> 
         <div className="flex justify-center items-center">
-          {/* Light mode image */}
           <Image
             src={src}
             alt={`${position} logo`}
@@ -59,7 +58,6 @@ const Dropdown: React.FC<DropdownProps> = ({
             quality={88}
             className={`h-auto w-16 rounded-xl items-center p-1 lg:ml-1 ${showDark ? "hidden" : ""}`}
           />
-          {/* Dark mode image (preloaded if provided) */}
           {darkSrc && (
             <Image
               src={darkSrc}

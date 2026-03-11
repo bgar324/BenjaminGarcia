@@ -314,7 +314,6 @@ export default function Sidebar() {
         </div>
       </aside>
 
-      {/* IMAGE EXPAND MODAL */}
       <AnimatePresence>
         {isImageModalOpen && (
           <motion.div

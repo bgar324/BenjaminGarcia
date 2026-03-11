@@ -44,7 +44,7 @@ export default function ProjectItem({
     <div
       className="
       flex flex-col md:flex-row gap-4 group rounded-xl border border-gray-200 dark:border-gray-600 
-      px-2 py-4 transition-all duration-300 
+      p-3 transition-all duration-300 
       bg-white dark:bg-black md:items-start
     "
     >
@@ -76,7 +76,6 @@ export default function ProjectItem({
         />
       </div>
 
-      {/* Content */}
       <div className="flex flex-col justify-between md:w-2/3">
         <div className="flex flex-col">
           <div className="flex items-center gap-3">
@@ -92,7 +91,6 @@ export default function ProjectItem({
                   className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 transition-colors duration-200 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   title="Visit Site"
                 >
-                  {/* globe icon */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
