@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import SectionHeader from "../SectionHeader";
 import ProjectItem from "../SelectedProject";

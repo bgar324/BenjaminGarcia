@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { RotateCcw } from "lucide-react";
+import NotFoundFontLinks from "./components/NotFoundFontLinks";
 import { FONT_OPTIONS } from "./fonts/not-found-fonts";
 
 export default function NotFound() {
@@ -18,6 +19,7 @@ export default function NotFound() {
 
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden bg-white dark:bg-black">
+      <NotFoundFontLinks />
       <div className="relative z-10 flex flex-col items-center">
         <div className="flex select-none" key={resetKey}>
           <FlickerDigit char="4" onInteraction={onInteraction} />

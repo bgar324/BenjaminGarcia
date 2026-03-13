@@ -1,6 +1,3 @@
-// components/ProjectTable.tsx
-"use client";
-
 import { ArrowUpRightFromSquareIcon } from "lucide-react";
 import {
   Table,
