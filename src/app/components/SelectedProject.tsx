@@ -45,10 +45,10 @@ export default function ProjectItem({
       className="
       flex flex-col md:flex-row gap-4 group rounded-xl border border-gray-200 dark:border-gray-600 
       p-3 transition-all duration-300 
-      bg-white dark:bg-black md:items-start
+      bg-white dark:bg-black md:items-start shadow-xs
     "
     >
-      {/* Image */}
+      
       <div
         className="
     w-full md:w-1/3   

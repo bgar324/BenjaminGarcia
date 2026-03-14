@@ -299,7 +299,7 @@ export default function Sidebar() {
               w-full text-center
               active:scale-[0.98]
               transition duration-200
-              focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
+              focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
             "
             href="/resume.pdf"
             target="_blank"
