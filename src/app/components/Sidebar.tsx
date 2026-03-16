@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-// 1. Import useEffect
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Mail, X, Menu, GitGraph, Expand } from "lucide-react";
@@ -12,7 +11,6 @@ export default function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
-  // Track which element opened the modal so we can return focus on close
   const imageModalTriggerRef = useRef<HTMLButtonElement | null>(null);
   const modalContentRef = useRef<HTMLDivElement>(null);
 
@@ -23,13 +21,11 @@ export default function Sidebar() {
 
   const closeImageModal = useCallback(() => {
     setIsImageModalOpen(false);
-    // Return focus to the element that opened the modal
     requestAnimationFrame(() => {
       imageModalTriggerRef.current?.focus();
     });
   }, []);
 
-  // Scroll lock for mobile menu and image modal
   useEffect(() => {
     if (isMobileMenuOpen || isImageModalOpen) {
       document.body.style.overflow = "hidden";
@@ -42,7 +38,6 @@ export default function Sidebar() {
     };
   }, [isMobileMenuOpen, isImageModalOpen]);
 
-  // Close image modal on Escape + focus trap
   useEffect(() => {
     if (!isImageModalOpen) return;
 
@@ -52,7 +47,6 @@ export default function Sidebar() {
         return;
       }
 
-      // Focus trap: cycle Tab within the modal
       if (e.key === "Tab" && modalContentRef.current) {
         const focusable = modalContentRef.current.querySelectorAll<HTMLElement>(
           'button, [href], [tabindex]:not([tabindex="-1"])'
@@ -156,8 +150,6 @@ export default function Sidebar() {
       </div>
 
       <div className="lg:hidden mb-8" />
-
-      {/* MOBILE MENU */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -206,8 +198,6 @@ export default function Sidebar() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* DESKTOP SIDEBAR */}
       <aside className="hidden lg:flex flex-col lg:w-[204px] lg:shrink-0 lg:gap-y-3 lg:sticky lg:top-10 h-fit">
         <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-2 transition-colors duration-300">
           <div className="relative group/img">

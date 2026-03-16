@@ -21,20 +21,7 @@ export default function ArchivePage() {
         </div>
       </PageReveal>
 
-      {/* <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-        className="mt-10"
-      >
-        <SectionHeader>planned projects (3)</SectionHeader>
-        <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
-          <ConfigurableProjectTable type="planned" />
-        </div>
-      </motion.section> */}
-
       <PageReveal delay={0.2}>
-        {/* <SectionHeader>past projects (8)</SectionHeader> */}
         <div className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
           <ConfigurableProjectTable type="archive" />
         </div>

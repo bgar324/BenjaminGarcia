@@ -116,7 +116,6 @@ export default function ProjectItem({
                   className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 transition-colors duration-200 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   title="View on GitHub"
                 >
-                  {/* github icon */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
