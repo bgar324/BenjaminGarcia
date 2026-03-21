@@ -40,14 +40,33 @@ const Dropdown: React.FC<DropdownProps> = ({
   }, [])
 
   const hasExpandableContent = Boolean(description || link)
+  
+  // Toggle function to be used by the whole card
+  const toggleDropdown = () => {
+    if (hasExpandableContent) {
+      setIsOpen((v) => !v)
+    }
+  }
+
+  // Prevent link clicks from toggling the dropdown
+  const handleLinkClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
+  }
+
   const titleCls = "font-semibold w-full lg:text-lg text-gray-900 dark:text-slate-100"
   const companyBase = "text-sm text-gray-600 dark:text-slate-400 lg:text-base"
   const companyIsLink = !!companyLink?.trim()
-
   const showDark = mounted && theme === "dark" && darkSrc
 
   return (
-    <div className="border border-gray-200 dark:border-gray-600 bg-white dark:bg-black rounded-[13px] flex flex-col transition-colors duration-300 shadow-xs">
+    <div 
+      onClick={toggleDropdown}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleDropdown(); } }}
+      tabIndex={hasExpandableContent ? 0 : -1}
+      role={hasExpandableContent ? "button" : undefined}
+      aria-expanded={isOpen}
+      className={`border border-gray-200 dark:border-gray-600 bg-white dark:bg-black rounded-[13px] flex flex-col transition-colors duration-300 shadow-xs ${hasExpandableContent ? "cursor-pointer" : ""}`}
+    >
       <div className="flex flex-row"> 
         <div className="flex justify-center items-center">
           <Image
@@ -77,7 +96,8 @@ const Dropdown: React.FC<DropdownProps> = ({
                 href={schoolLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                onClick={handleLinkClick}
+                className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm relative z-10"
               >
                 {role}
               </a>
@@ -90,10 +110,11 @@ const Dropdown: React.FC<DropdownProps> = ({
             <div className="flex flex-row items-center">
               {companyIsLink ? (
                 <a
-                  className={`${companyBase} hover:underline hover:cursor-pointer focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm`}
+                  className={`${companyBase} hover:underline hover:cursor-pointer focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm relative z-10`}
                   href={companyLink}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={handleLinkClick}
                 >
                   {position}
                 </a>
@@ -109,10 +130,7 @@ const Dropdown: React.FC<DropdownProps> = ({
               </p>
               
               {hasExpandableContent && (
-                <button
-                  onClick={() => setIsOpen((v) => !v)}
-                  className="hover:cursor-pointer ml-2 transition-all duration-300 ease-in-out rounded-3xl hover:bg-gray-200 dark:hover:bg-slate-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
-                >
+                <div className="ml-2 transition-all duration-300 ease-in-out rounded-3xl group-hover:bg-gray-200 dark:group-hover:bg-slate-700">
                   <div className="relative w-4 h-4">
                     <motion.div
                       initial={false}
@@ -140,7 +158,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                       <X strokeWidth="1" size={16} absoluteStrokeWidth />
                     </motion.div>
                   </div>
-                </button>
+                </div>
               )}
             </div>
           </div>
@@ -157,7 +175,7 @@ const Dropdown: React.FC<DropdownProps> = ({
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="overflow-hidden"
           >
-            <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+            <div className="p-4 border-t border-gray-200 dark:border-gray-700" onClick={handleLinkClick}>
               {description && (
                 <p className="text-sm lg:text-base text-gray-800 dark:text-slate-200">
                   {description}
