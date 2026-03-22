@@ -9,7 +9,7 @@ export default function ExperienceSection() {
         <Dropdown
           role="Interface Undergraduate Researcher "
           position="UCLA HCI Research Lab"
-          companyLink="https://hci.ucla.edu"
+          imageLink="https://hci.ucla.edu"
           startDate="Dec 2025"
           endDate="Present"
           src="/static/companies/ucla-hci.png"
@@ -19,7 +19,7 @@ export default function ExperienceSection() {
         <Dropdown
           role="Software Engineer Intern"
           position="Todd Agriscience"
-          companyLink="https://www.toddagriscience.com/"
+          imageLink="https://www.toddagriscience.com/"
           startDate="Mar 2025"
           endDate="Oct 2025"
           src="/static/companies/todd-dark.webp"
@@ -28,7 +28,7 @@ export default function ExperienceSection() {
         <Dropdown
           role="Research & Development Engineer Intern"
           position="Bonterra"
-          companyLink="https://www.bonterratech.com/"
+          imageLink="https://www.bonterratech.com/"
           startDate="Jul 2025"
           endDate="Aug 2025"
           src="/static/companies/bonterra.webp"
@@ -37,7 +37,7 @@ export default function ExperienceSection() {
         <Dropdown
           role="Software Engineer Intern"
           position="TensorStax"
-          companyLink="https://www.tensorstax.com"
+          imageLink="https://www.tensorstax.com"
           startDate="May 2025"
           endDate="Jun 2025"
           src="/static/companies/tensorstax.webp"

@@ -9,7 +9,7 @@ export default function LeadershipSection() {
         <Dropdown
           role="Officer"
           position="ACM Hack"
-          companyLink="https://hack.uclaacm.com/"
+          imageLink="https://hack.uclaacm.com/"
           startDate="Nov 2025"
           endDate="Present"
           src="/static/companies/hack.png"
@@ -18,7 +18,7 @@ export default function LeadershipSection() {
         <Dropdown
           role="Frontend Developer"
           position="exploretech.la"
-          companyLink="https://www.exploretech.la/"
+          imageLink="https://www.exploretech.la/"
           startDate="Sep 2025"
           endDate="Present"
           src="/static/companies/ela.webp"
@@ -27,7 +27,7 @@ export default function LeadershipSection() {
         <Dropdown
           role="Frontend Developer"
           position="Mt. SAC Computer Science Club"
-          companyLink="https://www.mtsaccs.org"
+          imageLink="https://www.mtsaccs.org"
           startDate="Sep 2024"
           endDate="Jul 2025"
           src="/static/companies/mtsaccs.webp"

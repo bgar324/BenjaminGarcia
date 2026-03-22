@@ -13,10 +13,9 @@ interface DropdownProps {
   endDate?: string
   src: string
   darkSrc?: string
+  imageLink?: string
   link?: string
   description?: string
-  companyLink?: string
-  schoolLink?: string
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -26,10 +25,9 @@ const Dropdown: React.FC<DropdownProps> = ({
   endDate,
   src,
   darkSrc,
+  imageLink,
   link,
-  description,
-  companyLink,
-  schoolLink
+  description
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const { theme } = useTheme()
@@ -40,7 +38,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   }, [])
 
   const hasExpandableContent = Boolean(description || link)
-  
+
   // Toggle function to be used by the whole card
   const toggleDropdown = () => {
     if (hasExpandableContent) {
@@ -54,12 +52,34 @@ const Dropdown: React.FC<DropdownProps> = ({
   }
 
   const titleCls = "font-semibold w-full lg:text-lg text-gray-900 dark:text-slate-100"
-  const companyBase = "text-sm text-gray-600 dark:text-slate-400 lg:text-base"
-  const companyIsLink = !!companyLink?.trim()
+  const subtitleCls = "text-sm text-gray-600 dark:text-slate-400 lg:text-base"
   const showDark = mounted && theme === "dark" && darkSrc
+  const hasImageLink = Boolean(imageLink?.trim())
+  const logoImages = (
+    <>
+      <Image
+        src={src}
+        alt={`${position} logo`}
+        width={64}
+        height={64}
+        quality={88}
+        className={`h-auto w-16 rounded-xl items-center p-1 lg:ml-1 ${showDark ? "hidden" : ""}`}
+      />
+      {darkSrc && (
+        <Image
+          src={darkSrc}
+          alt={`${position} logo`}
+          width={64}
+          height={64}
+          quality={88}
+          className={`h-auto w-16 rounded-xl items-center p-1 lg:ml-1 ${showDark ? "" : "hidden"}`}
+        />
+      )}
+    </>
+  )
 
   return (
-    <div 
+    <div
       onClick={toggleDropdown}
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleDropdown(); } }}
       tabIndex={hasExpandableContent ? 0 : -1}
@@ -67,60 +87,30 @@ const Dropdown: React.FC<DropdownProps> = ({
       aria-expanded={isOpen}
       className={`border border-gray-200 dark:border-gray-600 bg-white dark:bg-black rounded-[13px] flex flex-col transition-colors duration-300 shadow-xs ${hasExpandableContent ? "cursor-pointer" : ""}`}
     >
-      <div className="flex flex-row"> 
+      <div className="flex flex-row">
         <div className="flex justify-center items-center">
-          <Image
-            src={src}
-            alt={`${position} logo`}
-            width={64}
-            height={64}
-            quality={88}
-            className={`h-auto w-16 rounded-xl items-center p-1 lg:ml-1 ${showDark ? "hidden" : ""}`}
-          />
-          {darkSrc && (
-            <Image
-              src={darkSrc}
-              alt={`${position} logo`}
-              width={64}
-              height={64}
-              quality={88}
-              className={`h-auto w-16 rounded-xl items-center p-1 lg:ml-1 ${showDark ? "" : "hidden"}`}
-            />
+          {hasImageLink ? (
+            <a
+              href={imageLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleLinkClick}
+              aria-label="Open website"
+              className="relative z-10 flex justify-center items-center rounded-xl focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+            >
+              {logoImages}
+            </a>
+          ) : (
+            logoImages
           )}
         </div>
 
         <div className="flex flex-col w-full p-2">
-          <h1 className={titleCls}>
-            {schoolLink?.trim() ? (
-              <a
-                href={schoolLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleLinkClick}
-                className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm relative z-10"
-              >
-                {role}
-              </a>
-            ) : (
-              role
-            )}
-          </h1>
+          <h1 className={titleCls}>{role}</h1>
 
           <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row items-center">
-              {companyIsLink ? (
-                <a
-                  className={`${companyBase} hover:underline hover:cursor-pointer focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm relative z-10`}
-                  href={companyLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={handleLinkClick}
-                >
-                  {position}
-                </a>
-              ) : (
-                <span className={companyBase}>{position}</span>
-              )}
+              <span className={subtitleCls}>{position}</span>
             </div>
 
             <div className="flex flex-row items-center">

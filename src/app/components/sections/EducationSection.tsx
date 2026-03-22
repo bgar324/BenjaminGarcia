@@ -9,7 +9,7 @@ export default function EducationSection() {
         <Dropdown
           role="University of California, Los Angeles"
           position="BS, Computer Science"
-          schoolLink="https://www.ucla.edu"
+          imageLink="https://www.ucla.edu"
           startDate="2025"
           endDate="Present"
           src="/static/schools/ucla.webp"
@@ -18,7 +18,7 @@ export default function EducationSection() {
         <Dropdown
           role="Mount San Antonio College"
           position="Honors Transfer"
-          schoolLink="https://www.mtsac.edu"
+          imageLink="https://www.mtsac.edu"
           startDate="2023"
           endDate="2025"
           src="/static/schools/mtsac.webp"
