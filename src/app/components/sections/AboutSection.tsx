@@ -37,7 +37,7 @@ export default function AboutSection() {
             University of California, Los Angeles.
           </GradientLink>
         </RandomImageHover> 
-        {" "}I currently serve as an officer for{" "}
+        {" "}I currently serve as a Software Engineer Lead for{" "}
         <a
           href="https://hack.uclaacm.com"
           target="_blank"
