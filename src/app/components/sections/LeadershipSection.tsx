@@ -7,10 +7,10 @@ export default function LeadershipSection() {
       <SectionHeader>leadership & campus involvement</SectionHeader>
       <div className="flex flex-col gap-4">
         <Dropdown
-          role="Officer"
+          role="Software Engineer Lead"
           position="ACM Hack"
           imageLink="https://hack.uclaacm.com/"
-          startDate="Nov 2025"
+          startDate="Sep 2025"
           endDate="Present"
           src="/static/companies/hack.png"
           description="Contributing to cross-team projects and workshops for UCLA's premier software engineering community. Collaborating with 10+ officers to organize hackathons and technical events for 200+ students."
