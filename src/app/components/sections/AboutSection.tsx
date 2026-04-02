@@ -6,6 +6,17 @@ import ThemeToggle from "../ThemeToggle";
 const UCLA_TEXT = "University of California, Los Angeles.";
 const UCLA_GRADIENT = "linear-gradient(to right, #1e3a8a, #b45309)";
 
+const ACM_HACK_TEXT = "ACM Hack";
+const ACM_HACK_GRADIENT = "linear-gradient(to right, #8b5cf6, #d946ef)";
+
+const EXPLORETECH_TEXT = "exploretech.la";
+const EXPLORETECH_GRADIENT =
+  "linear-gradient(to right, #e1ab2d, #69b7af, #0f5374)";
+
+const HCI_LAB_TEXT = "Human-Computer Interaction Research Lab";
+const HCI_LAB_GRADIENT =
+  "linear-gradient(to right, #1d2564, #2f68d4, #59d9ef)";
+
 const LANDS_BETWEEN_TEXT = "Lands Between.";
 const LANDS_BETWEEN_GRADIENT = "linear-gradient(to right, #092322, #996A48)";
 
@@ -25,6 +36,12 @@ type Rgb = {
   r: number;
   g: number;
   b: number;
+};
+
+type RippleLinkProps = {
+  href: string;
+  text: string;
+  gradient: string;
 };
 
 function normalizeHex(hex: string) {
@@ -88,14 +105,7 @@ function buildHoverColors(text: string, gradient: string) {
   });
 }
 
-const UCLA_CHARACTERS = Array.from(UCLA_TEXT);
-const UCLA_HOVER_COLORS = buildHoverColors(UCLA_TEXT, UCLA_GRADIENT);
-
 const LANDS_BETWEEN_CHARACTERS = Array.from(LANDS_BETWEEN_TEXT);
-const LANDS_BETWEEN_HOVER_COLORS = buildHoverColors(
-  LANDS_BETWEEN_TEXT,
-  LANDS_BETWEEN_GRADIENT,
-);
 const TARGET_RIPPLE_END_DELAY_MS =
   HOVER_DELAY_START_MS +
   (LANDS_BETWEEN_CHARACTERS.length - 1) * HOVER_DELAY_STEP_MS;
@@ -109,6 +119,37 @@ function getRippleDelayMs(index: number, characterCount: number) {
   return HOVER_DELAY_START_MS + index * delayStep;
 }
 
+function RippleLink({ href, text, gradient }: RippleLinkProps) {
+  const characters = Array.from(text);
+  const hoverColors = buildHoverColors(text, gradient);
+
+  return (
+    <a
+      className={HOVER_LINK_CLASS_NAME}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span className="sr-only">{text}</span>
+      {characters.map((character, index) => (
+        <span
+          key={`${text}-${character}-${index}`}
+          aria-hidden="true"
+          className={HOVER_CHARACTER_CLASS_NAME}
+          style={
+            {
+              "--hover-letter-color": hoverColors[index] ?? "currentColor",
+              transitionDelay: `${getRippleDelayMs(index, characters.length)}ms`,
+            } as CSSProperties
+          }
+        >
+          {character}
+        </span>
+      ))}
+    </a>
+  );
+}
+
 export default function AboutSection() {
   return (
     <section id="about" className="flex flex-col">
@@ -119,91 +160,42 @@ export default function AboutSection() {
 
       <p className={`${ABOUT_TEXT_CLASS_NAME} mt-4`}>
         I'm a junior studying Computer Science at the{" "}
-        <a
-          className={HOVER_LINK_CLASS_NAME}
+        <RippleLink
           href="https://ucla.edu/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span className="sr-only">{UCLA_TEXT}</span>
-          {UCLA_CHARACTERS.map((character, index) => (
-            <span
-              key={`${character}-${index}`}
-              aria-hidden="true"
-              className={HOVER_CHARACTER_CLASS_NAME}
-              style={
-                {
-                  "--hover-letter-color": UCLA_HOVER_COLORS[index] ?? "currentColor",
-                  transitionDelay: `${getRippleDelayMs(index, UCLA_CHARACTERS.length)}ms`,
-                } as CSSProperties
-              }
-            >
-              {character}
-            </span>
-          ))}
-        </a>{" "}
+          text={UCLA_TEXT}
+          gradient={UCLA_GRADIENT}
+        />{" "}
         I currently serve as a Software Engineer Lead for{" "}
-        <a
+        <RippleLink
           href="https://hack.uclaacm.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={ABOUT_LINK_CLASS_NAME}
-        >
-          ACM Hack
-        </a>{" "}
+          text={ACM_HACK_TEXT}
+          gradient={ACM_HACK_GRADIENT}
+        />{" "}
         and contribute to{" "}
-        <a
+        <RippleLink
           href="https://exploretech.la"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={ABOUT_LINK_CLASS_NAME}
-        >
-          exploretech.la
-        </a>
-        ,
-         {" "}where I help build responsive, accessible interfaces that bring ideas
+          text={EXPLORETECH_TEXT}
+          gradient={EXPLORETECH_GRADIENT}
+        />
+        ,{" "}where I help build responsive, accessible interfaces that bring ideas
         to life. I work in Professor Xiang “Anthony” Chen’s{" "}
-        <a
+        <RippleLink
           href="https://hci.ucla.edu"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={ABOUT_LINK_CLASS_NAME}
-        >
-          Human-Computer Interaction Research Lab
-        </a>
-        ,
-        {" "}advised by PhD researcher Youngseung Jeon, focusing on interactive systems for human–AI collaboration.
+          text={HCI_LAB_TEXT}
+          gradient={HCI_LAB_GRADIENT}
+        />
+        ,{" "}advised by PhD researcher Youngseung Jeon, focusing on interactive
+        systems for human–AI collaboration.
       </p>
 
       <p className={`${ABOUT_TEXT_CLASS_NAME} mt-2`}>
-        Outside of coding, I enjoy weightlifting, spending time with my dog, and exploring the{" "}
-        <a
-          className={HOVER_LINK_CLASS_NAME}
+        Outside of coding, I enjoy weightlifting, spending time with my dog, and
+        exploring the{" "}
+        <RippleLink
           href="https://en.bandainamcoent.eu/elden-ring/elden-ring"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span className="sr-only">{LANDS_BETWEEN_TEXT}</span>
-          {LANDS_BETWEEN_CHARACTERS.map((character, index) => (
-            <span
-              key={`${character}-${index}`}
-              aria-hidden="true"
-              className={HOVER_CHARACTER_CLASS_NAME}
-              style={
-                {
-                  "--hover-letter-color":
-                    LANDS_BETWEEN_HOVER_COLORS[index] ?? "currentColor",
-                  transitionDelay: `${getRippleDelayMs(
-                    index,
-                    LANDS_BETWEEN_CHARACTERS.length,
-                  )}ms`,
-                } as CSSProperties
-              }
-            >
-              {character}
-            </span>
-          ))}
-        </a>
+          text={LANDS_BETWEEN_TEXT}
+          gradient={LANDS_BETWEEN_GRADIENT}
+        />
       </p>
     </section>
   );
