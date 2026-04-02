@@ -3,7 +3,6 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Providers from "./providers";
 import { cabinet } from "./fonts/cabinet";
-import ExternalLinkInterceptor from "./components/ExternalLinkInterceptor";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -77,7 +76,6 @@ export default function RootLayout({
         <Providers>
           <Analytics />
           <SpeedInsights />
-          <ExternalLinkInterceptor />
           {children}
         </Providers>
       </body>

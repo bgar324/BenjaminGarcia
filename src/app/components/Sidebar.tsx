@@ -7,12 +7,21 @@ import { MapPin, Mail, X, Menu, GitGraph, Expand } from "lucide-react";
 import { LinkedInIcon, GitHubMarkIcon } from "../svgs/Icons";
 import { ArrowUpRight } from "lucide-react";
 
+const APP_EASE = [0.32, 0.72, 0, 1] as const;
+const APP_TRANSITION = { duration: 0.4, ease: APP_EASE };
+const QUICK_TRANSITION = { duration: 0.2, ease: APP_EASE };
+
 export default function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [isMobileHeaderVisible, setIsMobileHeaderVisible] = useState(true);
 
   const imageModalTriggerRef = useRef<HTMLButtonElement | null>(null);
   const modalContentRef = useRef<HTMLDivElement>(null);
+  const lastScrollYRef = useRef(0);
+  const scrollTravelRef = useRef(0);
+  const scrollDirectionRef = useRef<"up" | "down" | null>(null);
+  const scrollFrameRef = useRef<number | null>(null);
 
   const openImageModal = useCallback((triggerEl: HTMLButtonElement) => {
     imageModalTriggerRef.current = triggerEl;
@@ -74,6 +83,100 @@ export default function Sidebar() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isImageModalOpen, closeImageModal]);
 
+  useEffect(() => {
+    const hideAfter = 24;
+    const revealAfter = 16;
+    const topRevealOffset = 24;
+    const desktopMediaQuery = window.matchMedia("(min-width: 1024px)");
+
+    const resetScrollTracking = () => {
+      lastScrollYRef.current = window.scrollY;
+      scrollTravelRef.current = 0;
+      scrollDirectionRef.current = null;
+    };
+
+    const syncMobileHeaderVisibility = () => {
+      if (scrollFrameRef.current !== null) {
+        window.cancelAnimationFrame(scrollFrameRef.current);
+        scrollFrameRef.current = null;
+      }
+
+      setIsMobileHeaderVisible(true);
+      resetScrollTracking();
+    };
+
+    const updateMobileHeaderVisibility = () => {
+      scrollFrameRef.current = null;
+
+      if (
+        desktopMediaQuery.matches ||
+        isMobileMenuOpen ||
+        isImageModalOpen
+      ) {
+        resetScrollTracking();
+        return;
+      }
+
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollYRef.current;
+
+      lastScrollYRef.current = currentScrollY;
+
+      if (Math.abs(delta) < 2) return;
+
+      if (currentScrollY <= topRevealOffset) {
+        scrollTravelRef.current = 0;
+        scrollDirectionRef.current = null;
+        setIsMobileHeaderVisible(true);
+        return;
+      }
+
+      const direction = delta > 0 ? "down" : "up";
+
+      if (scrollDirectionRef.current !== direction) {
+        scrollDirectionRef.current = direction;
+        scrollTravelRef.current = 0;
+      }
+
+      scrollTravelRef.current += Math.abs(delta);
+
+      if (direction === "down" && scrollTravelRef.current >= hideAfter) {
+        scrollTravelRef.current = 0;
+        setIsMobileHeaderVisible(false);
+      }
+
+      if (direction === "up" && scrollTravelRef.current >= revealAfter) {
+        scrollTravelRef.current = 0;
+        setIsMobileHeaderVisible(true);
+      }
+    };
+
+    const handleScroll = () => {
+      if (scrollFrameRef.current !== null) return;
+
+      scrollFrameRef.current = window.requestAnimationFrame(
+        updateMobileHeaderVisibility
+      );
+    };
+
+    syncMobileHeaderVisibility();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    desktopMediaQuery.addEventListener("change", syncMobileHeaderVisibility);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      desktopMediaQuery.removeEventListener(
+        "change",
+        syncMobileHeaderVisibility
+      );
+
+      if (scrollFrameRef.current !== null) {
+        window.cancelAnimationFrame(scrollFrameRef.current);
+      }
+    };
+  }, [isMobileMenuOpen, isImageModalOpen]);
+
   const socialLinks = [
     {
       icon: <Mail size={18} />,
@@ -99,14 +202,29 @@ export default function Sidebar() {
 
   return (
     <>
-      <div
+      <motion.div
+        initial={false}
+        animate={{
+          opacity: isMobileHeaderVisible ? 1 : 0,
+          y: isMobileHeaderVisible ? 0 : -24,
+        }}
+        transition={APP_TRANSITION}
         className="lg:hidden fixed top-0 left-0 right-0 h-16 z-40 pointer-events-none 
         bg-gradient-to-b from-white/90 via-white/60 to-transparent 
         dark:from-black/90 dark:via-black/60 dark:to-transparent"
         aria-hidden="true"
       />
 
-      <div className="lg:hidden fixed top-2 left-0 right-0 z-50 flex justify-center px-5 md:px-20 pointer-events-none">
+      <motion.div
+        initial={false}
+        animate={{
+          opacity: isMobileHeaderVisible ? 1 : 0,
+          y: isMobileHeaderVisible ? 0 : -96,
+        }}
+        transition={APP_TRANSITION}
+        style={{ pointerEvents: isMobileHeaderVisible ? undefined : "none" }}
+        className="lg:hidden fixed top-2 left-0 right-0 z-50 flex justify-center px-5 md:px-20 pointer-events-none"
+      >
         <div
           className="
           w-full max-w-5xl pointer-events-auto
@@ -147,7 +265,7 @@ export default function Sidebar() {
             <Menu size={20} className="text-gray-600 dark:text-gray-300" />
           </button>
         </div>
-      </div>
+      </motion.div>
 
       <div className="lg:hidden mb-8" />
       <AnimatePresence>
@@ -157,7 +275,7 @@ export default function Sidebar() {
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
-            transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+            transition={APP_TRANSITION}
             className="fixed inset-0 z-[60] bg-white dark:bg-black p-6 flex flex-col lg:hidden overflow-hidden"
           >
             <div className="flex justify-between items-center mb-8 relative z-10">
@@ -323,7 +441,7 @@ export default function Sidebar() {
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}
-              transition={{ duration: 0.2, ease: [0.32, 0.72, 0, 1] }}
+              transition={QUICK_TRANSITION}
               onClick={(e) => e.stopPropagation()}
             >
               <button
