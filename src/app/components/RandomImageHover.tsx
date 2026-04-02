@@ -159,7 +159,7 @@ export default function RandomImageHover({ children, images }: RandomImageHoverP
         {isOpen && (
           <motion.span
             key="tooltip"
-            className="fixed z-50 w-[200px] h-[150px] rounded-lg pointer-events-none shadow-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 overflow-hidden"
+            className="fixed z-50 w-[200px] h-[150px] rounded-xl pointer-events-none overflow-hidden"
             style={{
               x,
               y,
