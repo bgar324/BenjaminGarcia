@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ReactNode } from "react";
 import Image from "next/image";
-import { GitHubMarkIcon } from "../svgs/Icons";
+import { Expand } from "lucide-react";
+import { GitHubMarkIcon, WebsiteIcon } from "../svgs/Icons";
 
 interface ProjectItemProps {
   src: string;
@@ -15,7 +16,11 @@ interface ProjectItemProps {
   note?: string;
   tags: string[];
   galleryImages?: string[];
-  onImageClick?: (images: string[], startIndex: number) => void;
+  onImageClick?: (
+    imageSrc: string,
+    imageAlt: string,
+    triggerEl: HTMLButtonElement | null
+  ) => void;
 }
 
 export default function ProjectItem({
@@ -31,12 +36,16 @@ export default function ProjectItem({
   onImageClick,
 }: ProjectItemProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const imageModalTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const previewAlt =
+    alt || (typeof title === "string" ? title : "Project preview");
 
   const handleImageClick = () => {
     if (onImageClick) {
       onImageClick(
-        galleryImages && galleryImages.length > 0 ? galleryImages : [src],
-        0
+        galleryImages && galleryImages.length > 0 ? galleryImages[0] : src,
+        previewAlt,
+        imageModalTriggerRef.current
       );
     }
   };
@@ -57,11 +66,12 @@ export default function ProjectItem({
         aspect-video md:aspect-auto 
         md:h-[130px]
         flex-shrink-0
+        group/img
       "
       >
         <Image
           src={src}
-          alt={alt || (typeof title === "string" ? title : "Project preview")}
+          alt={previewAlt}
           fill
           quality={82}
           sizes="(max-width: 768px) 100vw, 33vw"
@@ -69,12 +79,31 @@ export default function ProjectItem({
           rounded-lg
           border border-gray-300 dark:border-gray-700
           object-cover
+          cursor-pointer
         "
           onClick={(e) => {
             e.preventDefault();
             handleImageClick();
           }}
         />
+        <button
+          ref={imageModalTriggerRef}
+          onClick={handleImageClick}
+          className="
+            absolute top-2 right-2 p-1.5 rounded-md
+            bg-black/40 backdrop-blur-sm
+            text-white/80 hover:text-white hover:bg-black/60
+            opacity-0 group-hover/img:opacity-100
+            transition-all duration-300 ease-in-out
+            cursor-pointer
+            focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
+          "
+          aria-label={`Expand ${previewAlt}`}
+          title="Expand photo"
+          type="button"
+        >
+          <Expand size={14} strokeWidth={2.5} />
+        </button>
       </div>
 
       <div className="flex flex-col justify-between md:w-2/3">
@@ -98,21 +127,7 @@ export default function ProjectItem({
                   className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 transition-colors duration-300 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   title="Visit Site"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                    <path d="M2 12h20" />
-                  </svg>
+                  <WebsiteIcon />
                 </a>
               )}
 

@@ -1,4 +1,4 @@
-import { ArrowUpRightFromSquareIcon } from "lucide-react";
+import { GitHubMarkIcon, WebsiteIcon } from "../../svgs/Icons";
 import {
   Table,
   TableBody,
@@ -11,15 +11,14 @@ import {
 export type ProjectEntry = {
   year: number;
   title: string;
-  madeAt?: string;
   builtWith: string[];
-  link?: string;
-  label?: string;
+  websiteLink?: string;
+  githubLink?: string;
   status?: string;
 };
 
 export type Column = {
-  key: "year" | "title" | "madeAt" | "builtWith" | "link" | "status";
+  key: "year" | "title" | "builtWith" | "link" | "status";
   header: string;
   hiddenOn?: "md" | "lg";
 };
@@ -44,8 +43,7 @@ export default function ProjectTable({
                   c.hiddenOn === "md" ? "hidden md:table-cell" : "",
                   c.hiddenOn === "lg" ? "hidden lg:table-cell" : "",
                   c.key === "year" ? "w-[100px]" : "",
-                  c.key === "title" ? "min-w-[200px]" : "",
-                  c.key === "madeAt" ? "w-[150px] lg:w-[180px]" : "",
+                  c.key === "title" ? "min-w-[220px]" : "",
                   c.key === "builtWith" ? "min-w-[300px]" : "",
                   c.key === "link" ? "w-[120px]" : "",
                 ].join(" ")}
@@ -60,7 +58,7 @@ export default function ProjectTable({
           {rows.map((row) => (
             <TableRow
               key={`${row.title}-${row.year}`}
-              className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors duration-300"
+              className="border-b border-gray-100 dark:border-gray-900 transition-colors duration-300"
             >
               {columns.map((c, i) => {
                 const commonCellClasses = [
@@ -81,28 +79,12 @@ export default function ProjectTable({
                 }
 
                 if (c.key === "title") {
-                  const hasLink = !!row.link;
                   return (
                     <TableCell key={i} className={commonCellClasses}>
                       <div className="flex items-center gap-2">
-                        {hasLink ? (
-                          <a
-                            href={row.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-semibold flex items-center gap-1 text-base text-gray-900 dark:text-slate-100 hover:underline transition-colors duration-300"
-                          >
-                            {row.title}
-                            <ArrowUpRightFromSquareIcon
-                              className="inline-block md:hidden"
-                              size={14}
-                            />
-                          </a>
-                        ) : (
-                          <span className="font-semibold text-gray-900 dark:text-slate-100">
-                            {row.title}
-                          </span>
-                        )}
+                        <span className="font-semibold text-gray-900 dark:text-slate-100">
+                          {row.title}
+                        </span>
                         {row.status === "In Progress" && (
                           <span className="relative flex h-2 w-2">
                             <span className="animate-slow-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -110,17 +92,6 @@ export default function ProjectTable({
                           </span>
                         )}
                       </div>
-                    </TableCell>
-                  );
-                }
-
-                if (c.key === "madeAt") {
-                  return (
-                    <TableCell
-                      key={i}
-                      className={`text-gray-600 dark:text-slate-400 whitespace-nowrap ${commonCellClasses}`}
-                    >
-                      {row.madeAt || "—"}
                     </TableCell>
                   );
                 }
@@ -148,16 +119,33 @@ export default function ProjectTable({
                       key={i}
                       className={`text-gray-900 dark:text-slate-100 whitespace-nowrap ${commonCellClasses}`}
                     >
-                      {row.link ? (
-                        <a
-                          href={row.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1 hover:underline text-gray-900 dark:text-slate-100 transition-colors duration-300"
-                        >
-                          {row.label || "Open"}
-                          <ArrowUpRightFromSquareIcon size={14} />
-                        </a>
+                      {row.websiteLink || row.githubLink ? (
+                        <div className="flex items-center gap-3">
+                          {row.websiteLink && (
+                            <a
+                              href={row.websiteLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-100 transition-colors duration-300 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                              title={`Visit ${row.title}`}
+                              aria-label={`Visit ${row.title}`}
+                            >
+                              <WebsiteIcon />
+                            </a>
+                          )}
+                          {row.githubLink && (
+                            <a
+                              href={row.githubLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-100 transition-colors duration-300 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                              title={`View ${row.title} on GitHub`}
+                              aria-label={`View ${row.title} on GitHub`}
+                            >
+                              <GitHubMarkIcon />
+                            </a>
+                          )}
+                        </div>
                       ) : (
                         "—"
                       )}
