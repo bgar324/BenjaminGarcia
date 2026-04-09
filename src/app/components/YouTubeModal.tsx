@@ -29,7 +29,7 @@ export default function YouTubeModal({ isOpen, onClose, videoId }: YouTubeModalP
         >
           <button
             onClick={onClose}
-            className="absolute top-2 -right-2 -translate-x-1/2 z-10 p-2 text-gray-100 hover:text-white transition-colors bg-black/10 rounded-full backdrop-blur-sm hover:bg-black/50 cursor-pointer"
+            className="absolute top-2 -right-2 -translate-x-1/2 z-10 p-2 text-gray-100 hover:text-white transition-colors duration-300 bg-black/10 rounded-full backdrop-blur-sm hover:bg-black/50 cursor-pointer"
             aria-label="Close video"
           >
             <svg

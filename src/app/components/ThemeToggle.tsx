@@ -22,7 +22,7 @@ export default function ThemeToggle() {
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label="Toggle dark mode"
       className="group relative w-fit border border-gray-300 rounded-md pl-1 pr-2 py-1 lg:py-[.5px] text-xs lg:text-sm uppercase mt-10 mb-5 lg:mt-0 lg:mb-5 font-semibold tracking-wider flex flex-row items-center gap-0.5 hover:cursor-pointer
-      transition-colors duration-200 
+      transition-colors duration-300 
       hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
     >
       <span className="relative w-4 h-4 flex items-center justify-center pb-[1px]">
@@ -47,7 +47,7 @@ export default function ThemeToggle() {
       </span>
 
       <span
-        className="transition-opacity duration-200"
+        className="transition-opacity duration-300"
         key={isDark ? "light" : "dark"}
       >
         {isDark ? "Light" : "Dark"}

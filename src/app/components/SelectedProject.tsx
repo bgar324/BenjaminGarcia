@@ -95,7 +95,7 @@ export default function ProjectItem({
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 transition-colors duration-200 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                  className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 transition-colors duration-300 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   title="Visit Site"
                 >
                   <svg
@@ -121,7 +121,7 @@ export default function ProjectItem({
                   href={githubLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 transition-colors duration-200 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                  className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 transition-colors duration-300 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   title="View on GitHub"
                 >
                   <GitHubMarkIcon />
@@ -158,7 +158,7 @@ export default function ProjectItem({
             {tags.map((tag, index) => (
               <span
                 key={index}
-                className="bg-gray-100 dark:bg-gray-900 text-gray-500 dark:text-slate-300 px-2.5 py-1 rounded-full text-xs font-medium cursor-default border border-gray-200 dark:border-gray-700 transition-colors duration-200 whitespace-nowrap"
+                className="bg-gray-100 dark:bg-gray-900 text-gray-500 dark:text-slate-300 px-2.5 py-1 rounded-full text-xs font-medium cursor-default border border-gray-200 dark:border-gray-700 transition-colors duration-300 whitespace-nowrap"
               >
                 {tag}
               </span>

@@ -22,7 +22,7 @@ export default function NotFound() {
         <Link
           href="/"
           aria-label="Go back home"
-          className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
+          className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors duration-300 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
         >
           <House size={16} />
         </Link>

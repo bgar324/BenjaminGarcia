@@ -24,13 +24,13 @@ const ABOUT_TEXT_CLASS_NAME =
   "text-gray-600 dark:text-slate-400 lg:text-lg leading-snug";
 const ABOUT_LINK_TONE_CLASS_NAME = "text-slate-800 dark:text-slate-100";
 const ABOUT_LINK_CLASS_NAME =
-  `font-medium ${ABOUT_LINK_TONE_CLASS_NAME} transition-colors hover:text-slate-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm dark:hover:text-white`;
+  `font-medium ${ABOUT_LINK_TONE_CLASS_NAME} transition-colors duration-300 hover:text-slate-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm dark:hover:text-white`;
 const HOVER_DELAY_START_MS = 50;
 const HOVER_DELAY_STEP_MS = 25;
 const HOVER_LINK_CLASS_NAME =
   `group inline-flex flex-wrap items-baseline ${ABOUT_LINK_CLASS_NAME}`;
 const HOVER_CHARACTER_CLASS_NAME =
-  `inline-block whitespace-pre ${ABOUT_LINK_TONE_CLASS_NAME} transition duration-75 group-hover:-translate-y-px group-hover:[color:var(--hover-letter-color)]`;
+  `inline-block whitespace-pre ${ABOUT_LINK_TONE_CLASS_NAME} transition duration-300 group-hover:-translate-y-px group-hover:[color:var(--hover-letter-color)]`;
 
 type Rgb = {
   r: number;

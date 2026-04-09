@@ -4,7 +4,7 @@ import PageReveal from "../components/PageReveal";
 
 export default function ArchivePage() {
   return (
-    <main className="max-w-5xl mx-auto px-6 pt-6 md:pt-12 lg:pt-24 pb-16 text-gray-900 dark:text-slate-100 transition-colors">
+    <main className="max-w-5xl mx-auto px-6 pt-6 md:pt-12 lg:pt-24 pb-16 text-gray-900 dark:text-slate-100 transition-colors duration-300">
       <PageReveal>
         <a
           href="/"

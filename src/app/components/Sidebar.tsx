@@ -8,8 +8,8 @@ import { LinkedInIcon, GitHubMarkIcon } from "../svgs/Icons";
 import { ArrowUpRight } from "lucide-react";
 
 const APP_EASE = [0.32, 0.72, 0, 1] as const;
-const APP_TRANSITION = { duration: 0.4, ease: APP_EASE };
-const QUICK_TRANSITION = { duration: 0.2, ease: APP_EASE };
+const APP_TRANSITION = { duration: 0.3, ease: APP_EASE };
+const QUICK_TRANSITION = { duration: 0.3, ease: APP_EASE };
 
 export default function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -260,7 +260,7 @@ export default function Sidebar() {
 
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
           >
             <Menu size={20} className="text-gray-600 dark:text-gray-300" />
           </button>
@@ -294,7 +294,7 @@ export default function Sidebar() {
                   key={idx}
                   href={link.href}
                   target="_blank"
-                  className="text-2xl font-semibold text-gray-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                  className="text-2xl font-semibold text-gray-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 >
                   {link.label}
                 </a>
@@ -302,7 +302,7 @@ export default function Sidebar() {
               <a
                 href="/resume.pdf"
                 target="_blank"
-                className="mt-4 px-8 py-3 rounded-md bg-black dark:bg-slate-100 text-white dark:text-gray-950 font-medium text-lg active:scale-95 transition-transform focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                className="mt-4 px-8 py-3 rounded-md bg-black dark:bg-slate-100 text-white dark:text-gray-950 font-medium text-lg active:scale-95 transition-transform duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
               >
                 View Résumé
               </a>
@@ -338,7 +338,7 @@ export default function Sidebar() {
                 bg-black/40 backdrop-blur-sm
                 text-white/80 hover:text-white hover:bg-black/60
                 opacity-0 group-hover/img:opacity-100
-                transition-all duration-200 ease-in-out
+                transition-all duration-300 ease-in-out
                 cursor-pointer
                 focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
               "
@@ -387,7 +387,7 @@ export default function Sidebar() {
                   text-gray-600 dark:text-slate-400
                   hover:bg-gray-100 dark:hover:bg-gray-900
                   hover:text-black dark:hover:text-white
-                  transition-all duration-200 ease-in-out
+                  transition-all duration-300 ease-in-out
                   focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
                 "
               >
@@ -406,7 +406,7 @@ export default function Sidebar() {
               rounded-md px-4 py-2 text-sm font-semibold
               w-full text-center
               active:scale-[0.98]
-              transition duration-200
+              transition duration-300
               focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
             "
             href="/resume.pdf"
@@ -416,7 +416,7 @@ export default function Sidebar() {
             View My Résumé
             <ArrowUpRight
               size={14}
-              className="transform transition-transform duration-200 group-hover:translate-x-[1px]"
+              className="transform transition-transform duration-300 group-hover:translate-x-[1px]"
             />
           </a>
         </div>
@@ -446,7 +446,7 @@ export default function Sidebar() {
             >
               <button
                 onClick={closeImageModal}
-                className="absolute top-2 right-2 z-10 p-2 text-gray-100 hover:text-white transition-colors bg-black/60 rounded-full backdrop-blur-sm hover:bg-black/80 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                className="absolute top-2 right-2 z-10 p-2 text-gray-100 hover:text-white transition-colors duration-300 bg-black/60 rounded-full backdrop-blur-sm hover:bg-black/80 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                 aria-label="Close photo"
                 autoFocus
               >

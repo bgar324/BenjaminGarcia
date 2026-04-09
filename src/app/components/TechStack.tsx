@@ -135,7 +135,7 @@ function TechPill({ item }: { item: TechItem }) {
           />
         )}
       </div>
-      <span className="text-xs font-medium text-gray-600 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors">
+      <span className="text-xs font-medium text-gray-600 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors duration-300">
         {item.name}
       </span>
     </div>

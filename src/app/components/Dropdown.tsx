@@ -129,7 +129,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                         opacity: isOpen ? 0 : 1, 
                         scale: isOpen ? 0.5 : 1 
                       }}
-                      transition={{ duration: 0.2 }}
+                      transition={{ duration: 0.3 }}
                       className="absolute inset-0"
                     >
                       <ChevronDown strokeWidth="1" size={16} absoluteStrokeWidth />
@@ -142,7 +142,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                         opacity: isOpen ? 1 : 0, 
                         scale: isOpen ? 1 : 0.5 
                       }}
-                      transition={{ duration: 0.2 }}
+                      transition={{ duration: 0.3 }}
                       className="absolute inset-0"
                     >
                       <X strokeWidth="1" size={16} absoluteStrokeWidth />

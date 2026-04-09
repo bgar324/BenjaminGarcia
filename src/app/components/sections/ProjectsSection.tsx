@@ -15,7 +15,7 @@ export default function ProjectsSection() {
           project archive
           <ArrowUpRight
             size={14}
-            className="transform transition-transform duration-200 group-hover:translate-x-[1px]"
+            className="transform transition-transform duration-300 group-hover:translate-x-[1px]"
           />
         </a>
       </div>
@@ -45,7 +45,6 @@ export default function ProjectsSection() {
             "TypeScript",
             "PostgreSQL",
             "Prisma",
-            "OAuth",
             "GitHub GraphQL API",
             "Gemini 2.5 Flash",
           ]}
@@ -97,11 +96,8 @@ export default function ProjectsSection() {
             "Next.js",
             "Tailwind CSS",
             "Python",
-            "Leap Motion",
             "FastAPI",
             "Firebase",
-            "Real-Time Data",
-            "Data Visualization & Diagnostics",
           ]}
         />
       </div>

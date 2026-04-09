@@ -60,7 +60,7 @@ export default function ProjectTable({
           {rows.map((row) => (
             <TableRow
               key={`${row.title}-${row.year}`}
-              className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors duration-200"
+              className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors duration-300"
             >
               {columns.map((c, i) => {
                 const commonCellClasses = [
@@ -90,7 +90,7 @@ export default function ProjectTable({
                             href={row.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-semibold flex items-center gap-1 text-base text-gray-900 dark:text-slate-100 hover:underline transition-colors duration-200"
+                            className="font-semibold flex items-center gap-1 text-base text-gray-900 dark:text-slate-100 hover:underline transition-colors duration-300"
                           >
                             {row.title}
                             <ArrowUpRightFromSquareIcon
@@ -132,7 +132,7 @@ export default function ProjectTable({
                         {row.builtWith.map((t) => (
                           <span
                             key={t}
-                            className="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-slate-300 px-2.5 py-1 rounded-full text-xs font-medium cursor-default border border-gray-200 dark:border-gray-700 transition-colors duration-200 whitespace-nowrap"
+                            className="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-slate-300 px-2.5 py-1 rounded-full text-xs font-medium cursor-default border border-gray-200 dark:border-gray-700 transition-colors duration-300 whitespace-nowrap"
                           >
                             {t}
                           </span>
@@ -153,7 +153,7 @@ export default function ProjectTable({
                           href={row.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-1 hover:underline text-gray-900 dark:text-slate-100 transition-colors duration-200"
+                          className="flex items-center gap-1 hover:underline text-gray-900 dark:text-slate-100 transition-colors duration-300"
                         >
                           {row.label || "Open"}
                           <ArrowUpRightFromSquareIcon size={14} />
