@@ -10,7 +10,6 @@ import ImagePreviewModal from "./ImagePreviewModal";
 
 const APP_EASE = [0.32, 0.72, 0, 1] as const;
 const APP_TRANSITION = { duration: 0.3, ease: APP_EASE };
-const QUICK_TRANSITION = { duration: 0.3, ease: APP_EASE };
 
 export default function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -312,7 +311,7 @@ export default function Sidebar() {
 
           <div className="p-1">
             <h1 className="text-gray-900 dark:text-slate-100 text-2xl font-semibold tracking-tight leading-none">
-              Hello, I'm
+              Hello, I&apos;m
             </h1>
             <h1 className="text-gray-900 dark:text-slate-100 text-2xl font-semibold tracking-tight">
               Benjamin Garcia

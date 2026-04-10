@@ -92,16 +92,19 @@ export default function RandomImageHover({ children, images }: RandomImageHoverP
   }, [images, preloadImage]);
 
   useEffect(() => {
-    if (activeImage && loadedImages[activeImage]) {
-      setDisplayImage(activeImage);
-      return;
-    }
+    if (displayImage) return;
 
-    if (!displayImage) {
-      const firstLoaded = images.find((src) => loadedImages[src]);
-      if (firstLoaded) setDisplayImage(firstLoaded);
-    }
-  }, [activeImage, displayImage, images, loadedImages]);
+    const firstLoaded = images.find((src) => loadedImages[src]);
+    if (!firstLoaded) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      setDisplayImage((currentImage) => currentImage || firstLoaded);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+    };
+  }, [displayImage, images, loadedImages]);
 
   const handleMouseMove = (e: MouseEvent<HTMLSpanElement>) => {
     x.set(e.clientX - xOffset);

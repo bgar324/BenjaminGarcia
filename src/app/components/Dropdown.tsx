@@ -34,7 +34,13 @@ const Dropdown: React.FC<DropdownProps> = ({
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
+    const frame = window.requestAnimationFrame(() => {
+      setMounted(true)
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frame)
+    }
   }, [])
 
   const hasExpandableContent = Boolean(description || link)

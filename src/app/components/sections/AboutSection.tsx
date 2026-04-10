@@ -159,7 +159,7 @@ export default function AboutSection() {
       </div>
 
       <p className={`${ABOUT_TEXT_CLASS_NAME} mt-4`}>
-        I'm a junior studying Computer Science at the{" "}
+        I&apos;m a junior studying Computer Science at the{" "}
         <RippleLink
           href="https://ucla.edu/"
           text={UCLA_TEXT}
