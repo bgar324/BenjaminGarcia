@@ -86,15 +86,10 @@ export default function ArchivePage() {
           Benjamin Garcia
         </Link>
 
-        <div className="flex justify-between items-start mt-5 mb-10">
-          <div className="max-w-2xl">
-            <h1 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase tracking-wider lg:py-[.5px] flex items-center gap-1 text-xl md:text-3xl font-bold">
-              Project Archive
-            </h1>
-            <p className="mt-4 text-sm md:text-base text-gray-600 dark:text-slate-400 leading-relaxed">
-              {archiveDescription}
-            </p>
-          </div>
+        <div className="flex justify-between items-start gap-4 mt-5 mb-10">
+          <h1 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase tracking-wider lg:py-[.5px] flex items-center gap-1 text-xl md:text-3xl font-bold">
+            Project Archive
+          </h1>
         </div>
       </PageReveal>
 
