@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { profileImage, resumeHref, socialLinks } from "./shared";
 
 const APP_EASE = [0.32, 0.72, 0, 1] as const;
-const HEADER_TRANSITION = { duration: 0.16, ease: APP_EASE };
+const HEADER_TRANSITION = { duration: 0.3, ease: APP_EASE };
 const MENU_TRANSITION = { duration: 0.18, ease: APP_EASE };
 
 type SidebarMobileProps = {
