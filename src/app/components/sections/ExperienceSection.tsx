@@ -3,8 +3,8 @@ import Dropdown from "../Dropdown";
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="flex flex-col">
-      <SectionHeader>experience</SectionHeader>
+    <section id="experience" aria-labelledby="experience-heading" className="flex flex-col">
+      <SectionHeader id="experience-heading">experience</SectionHeader>
       <div className="flex flex-col gap-4">
         <Dropdown
           role="Interface Undergraduate Researcher "

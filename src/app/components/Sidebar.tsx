@@ -209,9 +209,9 @@ export default function Sidebar() {
               />
             </button>
             <div className="flex flex-col">
-              <h1 className="text-sm font-bold text-gray-900 dark:text-slate-100 leading-tight">
+              <p className="text-sm font-bold text-gray-900 dark:text-slate-100 leading-tight">
                 Benjamin Garcia
-              </h1>
+              </p>
               <p className="text-[11px] text-gray-500 dark:text-slate-400 font-medium leading-tight">
                 I turn code into meaningful creations.
               </p>
@@ -254,6 +254,7 @@ export default function Sidebar() {
                   key={idx}
                   href={link.href}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="text-2xl font-semibold text-gray-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 >
                   {link.label}
@@ -262,6 +263,7 @@ export default function Sidebar() {
               <a
                 href="/resume.pdf"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="mt-4 px-8 py-3 rounded-md bg-black dark:bg-slate-100 text-white dark:text-gray-950 font-medium text-lg active:scale-95 transition-transform duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
               >
                 View Résumé
@@ -310,15 +312,15 @@ export default function Sidebar() {
           </div>
 
           <div className="p-1">
-            <h1 className="text-gray-900 dark:text-slate-100 text-2xl font-semibold tracking-tight leading-none">
+            <p className="text-gray-900 dark:text-slate-100 text-2xl font-semibold tracking-tight leading-none">
               Hello, I&apos;m
-            </h1>
-            <h1 className="text-gray-900 dark:text-slate-100 text-2xl font-semibold tracking-tight">
+            </p>
+            <p className="text-gray-900 dark:text-slate-100 text-2xl font-semibold tracking-tight">
               Benjamin Garcia
-            </h1>
-            <h3 className="text-gray-700 dark:text-slate-300 text-base leading-tight mt-2 font-normal">
+            </p>
+            <p className="text-gray-700 dark:text-slate-300 text-base leading-tight mt-2 font-normal">
               I turn code into meaningful creations.
-            </h3>
+            </p>
 
             <div className="flex flex-row gap-1 items-center mt-2">
               <MapPin size={16} className="text-gray-500 dark:text-slate-400" />
@@ -326,6 +328,7 @@ export default function Sidebar() {
                 className="text-sm text-gray-500 dark:text-slate-400 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 href="https://www.google.com/maps/place/Westwood,+Los+Angeles,+CA/@34.0652211,-118.4610312,14z"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Los Angeles, California
               </a>
@@ -340,6 +343,7 @@ export default function Sidebar() {
                 key={i}
                 href={link.href}
                 target="_blank"
+                rel="noopener noreferrer"
                 title={link.label}
                 className="
                   flex items-center justify-center aspect-square rounded-md
@@ -371,6 +375,7 @@ export default function Sidebar() {
             "
             href="/resume.pdf"
             target="_blank"
+            rel="noopener noreferrer"
             title="Resume"
           >
             View My Résumé

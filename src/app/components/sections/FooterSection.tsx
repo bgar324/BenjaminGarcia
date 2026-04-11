@@ -50,8 +50,8 @@ export default function FooterSection() {
               <a
                 className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 href="https://www.framer.com/marketplace/templates/monocv/"
-                rel="noopener noreferrer"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 MonoCV
               </a>{" "}
@@ -68,8 +68,8 @@ export default function FooterSection() {
               <a
                 className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 href="https://nextjs.org/"
-                rel="noopener noreferrer"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Next.js
               </a>{" "}
@@ -77,8 +77,8 @@ export default function FooterSection() {
               <a
                 className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 href="https://tailwindcss.com/"
-                rel="noopener noreferrer"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Tailwind CSS
               </a>
@@ -86,8 +86,8 @@ export default function FooterSection() {
               <a
                 className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 href="https://vercel.com/"
-                rel="noopener noreferrer"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Vercel
               </a>
@@ -96,8 +96,8 @@ export default function FooterSection() {
                 <a
                   className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   href="https://www.fontshare.com/fonts/cabinet-grotesk"
-                  rel="noopener noreferrer"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Cabinet Grotesk
                 </a>{" "}
@@ -109,8 +109,8 @@ export default function FooterSection() {
               <a
                 className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 href="https://www.fontshare.com/fonts/cabinet-grotesk"
-                rel="noopener noreferrer"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Cabinet Grotesk
               </a>{" "}

@@ -3,8 +3,14 @@ import Dropdown from "../Dropdown";
 
 export default function LeadershipSection() {
   return (
-    <section id="leadership-and-campus-involvement" className="flex flex-col">
-      <SectionHeader>leadership & campus involvement</SectionHeader>
+    <section
+      id="leadership-and-campus-involvement"
+      aria-labelledby="leadership-heading"
+      className="flex flex-col"
+    >
+      <SectionHeader id="leadership-heading">
+        leadership & campus involvement
+      </SectionHeader>
       <div className="flex flex-col gap-4">
         <Dropdown
           role="Software Engineer Lead"

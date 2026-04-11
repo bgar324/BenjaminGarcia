@@ -152,9 +152,11 @@ function RippleLink({ href, text, gradient }: RippleLinkProps) {
 
 export default function AboutSection() {
   return (
-    <section id="about" className="flex flex-col">
+    <section id="about" aria-labelledby="about-heading" className="flex flex-col">
       <div className="flex flex-row justify-between items-center">
-        <SectionHeader className="lg:mt-0">about</SectionHeader>
+        <SectionHeader id="about-heading" className="lg:mt-0">
+          about
+        </SectionHeader>
         <ThemeToggle />
       </div>
 

@@ -90,7 +90,7 @@ const Dropdown: React.FC<DropdownProps> = ({
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleDropdown(); } }}
       tabIndex={hasExpandableContent ? 0 : -1}
       role={hasExpandableContent ? "button" : undefined}
-      aria-expanded={isOpen}
+      aria-expanded={hasExpandableContent ? isOpen : undefined}
       className={`border border-gray-200 dark:border-gray-600 bg-white dark:bg-black rounded-[13px] flex flex-col transition-colors duration-300 shadow-xs ${hasExpandableContent ? "cursor-pointer" : ""}`}
     >
       <div className="flex flex-row">
@@ -101,7 +101,7 @@ const Dropdown: React.FC<DropdownProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleLinkClick}
-              aria-label="Open website"
+              aria-label={`Visit ${position}`}
               className="relative z-10 flex justify-center items-center rounded-xl focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-500"
             >
               {logoImages}
@@ -112,7 +112,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         </div>
 
         <div className="flex flex-col w-full p-2">
-          <h1 className={titleCls}>{role}</h1>
+          <h3 className={titleCls}>{role}</h3>
 
           <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row items-center">

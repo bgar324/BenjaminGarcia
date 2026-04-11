@@ -39,6 +39,7 @@ export default function ProjectItem({
   const imageModalTriggerRef = useRef<HTMLButtonElement | null>(null);
   const previewAlt =
     alt || (typeof title === "string" ? title : "Project preview");
+  const projectName = typeof title === "string" ? title : previewAlt;
 
   const handleImageClick = () => {
     if (onImageClick) {
@@ -109,9 +110,9 @@ export default function ProjectItem({
       <div className="flex flex-col justify-between md:w-2/3">
         <div className="flex flex-col">
           <div className="flex items-center justify-between gap-3">
-            <h2 className="text-gray-900 dark:text-slate-100 font-semibold text-lg md:text-xl">
+            <h3 className="text-gray-900 dark:text-slate-100 font-semibold text-lg md:text-xl">
               {title}
-            </h2>
+            </h3>
 
             <div
               className="
@@ -126,6 +127,7 @@ export default function ProjectItem({
                   rel="noopener noreferrer"
                   className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 transition-colors duration-300 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   title="Visit Site"
+                  aria-label={`Visit ${projectName}`}
                 >
                   <WebsiteIcon />
                 </a>
@@ -138,6 +140,7 @@ export default function ProjectItem({
                   rel="noopener noreferrer"
                   className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 transition-colors duration-300 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   title="View on GitHub"
+                  aria-label={`View ${projectName} on GitHub`}
                 >
                   <GitHubMarkIcon />
                 </a>

@@ -3,8 +3,8 @@ import Dropdown from "../Dropdown";
 
 export default function EducationSection() {
   return (
-    <section id="education" className="mt-10">
-      <SectionHeader>education</SectionHeader>
+    <section id="education" aria-labelledby="education-heading" className="mt-10">
+      <SectionHeader id="education-heading">education</SectionHeader>
       <div className="flex flex-col gap-4">
         <Dropdown
           role="University of California, Los Angeles"

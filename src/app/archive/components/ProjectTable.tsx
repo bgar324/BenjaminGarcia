@@ -2,6 +2,7 @@ import { GitHubMarkIcon, WebsiteIcon } from "../../svgs/Icons";
 import {
   Table,
   TableBody,
+  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -26,13 +27,16 @@ export type Column = {
 export default function ProjectTable({
   columns,
   rows,
+  caption,
 }: {
   columns: Column[];
   rows: ProjectEntry[];
+  caption?: string;
 }) {
   return (
     <div className="overflow-x-auto">
       <Table className="w-full">
+        {caption ? <TableCaption className="sr-only">{caption}</TableCaption> : null}
         <TableHeader>
           <TableRow className="border-b border-gray-200 dark:border-gray-800">
             {columns.map((c) => (
