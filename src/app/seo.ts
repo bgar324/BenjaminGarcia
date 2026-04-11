@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Benjamin Garcia",
-  title: "Benjamin Garcia | Full-Stack Engineer",
+  title: "Benjamin Garcia",
   description:
     "Full-stack engineer building production interfaces at scale. Experience at Todd Agriscience, Bonterra, TensorStax. CS @ UCLA.",
   url: "https://bentgarcia.com",
