@@ -1,8 +1,7 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { ChevronDown, X } from "lucide-react"
-import { useTheme } from "next-themes"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -30,18 +29,6 @@ const Dropdown: React.FC<DropdownProps> = ({
   description
 }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const { theme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
-      setMounted(true)
-    })
-
-    return () => {
-      window.cancelAnimationFrame(frame)
-    }
-  }, [])
 
   const hasExpandableContent = Boolean(description || link)
 
@@ -59,7 +46,6 @@ const Dropdown: React.FC<DropdownProps> = ({
 
   const titleCls = "font-semibold w-full lg:text-lg text-gray-900 dark:text-slate-100"
   const subtitleCls = "text-sm text-gray-600 dark:text-slate-400 lg:text-base"
-  const showDark = mounted && theme === "dark" && darkSrc
   const hasImageLink = Boolean(imageLink?.trim())
   const logoImages = (
     <>
@@ -69,7 +55,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         width={64}
         height={64}
         quality={88}
-        className={`h-auto w-16 rounded-xl items-center p-1 lg:ml-1 ${showDark ? "hidden" : ""}`}
+        className={`h-auto w-16 rounded-xl items-center p-1 lg:ml-1 ${darkSrc ? "dark:hidden" : ""}`}
       />
       {darkSrc && (
         <Image
@@ -78,7 +64,7 @@ const Dropdown: React.FC<DropdownProps> = ({
           width={64}
           height={64}
           quality={88}
-          className={`h-auto w-16 rounded-xl items-center p-1 lg:ml-1 ${showDark ? "" : "hidden"}`}
+          className="hidden h-auto w-16 rounded-xl items-center p-1 lg:ml-1 dark:block"
         />
       )}
     </>
