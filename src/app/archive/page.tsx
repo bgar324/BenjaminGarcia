@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import ConfigurableProjectTable from "./components/ConfigurableProjectTable";
+import ProjectTable from "./components/ProjectTable";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import PageReveal from "../components/PageReveal";
-import { archiveProjects } from "./data/projectData";
+import { archiveColumns, archiveProjects } from "./data/projectData";
 import { absoluteUrl, siteConfig } from "../seo";
 
 const archiveDescription =
@@ -95,7 +95,11 @@ export default function ArchivePage() {
 
       <PageReveal delay={0.2}>
         <div className="bg-white dark:bg-black/85 rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
-          <ConfigurableProjectTable type="archive" />
+          <ProjectTable
+            columns={archiveColumns}
+            rows={archiveProjects}
+            caption="Archived projects with build stack and links."
+          />
         </div>
       </PageReveal>
     </main>

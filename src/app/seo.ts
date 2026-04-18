@@ -8,7 +8,6 @@ export const siteConfig = {
   author: "Benjamin Garcia",
   jobTitle: "Full-Stack Engineer",
   location: "Los Angeles, California, United States",
-  resumePath: "/resume.pdf",
   keywords: [
     "software engineer",
     "full-stack developer",

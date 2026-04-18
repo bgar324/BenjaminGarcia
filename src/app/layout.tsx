@@ -70,7 +70,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cabinet.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={cabinet.variable}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body className="antialiased bg-white dark:bg-black">
         <Providers>
           <Analytics />

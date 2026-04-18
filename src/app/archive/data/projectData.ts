@@ -56,25 +56,9 @@ export const archiveProjects: ProjectEntry[] = [
   },
 ];
 
-export const plannedProjects: ProjectEntry[] = [
-  {
-    year: 2025,
-    title: "log•it v2",
-    builtWith: ["Next.js", "Tailwind CSS", "Supabase"],
-    status: "In Progress",
-  },
-];
-
 export const archiveColumns: Column[] = [
   { key: "year", header: "Year" },
   { key: "title", header: "Project" },
   { key: "builtWith", header: "Built With", hiddenOn: "md" },
   { key: "link", header: "Links", hiddenOn: "md" },
-];
-
-export const plannedColumns: Column[] = [
-  { key: "year", header: "Year" },
-  { key: "title", header: "Project" },
-  { key: "builtWith", header: "Planned stack", hiddenOn: "md" },
-  { key: "status", header: "Status", hiddenOn: "md" },
 ];

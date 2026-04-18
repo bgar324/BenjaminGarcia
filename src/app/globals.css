@@ -85,7 +85,7 @@ body {
   --sidebar-ring: oklch(0.708 0 0);
   --selection-bg: #000000;
   --selection-foreground: #ffffff;
-  --icon-muted: #6a7282;     /* e.g., LocationIcon gray */
+  --icon-muted: #6a7282;
   --icon: #0f0f0f;           /* primary black-ish */
   --icon-contrast: #ffffff;  /* white parts inside icons */
 }
