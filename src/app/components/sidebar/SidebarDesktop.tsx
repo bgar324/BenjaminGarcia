@@ -26,6 +26,7 @@ export default function SidebarDesktop({
             blurDataURL={profileImage.blurDataURL}
             sizes="(max-width: 768px) 128px, (max-width: 1024px) 112px, 192px"
             className="h-auto w-full rounded-xl mb-2"
+            style={{ height: "auto" }}
           />
           <button
             onClick={(event) => onOpenImageModal(event.currentTarget)}

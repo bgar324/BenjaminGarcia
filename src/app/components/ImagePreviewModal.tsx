@@ -140,7 +140,8 @@ export default function ImagePreviewModal({
               width={width}
               height={height}
               quality={90}
-              className="w-full h-auto max-h-[85vh] object-contain rounded-lg shadow-2xl select-none"
+              className="h-auto w-auto max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl select-none"
+              style={{ width: "auto", height: "auto" }}
               draggable={false}
               sizes={sizes}
             />

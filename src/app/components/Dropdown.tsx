@@ -54,6 +54,8 @@ const Dropdown: React.FC<DropdownProps> = ({
         alt={`${position} logo`}
         width={64}
         height={64}
+        sizes="64px"
+        loading={darkSrc ? "eager" : undefined}
         quality={88}
         className={`h-auto w-16 rounded-xl items-center p-1 lg:ml-1 ${darkSrc ? "dark:hidden" : ""}`}
       />
@@ -63,6 +65,8 @@ const Dropdown: React.FC<DropdownProps> = ({
           alt={`${position} logo`}
           width={64}
           height={64}
+          sizes="64px"
+          loading="eager"
           quality={88}
           className="hidden h-auto w-16 rounded-xl items-center p-1 lg:ml-1 dark:block"
         />
