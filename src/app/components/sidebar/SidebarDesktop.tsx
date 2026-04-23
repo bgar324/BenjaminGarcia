@@ -77,7 +77,7 @@ export default function SidebarDesktop({
             quality={85}
             placeholder="blur"
             blurDataURL={profileImage.blurDataURL}
-            sizes="(max-width: 768px) 128px, (max-width: 1024px) 112px, 192px"
+            sizes="192px"
             className="h-auto w-full rounded-xl mb-2"
             style={{ height: "auto" }}
           />

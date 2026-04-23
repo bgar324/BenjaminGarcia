@@ -75,7 +75,7 @@ export default function ProjectItem({
           alt={previewAlt}
           fill
           quality={82}
-          sizes="(max-width: 768px) 100vw, 33vw"
+          sizes="(max-width: 767px) calc(100vw - 2.5rem), (max-width: 1023px) 33vw, 260px"
           className="
           rounded-lg
           border border-gray-300 dark:border-gray-700

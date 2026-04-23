@@ -1,8 +1,57 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import YouTubeModal from "../YouTubeModal";
+import { useTactilePress } from "../useTactilePress";
+
+function FooterVideoButton({
+  alt,
+  ariaLabel,
+  onClick,
+  src,
+}: {
+  alt: string;
+  ariaLabel: string;
+  onClick: () => void;
+  src: string;
+}) {
+  const press = useTactilePress({ includeSpaceKey: true });
+
+  return (
+    <motion.button
+      type="button"
+      onClick={onClick}
+      onPointerDown={press.onPressPointerDown}
+      onPointerUp={press.onPressPointerUp}
+      onPointerLeave={press.onPressPointerLeave}
+      onPointerCancel={press.onPressPointerCancel}
+      onKeyDown={press.onPressKeyDown}
+      onKeyUp={press.onPressKeyUp}
+      onBlur={press.onPressBlur}
+      initial={false}
+      animate={
+        press.shouldReduceMotion
+          ? undefined
+          : { scale: press.pressScale, y: press.pressY }
+      }
+      transition={press.pressTransition}
+      style={{ transformOrigin: "center center", minWidth: 0 }}
+      className="relative cursor-pointer p-1 md:p-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-md"
+      aria-label={ariaLabel}
+    >
+      <Image
+        src={src}
+        width={0}
+        height={0}
+        sizes="(min-width: 768px) 48px, 36px"
+        alt={alt}
+        className="inline-block w-9 h-9 md:w-12 md:h-12"
+      />
+    </motion.button>
+  );
+}
 
 export default function FooterSection() {
   const [videoId, setVideoId] = useState<string | null>(null);
@@ -12,36 +61,18 @@ export default function FooterSection() {
       <section id="closing-note">
         <div className="w-full justify-between flex flex-col sm:flex-row items-center text-center pt-16 gap-3">
           <div className="flex flex-row gap-3">
-            <button
+            <FooterVideoButton
+              src="/static/hom.webp"
+              alt="Watch me defeat Malenia!"
+              ariaLabel="Watch Malenia video"
               onClick={() => setVideoId("YWdbfy231n0")}
-              className="relative transition-all duration-300 hover:-translate-y-2 cursor-pointer group p-1 md:p-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-md"
-              aria-label="Watch Malenia video"
-              style={{ minWidth: 0 }}
-            >
-              <Image
-                src="/static/hom.webp"
-                width={0}
-                height={0}
-                sizes="(min-width: 768px) 48px, 36px"
-                alt="Watch me defeat Malenia!"
-                className="relative z-10 inline-block group-hover:scale-105 transition-transform duration-300 w-9 h-9 md:w-12 md:h-12"
-              />
-            </button>
-            <button
+            />
+            <FooterVideoButton
+              src="/static/rg.webp"
+              alt="Watch me defeat Promised Consort Radahn!"
+              ariaLabel="Watch Radahn video"
               onClick={() => setVideoId("NaVNh79V4F4")}
-              className="relative transition-all duration-300 hover:-translate-y-2 cursor-pointer group p-1 md:p-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-md"
-              aria-label="Watch Radahn video"
-              style={{ minWidth: 0 }}
-            >
-              <Image
-                src="/static/rg.webp"
-                width={0}
-                height={0}
-                sizes="(min-width: 768px) 48px, 36px"
-                alt="Watch me defeat Promised Consort Radahn!"
-                className="relative z-10 inline-block group-hover:scale-105 transition-transform duration-300 w-9 h-9 md:w-12 md:h-12"
-              />
-            </button>
+            />
           </div>
 
           <div className="md:text-right max-w-full sm:max-w-[365px] md:ml-auto text-gray-600 dark:text-slate-400 text-sm">

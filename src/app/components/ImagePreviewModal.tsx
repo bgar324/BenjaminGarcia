@@ -25,13 +25,13 @@ export default function ImagePreviewModal({
   alt,
   ariaLabel = "Expanded image preview",
   containerClassName = "max-w-5xl",
-  height = 900,
+  height = 1277,
   isOpen,
   onClose,
   returnFocusRef,
   sizes = "(max-width: 1024px) 100vw, 1024px",
   src,
-  width = 1600,
+  width = 2048,
 }: ImagePreviewModalProps) {
   const modalContentRef = useRef<HTMLDivElement>(null);
 

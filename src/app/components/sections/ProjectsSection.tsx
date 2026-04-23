@@ -63,8 +63,8 @@ export default function ProjectsSection() {
         </div>
         <div className="flex flex-col gap-y-3">
           <ProjectItem
-            src="/static/project-previews/gitproof-2.webp"
-            title="Git Proof"
+            src="/static/project-previews/gitproof.png"
+            title="GitProof"
             description="Developers struggle to showcase GitHub contributions effectively to recruiters. GitProof generates shareable, recruiter-facing profile reports with impact scores, consistency analysis, and archetype classification using the GitHub GraphQL API, PostgreSQL, and Gemini 2.5 Flash for AI-assisted insights."
             link="https://gitproof.dev"
             githubLink="https://github.com/bgar324/gitproof-2"
@@ -79,7 +79,7 @@ export default function ProjectsSection() {
             ]}
           />
           <ProjectItem
-            src="/static/project-previews/logit-preview.png"
+            src="/static/project-previews/logit.png"
             title="Logit"
             description="Logit is a lightweight workout tracker for logging sets, reps, weight, and training history without unnecessary friction. It lets users quickly record workouts, get exercise name suggestions and last-session comparisons while logging, and review their progress through dashboards, charts, personal bests, and exercise detail pages."
             link="https://logit-prod.vercel.app"
@@ -94,7 +94,7 @@ export default function ProjectsSection() {
             ]}
           />
           <ProjectItem
-            src="/static/project-previews/poly-clubs-2.webp"
+            src="/static/project-previews/poly-clubs.png"
             title="Poly Clubs"
             description="Cal Poly students had no way to get honest peer reviews of 486+ campus clubs. Built a transparent review platform with anonymous multi-dimensional ratings ('Vibe Check') and real-time aggregation, helping students make informed decisions about campus involvement."
             link="https://poly-clubs.vercel.app/"
@@ -109,7 +109,7 @@ export default function ProjectsSection() {
             ]}
           />
           <ProjectItem
-            src="/static/project-previews/hetai.webp"
+            src="/static/project-previews/hetai.png"
             alt="het.ai project preview"
             title={
               <>
