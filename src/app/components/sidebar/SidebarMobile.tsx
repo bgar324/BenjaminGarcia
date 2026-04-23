@@ -269,13 +269,15 @@ export default function SidebarMobile({
               className="flex-shrink-0 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 cursor-pointer"
               aria-label="View full photo of Benjamin Garcia"
             >
-              <Image
-                src={profileImage.src}
-                alt={profileImage.alt}
-                width={40}
-                height={40}
-                className="rounded-lg object-cover"
-              />
+              <span className="relative block h-10 w-10 overflow-hidden rounded-lg">
+                <Image
+                  src={profileImage.src}
+                  alt={profileImage.alt}
+                  fill
+                  sizes="40px"
+                  className="object-cover"
+                />
+              </span>
             </button>
             <div className="flex flex-col">
               <p className="text-sm font-bold text-gray-900 dark:text-slate-100 leading-tight">
