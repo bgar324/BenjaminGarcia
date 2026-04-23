@@ -3,7 +3,7 @@
 import React, { useState } from "react"
 import { ChevronDown, X } from "lucide-react"
 import Image from "next/image"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
 
 interface DropdownProps {
   role: string
@@ -29,23 +29,65 @@ const Dropdown: React.FC<DropdownProps> = ({
   description
 }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isPressed, setIsPressed] = useState(false)
+  const shouldReduceMotion = useReducedMotion()
 
   const hasExpandableContent = Boolean(description || link)
 
-  // Toggle function to be used by the whole card
   const toggleDropdown = () => {
     if (hasExpandableContent) {
       setIsOpen((v) => !v)
     }
   }
 
-  // Prevent link clicks from toggling the dropdown
-  const handleLinkClick = (e: React.MouseEvent) => {
+  const stopPropagation = (e: React.SyntheticEvent) => {
     e.stopPropagation()
+  }
+
+  const handlePressStart = () => {
+    if (hasExpandableContent) {
+      setIsPressed(true)
+    }
+  }
+
+  const handlePressEnd = () => {
+    setIsPressed(false)
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!hasExpandableContent) {
+      return
+    }
+
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault()
+      setIsPressed(true)
+    }
+  }
+
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!hasExpandableContent) {
+      return
+    }
+
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault()
+      handlePressEnd()
+      toggleDropdown()
+    }
   }
 
   const titleCls = "font-semibold w-full lg:text-lg text-gray-900 dark:text-slate-100"
   const subtitleCls = "text-sm text-gray-600 dark:text-slate-400 lg:text-base"
+  const shellMotion = shouldReduceMotion || !hasExpandableContent
+    ? undefined
+    : {
+        scale: isPressed ? 0.9925 : 1,
+        y: isPressed ? 1 : 0
+      }
+  const shellTransition = shouldReduceMotion
+    ? { duration: 0.15 }
+    : { type: "spring" as const, stiffness: 420, damping: 28, mass: 0.72 }
   const hasImageLink = Boolean(imageLink?.trim())
   const logoImages = (
     <>
@@ -75,22 +117,37 @@ const Dropdown: React.FC<DropdownProps> = ({
   )
 
   return (
-    <div
-      onClick={toggleDropdown}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleDropdown(); } }}
-      tabIndex={hasExpandableContent ? 0 : -1}
-      role={hasExpandableContent ? "button" : undefined}
-      aria-expanded={hasExpandableContent ? isOpen : undefined}
+    <motion.div
+      initial={false}
+      animate={shellMotion}
+      transition={shellTransition}
+      style={{ transformOrigin: "center top" }}
       className={`border border-gray-200 dark:border-gray-600 bg-white dark:bg-black rounded-[13px] flex flex-col transition-colors duration-300 shadow-xs ${hasExpandableContent ? "cursor-pointer" : ""}`}
     >
-      <div className="flex flex-row">
+      <div
+        onClick={toggleDropdown}
+        onKeyDown={handleKeyDown}
+        onKeyUp={handleKeyUp}
+        onPointerDown={handlePressStart}
+        onPointerUp={handlePressEnd}
+        onPointerLeave={handlePressEnd}
+        onPointerCancel={handlePressEnd}
+        onBlur={handlePressEnd}
+        tabIndex={hasExpandableContent ? 0 : -1}
+        role={hasExpandableContent ? "button" : undefined}
+        aria-expanded={hasExpandableContent ? isOpen : undefined}
+        className="flex flex-row"
+      >
         <div className="flex justify-center items-center">
           {hasImageLink ? (
             <a
               href={imageLink}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={handleLinkClick}
+              onClick={stopPropagation}
+              onPointerDown={stopPropagation}
+              onKeyDown={stopPropagation}
+              onKeyUp={stopPropagation}
               aria-label={`Visit ${position}`}
               className="relative z-10 flex justify-center items-center rounded-xl focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-500"
             >
@@ -161,7 +218,11 @@ const Dropdown: React.FC<DropdownProps> = ({
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="overflow-hidden"
           >
-            <div className="p-4 border-t border-gray-200 dark:border-gray-700" onClick={handleLinkClick}>
+            <div
+              className="p-4 border-t border-gray-200 dark:border-gray-700"
+              onClick={stopPropagation}
+              onPointerDown={stopPropagation}
+            >
               {description && (
                 <p className="text-sm lg:text-base text-gray-800 dark:text-slate-200">
                   {description}
@@ -172,6 +233,10 @@ const Dropdown: React.FC<DropdownProps> = ({
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={stopPropagation}
+                  onPointerDown={stopPropagation}
+                  onKeyDown={stopPropagation}
+                  onKeyUp={stopPropagation}
                   className="text-blue-500 dark:text-blue-400 hover:underline text-sm mt-2 inline-block focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 >
                   Visit website
@@ -181,7 +246,7 @@ const Dropdown: React.FC<DropdownProps> = ({
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   )
 }
 

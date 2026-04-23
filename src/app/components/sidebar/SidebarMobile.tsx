@@ -5,10 +5,77 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { profileImage, resumeHref, socialLinks } from "./shared";
+import { useTactilePress } from "../useTactilePress";
 
 const APP_EASE = [0.32, 0.72, 0, 1] as const;
 const HEADER_TRANSITION = { duration: 0.3, ease: APP_EASE };
 const MENU_TRANSITION = { duration: 0.18, ease: APP_EASE };
+
+type MobileMenuLink = {
+  href: string;
+  label: string;
+  variant: "link" | "primary";
+};
+
+function MobileMenuLinkItem({
+  link,
+  index,
+}: {
+  link: MobileMenuLink;
+  index: number;
+}) {
+  const press = useTactilePress();
+  const menuItemDuration = 0.12;
+  const menuItemBaseDelay = 0.04;
+  const menuItemStepDelay = 0.03;
+
+  return (
+    <motion.div
+      initial={false}
+      animate={
+        press.shouldReduceMotion
+          ? undefined
+          : { scale: press.pressScale, y: press.pressY }
+      }
+      transition={press.pressTransition}
+      style={{ transformOrigin: "center center" }}
+    >
+      <motion.a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onPointerDown={press.onPressPointerDown}
+        onPointerUp={press.onPressPointerUp}
+        onPointerLeave={press.onPressPointerLeave}
+        onPointerCancel={press.onPressPointerCancel}
+        onKeyDown={press.onPressKeyDown}
+        onKeyUp={press.onPressKeyUp}
+        onBlur={press.onPressBlur}
+        initial={{
+          opacity: 0,
+          y: link.variant === "primary" ? 0 : -14,
+        }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{
+          opacity: 0,
+          y: link.variant === "primary" ? 0 : -10,
+        }}
+        transition={{
+          duration: menuItemDuration,
+          delay: menuItemBaseDelay + index * menuItemStepDelay,
+          ease: APP_EASE,
+        }}
+        className={
+          link.variant === "primary"
+            ? "inline-flex items-center justify-center rounded-md bg-black px-8 py-3 text-lg font-medium text-white transition-transform duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:bg-slate-100 dark:text-gray-950"
+            : "text-2xl font-semibold text-gray-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+        }
+      >
+        {link.label}
+      </motion.a>
+    </motion.div>
+  );
+}
 
 type SidebarMobileProps = {
   isImageModalOpen: boolean;
@@ -27,10 +94,7 @@ export default function SidebarMobile({
   const directionAnchorYRef = useRef(0);
   const scrollDirectionRef = useRef<"up" | "down" | null>(null);
   const scrollFrameRef = useRef<number | null>(null);
-  const menuItemDuration = 0.12;
-  const menuItemBaseDelay = 0.04;
-  const menuItemStepDelay = 0.03;
-  const mobileMenuLinks = [
+  const mobileMenuLinks: MobileMenuLink[] = [
     ...socialLinks.map(({ href, label }) => ({
       href,
       label,
@@ -293,33 +357,11 @@ export default function SidebarMobile({
 
             <div className="flex flex-col gap-6 flex-1 justify-center items-center relative z-10">
               {mobileMenuLinks.map((link, index) => (
-                <motion.a
+                <MobileMenuLinkItem
                   key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{
-                    opacity: 0,
-                    y: link.variant === "primary" ? 0 : -14,
-                  }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{
-                    opacity: 0,
-                    y: link.variant === "primary" ? 0 : -10,
-                  }}
-                  transition={{
-                    duration: menuItemDuration,
-                    delay: menuItemBaseDelay + index * menuItemStepDelay,
-                    ease: APP_EASE,
-                  }}
-                  className={
-                    link.variant === "primary"
-                      ? "inline-flex items-center justify-center rounded-md bg-black px-8 py-3 text-lg font-medium text-white transition-transform duration-300 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:bg-slate-100 dark:text-gray-950"
-                      : "text-2xl font-semibold text-gray-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
-                  }
-                >
-                  {link.label}
-                </motion.a>
+                  link={link}
+                  index={index}
+                />
               ))}
             </div>
 

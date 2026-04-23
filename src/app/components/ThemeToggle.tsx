@@ -1,12 +1,15 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
+import { useTactilePress } from "./useTactilePress";
 
 export default function ThemeToggle() {
   const { theme, setTheme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const press = useTactilePress({ includeSpaceKey: true });
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -26,40 +29,59 @@ export default function ThemeToggle() {
     "transition-all duration-300";
 
   return (
-    <button
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      aria-label="Toggle dark mode"
-      className="group relative w-fit border border-gray-300 rounded-md pl-1 pr-2 py-1 lg:py-[.5px] text-xs lg:text-sm uppercase mt-10 mb-5 lg:mt-0 lg:mb-5 font-semibold tracking-wider flex flex-row items-center gap-0.5 hover:cursor-pointer
-      transition-colors duration-300 
-      hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+    <motion.div
+      initial={false}
+      animate={
+        press.shouldReduceMotion
+          ? undefined
+          : { scale: press.pressScale, y: press.pressY }
+      }
+      transition={press.pressTransition}
+      style={{ transformOrigin: "center center" }}
+      className="w-fit"
     >
-      <span className="relative w-4 h-4 flex items-center justify-center pb-[1px]">
-        <Moon
-          size={12}
-          strokeWidth={2}
-          className={`absolute ${transitionClass} ${
-            isDark
-              ? "opacity-0 rotate-90 scale-0"
-              : "opacity-100 rotate-0 scale-100"
-          }`}
-        />
-        <Sun
-          size={12}
-          strokeWidth={2}
-          className={`absolute ${transitionClass} ${
-            isDark
-              ? "opacity-100 rotate-0 scale-100"
-              : "opacity-0 -rotate-90 scale-0"
-          }`}
-        />
-      </span>
-
-      <span
-        className="transition-opacity duration-300"
-        key={isDark ? "light" : "dark"}
+      <button
+        onClick={() => setTheme(isDark ? "light" : "dark")}
+        onPointerDown={press.onPressPointerDown}
+        onPointerUp={press.onPressPointerUp}
+        onPointerLeave={press.onPressPointerLeave}
+        onPointerCancel={press.onPressPointerCancel}
+        onKeyDown={press.onPressKeyDown}
+        onKeyUp={press.onPressKeyUp}
+        onBlur={press.onPressBlur}
+        aria-label="Toggle dark mode"
+        className="group relative w-fit border border-gray-300 rounded-md pl-1 pr-2 py-1 lg:py-[.5px] text-xs lg:text-sm uppercase mt-10 mb-5 lg:mt-0 lg:mb-5 font-semibold tracking-wider flex flex-row items-center gap-0.5 hover:cursor-pointer
+        transition-colors duration-300 
+        hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
       >
-        {isDark ? "Light" : "Dark"}
-      </span>
-    </button>
+        <span className="relative w-4 h-4 flex items-center justify-center pb-[1px]">
+          <Moon
+            size={12}
+            strokeWidth={2}
+            className={`absolute ${transitionClass} ${
+              isDark
+                ? "opacity-0 rotate-90 scale-0"
+                : "opacity-100 rotate-0 scale-100"
+            }`}
+          />
+          <Sun
+            size={12}
+            strokeWidth={2}
+            className={`absolute ${transitionClass} ${
+              isDark
+                ? "opacity-100 rotate-0 scale-100"
+                : "opacity-0 -rotate-90 scale-0"
+            }`}
+          />
+        </span>
+
+        <span
+          className="transition-opacity duration-300"
+          key={isDark ? "light" : "dark"}
+        >
+          {isDark ? "Light" : "Dark"}
+        </span>
+      </button>
+    </motion.div>
   );
 }

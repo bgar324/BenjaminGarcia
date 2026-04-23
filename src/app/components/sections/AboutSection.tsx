@@ -14,7 +14,7 @@ const EXPLORETECH_GRADIENT =
   "linear-gradient(to right, #e1ab2d, #69b7af, #0f5374)";
 
 const HCI_LAB_TEXT = "HCI Research Lab";
-const HCI_LAB_GRADIENT = "linear-gradient(to right, #1d2564, #2f68d4, #59d9ef)";
+const HCI_LAB_GRADIENT = "linear-gradient(to right, #1b3783, #2f68d4)";
 
 const LANDS_BETWEEN_TEXT = "Lands Between.";
 const LANDS_BETWEEN_GRADIENT = "linear-gradient(to right, #092322, #996A48)";

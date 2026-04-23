@@ -1,16 +1,69 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { Expand, MapPin } from "lucide-react";
-import { profileImage, mapHref, ResumeLinkLabel, resumeHref, socialLinks } from "./shared";
+import {
+  profileImage,
+  mapHref,
+  ResumeLinkLabel,
+  resumeHref,
+  socialLinks,
+  type SidebarSocialLink,
+} from "./shared";
+import { useTactilePress } from "../useTactilePress";
 
 type SidebarDesktopProps = {
   onOpenImageModal: (triggerEl: HTMLButtonElement) => void;
 };
 
+function SocialLinkButton({ link }: { link: SidebarSocialLink }) {
+  const press = useTactilePress();
+
+  return (
+    <motion.div
+      initial={false}
+      animate={
+        press.shouldReduceMotion
+          ? undefined
+          : { scale: press.pressScale, y: press.pressY }
+      }
+      transition={press.pressTransition}
+      style={{ transformOrigin: "center center" }}
+    >
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        title={link.label}
+        onPointerDown={press.onPressPointerDown}
+        onPointerUp={press.onPressPointerUp}
+        onPointerLeave={press.onPressPointerLeave}
+        onPointerCancel={press.onPressPointerCancel}
+        onKeyDown={press.onPressKeyDown}
+        onKeyUp={press.onPressKeyUp}
+        onBlur={press.onPressBlur}
+        className="
+          flex items-center justify-center aspect-square rounded-md
+          bg-gray-50 dark:bg-gray-950
+          text-gray-600 dark:text-slate-400
+          hover:bg-gray-100 dark:hover:bg-gray-900
+          hover:text-black dark:hover:text-white
+          transition-all duration-300 ease-in-out
+          focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
+        "
+      >
+        {link.icon}
+      </a>
+    </motion.div>
+  );
+}
+
 export default function SidebarDesktop({
   onOpenImageModal,
 }: SidebarDesktopProps) {
+  const resumePress = useTactilePress();
+
   return (
     <aside className="hidden lg:flex flex-col lg:w-[204px] lg:shrink-0 lg:gap-y-3 lg:sticky lg:top-10 h-fit">
       <div className="bg-white dark:bg-black rounded-xl shadow-md dark:shadow-lg p-2 transition-colors duration-300">
@@ -75,47 +128,47 @@ export default function SidebarDesktop({
       <div className="bg-white dark:bg-black rounded-xl shadow-md dark:shadow-lg p-2 transition-colors duration-300">
         <div className="grid grid-cols-4 gap-2 mb-2">
           {socialLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              title={link.label}
-              className="
-                flex items-center justify-center aspect-square rounded-md
-                bg-gray-50 dark:bg-gray-950
-                text-gray-600 dark:text-slate-400
-                hover:bg-gray-100 dark:hover:bg-gray-900
-                hover:text-black dark:hover:text-white
-                transition-all duration-300 ease-in-out
-                focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
-              "
-            >
-              {link.icon}
-            </a>
+            <SocialLinkButton key={link.label} link={link} />
           ))}
         </div>
 
-        <a
-          className="
-            flex items-center justify-center gap-2
-            bg-black/90 dark:bg-slate-100
-            text-white dark:text-gray-950
-            dark:hover:bg-white
-            hover:bg-black
-            rounded-md px-4 py-2 text-sm font-semibold
-            w-full text-center
-            active:scale-[0.98]
-            transition duration-300
-            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
-          "
-          href={resumeHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Resume"
+        <motion.div
+          initial={false}
+          animate={
+            resumePress.shouldReduceMotion
+              ? undefined
+              : { scale: resumePress.pressScale, y: resumePress.pressY }
+          }
+          transition={resumePress.pressTransition}
+          style={{ transformOrigin: "center center" }}
         >
-          <ResumeLinkLabel />
-        </a>
+          <a
+            className="
+              flex items-center justify-center gap-2
+              bg-black/90 dark:bg-slate-100
+              text-white dark:text-gray-950
+              dark:hover:bg-white
+              hover:bg-black
+              rounded-md px-4 py-2 text-sm font-semibold
+              w-full text-center
+              transition duration-300
+              focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
+            "
+            href={resumeHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Resume"
+            onPointerDown={resumePress.onPressPointerDown}
+            onPointerUp={resumePress.onPressPointerUp}
+            onPointerLeave={resumePress.onPressPointerLeave}
+            onPointerCancel={resumePress.onPressPointerCancel}
+            onKeyDown={resumePress.onPressKeyDown}
+            onKeyUp={resumePress.onPressKeyUp}
+            onBlur={resumePress.onPressBlur}
+          >
+            <ResumeLinkLabel />
+          </a>
+        </motion.div>
       </div>
     </aside>
   );
