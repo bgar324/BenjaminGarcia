@@ -19,7 +19,7 @@ export default function ExperienceSection() {
           description="Lindy is an AI work assistant and no-code agent platform that automates inbox, meetings, scheduling, CRM updates, and other cross-app business workflows."
         />
         <Dropdown
-          role="Researcher"
+          role="Undergraduate Researcher"
           position="UCLA HCI Research Lab"
           imageLink="https://www.hci.ucla.edu"
           startDate="Dec 2025"
