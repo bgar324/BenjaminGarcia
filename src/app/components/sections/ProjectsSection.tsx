@@ -87,6 +87,7 @@ export default function ProjectsSection() {
             onImageClick={openImagePreview}
             tags={[
               "Next.js",
+              "TypeScript",
               "Tailwind CSS",
               "Supabase",
               "PostgreSQL",
