@@ -38,7 +38,7 @@ export default function ExperienceSection() {
           description="Built and deployed Todd's first client-facing dashboard using Next.js, enabling 5–10 early customers to visualize AI-powered crop insights. Work contributed to scaling the team from 1 to 14 engineers and drove initial product adoption."
         />
         <Dropdown
-          role="Research & Development Engineer Intern"
+          role="R&D Engineer Intern"
           position="Bonterra"
           imageLink="https://www.bonterratech.com/"
           startDate="Jul 2025"
