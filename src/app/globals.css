@@ -229,6 +229,28 @@ html {
   will-change: transform;
 }
 
+.page-shell-gutter {
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .page-shell-gutter {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .page-shell-gutter {
+    padding-inline: clamp(1.5rem, 3.5vw, 2.5rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-shell-gutter {
+    padding-inline: 2rem;
+  }
+}
+
 /* Theme transition animation */
 @media (prefers-reduced-motion: reduce) {
   body {

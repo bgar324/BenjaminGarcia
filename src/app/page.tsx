@@ -73,7 +73,7 @@ export default function Home() {
       />
 
       <PageReveal
-        className="px-5 pt-2 md:pt-4 lg:pt-0 pb-8 lg:pb-0 lg:px-8 md:px-20 sm:px-6 max-w-5xl mx-auto flex flex-col min-h-screen lg:flex-row lg:gap-7 lg:justify-between"
+        className="page-shell-gutter pt-2 md:pt-4 lg:pt-0 pb-8 lg:pb-0 max-w-5xl mx-auto flex flex-col min-h-screen lg:flex-row lg:gap-7 lg:justify-between"
       >
         <div className="lg:py-10">
           <Sidebar />

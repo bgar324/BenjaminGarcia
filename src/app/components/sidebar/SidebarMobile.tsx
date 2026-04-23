@@ -252,7 +252,7 @@ export default function SidebarMobile({
         }}
         transition={HEADER_TRANSITION}
         style={{ pointerEvents: isMobileHeaderVisible ? undefined : "none" }}
-        className="lg:hidden fixed top-2 left-0 right-0 z-50 flex justify-center px-5 md:px-20 pointer-events-none"
+        className="page-shell-gutter lg:hidden fixed top-2 left-0 right-0 z-50 flex justify-center pointer-events-none"
       >
         <div
           className="
@@ -326,7 +326,7 @@ export default function SidebarMobile({
             transition={MENU_TRANSITION}
             className="fixed inset-0 z-[60] bg-white dark:bg-black p-6 pt-24 flex flex-col lg:hidden overflow-hidden"
           >
-            <div className="pointer-events-none absolute top-2 left-0 right-0 z-20 flex justify-center px-5 md:px-20">
+            <div className="page-shell-gutter pointer-events-none absolute top-2 left-0 right-0 z-20 flex justify-center">
               <div className="w-full max-w-5xl rounded-lg border border-transparent flex flex-row items-center justify-between p-3">
                 <div className="invisible flex items-center gap-3" aria-hidden="true">
                   <div className="h-10 w-10 rounded-lg" />

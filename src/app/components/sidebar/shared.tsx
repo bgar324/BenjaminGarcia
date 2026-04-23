@@ -5,7 +5,7 @@ import { ArrowUpRight, GitGraph, Mail } from "lucide-react";
 import { GitHubMarkIcon, LinkedInIcon } from "../../svgs/Icons";
 
 export const profileImage = {
-  src: "/static/me.jpeg",
+  src: "/static/me.jpg",
   alt: "Benjamin Garcia",
   width: 698,
   height: 800,
