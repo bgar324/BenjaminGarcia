@@ -56,14 +56,7 @@ export default function ProjectItem({
 
   return (
     <article className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs transition-colors duration-300 dark:border-gray-600 dark:bg-black">
-      <button
-        ref={imageModalTriggerRef}
-        type="button"
-        onClick={handleImageClick}
-        className="group/img relative block aspect-[16/9] w-full overflow-hidden border-b border-gray-200 dark:border-gray-700"
-        aria-label={`Expand ${previewAlt}`}
-        title="Expand photo"
-      >
+      <div className="group/img relative aspect-[16/9] w-full overflow-hidden border-b border-gray-200 dark:border-gray-700">
         <Image
           src={src}
           alt={previewAlt}
@@ -72,18 +65,24 @@ export default function ProjectItem({
           sizes="(max-width: 1023px) calc(100vw - 2.5rem), 388px"
           className="object-cover"
         />
-        <span
+        <button
+          ref={imageModalTriggerRef}
+          type="button"
+          onClick={handleImageClick}
           className="
             absolute top-3 right-3 flex items-center justify-center rounded-md
             bg-black/40 p-1.5 text-white/80 opacity-0 backdrop-blur-sm
+            cursor-pointer
             transition-all duration-300 ease-in-out group-hover/img:opacity-100
             group-focus-visible/img:opacity-100
+            focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
           "
-          aria-hidden="true"
+          aria-label={`Expand ${previewAlt}`}
+          title="Expand photo"
         >
           <Expand size={14} strokeWidth={2.5} />
-        </span>
-      </button>
+        </button>
+      </div>
 
       <div className="p-4">
         <div className="flex items-start justify-between gap-4">
