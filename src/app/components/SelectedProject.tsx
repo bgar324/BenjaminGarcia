@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { ReactNode } from "react";
+import { useRef } from "react";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import { Expand } from "lucide-react";
 import { GitHubMarkIcon, WebsiteIcon } from "../svgs/Icons";
@@ -9,11 +9,11 @@ import { GitHubMarkIcon, WebsiteIcon } from "../svgs/Icons";
 interface ProjectItemProps {
   src: string;
   title: ReactNode;
+  summary?: string;
   alt?: string;
-  description: string;
   link?: string;
   githubLink?: string;
-  note?: string;
+  note?: ReactNode;
   tags: string[];
   galleryImages?: string[];
   onImageClick?: (
@@ -26,8 +26,8 @@ interface ProjectItemProps {
 export default function ProjectItem({
   src,
   title,
+  summary,
   alt,
-  description,
   link,
   githubLink,
   note,
@@ -35,11 +35,14 @@ export default function ProjectItem({
   galleryImages,
   onImageClick,
 }: ProjectItemProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
   const imageModalTriggerRef = useRef<HTMLButtonElement | null>(null);
   const previewAlt =
     alt || (typeof title === "string" ? title : "Project preview");
   const projectName = typeof title === "string" ? title : previewAlt;
+  const titleClassName =
+    "text-lg font-semibold text-gray-900 md:text-xl dark:text-slate-100";
+  const subtitleClassName =
+    "mt-1 min-h-[3.5rem] text-sm leading-7 text-gray-600 line-clamp-2 lg:min-h-[4rem] lg:text-base dark:text-slate-400";
 
   const handleImageClick = () => {
     if (onImageClick) {
@@ -52,131 +55,85 @@ export default function ProjectItem({
   };
 
   return (
-    <div
-      className="
-      relative
-      flex flex-col md:flex-row gap-4 group rounded-xl border border-gray-200 dark:border-gray-600 
-      p-3 transition-all duration-300 
-      bg-white dark:bg-black md:items-start shadow-xs
-    "
-    >
-      <div
-        className="
-        w-full md:w-1/3   
-        relative 
-        aspect-video md:aspect-auto 
-        md:h-[130px]
-        flex-shrink-0
-        group/img
-      "
+    <article className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs transition-colors duration-300 dark:border-gray-600 dark:bg-black">
+      <button
+        ref={imageModalTriggerRef}
+        type="button"
+        onClick={handleImageClick}
+        className="group/img relative block aspect-[16/9] w-full overflow-hidden border-b border-gray-200 dark:border-gray-700"
+        aria-label={`Expand ${previewAlt}`}
+        title="Expand photo"
       >
         <Image
           src={src}
           alt={previewAlt}
           fill
           quality={82}
-          sizes="(max-width: 767px) calc(100vw - 2.5rem), (max-width: 1023px) 33vw, 260px"
-          className="
-          rounded-lg
-          border border-gray-300 dark:border-gray-700
-          object-cover
-          cursor-pointer
-        "
-          onClick={(e) => {
-            e.preventDefault();
-            handleImageClick();
-          }}
+          sizes="(max-width: 1023px) calc(100vw - 2.5rem), 388px"
+          className="object-cover"
         />
-        <button
-          ref={imageModalTriggerRef}
-          onClick={handleImageClick}
+        <span
           className="
-            absolute top-2 right-2 p-1.5 rounded-md
-            bg-black/40 backdrop-blur-sm
-            text-white/80 hover:text-white hover:bg-black/60
-            opacity-0 group-hover/img:opacity-100
-            transition-all duration-300 ease-in-out
-            cursor-pointer
-            focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
+            absolute top-3 right-3 flex items-center justify-center rounded-md
+            bg-black/40 p-1.5 text-white/80 opacity-0 backdrop-blur-sm
+            transition-all duration-300 ease-in-out group-hover/img:opacity-100
+            group-focus-visible/img:opacity-100
           "
-          aria-label={`Expand ${previewAlt}`}
-          title="Expand photo"
-          type="button"
+          aria-hidden="true"
         >
           <Expand size={14} strokeWidth={2.5} />
-        </button>
-      </div>
+        </span>
+      </button>
 
-      <div className="flex flex-col justify-between md:w-2/3">
-        <div className="flex flex-col">
-          <div className="flex items-center justify-between gap-3">
-            <h3 className="text-gray-900 dark:text-slate-100 font-semibold text-lg md:text-xl">
-              {title}
-            </h3>
-
-            <div
-              className="
-              flex items-center gap-4
-              md:absolute md:top-3 md:right-3
-            "
-            >
-              {link && (
-                <a
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 transition-colors duration-300 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
-                  title="Visit Site"
-                  aria-label={`Visit ${projectName}`}
-                >
-                  <WebsiteIcon />
-                </a>
-              )}
-
-              {githubLink && (
-                <a
-                  href={githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 transition-colors duration-300 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
-                  title="View on GitHub"
-                  aria-label={`View ${projectName} on GitHub`}
-                >
-                  <GitHubMarkIcon />
-                </a>
-              )}
-            </div>
+      <div className="p-4">
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0 flex-1 pr-2">
+            <h3 className={titleClassName}>{title}</h3>
           </div>
 
-          {note && (
-            <span className="text-[#d87474] dark:text-[#f29ca3] text-sm">
-              {note}
-            </span>
-          )}
+          <div className="flex shrink-0 items-center gap-3 pl-2">
+            {link && (
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center text-gray-600 transition-colors duration-300 hover:text-gray-900 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:text-slate-400 dark:hover:text-slate-200"
+                title="Visit Site"
+                aria-label={`Visit ${projectName}`}
+              >
+                <WebsiteIcon />
+              </a>
+            )}
 
-          <p
-            className={`text-gray-600 dark:text-slate-300 text-sm md:text-base ${
-              isExpanded ? "" : "line-clamp-2"
-            }`}
-          >
-            {description}
-          </p>
-
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-xs mt-1 font-medium hover:cursor-pointer transition-all duration-300 ease-in-out w-fit focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
-            title="Read more"
-          >
-            {isExpanded ? "Show less" : "Read more"}
-          </button>
+            {githubLink && (
+              <a
+                href={githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center text-gray-600 transition-colors duration-300 hover:text-gray-900 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:text-slate-400 dark:hover:text-slate-200"
+                title="View on GitHub"
+                aria-label={`View ${projectName} on GitHub`}
+              >
+                <GitHubMarkIcon />
+              </a>
+            )}
+          </div>
         </div>
 
-        {tags && (
-          <div className="flex flex-wrap gap-2 mt-4">
+        {summary && <p className={subtitleClassName}>{summary}</p>}
+
+        {note && (
+          <div className="mt-1 text-sm text-[#d87474] dark:text-[#f29ca3]">
+            {note}
+          </div>
+        )}
+
+        {tags.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
             {tags.map((tag, index) => (
               <span
                 key={index}
-                className="bg-gray-100 dark:bg-gray-900 text-gray-500 dark:text-slate-300 px-2.5 py-1 rounded-full text-xs font-medium cursor-default border border-gray-200 dark:border-gray-700 transition-colors duration-300 whitespace-nowrap"
+                className="whitespace-nowrap rounded-full border border-gray-200 bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-500 transition-colors duration-300 dark:border-gray-700 dark:bg-gray-900 dark:text-slate-300"
               >
                 {tag}
               </span>
@@ -184,6 +141,6 @@ export default function ProjectItem({
           </div>
         )}
       </div>
-    </div>
+    </article>
   );
 }

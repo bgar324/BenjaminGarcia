@@ -2,6 +2,20 @@ import { ProjectEntry, Column } from "../components/ProjectTable";
 
 export const archiveProjects: ProjectEntry[] = [
   {
+    year: 2026,
+    title: "Poly Clubs",
+    builtWith: ["Next.js", "Tailwind CSS", "TypeScript", "Supabase", "Framer Motion"],
+    websiteLink: "https://poly-clubs.vercel.app/",
+    githubLink: "https://github.com/bgar324/poly-clubs",
+  },
+  {
+    year: 2025,
+    title: "Het.AI",
+    builtWith: ["Next.js", "Tailwind CSS", "Python", "FastAPI", "Firebase"],
+    websiteLink: "https://hetai.vercel.app/",
+    githubLink: "https://github.com/bgar324/hacktech-25-brjk",
+  },
+  {
     year: 2025,
     title: "Computer Science Club Website",
     builtWith: ["Next.js", "Tailwind CSS", "TypeScript", "Vercel"],

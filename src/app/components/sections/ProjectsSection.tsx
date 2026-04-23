@@ -61,11 +61,11 @@ export default function ProjectsSection() {
             </Link>
           </motion.div>
         </div>
-        <div className="flex flex-col gap-y-3">
+        <div className="grid items-start gap-4 lg:grid-cols-2">
           <ProjectItem
             src="/static/project-previews/gitproof.png"
             title="GitProof"
-            description="Developers struggle to showcase GitHub contributions effectively to recruiters. GitProof generates shareable, recruiter-facing profile reports with impact scores, consistency analysis, and archetype classification using the GitHub GraphQL API, PostgreSQL, and Gemini 2.5 Flash for AI-assisted insights."
+            summary="Recruiter-facing GitHub reports that make public contribution history legible and credible."
             link="https://gitproof.dev"
             githubLink="https://github.com/bgar324/gitproof-2"
             onImageClick={openImagePreview}
@@ -81,7 +81,7 @@ export default function ProjectsSection() {
           <ProjectItem
             src="/static/project-previews/logit.png"
             title="Logit"
-            description="Logit is a lightweight workout tracker for logging sets, reps, weight, and training history without unnecessary friction. It lets users quickly record workouts, get exercise name suggestions and last-session comparisons while logging, and review their progress through dashboards, charts, personal bests, and exercise detail pages."
+            summary="A lightweight workout tracker built for fast logging and clear progress review."
             link="https://logit-prod.vercel.app"
             githubLink="https://github.com/bgar324/log-it"
             onImageClick={openImagePreview}
@@ -92,53 +92,6 @@ export default function ProjectsSection() {
               "PostgreSQL",
               "Prisma",
             ]}
-          />
-          <ProjectItem
-            src="/static/project-previews/poly-clubs.png"
-            title="Poly Clubs"
-            description="Cal Poly students had no way to get honest peer reviews of 486+ campus clubs. Built a transparent review platform with anonymous multi-dimensional ratings ('Vibe Check') and real-time aggregation, helping students make informed decisions about campus involvement."
-            link="https://poly-clubs.vercel.app/"
-            githubLink="https://github.com/bgar324/poly-clubs"
-            onImageClick={openImagePreview}
-            tags={[
-              "Next.js",
-              "Tailwind CSS",
-              "TypeScript",
-              "Supabase",
-              "Framer Motion",
-            ]}
-          />
-          <ProjectItem
-            src="/static/project-previews/hetai.png"
-            alt="het.ai project preview"
-            title={
-              <>
-                <div className="flex flex-row items-center">
-                  Het.AI |{" "}
-                  <a
-                    href="https://hack.caltech.edu/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="border-gray-500 hover:text-orange-500 transition-colors duration-300 flex flex-row gap-2 ml-2 items-center text-center justify-center"
-                  >
-                    <Image
-                      src="/static/hacktech-logo.webp"
-                      width={24}
-                      height={24}
-                      alt="HackTech logo"
-                      className="w-[1.25rem] h-[1.25rem]"
-                      quality={88}
-                    />
-                    <span>HackTech 2025</span>
-                  </a>
-                </div>
-              </>
-            }
-            description="Desk workers lack real-time feedback on wrist posture, leading to repetitive strain injuries. Built het.ai at HackTech 2025—a real-time wrist diagnostic platform using Leap Motion to visualize hand posture and calculate ergonomic risk. Led frontend with Next.js, creating interactive visualizations and dashboard integrated with FastAPI backend. Outputs flexion, deviation, and pronation angles for live feedback and long-term session insights."
-            link="https://hetai.vercel.app/"
-            githubLink="https://github.com/bgar324/hacktech-25-brjk"
-            onImageClick={openImagePreview}
-            tags={["Next.js", "Tailwind CSS", "Python", "FastAPI", "Firebase"]}
           />
         </div>
       </section>
