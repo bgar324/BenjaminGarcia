@@ -3,7 +3,7 @@ import type { CSSProperties } from "react";
 import SectionHeader from "../SectionHeader";
 import ThemeToggle from "../ThemeToggle";
 
-const UCLA_TEXT = "University of California, Los Angeles.";
+const UCLA_TEXT = "UCLA";
 const UCLA_GRADIENT = "linear-gradient(to right, #1e3a8a, #b45309)";
 
 const ACM_HACK_TEXT = "ACM Hack";
@@ -13,7 +13,7 @@ const EXPLORETECH_TEXT = "exploretech.la";
 const EXPLORETECH_GRADIENT =
   "linear-gradient(to right, #e1ab2d, #69b7af, #0f5374)";
 
-const HCI_LAB_TEXT = "Human-Computer Interaction Research Lab";
+const HCI_LAB_TEXT = "HCI Research Lab";
 const HCI_LAB_GRADIENT = "linear-gradient(to right, #1d2564, #2f68d4, #59d9ef)";
 
 const LANDS_BETWEEN_TEXT = "Lands Between.";
@@ -164,28 +164,25 @@ export default function AboutSection() {
       </div>
 
       <p className={`${ABOUT_TEXT_CLASS_NAME} mt-4`}>
-        I'm a junior studying Computer Science at the{" "}
+        I'm a junior studying Computer Science at {" "}
         <RippleLink
           href="https://ucla.edu/"
           text={UCLA_TEXT}
           gradient={UCLA_GRADIENT}
-        />{" "}
+        />.{" "}
         This summer, I'm joining{" "}
         <RippleLink
           href="https://www.lindy.ai"
           text={LINDY_TEXT}
           gradient={LINDY_GRADIENT}
         />{" "}
-        as a software engineering intern, and I also conduct research in Professor Xiang
-        "Anthony" Chen's{" "}
+        as a software engineer intern, and I also conduct research in UCLA's {" "}
         <RippleLink
           href="https://hci.ucla.edu"
           text={HCI_LAB_TEXT}
           gradient={HCI_LAB_GRADIENT}
-        />{" "}
-        under PhD researcher Youngseung Jeon, where I explore interactive
-        systems for scientific hypothesis generation through multi-agent
-        orchestration. I care deeply about building responsive, accessible
+        />, where I explore AI
+        systems for scientific hypothesis generation. I care deeply about building responsive, accessible
         interfaces that make complex systems feel clear and usable.
       </p>
 
