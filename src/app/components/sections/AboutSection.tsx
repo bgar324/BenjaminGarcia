@@ -14,23 +14,22 @@ const EXPLORETECH_GRADIENT =
   "linear-gradient(to right, #e1ab2d, #69b7af, #0f5374)";
 
 const HCI_LAB_TEXT = "Human-Computer Interaction Research Lab";
-const HCI_LAB_GRADIENT =
-  "linear-gradient(to right, #1d2564, #2f68d4, #59d9ef)";
+const HCI_LAB_GRADIENT = "linear-gradient(to right, #1d2564, #2f68d4, #59d9ef)";
 
 const LANDS_BETWEEN_TEXT = "Lands Between.";
 const LANDS_BETWEEN_GRADIENT = "linear-gradient(to right, #092322, #996A48)";
 
+const LINDY_TEXT = "Lindy";
+const LINDY_GRADIENT = "linear-gradient(to right, ##ffd447, ##573b0a)";
+
 const ABOUT_TEXT_CLASS_NAME =
   "text-gray-600 dark:text-slate-400 lg:text-lg leading-snug";
 const ABOUT_LINK_TONE_CLASS_NAME = "text-slate-800 dark:text-slate-100";
-const ABOUT_LINK_CLASS_NAME =
-  `font-medium ${ABOUT_LINK_TONE_CLASS_NAME} transition-colors duration-300 hover:text-slate-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm dark:hover:text-white`;
+const ABOUT_LINK_CLASS_NAME = `font-medium ${ABOUT_LINK_TONE_CLASS_NAME} transition-colors duration-300 hover:text-slate-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm dark:hover:text-white`;
 const HOVER_DELAY_START_MS = 50;
 const HOVER_DELAY_STEP_MS = 25;
-const HOVER_LINK_CLASS_NAME =
-  `group inline-flex flex-wrap items-baseline ${ABOUT_LINK_CLASS_NAME}`;
-const HOVER_CHARACTER_CLASS_NAME =
-  `inline-block whitespace-pre ${ABOUT_LINK_TONE_CLASS_NAME} transition duration-300 group-hover:-translate-y-px group-hover:[color:var(--hover-letter-color)]`;
+const HOVER_LINK_CLASS_NAME = `group inline-flex flex-wrap items-baseline ${ABOUT_LINK_CLASS_NAME}`;
+const HOVER_CHARACTER_CLASS_NAME = `inline-block whitespace-pre ${ABOUT_LINK_TONE_CLASS_NAME} transition duration-300 group-hover:-translate-y-px group-hover:[color:var(--hover-letter-color)]`;
 
 type Rgb = {
   r: number;
@@ -152,7 +151,11 @@ function RippleLink({ href, text, gradient }: RippleLinkProps) {
 
 export default function AboutSection() {
   return (
-    <section id="about" aria-labelledby="about-heading" className="flex flex-col">
+    <section
+      id="about"
+      aria-labelledby="about-heading"
+      className="flex flex-col"
+    >
       <div className="flex flex-row justify-between items-center">
         <SectionHeader id="about-heading" className="lg:mt-0">
           about
@@ -161,33 +164,29 @@ export default function AboutSection() {
       </div>
 
       <p className={`${ABOUT_TEXT_CLASS_NAME} mt-4`}>
-        I&apos;m a junior studying Computer Science at the{" "}
+        I'm a junior studying Computer Science at the{" "}
         <RippleLink
           href="https://ucla.edu/"
           text={UCLA_TEXT}
           gradient={UCLA_GRADIENT}
         />{" "}
-        I currently serve as a Software Engineer Lead for{" "}
+        This summer, I'm joining{" "}
         <RippleLink
-          href="https://hack.uclaacm.com"
-          text={ACM_HACK_TEXT}
-          gradient={ACM_HACK_GRADIENT}
+          href="https://www.lindy.ai"
+          text={LINDY_TEXT}
+          gradient={LINDY_GRADIENT}
         />{" "}
-        and contribute to{" "}
-        <RippleLink
-          href="https://exploretech.la"
-          text={EXPLORETECH_TEXT}
-          gradient={EXPLORETECH_GRADIENT}
-        />
-        ,{" "}where I help build responsive, accessible interfaces that bring ideas
-        to life. I work in Professor Xiang “Anthony” Chen’s{" "}
+        as a software engineering intern, and I also conduct research in Professor Xiang
+        "Anthony" Chen's{" "}
         <RippleLink
           href="https://hci.ucla.edu"
           text={HCI_LAB_TEXT}
           gradient={HCI_LAB_GRADIENT}
-        />
-        ,{" "}advised by PhD researcher Youngseung Jeon, focusing on interactive
-        systems for human–AI collaboration.
+        />{" "}
+        under PhD researcher Youngseung Jeon, where I explore interactive
+        systems for scientific hypothesis generation through multi-agent
+        orchestration. I care deeply about building responsive, accessible
+        interfaces that make complex systems feel clear and usable.
       </p>
 
       <p className={`${ABOUT_TEXT_CLASS_NAME} mt-2`}>
