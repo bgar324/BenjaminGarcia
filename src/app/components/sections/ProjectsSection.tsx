@@ -16,15 +16,11 @@ export default function ProjectsSection() {
   const imageModalTriggerRef = useRef<HTMLElement | null>(null);
 
   const openImagePreview = useCallback(
-    (
-      src: string,
-      alt: string,
-      triggerEl: HTMLButtonElement | null
-    ) => {
+    (src: string, alt: string, triggerEl: HTMLButtonElement | null) => {
       imageModalTriggerRef.current = triggerEl;
       setActiveImage({ alt, src });
     },
-    []
+    [],
   );
 
   return (
@@ -44,21 +40,6 @@ export default function ProjectsSection() {
           </Link>
         </div>
         <div className="flex flex-col gap-y-3">
-          <ProjectItem
-            src="/static/project-previews/poly-clubs-2.webp"
-            title="Poly Clubs"
-            description="Cal Poly students had no way to get honest peer reviews of 486+ campus clubs. Built a transparent review platform with anonymous multi-dimensional ratings ('Vibe Check') and real-time aggregation, helping students make informed decisions about campus involvement."
-            link="https://poly-clubs.vercel.app/"
-            githubLink="https://github.com/bgar324/poly-clubs"
-            onImageClick={openImagePreview}
-            tags={[
-              "Next.js",
-              "Tailwind CSS",
-              "TypeScript",
-              "Supabase",
-              "Framer Motion",
-            ]}
-          />
           <ProjectItem
             src="/static/project-previews/gitproof-2.webp"
             title="Git Proof"
@@ -91,6 +72,21 @@ export default function ProjectsSection() {
             ]}
           />
           <ProjectItem
+            src="/static/project-previews/poly-clubs-2.webp"
+            title="Poly Clubs"
+            description="Cal Poly students had no way to get honest peer reviews of 486+ campus clubs. Built a transparent review platform with anonymous multi-dimensional ratings ('Vibe Check') and real-time aggregation, helping students make informed decisions about campus involvement."
+            link="https://poly-clubs.vercel.app/"
+            githubLink="https://github.com/bgar324/poly-clubs"
+            onImageClick={openImagePreview}
+            tags={[
+              "Next.js",
+              "Tailwind CSS",
+              "TypeScript",
+              "Supabase",
+              "Framer Motion",
+            ]}
+          />
+          <ProjectItem
             src="/static/project-previews/hetai.webp"
             alt="het.ai project preview"
             title={
@@ -120,13 +116,7 @@ export default function ProjectsSection() {
             link="https://hetai.vercel.app/"
             githubLink="https://github.com/bgar324/hacktech-25-brjk"
             onImageClick={openImagePreview}
-            tags={[
-              "Next.js",
-              "Tailwind CSS",
-              "Python",
-              "FastAPI",
-              "Firebase",
-            ]}
+            tags={["Next.js", "Tailwind CSS", "Python", "FastAPI", "Firebase"]}
           />
         </div>
       </section>
