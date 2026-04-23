@@ -163,7 +163,7 @@ export default function AboutSection() {
         <ThemeToggle />
       </div>
 
-      <p className={`${ABOUT_TEXT_CLASS_NAME} mt-4`}>
+      <p className={`${ABOUT_TEXT_CLASS_NAME}`}>
         I'm a junior studying Computer Science at {" "}
         <RippleLink
           href="https://ucla.edu/"
