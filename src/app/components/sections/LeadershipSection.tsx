@@ -30,7 +30,7 @@ export default function LeadershipSection() {
           src="/static/companies/ela.webp"
           description="Core member of 5-person web development team rebuilding the organization's website with React and JavaScript. Support Content Board of 10–20 members, helping run workshops and prepare for the Ignite Program in Winter 2026."
         />
-        <Dropdown
+        {/* <Dropdown
           role="Frontend Developer"
           position="Mt. SAC Computer Science Club"
           imageLink="https://www.mtsaccs.org"
@@ -38,7 +38,7 @@ export default function LeadershipSection() {
           endDate="Jul 2025"
           src="/static/companies/mtsaccs.webp"
           description="Redesigned and rebuilt the Mt. SAC CS Club website using React and Bootstrap, enhancing UX, responsiveness, and access to events, officers, and contact info for 900+ members."
-        />
+        /> */}
       </div>
     </section>
   );

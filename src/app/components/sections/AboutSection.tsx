@@ -187,7 +187,7 @@ export default function AboutSection() {
       </p>
 
       <p className={`${ABOUT_TEXT_CLASS_NAME} mt-2`}>
-        Outside of coding, I enjoy weightlifting, spending time with my dog, and
+        Outside of building, I enjoy weightlifting, time with my dog, and
         exploring the{" "}
         <RippleLink
           href="https://en.bandainamcoent.eu/elden-ring/elden-ring"
