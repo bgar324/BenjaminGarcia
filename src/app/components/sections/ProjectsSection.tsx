@@ -72,7 +72,8 @@ export default function ProjectsSection() {
             tags={[
               "Next.js",
               "TypeScript",
-              "PostgreSQL",
+              "Tailwind",
+              "Postgres",
               "Prisma",
               "GitHub GraphQL API",
               "Gemini 2.5 Flash",
@@ -88,9 +89,9 @@ export default function ProjectsSection() {
             tags={[
               "Next.js",
               "TypeScript",
-              "Tailwind CSS",
+              "Tailwind",
               "Supabase",
-              "PostgreSQL",
+              "Postgres",
               "Prisma",
             ]}
           />

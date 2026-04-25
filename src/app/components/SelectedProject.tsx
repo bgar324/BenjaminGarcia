@@ -42,7 +42,7 @@ export default function ProjectItem({
   const titleClassName =
     "text-lg font-semibold text-gray-900 md:text-xl dark:text-slate-100";
   const subtitleClassName =
-    "mt-1 min-h-[3.5rem] text-sm leading-7 text-gray-600 line-clamp-2 lg:min-h-[4rem] lg:text-base dark:text-slate-400";
+    "mt-1 min-h-[3.5rem] text-sm text-gray-600 line-clamp-2 lg:min-h-[4rem] lg:text-base dark:text-slate-400";
 
   const handleImageClick = () => {
     if (onImageClick) {
@@ -128,7 +128,7 @@ export default function ProjectItem({
         )}
 
         {tags.length > 0 && (
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2">
             {tags.map((tag, index) => (
               <span
                 key={index}

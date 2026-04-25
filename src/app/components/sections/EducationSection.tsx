@@ -13,7 +13,7 @@ export default function EducationSection() {
           startDate="2025"
           endDate="Present"
           src="/static/schools/ucla.webp"
-          description="Transfer Research Entry Program, ACM Hack Intern, Content Member & Frontend Developer at exploretech.la, Undergraduate Research Developer for UCLA HCI Research Lab"
+          description="ACM Hack Software Engineer Lead, Content Member & Frontend Developer at exploretech.la"
         />
         <Dropdown
           role="Mount San Antonio College"
@@ -22,7 +22,7 @@ export default function EducationSection() {
           startDate="2023"
           endDate="2025"
           src="/static/schools/mtsac.webp"
-          description="Outreach Officer & Front-End Developer for the Computer Science Club."
+          description="Outreach Officer & Front-End Developer for the Computer Science Club"
         /> 
       </div>
     </section>

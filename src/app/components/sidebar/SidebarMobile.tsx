@@ -344,7 +344,7 @@ export default function SidebarMobile({
 
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="pointer-events-auto relative flex h-10 w-10 translate-y-[6.5px] items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                  className="pointer-events-auto relative flex h-10 w-10 translate-y-[1px] items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                   type="button"
                   aria-label="Close full-screen menu"
                 >
