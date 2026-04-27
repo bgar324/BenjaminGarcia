@@ -25,8 +25,8 @@ export default function ThemeToggle() {
   const current = theme === "system" ? systemTheme : theme;
   const isDark = current === "dark";
 
-  const transitionClass =
-    "transition-all duration-300";
+  const iconTransitionClass =
+    "transform-gpu transition-[opacity,scale,rotate] duration-300 ease-[var(--theme-transition-ease)]";
 
   return (
     <motion.div
@@ -50,14 +50,14 @@ export default function ThemeToggle() {
         onKeyUp={press.onPressKeyUp}
         onBlur={press.onPressBlur}
         aria-label="Toggle dark mode"
-        className="group relative w-fit border border-gray-300 rounded-md pl-1 pr-2 py-1 text-xs uppercase mt-10 mb-5 lg:mt-0 lg:mb-5 font-semibold tracking-wider flex flex-row items-center gap-0.5 hover:cursor-pointer
-        transition-colors duration-300"
+        className="group relative w-fit border border-gray-300 bg-white text-gray-900 rounded-md pl-1 pr-2 py-1 text-xs uppercase mt-10 mb-5 lg:mt-0 lg:mb-5 font-semibold tracking-wider flex flex-row items-center gap-0.5 hover:cursor-pointer
+        transition-colors duration-300 ease-[var(--theme-transition-ease)] dark:border-gray-700 dark:bg-black dark:text-slate-100"
       >
         <span className="relative w-4 h-4 flex items-center justify-center pb-[1px]">
           <Moon
             size={12}
             strokeWidth={2}
-            className={`absolute pb-[0.5px] ${transitionClass} ${
+            className={`absolute pb-[0.5px] ${iconTransitionClass} ${
               isDark
                 ? "opacity-0 rotate-90 scale-0"
                 : "opacity-100 rotate-0 scale-100"
@@ -66,7 +66,7 @@ export default function ThemeToggle() {
           <Sun
             size={12}
             strokeWidth={2}
-            className={`absolute ${transitionClass} ${
+            className={`absolute ${iconTransitionClass} ${
               isDark
                 ? "opacity-100 rotate-0 scale-100"
                 : "opacity-0 -rotate-90 scale-0"
@@ -75,7 +75,7 @@ export default function ThemeToggle() {
         </span>
 
         <span
-          className="transition-opacity duration-300"
+          className="transition-opacity duration-300 ease-[var(--theme-transition-ease)]"
           key={isDark ? "light" : "dark"}
         >
           {isDark ? "Light" : "Dark"}
