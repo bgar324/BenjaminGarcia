@@ -99,7 +99,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         sizes="64px"
         loading={darkSrc ? "eager" : undefined}
         quality={88}
-        className={`h-auto w-16 rounded-xl items-center p-1 lg:ml-1 ${darkSrc ? "dark:hidden" : ""}`}
+        className={`h-auto w-16 rounded-xl items-center p-1 lg:ml-1 lg:p-1 ${darkSrc ? "dark:hidden" : ""}`}
       />
       {darkSrc && (
         <Image
@@ -110,7 +110,7 @@ const Dropdown: React.FC<DropdownProps> = ({
           sizes="64px"
           loading="eager"
           quality={88}
-          className="hidden h-auto w-16 rounded-xl items-center p-1 lg:ml-1 dark:block"
+          className="hidden h-auto w-16 rounded-xl items-center p-0.5 lg:ml-1 lg:p-1 dark:block"
         />
       )}
     </>
@@ -158,7 +158,7 @@ const Dropdown: React.FC<DropdownProps> = ({
           )}
         </div>
 
-        <div className="flex w-full items-center justify-between gap-3 p-2">
+        <div className="flex w-full items-center justify-between gap-2 p-1.5 sm:p-2 lg:gap-3">
           <div className="flex min-w-0 flex-col">
             <h3 className={titleCls}>{role}</h3>
 
@@ -174,7 +174,7 @@ const Dropdown: React.FC<DropdownProps> = ({
             </p>
             
             {hasExpandableContent && (
-              <div className="ml-2 transition-all duration-300 ease-in-out rounded-3xl group-hover:bg-gray-200 dark:group-hover:bg-slate-700">
+              <div className="ml-1 transition-all duration-300 ease-in-out rounded-3xl group-hover:bg-gray-200 dark:group-hover:bg-slate-700 sm:ml-2">
                 <div className="relative w-4 h-4">
                   <motion.div
                     initial={false}

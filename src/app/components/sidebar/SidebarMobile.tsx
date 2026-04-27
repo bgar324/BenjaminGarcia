@@ -14,7 +14,6 @@ const MENU_TRANSITION = { duration: 0.18, ease: APP_EASE };
 type MobileMenuLink = {
   href: string;
   label: string;
-  variant: "link" | "primary";
 };
 
 function MobileMenuLinkItem({
@@ -53,23 +52,19 @@ function MobileMenuLinkItem({
         onBlur={press.onPressBlur}
         initial={{
           opacity: 0,
-          y: link.variant === "primary" ? 0 : -14,
+          y: -14,
         }}
         animate={{ opacity: 1, y: 0 }}
         exit={{
           opacity: 0,
-          y: link.variant === "primary" ? 0 : -10,
+          y: -10,
         }}
         transition={{
           duration: menuItemDuration,
           delay: menuItemBaseDelay + index * menuItemStepDelay,
           ease: APP_EASE,
         }}
-        className={
-          link.variant === "primary"
-            ? "inline-flex items-center justify-center rounded-md bg-black px-8 py-3 text-lg font-medium text-white transition-transform duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:bg-slate-100 dark:text-gray-950"
-            : "text-2xl font-semibold text-gray-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
-        }
+        className="text-2xl font-semibold text-gray-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
       >
         {link.label}
       </motion.a>
@@ -98,12 +93,10 @@ export default function SidebarMobile({
     ...socialLinks.map(({ href, label }) => ({
       href,
       label,
-      variant: "link" as const,
     })),
     {
       href: resumeHref,
       label: "View Résumé",
-      variant: "primary" as const,
     },
   ];
 
