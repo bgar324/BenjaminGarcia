@@ -26,7 +26,7 @@ export default function ExperienceSection() {
           endDate="Present"
           src="/static/companies/ucla-hci.png"
           darkSrc="/static/companies/ucla-hci-dark.png"
-          description="Working in Professor Xiang “Anthony” Chen’s Human–Computer Interaction Lab, advised by Youngseung Jeon, on interactive systems for human–AI collaboration and hypothesis exploration."
+          description="Collaborated on HI-COS, a multi-agent scientific hypothesis generation platform built with FastAPI, Pydantic AI, Supabase, Gemini, Next.js, React Flow, Zustand, and Tailwind CSS."
         />
         <Dropdown
           role="Software Engineer Intern"
