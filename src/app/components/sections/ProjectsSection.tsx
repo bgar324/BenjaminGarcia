@@ -51,12 +51,12 @@ export default function ProjectsSection() {
               onKeyDown={archivePress.onPressKeyDown}
               onKeyUp={archivePress.onPressKeyUp}
               onBlur={archivePress.onPressBlur}
-              className="group w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider lg:py-[.5px] lg:text-sm flex items-center gap-1 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 shadow-xs"
+              className="group w-fit border border-gray-300 rounded-md px-2 py-1 uppercase mt-10 mb-5 font-semibold tracking-wider text-xs flex items-center gap-1 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
             >
               project archive
               <ArrowUpRight
-                size={14}
-                className="transform transition-transform duration-300 group-hover:translate-x-[1px]"
+                size={12}
+                className="transform transition-transform duration-300 group-hover:translate-x-[0.5px] pb-[0.5px] group-hover:-translate-y-[0.5px]"
               />
             </Link>
           </motion.div>

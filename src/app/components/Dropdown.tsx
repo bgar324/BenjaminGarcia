@@ -186,7 +186,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                     transition={{ duration: 0.3 }}
                     className="absolute inset-0"
                   >
-                    <ChevronDown strokeWidth="1" size={16} absoluteStrokeWidth />
+                    <ChevronDown strokeWidth="1" size={14} absoluteStrokeWidth className = "text-gray-600 dark:text-slate-400"/>
                   </motion.div>
                   
                   <motion.div
@@ -199,7 +199,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                     transition={{ duration: 0.3 }}
                     className="absolute inset-0"
                   >
-                    <X strokeWidth="1" size={16} absoluteStrokeWidth />
+                    <X strokeWidth="1" size={14} absoluteStrokeWidth className = "text-gray-600 dark:text-slate-400" />
                   </motion.div>
                 </div>
               </div>
