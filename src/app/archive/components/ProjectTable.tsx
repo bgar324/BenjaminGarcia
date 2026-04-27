@@ -43,7 +43,7 @@ export default function ProjectTable({
               <TableHead
                 key={c.key}
                 className={[
-                  "text-sm font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider",
+                  "text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider",
                   c.hiddenOn === "md" ? "hidden md:table-cell" : "",
                   c.hiddenOn === "lg" ? "hidden lg:table-cell" : "",
                   c.key === "year" ? "w-[100px]" : "",

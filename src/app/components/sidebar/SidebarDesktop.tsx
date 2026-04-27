@@ -144,11 +144,11 @@ export default function SidebarDesktop({
         >
           <a
             className="
-              flex items-center justify-center gap-2
-              bg-black/90 dark:bg-slate-100
-              text-white dark:text-gray-950
-              dark:hover:bg-white
-              hover:bg-black
+              group flex items-center justify-center gap-1
+            bg-gray-50 dark:bg-gray-950
+            text-gray-600 dark:text-slate-400
+            hover:bg-gray-100 dark:hover:bg-gray-900
+            hover:text-black dark:hover:text-white
               rounded-md px-4 py-2 text-sm font-semibold
               w-full text-center
               transition duration-300

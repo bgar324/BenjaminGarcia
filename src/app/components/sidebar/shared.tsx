@@ -53,7 +53,7 @@ export function ResumeLinkLabel() {
       View My Résumé
       <ArrowUpRight
         size={14}
-        className="transform transition-transform duration-300 group-hover:translate-x-[1px]"
+        className="transform transition-transform duration-300 group-hover:translate-x-[0.5px] group-hover:-translate-y-[0.5px]"
       />
     </>
   );

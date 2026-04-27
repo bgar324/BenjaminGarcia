@@ -173,7 +173,7 @@ body {
 }
 
 .arrow-link:hover .arrow-icon {
-  transform: translateX(-1px);
+  transform: translateX(-0.5px);
 }
 
 @keyframes aurora {

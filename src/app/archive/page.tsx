@@ -82,7 +82,7 @@ export default function ArchivePage() {
           href="/"
           className="flex flex-row gap-2 items-center text-center hover:text-black dark:hover:text-slate-200 mb-4 arrow-link transition-colors duration-300"
         >
-          <ArrowLeft className="arrow-icon" size={14} />
+          <ArrowLeft className="arrow-icon" size={12} />
           Benjamin Garcia
         </Link>
 

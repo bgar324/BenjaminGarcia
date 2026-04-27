@@ -7,7 +7,7 @@ import Image from "next/image";
 import SectionHeader from "../SectionHeader";
 import ImagePreviewModal from "../ImagePreviewModal";
 import ProjectItem from "../SelectedProject";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useTactilePress } from "../useTactilePress";
 
 export default function ProjectsSection() {
@@ -54,9 +54,9 @@ export default function ProjectsSection() {
               className="group w-fit border border-gray-300 rounded-md px-2 py-1 uppercase mt-10 mb-5 font-semibold tracking-wider text-xs flex items-center gap-1 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
             >
               project archive
-              <ArrowUpRight
+              <ArrowRight
                 size={12}
-                className="transform transition-transform duration-300 group-hover:translate-x-[0.5px] pb-[0.5px] group-hover:-translate-y-[0.5px]"
+                className="transform transition-transform duration-300 group-hover:translate-x-[0.5px] pb-[0.5px]"
               />
             </Link>
           </motion.div>
