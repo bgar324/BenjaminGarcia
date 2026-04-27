@@ -158,52 +158,52 @@ const Dropdown: React.FC<DropdownProps> = ({
           )}
         </div>
 
-        <div className="flex flex-col w-full p-2">
-          <h3 className={titleCls}>{role}</h3>
+        <div className="flex w-full items-center justify-between gap-3 p-2">
+          <div className="flex min-w-0 flex-col">
+            <h3 className={titleCls}>{role}</h3>
 
-          <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row items-center">
               <span className={subtitleCls}>{position}</span>
             </div>
+          </div>
 
-            <div className="flex flex-row items-center">
-              <p className="text-sm text-gray-600 dark:text-slate-400 hidden sm:block lg:text-base">
-                {startDate}
-                {endDate ? ` - ${endDate}` : ""}
-              </p>
-              
-              {hasExpandableContent && (
-                <div className="ml-2 transition-all duration-300 ease-in-out rounded-3xl group-hover:bg-gray-200 dark:group-hover:bg-slate-700">
-                  <div className="relative w-4 h-4">
-                    <motion.div
-                      initial={false}
-                      animate={{ 
-                        rotate: isOpen ? -90 : 0, 
-                        opacity: isOpen ? 0 : 1, 
-                        scale: isOpen ? 0.5 : 1 
-                      }}
-                      transition={{ duration: 0.3 }}
-                      className="absolute inset-0"
-                    >
-                      <ChevronDown strokeWidth="1" size={16} absoluteStrokeWidth />
-                    </motion.div>
-                    
-                    <motion.div
-                      initial={false}
-                      animate={{ 
-                        rotate: isOpen ? 0 : 90, 
-                        opacity: isOpen ? 1 : 0, 
-                        scale: isOpen ? 1 : 0.5 
-                      }}
-                      transition={{ duration: 0.3 }}
-                      className="absolute inset-0"
-                    >
-                      <X strokeWidth="1" size={16} absoluteStrokeWidth />
-                    </motion.div>
-                  </div>
+          <div className="flex shrink-0 flex-row items-center">
+            <p className="hidden text-sm text-gray-600 dark:text-slate-400 sm:block lg:text-base">
+              {startDate}
+              {endDate ? ` - ${endDate}` : ""}
+            </p>
+            
+            {hasExpandableContent && (
+              <div className="ml-2 transition-all duration-300 ease-in-out rounded-3xl group-hover:bg-gray-200 dark:group-hover:bg-slate-700">
+                <div className="relative w-4 h-4">
+                  <motion.div
+                    initial={false}
+                    animate={{ 
+                      rotate: isOpen ? -90 : 0, 
+                      opacity: isOpen ? 0 : 1, 
+                      scale: isOpen ? 0.5 : 1 
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0"
+                  >
+                    <ChevronDown strokeWidth="1" size={16} absoluteStrokeWidth />
+                  </motion.div>
+                  
+                  <motion.div
+                    initial={false}
+                    animate={{ 
+                      rotate: isOpen ? 0 : 90, 
+                      opacity: isOpen ? 1 : 0, 
+                      scale: isOpen ? 1 : 0.5 
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0"
+                  >
+                    <X strokeWidth="1" size={16} absoluteStrokeWidth />
+                  </motion.div>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
