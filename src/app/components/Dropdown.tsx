@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import React, { useState } from "react"
-import { ChevronDown, X } from "lucide-react"
-import Image from "next/image"
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
+import React, { useState } from "react";
+import { ChevronDown, X } from "lucide-react";
+import Image from "next/image";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 interface DropdownProps {
-  role: string
-  position: string
-  startDate: string
-  endDate?: string
-  src: string
-  darkSrc?: string
-  imageLink?: string
-  link?: string
-  description?: string
+  role: string;
+  position: string;
+  startDate: string;
+  endDate?: string;
+  src: string;
+  darkSrc?: string;
+  imageLink?: string;
+  link?: string;
+  description?: string;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -26,69 +26,71 @@ const Dropdown: React.FC<DropdownProps> = ({
   darkSrc,
   imageLink,
   link,
-  description
+  description,
 }) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isPressed, setIsPressed] = useState(false)
-  const shouldReduceMotion = useReducedMotion()
+  const [isOpen, setIsOpen] = useState(false);
+  const [isPressed, setIsPressed] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
-  const hasExpandableContent = Boolean(description || link)
+  const hasExpandableContent = Boolean(description || link);
 
   const toggleDropdown = () => {
     if (hasExpandableContent) {
-      setIsOpen((v) => !v)
+      setIsOpen((v) => !v);
     }
-  }
+  };
 
   const stopPropagation = (e: React.SyntheticEvent) => {
-    e.stopPropagation()
-  }
+    e.stopPropagation();
+  };
 
   const handlePressStart = () => {
     if (hasExpandableContent) {
-      setIsPressed(true)
+      setIsPressed(true);
     }
-  }
+  };
 
   const handlePressEnd = () => {
-    setIsPressed(false)
-  }
+    setIsPressed(false);
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (!hasExpandableContent) {
-      return
+      return;
     }
 
     if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault()
-      setIsPressed(true)
+      e.preventDefault();
+      setIsPressed(true);
     }
-  }
+  };
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (!hasExpandableContent) {
-      return
+      return;
     }
 
     if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault()
-      handlePressEnd()
-      toggleDropdown()
+      e.preventDefault();
+      handlePressEnd();
+      toggleDropdown();
     }
-  }
+  };
 
-  const titleCls = "font-semibold w-full lg:text-lg text-gray-900 dark:text-slate-100"
-  const subtitleCls = "text-sm text-gray-600 dark:text-slate-400 lg:text-base"
-  const shellMotion = shouldReduceMotion || !hasExpandableContent
-    ? undefined
-    : {
-        scale: isPressed ? 0.9925 : 1,
-        y: isPressed ? 1 : 0
-      }
+  const titleCls =
+    "font-semibold w-full lg:text-lg text-gray-900 dark:text-slate-100";
+  const subtitleCls = "text-sm text-gray-600 dark:text-slate-400 lg:text-base";
+  const shellMotion =
+    shouldReduceMotion || !hasExpandableContent
+      ? undefined
+      : {
+          scale: isPressed ? 0.9925 : 1,
+          y: isPressed ? 1 : 0,
+        };
   const shellTransition = shouldReduceMotion
     ? { duration: 0.15 }
-    : { type: "spring" as const, stiffness: 420, damping: 28, mass: 0.72 }
-  const hasImageLink = Boolean(imageLink?.trim())
+    : { type: "tween" as const, duration: 0.14, ease: "easeOut" as const };
+  const hasImageLink = Boolean(imageLink?.trim());
   const logoImages = (
     <>
       <Image
@@ -114,7 +116,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         />
       )}
     </>
-  )
+  );
 
   return (
     <motion.div
@@ -172,35 +174,25 @@ const Dropdown: React.FC<DropdownProps> = ({
               {startDate}
               {endDate ? ` - ${endDate}` : ""}
             </p>
-            
+
             {hasExpandableContent && (
               <div className="ml-1 transition-all duration-300 ease-in-out rounded-3xl group-hover:bg-gray-200 dark:group-hover:bg-slate-700 sm:ml-2">
-                <div className="relative w-4 h-4">
-                  <motion.div
-                    initial={false}
-                    animate={{ 
-                      rotate: isOpen ? -90 : 0, 
-                      opacity: isOpen ? 0 : 1, 
-                      scale: isOpen ? 0.5 : 1 
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute inset-0"
-                  >
-                    <ChevronDown strokeWidth="1" size={14} absoluteStrokeWidth className = "text-gray-600 dark:text-slate-400"/>
-                  </motion.div>
-                  
-                  <motion.div
-                    initial={false}
-                    animate={{ 
-                      rotate: isOpen ? 0 : 90, 
-                      opacity: isOpen ? 1 : 0, 
-                      scale: isOpen ? 1 : 0.5 
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute inset-0"
-                  >
-                    <X strokeWidth="1" size={14} absoluteStrokeWidth className = "text-gray-600 dark:text-slate-400" />
-                  </motion.div>
+                <div className="grid h-4 w-4 place-items-center">
+                  {isOpen ? (
+                    <X
+                      strokeWidth="1"
+                      size={14}
+                      absoluteStrokeWidth
+                      className="block text-gray-600 dark:text-slate-400"
+                    />
+                  ) : (
+                    <ChevronDown
+                      strokeWidth="1"
+                      size={14}
+                      absoluteStrokeWidth
+                      className="block text-gray-600 dark:text-slate-400"
+                    />
+                  )}
                 </div>
               </div>
             )}
@@ -247,7 +239,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         )}
       </AnimatePresence>
     </motion.div>
-  )
-}
+  );
+};
 
-export default Dropdown
+export default Dropdown;

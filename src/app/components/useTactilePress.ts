@@ -68,7 +68,7 @@ export function useTactilePress(
 
   const pressTransition: Transition = shouldReduceMotion
     ? { duration: 0.15 }
-    : { type: "spring", stiffness: 420, damping: 28, mass: 0.72 };
+    : { type: "tween", duration: 0.14, ease: "easeOut" };
 
   return {
     isPressed,

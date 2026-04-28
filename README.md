@@ -28,7 +28,7 @@ The site is intentionally easy to maintain. Most content lives directly in React
 - Next.js 16
 - React 19
 - TypeScript 5
-- Tailwind CSS 4
+- Tailwind 4
 - Framer Motion
 - ESLint
 - Lucide React

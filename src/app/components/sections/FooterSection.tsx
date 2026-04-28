@@ -111,7 +111,7 @@ export default function FooterSection() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Tailwind CSS
+                Tailwind
               </a>
               , deployed with{" "}
               <a

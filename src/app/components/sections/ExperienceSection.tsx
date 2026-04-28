@@ -26,7 +26,7 @@ export default function ExperienceSection() {
           endDate="Present"
           src="/static/companies/ucla-hci.png"
           darkSrc="/static/companies/ucla-hci-dark.png"
-          description="Collaborated on HI-COS, a multi-agent scientific hypothesis generation platform built with FastAPI, Pydantic AI, Supabase, Gemini, Next.js, React Flow, Zustand, and Tailwind CSS."
+          description="Collaborated on HI-COS, a multi-agent scientific hypothesis generation platform built with FastAPI, Pydantic AI, Supabase, Gemini, Next.js, React Flow, Zustand, and Tailwind."
         />
         <Dropdown
           role="Software Engineer Intern"

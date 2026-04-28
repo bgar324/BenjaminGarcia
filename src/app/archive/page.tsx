@@ -87,13 +87,11 @@ export default function ArchivePage() {
         </Link>
 
         <div className="flex justify-between items-start gap-4 mt-5 mb-10">
-          <h1 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase tracking-wider lg:py-[.5px] flex items-center gap-1 text-xl md:text-3xl font-bold">
+          <h1 className="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase tracking-wider flex items-center gap-1 text-xl md:text-2xl font-bold">
             Project Archive
           </h1>
         </div>
-      </PageReveal>
 
-      <PageReveal delay={0.2}>
         <div className="bg-white dark:bg-black/85 rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
           <ProjectTable
             columns={archiveColumns}
