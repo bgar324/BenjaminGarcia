@@ -122,8 +122,8 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-  --selection-bg: #000000;
-  --selection-foreground: #ffffff;
+  --selection-bg: #ffffff;
+  --selection-foreground: #000000;
   --icon-muted: #cbd5e1;     /* slate-300 */
   --icon: #e5e7eb;           /* slate-200 */
   --icon-contrast: #0b0f19;  /* near-black for reversed fills */
