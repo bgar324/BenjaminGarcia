@@ -92,7 +92,7 @@ export default function ArchivePage() {
           </h1>
         </div>
 
-        <div className="bg-white dark:bg-black/85 rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
+        <div className="bg-white dark:bg-black rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
           <ProjectTable
             columns={archiveColumns}
             rows={archiveProjects}

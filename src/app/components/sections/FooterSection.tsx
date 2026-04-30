@@ -79,7 +79,7 @@ export default function FooterSection() {
             <p>
               Loosely inspired by{" "}
               <a
-                className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                className="font-medium hover:cursor-pointer ease-in-out duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 href="https://www.framer.com/marketplace/templates/monocv/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -88,7 +88,7 @@ export default function FooterSection() {
               </a>{" "}
               and coded in{" "}
               <a
-                className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                className="font-medium hover:cursor-pointer ease-in-out duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 href="https://code.visualstudio.com/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -97,7 +97,7 @@ export default function FooterSection() {
               </a>
               . Built with{" "}
               <a
-                className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                className="font-medium hover:cursor-pointer ease-in-out duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 href="https://nextjs.org/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -106,7 +106,7 @@ export default function FooterSection() {
               </a>{" "}
               and{" "}
               <a
-                className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                className="font-medium hover:cursor-pointer ease-in-out duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 href="https://tailwindcss.com/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -115,7 +115,7 @@ export default function FooterSection() {
               </a>
               , deployed with{" "}
               <a
-                className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                className="font-medium hover:cursor-pointer ease-in-out duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 href="https://vercel.com/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -125,7 +125,7 @@ export default function FooterSection() {
               . <span className="sm:hidden">All text is in</span>{" "}
               <span className="sm:hidden">
                 <a
-                  className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                  className="font-medium hover:cursor-pointer ease-in-out duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                   href="https://www.fontshare.com/fonts/cabinet-grotesk"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -138,7 +138,7 @@ export default function FooterSection() {
             <p className="hidden sm:block">
               All text is in{" "}
               <a
-                className="font-medium hover:cursor-pointer ease-in-out duration-300 hover:text-[#d87474] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+                className="font-medium hover:cursor-pointer ease-in-out duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
                 href="https://www.fontshare.com/fonts/cabinet-grotesk"
                 target="_blank"
                 rel="noopener noreferrer"
