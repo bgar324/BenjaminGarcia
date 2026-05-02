@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import type { ReactNode } from "react";
-import { ArrowUpRight, GitGraph, Mail } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { GitHubMarkIcon, LinkedInIcon } from "../../svgs/Icons";
 
 export const profileImage = {
@@ -24,6 +25,37 @@ export type SidebarSocialLink = {
   label: string;
 };
 
+function LogitIcon() {
+  return (
+    <>
+      <Image
+        src="/static/logit/icon-light.png"
+        alt=""
+        width={18}
+        height={18}
+        className="
+          block dark:hidden
+          grayscale opacity-60
+          transition-all duration-300 ease-in-out
+          group-hover/social:opacity-100 group-hover/social:grayscale-0
+        "
+      />
+      <Image
+        src="/static/logit/icon-dark.png"
+        alt=""
+        width={18}
+        height={18}
+        className="
+          hidden dark:block
+          grayscale opacity-60
+          transition-all duration-300 ease-in-out
+          group-hover/social:opacity-100 group-hover/social:grayscale-0
+        "
+      />
+    </>
+  );
+}
+
 export const socialLinks: SidebarSocialLink[] = [
   {
     icon: <Mail size={18} />,
@@ -41,9 +73,9 @@ export const socialLinks: SidebarSocialLink[] = [
     href: "https://github.com/bgar324",
   },
   {
-    icon: <GitGraph size={18} />,
-    label: "GitProof",
-    href: "https://gitproof.dev/u/bgar324",
+    icon: <LogitIcon />,
+    label: "logit",
+    href: "https://log--it.vercel.app/u/ben",
   },
 ];
 

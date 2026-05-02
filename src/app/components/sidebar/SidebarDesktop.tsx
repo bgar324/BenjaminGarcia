@@ -44,6 +44,7 @@ function SocialLinkButton({ link }: { link: SidebarSocialLink }) {
         onKeyUp={press.onPressKeyUp}
         onBlur={press.onPressBlur}
         className="
+          group/social
           flex items-center justify-center aspect-square rounded-md
           bg-gray-50 dark:bg-gray-950
           text-gray-600 dark:text-slate-400
@@ -81,6 +82,7 @@ export default function SidebarDesktop({
             className="h-auto w-full rounded-xl mb-2"
             style={{ height: "auto" }}
           />
+
           <button
             onClick={(event) => onOpenImageModal(event.currentTarget)}
             className="
@@ -104,15 +106,18 @@ export default function SidebarDesktop({
           <p className="text-gray-900 dark:text-slate-100 text-2xl font-semibold tracking-tight leading-none">
             Hello, I&apos;m
           </p>
+
           <p className="text-gray-900 dark:text-slate-100 text-2xl font-semibold tracking-tight">
             Benjamin Garcia
           </p>
+
           <p className="text-gray-700 dark:text-slate-300 text-base leading-tight mt-2 font-normal">
             I turn code into meaningful creations.
           </p>
 
           <div className="flex flex-row gap-1 items-center mt-2">
             <MapPin size={16} className="text-gray-500 dark:text-slate-400" />
+
             <a
               className="text-sm text-gray-500 dark:text-slate-400 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
               href={mapHref}
@@ -137,7 +142,10 @@ export default function SidebarDesktop({
           animate={
             resumePress.shouldReduceMotion
               ? undefined
-              : { scale: resumePress.pressScale, y: resumePress.pressY }
+              : {
+                  scale: resumePress.pressScale,
+                  y: resumePress.pressY,
+                }
           }
           transition={resumePress.pressTransition}
           style={{ transformOrigin: "center center" }}
@@ -145,10 +153,10 @@ export default function SidebarDesktop({
           <a
             className="
               group flex items-center justify-center gap-1
-            bg-gray-50 dark:bg-gray-950
-            text-gray-600 dark:text-slate-400
-            hover:bg-gray-100 dark:hover:bg-gray-900
-            hover:text-black dark:hover:text-white
+              bg-gray-50 dark:bg-gray-950
+              text-gray-600 dark:text-slate-400
+              hover:bg-gray-100 dark:hover:bg-gray-900
+              hover:text-black dark:hover:text-white
               rounded-md px-4 py-2 text-sm font-semibold
               w-full text-center
               transition duration-300
