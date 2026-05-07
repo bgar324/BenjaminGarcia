@@ -1,6 +1,19 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/resume.pdf',
+        headers: [
+          {
+            key: 'Content-Disposition',
+            value: 'inline; filename="Benjamin-Garcia-Resume.pdf"',
+          },
+        ],
+      },
+    ]
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     qualities: [75, 82, 85, 88, 90],
