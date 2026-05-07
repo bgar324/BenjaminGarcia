@@ -19,9 +19,6 @@ const HCI_LAB_GRADIENT = "linear-gradient(to right, #1b3783, #2f68d4)";
 const LANDS_BETWEEN_TEXT = "Lands Between.";
 const LANDS_BETWEEN_GRADIENT = "linear-gradient(to right, #092322, #996A48)";
 
-const LINDY_TEXT = "Lindy";
-const LINDY_GRADIENT = "linear-gradient(to right, ##ffd447, ##573b0a)";
-
 const ABOUT_TEXT_CLASS_NAME =
   "text-gray-600 dark:text-slate-400 lg:text-lg leading-snug";
 const ABOUT_LINK_TONE_CLASS_NAME = "text-slate-800 dark:text-slate-100";
@@ -164,19 +161,13 @@ export default function AboutSection() {
       </div>
 
       <p className={`${ABOUT_TEXT_CLASS_NAME}`}>
-        I'm a junior studying Computer Science at {" "}
+        I&apos;m a junior studying Computer Science at {" "}
         <RippleLink
           href="https://ucla.edu/"
           text={UCLA_TEXT}
           gradient={UCLA_GRADIENT}
         />.{" "}
-        This summer, I'm joining{" "}
-        <RippleLink
-          href="https://www.lindy.ai"
-          text={LINDY_TEXT}
-          gradient={LINDY_GRADIENT}
-        />{" "}
-        as a software engineer intern, and I also conduct research in UCLA's {" "}
+        I conduct research in UCLA&apos;s{" "}
         <RippleLink
           href="https://hci.ucla.edu"
           text={HCI_LAB_TEXT}

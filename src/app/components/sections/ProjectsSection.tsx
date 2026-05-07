@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { useCallback, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import SectionHeader from "../SectionHeader";
 import ImagePreviewModal from "../ImagePreviewModal";
 import ProjectItem from "../SelectedProject";
@@ -65,6 +64,7 @@ export default function ProjectsSection() {
           <ProjectItem
             src="/static/project-previews/gitproof.png"
             title="GitProof"
+            eager
             summary="Recruiter-facing GitHub reports that make public contribution history legible and credible."
             link="https://gitproof.dev"
             githubLink="https://github.com/bgar324/gitproof-2"
@@ -82,6 +82,7 @@ export default function ProjectsSection() {
           <ProjectItem
             src="/static/project-previews/logit.png"
             title="Logit"
+            eager
             summary="A lightweight workout tracker built for fast logging and clear progress review."
             link="https://logit-prod.vercel.app"
             githubLink="https://github.com/bgar324/log-it"

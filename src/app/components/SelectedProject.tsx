@@ -11,6 +11,7 @@ interface ProjectItemProps {
   title: ReactNode;
   summary?: string;
   alt?: string;
+  eager?: boolean;
   link?: string;
   githubLink?: string;
   note?: ReactNode;
@@ -28,6 +29,7 @@ export default function ProjectItem({
   title,
   summary,
   alt,
+  eager = false,
   link,
   githubLink,
   note,
@@ -62,6 +64,7 @@ export default function ProjectItem({
           alt={previewAlt}
           fill
           quality={82}
+          loading={eager ? "eager" : "lazy"}
           sizes="(max-width: 1023px) calc(100vw - 2.5rem), 388px"
           className="object-cover"
         />

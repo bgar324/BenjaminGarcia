@@ -11,14 +11,6 @@ export default function ExperienceSection() {
       <SectionHeader id="experience-heading">experience</SectionHeader>
       <div className="flex flex-col gap-4">
         <Dropdown
-          role="Software Engineer Intern"
-          position="Lindy"
-          imageLink="https://www.lindy.ai"
-          startDate="Summer 2026"
-          src="/static/companies/lindy.png"
-          description="Lindy is an AI work assistant and no-code agent platform that automates inbox, meetings, scheduling, CRM updates, and other cross-app business workflows."
-        />
-        <Dropdown
           role="Undergraduate Researcher"
           position="UCLA HCI Research Lab"
           imageLink="https://www.hci.ucla.edu"

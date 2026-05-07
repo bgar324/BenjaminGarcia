@@ -216,7 +216,7 @@ const Dropdown: React.FC<DropdownProps> = ({
               onPointerDown={stopPropagation}
             >
               {description && (
-                <p className="text-sm lg:text-base text-gray-600 dark:text-slate-200">
+                <p className="text-sm lg:text-base text-gray-800 dark:text-slate-200">
                   {description}
                 </p>
               )}

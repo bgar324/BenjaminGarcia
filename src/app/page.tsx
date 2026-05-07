@@ -88,8 +88,8 @@ export default function Home() {
           </h1>
           <AboutSection />
           <ExperienceSection />
-          {/* <LeadershipSection />
-          <TechStackSection /> */}
+          <LeadershipSection />
+          <TechStackSection />
           <ProjectsSection />
           <EducationSection />
           <FooterSection />

@@ -4,11 +4,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 body {
-  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
-  font-size: 0.94rem;
-  font-weight: 380;
-  font-optical-sizing: auto;
-  font-synthesis-weight: none;
+  font-family: var(--font-cabinet), Arial, Helvetica, sans-serif;
   transition:
     background-color var(--theme-transition-duration) var(--theme-transition-ease),
     color var(--theme-transition-duration) var(--theme-transition-ease);
@@ -54,17 +50,6 @@ body {
 
 :root {
   --radius: 0.625rem;
-  --text-xs: 0.715rem;
-  --text-sm: 0.815rem;
-  --text-base: 0.925rem;
-  --text-lg: 1.02rem;
-  --text-xl: 1.15rem;
-  --text-2xl: 1.38rem;
-  --font-weight-normal: 380;
-  --font-weight-medium: 440;
-  --font-weight-semibold: 520;
-  --font-weight-bold: 610;
-  --font-weight-extrabold: 700;
   --theme-transition-duration: 300ms;
   --theme-transition-ease: cubic-bezier(0.2, 0.6, 0.2, 1);
   --background: oklch(1 0 0);

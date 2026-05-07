@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Providers from "./providers";
-import { inter } from "./fonts/inter";
+import { cabinet } from "./fonts/cabinet";
 import {
   defaultOpenGraphImage,
   defaultTwitterImage,
@@ -72,11 +72,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={inter.variable}
+      className={cabinet.variable}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
-      <body className="antialiased bg-white dark:bg-black">
+      <body className={`${cabinet.className} antialiased bg-white dark:bg-black`}>
         <Providers>
           <Analytics />
           <SpeedInsights />
