@@ -126,11 +126,11 @@ export default function FooterSection() {
               <span className="sm:hidden">
                 <a
                   className="font-medium hover:cursor-pointer ease-in-out duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
-                  href="https://www.fontshare.com/fonts/cabinet-grotesk"
+                  href="https://rsms.me/inter/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Cabinet Grotesk
+                  Inter
                 </a>{" "}
                 typeface.
               </span>
@@ -139,11 +139,11 @@ export default function FooterSection() {
               All text is in{" "}
               <a
                 className="font-medium hover:cursor-pointer ease-in-out duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
-                href="https://www.fontshare.com/fonts/cabinet-grotesk"
+                href="https://rsms.me/inter/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Cabinet Grotesk
+                Inter
               </a>{" "}
               typeface.
             </p>

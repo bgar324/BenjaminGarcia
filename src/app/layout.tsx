@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Providers from "./providers";
-import { cabinet } from "./fonts/cabinet";
+import { inter } from "./fonts/inter";
 import {
   defaultOpenGraphImage,
   defaultTwitterImage,
@@ -72,7 +72,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cabinet.variable}
+      className={inter.variable}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
