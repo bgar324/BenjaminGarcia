@@ -167,7 +167,7 @@ export default function AboutSection() {
           text={UCLA_TEXT}
           gradient={UCLA_GRADIENT}
         />.{" "}
-        I conduct research in UCLA&apos;s{" "}
+        I currently conduct research in UCLA&apos;s{" "}
         <RippleLink
           href="https://hci.ucla.edu"
           text={HCI_LAB_TEXT}
