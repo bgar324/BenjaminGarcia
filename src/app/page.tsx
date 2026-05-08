@@ -3,8 +3,8 @@ import Sidebar from "./components/Sidebar";
 import PageReveal from "./components/PageReveal";
 import AboutSection from "./components/sections/AboutSection";
 import ExperienceSection from "./components/sections/ExperienceSection";
-import LeadershipSection from "./components/sections/LeadershipSection";
-import TechStackSection from "./components/sections/TechStackSection";
+// import LeadershipSection from "./components/sections/LeadershipSection";
+// import TechStackSection from "./components/sections/TechStackSection";
 import ProjectsSection from "./components/sections/ProjectsSection";
 import EducationSection from "./components/sections/EducationSection";
 import FooterSection from "./components/sections/FooterSection";
@@ -88,8 +88,8 @@ export default function Home() {
           </h1>
           <AboutSection />
           <ExperienceSection />
-          <LeadershipSection />
-          <TechStackSection />
+          {/* <LeadershipSection /> */}
+          {/* <TechStackSection /> */}
           <ProjectsSection />
           <EducationSection />
           <FooterSection />

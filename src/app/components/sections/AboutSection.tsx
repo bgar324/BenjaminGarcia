@@ -6,18 +6,21 @@ import ThemeToggle from "../ThemeToggle";
 const UCLA_TEXT = "UCLA";
 const UCLA_GRADIENT = "linear-gradient(to right, #1e3a8a, #b45309)";
 
-const ACM_HACK_TEXT = "ACM Hack";
-const ACM_HACK_GRADIENT = "linear-gradient(to right, #8b5cf6, #d946ef)";
+// const ACM_HACK_TEXT = "ACM Hack";
+// const ACM_HACK_GRADIENT = "linear-gradient(to right, #8b5cf6, #d946ef)";
 
-const EXPLORETECH_TEXT = "exploretech.la";
-const EXPLORETECH_GRADIENT =
-  "linear-gradient(to right, #e1ab2d, #69b7af, #0f5374)";
+// const EXPLORETECH_TEXT = "exploretech.la";
+// const EXPLORETECH_GRADIENT =
+//   "linear-gradient(to right, #e1ab2d, #69b7af, #0f5374)";
 
 const HCI_LAB_TEXT = "HCI Research Lab";
 const HCI_LAB_GRADIENT = "linear-gradient(to right, #1b3783, #2f68d4)";
 
 const LANDS_BETWEEN_TEXT = "Lands Between.";
 const LANDS_BETWEEN_GRADIENT = "linear-gradient(to right, #092322, #996A48)";
+
+const LINDY_TEXT = "Lindy";
+const LINDY_GRADIENT = "linear-gradient(to right, #ffd447, #573b0a)";
 
 const ABOUT_TEXT_CLASS_NAME =
   "text-gray-600 dark:text-slate-400 lg:text-lg leading-snug";
@@ -167,7 +170,14 @@ export default function AboutSection() {
           text={UCLA_TEXT}
           gradient={UCLA_GRADIENT}
         />.{" "}
-        I currently conduct research in UCLA&apos;s{" "}
+        This summer, I&apos;m joining{" "}
+        <RippleLink
+          href="https://www.lindy.ai"
+          text={LINDY_TEXT}
+          gradient={LINDY_GRADIENT}
+        />{" "}
+        as a software engineering intern, and I also conduct research in
+        UCLA&apos;s{" "}
         <RippleLink
           href="https://hci.ucla.edu"
           text={HCI_LAB_TEXT}
