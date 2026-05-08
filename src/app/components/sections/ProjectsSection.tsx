@@ -75,7 +75,7 @@ export default function ProjectsSection() {
               "Tailwind",
               "Postgres",
               "Prisma",
-              "GitHub GraphQL API",
+              "GitHub API",
               "Gemini 2.5 Flash",
             ]}
           />
@@ -91,9 +91,11 @@ export default function ProjectsSection() {
               "Next.js",
               "TypeScript",
               "Tailwind",
-              "Supabase",
               "Postgres",
               "Prisma",
+              "Recharts",
+              "Supabase",
+              "Anthropic API"
             ]}
           />
         </div>
