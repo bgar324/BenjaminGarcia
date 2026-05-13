@@ -75,7 +75,7 @@ export const socialLinks: SidebarSocialLink[] = [
   {
     icon: <LogitIcon />,
     label: "logit",
-    href: "https://log--it.vercel.app/u/ben",
+    href: "https://trylogit.me/u/ben",
   },
 ];
 

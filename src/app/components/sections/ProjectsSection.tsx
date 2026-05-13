@@ -84,7 +84,7 @@ export default function ProjectsSection() {
             title="Logit"
             eager
             summary="A lightweight workout tracker built for fast logging and clear progress review."
-            link="https://log--it.vercel.app"
+            link="https://trylogit.me"
             githubLink="https://github.com/bgar324/log-it"
             onImageClick={openImagePreview}
             tags={[
