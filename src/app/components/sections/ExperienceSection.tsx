@@ -15,7 +15,7 @@ export default function ExperienceSection() {
           position="Lindy"
           imageLink="https://www.lindy.ai"
           startDate="Summer 2026"
-          src="/static/companies/lindy.png"
+          src="/static/companies/lindy.svg"
           description="Lindy is an AI work assistant and no-code agent platform that automates inbox, meetings, scheduling, CRM updates, and other cross-app business workflows."
         />
         <Dropdown
