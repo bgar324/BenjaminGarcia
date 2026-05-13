@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import type { ReactNode } from "react";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { GitHubMarkIcon, LinkedInIcon } from "../../svgs/Icons";
@@ -27,32 +26,10 @@ export type SidebarSocialLink = {
 
 function LogitIcon() {
   return (
-    <>
-      <Image
-        src="/static/logit/icon-light.png"
-        alt=""
-        width={18}
-        height={18}
-        className="
-          block dark:hidden
-          grayscale opacity-60
-          transition-all duration-300 ease-in-out
-          group-hover/social:opacity-100 group-hover/social:grayscale-0
-        "
-      />
-      <Image
-        src="/static/logit/icon-dark.png"
-        alt=""
-        width={18}
-        height={18}
-        className="
-          hidden dark:block
-          grayscale opacity-60
-          transition-all duration-300 ease-in-out
-          group-hover/social:opacity-100 group-hover/social:grayscale-0
-        "
-      />
-    </>
+    <span
+      aria-hidden="true"
+      className="block h-[18px] w-[18px] bg-current [mask:url('/static/logit/icon-light.png')_center/contain_no-repeat] [-webkit-mask:url('/static/logit/icon-light.png')_center/contain_no-repeat]"
+    />
   );
 }
 
