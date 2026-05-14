@@ -43,7 +43,7 @@ export default function ExperienceSection() {
           imageLink="https://www.bonterratech.com/"
           startDate="Jul 2025"
           endDate="Aug 2025"
-          src="/static/companies/bonterra.webp"
+          src="/static/companies/bonterra.jpg"
           description="Researched and prototyped agentic AI pipelines for nonprofit event analysis. Presented findings to 40+ cross-functional stakeholders, shaping early AI adoption strategy."
         />
         <Dropdown
