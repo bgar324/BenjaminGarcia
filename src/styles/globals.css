@@ -242,6 +242,10 @@ html {
   animation: page-reveal 300ms ease-out both;
 }
 
+.mobile-page-reveal {
+  animation: mobile-page-reveal 300ms ease-out both;
+}
+
 .pressable {
   transform-origin: center center;
   transition: transform 140ms ease-out;
@@ -342,6 +346,17 @@ html {
   }
 }
 
+@keyframes mobile-page-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes modal-scale {
   from {
     opacity: 0;
@@ -378,6 +393,7 @@ html {
 /* Theme transition animation */
 @media (prefers-reduced-motion: reduce) {
   .page-reveal,
+  .mobile-page-reveal,
   .modal-scale {
     animation: none;
   }
