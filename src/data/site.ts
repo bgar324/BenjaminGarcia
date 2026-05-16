@@ -41,8 +41,24 @@ export function absoluteUrl(path = "/") {
   return new URL(path, siteConfig.url).toString();
 }
 
+function optimizedImage(base: string, widths: readonly number[]) {
+  const imagePath = (width: number, format: "avif" | "webp") => `/static/optimized/${base}-${width}.${format}`;
+
+  return {
+    avifSrcSet: widths.map((width) => `${imagePath(width, "avif")} ${width}w`).join(", "),
+    webpSrcSet: widths.map((width) => `${imagePath(width, "webp")} ${width}w`).join(", "),
+    fallbackSrc: imagePath(widths[Math.min(1, widths.length - 1)], "webp"),
+    largestSrc: imagePath(widths[widths.length - 1], "webp"),
+  };
+}
+
+const profileSources = optimizedImage("me", [80, 192, 384, 512, 768, 1024]);
+
 export const profileImage = {
-  src: "/static/me.jpg",
+  src: profileSources.fallbackSrc,
+  fullSrc: profileSources.largestSrc,
+  avifSrcSet: profileSources.avifSrcSet,
+  webpSrcSet: profileSources.webpSrcSet,
   alt: "Benjamin Garcia",
   width: 4284,
   height: 5712,
@@ -154,8 +170,13 @@ export const education = [
 
 export const selectedProjects = [
   {
-    src: "/static/project-previews/gitproof.png",
+    src: "/static/optimized/gitproof-640.webp",
+    fullSrc: "/static/optimized/gitproof-1280.webp",
+    avifSrcSet: optimizedImage("gitproof", [384, 640, 768, 1024, 1280]).avifSrcSet,
+    webpSrcSet: optimizedImage("gitproof", [384, 640, 768, 1024, 1280]).webpSrcSet,
     title: "GitProof",
+    width: 2048,
+    height: 1277,
     summary:
       "Recruiter-facing GitHub reports that make public contribution history legible and credible.",
     link: "https://gitproof.dev",
@@ -171,8 +192,13 @@ export const selectedProjects = [
     ],
   },
   {
-    src: "/static/project-previews/logit.png",
+    src: "/static/optimized/logit-640.webp",
+    fullSrc: "/static/optimized/logit-1280.webp",
+    avifSrcSet: optimizedImage("logit", [384, 640, 768, 1024, 1280]).avifSrcSet,
+    webpSrcSet: optimizedImage("logit", [384, 640, 768, 1024, 1280]).webpSrcSet,
     title: "Logit",
+    width: 2048,
+    height: 1277,
     summary:
       "A lightweight workout tracker built for fast logging and clear progress review.",
     link: "https://trylogit.me",

@@ -1,6 +1,6 @@
 ---
 import "../styles/globals.css";
-import { defaultOpenGraphImage, defaultTwitterImage, siteConfig } from "../data/site";
+import { defaultOpenGraphImage, defaultTwitterImage, profileImage, selectedProjects, siteConfig } from "../data/site";
 import cabinetGroteskUrl from "../fonts/CabinetGrotesk-Variable.woff2?url";
 
 type Props = {
@@ -17,6 +17,20 @@ const {
 
 const canonicalUrl = new URL(canonicalPath, siteConfig.url).toString();
 const pageTitle = title === siteConfig.title ? siteConfig.title : `${title} | ${siteConfig.name}`;
+const firstProject = selectedProjects[0];
+const criticalFontCss = `
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("${cabinetGroteskUrl}") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: block;
+}
+html,
+body {
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+}
+`;
 ---
 
 <!doctype html>
@@ -35,6 +49,9 @@ const pageTitle = title === siteConfig.title ? siteConfig.title : `${title} | ${
     <meta name="publisher" content={siteConfig.author} />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="preload" href={cabinetGroteskUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" as="image" href={profileImage.src} imagesrcset={profileImage.avifSrcSet} imagesizes="(max-width: 1023px) 40px, 192px" type="image/avif" fetchpriority="high" />
+    <link rel="preload" as="image" href={firstProject.src} imagesrcset={firstProject.avifSrcSet} imagesizes="(max-width: 1023px) calc(100vw - 2.5rem), 388px" type="image/avif" fetchpriority="high" />
+    <style is:inline set:html={criticalFontCss}></style>
     <link rel="icon" href="/static/favicon.svg" />
     <link rel="shortcut icon" href="/static/favicon.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />

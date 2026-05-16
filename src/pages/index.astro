@@ -107,7 +107,9 @@ const rippleLinks = {
           <div class="flex items-center gap-3">
             <button
               data-image-modal-trigger
-              data-image-src={profileImage.src}
+              data-image-src={profileImage.fullSrc}
+              data-image-avif-srcset={profileImage.avifSrcSet}
+              data-image-webp-srcset={profileImage.webpSrcSet}
               data-image-alt={profileImage.alt}
               data-image-width={profileImage.width}
               data-image-height={profileImage.height}
@@ -117,7 +119,11 @@ const rippleLinks = {
               type="button"
             >
               <span class="relative block h-10 w-10 overflow-hidden rounded-lg">
-                <img src={profileImage.src} alt={profileImage.alt} width="40" height="40" sizes="40px" class="h-full w-full object-cover" loading="eager" decoding="async" />
+                <picture class="contents">
+                  <source type="image/avif" srcset={profileImage.avifSrcSet} sizes="40px" />
+                  <source type="image/webp" srcset={profileImage.webpSrcSet} sizes="40px" />
+                  <img src={profileImage.src} alt={profileImage.alt} width="40" height="40" sizes="40px" class="h-full w-full object-cover" loading="eager" decoding="async" fetchpriority="high" />
+                </picture>
               </span>
             </button>
             <div class="flex flex-col">
@@ -205,20 +211,27 @@ const rippleLinks = {
       <aside class="hidden lg:flex flex-col lg:w-[204px] lg:shrink-0 lg:gap-y-3 lg:sticky lg:top-10 h-fit">
         <div class="bg-white dark:bg-black rounded-xl shadow-md dark:shadow-lg p-2 transition-colors duration-300">
           <div class="relative group/img">
-            <img
-              src={profileImage.src}
-              alt={profileImage.alt}
-              width={profileImage.width}
-              height={profileImage.height}
-              loading="eager"
-              decoding="async"
-              sizes="192px"
-              class="h-auto w-full rounded-xl mb-2"
-              style="height: auto"
-            />
+            <picture>
+              <source type="image/avif" srcset={profileImage.avifSrcSet} sizes="192px" />
+              <source type="image/webp" srcset={profileImage.webpSrcSet} sizes="192px" />
+              <img
+                src={profileImage.src}
+                alt={profileImage.alt}
+                width={profileImage.width}
+                height={profileImage.height}
+                loading="eager"
+                decoding="async"
+                sizes="192px"
+                fetchpriority="high"
+                class="h-auto w-full rounded-xl mb-2"
+                style="height: auto"
+              />
+            </picture>
             <button
               data-image-modal-trigger
-              data-image-src={profileImage.src}
+              data-image-src={profileImage.fullSrc}
+              data-image-avif-srcset={profileImage.avifSrcSet}
+              data-image-webp-srcset={profileImage.webpSrcSet}
               data-image-alt={profileImage.alt}
               data-image-width={profileImage.width}
               data-image-height={profileImage.height}
@@ -330,11 +343,19 @@ const rippleLinks = {
           {selectedProjects.map((project, index) => (
             <article class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs transition-colors duration-300 dark:border-gray-600 dark:bg-black">
               <div class="group/img relative aspect-[16/9] w-full overflow-hidden border-b border-gray-200 dark:border-gray-700">
-                <img src={project.src} alt={project.title} loading={index === 0 ? "eager" : "lazy"} decoding="async" sizes="(max-width: 1023px) calc(100vw - 2.5rem), 388px" class="h-full w-full object-cover" />
+                <picture class="block h-full w-full">
+                  <source type="image/avif" srcset={project.avifSrcSet} sizes="(max-width: 1023px) calc(100vw - 2.5rem), 388px" />
+                  <source type="image/webp" srcset={project.webpSrcSet} sizes="(max-width: 1023px) calc(100vw - 2.5rem), 388px" />
+                  <img src={project.src} alt={project.title} width={project.width} height={project.height} loading={index === 0 ? "eager" : "lazy"} decoding="async" fetchpriority={index === 0 ? "high" : "auto"} sizes="(max-width: 1023px) calc(100vw - 2.5rem), 388px" class="h-full w-full object-cover" />
+                </picture>
                 <button
                   data-image-modal-trigger
-                  data-image-src={project.src}
+                  data-image-src={project.fullSrc}
+                  data-image-avif-srcset={project.avifSrcSet}
+                  data-image-webp-srcset={project.webpSrcSet}
                   data-image-alt={project.title}
+                  data-image-width={project.width}
+                  data-image-height={project.height}
                   class="absolute top-3 right-3 flex items-center justify-center rounded-md bg-black/40 p-1.5 text-white/80 opacity-0 backdrop-blur-sm cursor-pointer transition-all duration-300 ease-in-out group-hover/img:opacity-100 focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                   aria-label={`Expand ${project.title}`}
                   title="Expand photo"
@@ -405,7 +426,11 @@ const rippleLinks = {
       <button data-image-modal-close class="absolute top-2 right-2 z-10 p-2 text-gray-100 hover:text-white transition-colors duration-300 bg-black/60 rounded-full backdrop-blur-sm hover:bg-black/80 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500" aria-label="Close image preview" type="button">
         <Icon name="x" size={20} />
       </button>
-      <img data-image-modal-img src="" alt="" width="2048" height="1277" class="h-auto w-auto max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl select-none" style="width: auto; height: auto" draggable="false" decoding="async" />
+      <picture>
+        <source data-image-modal-avif type="image/avif" />
+        <source data-image-modal-webp type="image/webp" />
+        <img data-image-modal-img src="" alt="" width="2048" height="1277" class="image-modal-img h-auto w-auto max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl select-none" style="width: auto; height: auto" draggable="false" decoding="async" />
+      </picture>
     </div>
   </div>
 
@@ -547,6 +572,8 @@ const rippleLinks = {
     const imageModal = document.querySelector("[data-image-modal]");
     const imageModalContent = document.querySelector("[data-image-modal-content]");
     const imageModalImg = document.querySelector("[data-image-modal-img]");
+    const imageModalAvif = document.querySelector("[data-image-modal-avif]");
+    const imageModalWebp = document.querySelector("[data-image-modal-webp]");
     let lastImageTrigger = null;
     let imageModalCloseTimer = null;
     let imageModalOpenFrame = null;
@@ -563,7 +590,12 @@ const rippleLinks = {
         if (imageModal.dataset.open === "true") return;
         imageModal.dataset.phase = "closed";
         body.style.overflow = "";
-        if (imageModalImg instanceof HTMLImageElement) imageModalImg.src = "";
+        if (imageModalAvif instanceof HTMLSourceElement) imageModalAvif.srcset = "";
+        if (imageModalWebp instanceof HTMLSourceElement) imageModalWebp.srcset = "";
+        if (imageModalImg instanceof HTMLImageElement) {
+          imageModalImg.removeAttribute("srcset");
+          imageModalImg.src = "";
+        }
         lastImageTrigger?.focus?.();
       }, imageModalDuration);
     };
@@ -571,8 +603,19 @@ const rippleLinks = {
       trigger.addEventListener("click", () => {
         lastImageTrigger = trigger;
         const isProfileImage = trigger.dataset.imageModalKind === "profile";
+        if (imageModalContent instanceof HTMLElement) {
+          imageModalContent.dataset.imageKind = isProfileImage ? "profile" : "project";
+        }
         imageModalContent?.classList.toggle("max-w-lg", isProfileImage);
         imageModalContent?.classList.toggle("max-w-5xl", !isProfileImage);
+        if (imageModalAvif instanceof HTMLSourceElement) {
+          imageModalAvif.srcset = trigger.dataset.imageAvifSrcset || "";
+          imageModalAvif.sizes = isProfileImage ? "(max-width: 639px) 18rem, 512px" : "(max-width: 639px) 21rem, 1024px";
+        }
+        if (imageModalWebp instanceof HTMLSourceElement) {
+          imageModalWebp.srcset = trigger.dataset.imageWebpSrcset || "";
+          imageModalWebp.sizes = isProfileImage ? "(max-width: 639px) 18rem, 512px" : "(max-width: 639px) 21rem, 1024px";
+        }
         if (imageModalImg instanceof HTMLImageElement) {
           imageModalImg.src = trigger.dataset.imageSrc || "";
           imageModalImg.alt = trigger.dataset.imageAlt || "Expanded image preview";

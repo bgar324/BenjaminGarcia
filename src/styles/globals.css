@@ -3,19 +3,15 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@font-face {
-  font-family: "Cabinet Grotesk";
-  src: url("../fonts/CabinetGrotesk-Variable.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: block;
-}
-
 body {
   font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
   transition:
     background-color var(--theme-transition-duration) var(--theme-transition-ease),
     color var(--theme-transition-duration) var(--theme-transition-ease);
+}
+
+img {
+  color: transparent;
 }
 
 @theme inline {
@@ -293,6 +289,28 @@ html {
 .image-modal-overlay[data-open="true"] .image-modal-content {
   opacity: 1;
   transform: scale(1);
+}
+
+@media (max-width: 639px) {
+  .image-modal-overlay {
+    padding: 1.25rem;
+  }
+
+  .image-modal-content {
+    max-width: min(20.5rem, calc(100vw - 3.5rem));
+  }
+
+  .image-modal-content[data-image-kind="profile"] {
+    max-width: min(17.75rem, calc(100vw - 4.5rem));
+  }
+
+  .image-modal-img {
+    max-height: 68svh;
+  }
+
+  .image-modal-content[data-image-kind="profile"] .image-modal-img {
+    max-height: 62svh;
+  }
 }
 
 .mobile-menu-overlay {
