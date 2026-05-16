@@ -1,0 +1,32 @@
+---
+import Icon from "../components/Icon.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Page Not Found" canonicalPath="/404">
+  <main class="relative flex min-h-screen flex-col items-center justify-center overflow-x-hidden bg-white px-6 text-center dark:bg-black">
+    <div class="relative z-10 flex w-full max-w-screen-md flex-col items-center overflow-visible">
+      <div
+        aria-hidden="true"
+        class="flex max-w-full select-none items-center justify-center overflow-visible"
+        style="font-size: clamp(7rem, min(20vh, 27vw), 18rem)"
+      >
+        <h1 class="block whitespace-nowrap text-[1em] leading-[1.04] font-extrabold text-black dark:text-white">
+          404
+        </h1>
+      </div>
+
+      <p class="max-w-xl text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+        The page you are looking for has been moved or doesn&apos;t exist.
+      </p>
+
+      <a
+        href="/"
+        aria-label="Go back home"
+        class="mt-10 inline-flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors duration-300 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-950"
+      >
+        <Icon name="house" size={16} />
+      </a>
+    </div>
+  </main>
+</BaseLayout>

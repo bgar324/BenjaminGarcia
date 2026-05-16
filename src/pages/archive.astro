@@ -1,0 +1,123 @@
+---
+import Icon from "../components/Icon.astro";
+import { absoluteUrl, archiveProjects, siteConfig } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const archiveDescription =
+  "A broader archive of product, AI, and web engineering work spanning Astro, React, TypeScript, Python, and Vercel deployments.";
+
+const archiveStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: `${siteConfig.name} Project Archive`,
+  description: archiveDescription,
+  url: absoluteUrl("/archive"),
+  isPartOf: {
+    "@type": "WebSite",
+    name: siteConfig.name,
+    url: siteConfig.url,
+  },
+  about: {
+    "@type": "Person",
+    name: siteConfig.name,
+    url: siteConfig.url,
+  },
+  mainEntity: {
+    "@type": "ItemList",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: archiveProjects.length,
+    itemListElement: archiveProjects.map((project, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "CreativeWork",
+        name: project.title,
+        dateCreated: String(project.year),
+        url: project.websiteLink ?? project.githubLink ?? absoluteUrl("/archive"),
+        keywords: project.builtWith.join(", "),
+        creator: {
+          "@type": "Person",
+          name: siteConfig.name,
+        },
+      },
+    })),
+  },
+};
+---
+
+<BaseLayout title="Project Archive" description={archiveDescription} canonicalPath="/archive">
+  <main class="max-w-5xl mx-auto px-6 pt-6 md:pt-12 lg:pt-24 pb-16 text-gray-900 dark:text-slate-100 transition-colors duration-300">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(archiveStructuredData)} />
+
+    <div class="page-reveal">
+      <a
+        href="/"
+        class="flex flex-row gap-2 items-center text-center hover:text-black dark:hover:text-slate-200 mb-4 arrow-link transition-colors duration-300"
+      >
+        <Icon name="arrow-left" class="arrow-icon" size={12} />
+        Benjamin Garcia
+      </a>
+
+      <div class="flex justify-between items-start gap-4 mt-5 mb-10">
+        <h1 class="w-fit border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 uppercase tracking-wider flex items-center gap-1 text-xl md:text-2xl font-bold">
+          Project Archive
+        </h1>
+      </div>
+
+      <div class="bg-white dark:bg-black rounded-xl shadow-md dark:shadow-lg p-4 md:p-6 transition-colors duration-300">
+        <div class="overflow-x-auto">
+          <table class="w-full caption-bottom text-sm">
+            <caption class="sr-only">Archived projects with build stack and links.</caption>
+            <thead class="[&_tr]:border-b">
+              <tr class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors duration-300 border-gray-200 dark:border-gray-800">
+                <th class="text-foreground h-10 px-2 text-left align-middle whitespace-nowrap text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider w-[100px]">Year</th>
+                <th class="text-foreground h-10 px-2 text-left align-middle whitespace-nowrap text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider min-w-[220px]">Project</th>
+                <th class="text-foreground h-10 px-2 text-left align-middle whitespace-nowrap text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider min-w-[300px] hidden md:table-cell">Built With</th>
+                <th class="text-foreground h-10 px-2 text-left align-middle whitespace-nowrap text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider w-[120px] hidden md:table-cell">Links</th>
+              </tr>
+            </thead>
+            <tbody class="[&_tr:last-child]:border-0">
+              {archiveProjects.map((row) => (
+                <tr class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors duration-300 border-gray-100 dark:border-gray-900">
+                  <td class="p-2 align-middle whitespace-nowrap text-base cursor-default py-4 text-gray-700 dark:text-slate-300 font-medium">{row.year}</td>
+                  <td class="p-2 align-middle whitespace-nowrap text-base cursor-default">
+                    <div class="flex items-center gap-2">
+                      <span class="font-semibold text-gray-900 dark:text-slate-100">{row.title}</span>
+                    </div>
+                  </td>
+                  <td class="p-2 align-middle whitespace-nowrap text-base cursor-default hidden md:table-cell">
+                    <div class="flex flex-wrap gap-2">
+                      {row.builtWith.map((tag) => (
+                        <span class="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-slate-300 px-2.5 py-1 rounded-full text-xs font-medium cursor-default border border-gray-200 dark:border-gray-700 transition-colors duration-300 whitespace-nowrap">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+                  <td class="p-2 align-middle whitespace-nowrap text-base cursor-default text-gray-900 dark:text-slate-100 hidden md:table-cell">
+                    {row.websiteLink || row.githubLink ? (
+                      <div class="flex items-center gap-3">
+                        {row.websiteLink && (
+                          <a href={row.websiteLink} target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-100 transition-colors duration-300 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm" title={`Visit ${row.title}`} aria-label={`Visit ${row.title}`}>
+                            <Icon name="globe" size={16} />
+                          </a>
+                        )}
+                        {row.githubLink && (
+                          <a href={row.githubLink} target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-100 transition-colors duration-300 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm" title={`View ${row.title} on GitHub`} aria-label={`View ${row.title} on GitHub`}>
+                            <Icon name="github" size={18} />
+                          </a>
+                        )}
+                      </div>
+                    ) : (
+                      "-"
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

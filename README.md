@@ -1,6 +1,6 @@
 # Benjamin Garcia Portfolio
 
-Personal portfolio for Benjamin Garcia, built with Next.js App Router and deployed on Vercel.
+Personal portfolio for Benjamin Garcia, built with Astro and deployed on Vercel.
 
 Live site: [bentgarcia.com](https://bentgarcia.com)
 
@@ -8,55 +8,55 @@ Live site: [bentgarcia.com](https://bentgarcia.com)
 
 This repo powers a static portfolio site with two public routes:
 
-- `/` - a one-page portfolio with profile, experience, leadership, stack, projects, education, and closing sections
+- `/` - a one-page portfolio with profile, experience, projects, education, and closing sections
 - `/archive` - a larger project archive with links to live sites and source code
 
-The site is intentionally easy to maintain. Most content lives directly in React section components, archive entries are centralized in one typed data file, and media ships from `public/static`.
+The site is intentionally easy to maintain. Most content lives in Astro pages/components, shared portfolio data is centralized in one typed data file, and media ships from `public/static`.
 
 ## Highlights
 
-- Next.js App Router with static generation
-- Light and dark mode with `next-themes`
-- Animated page reveals, dropdown cards, and image/video modals with Framer Motion
+- Astro static generation with framework-free interactive UI
+- Light and dark mode with a small persisted theme controller
+- Animated page reveals, dropdown cards, and image/video modals with CSS and vanilla JavaScript
 - Typed project archive data
-- ESLint CLI setup for Next.js core-web-vitals and TypeScript rules
-- SEO metadata, Open Graph tags, Vercel Analytics, and Speed Insights
+- Astro diagnostics via `astro check`
+- SEO metadata, Open Graph tags, web manifest, robots, and sitemap output
 - Resume served from `public/resume.pdf`
 
 ## Stack
 
-- Next.js 16
-- React 19
+- Astro 5
 - TypeScript 5
 - Tailwind 4
-- Framer Motion
-- ESLint
-- Lucide React
-- next-themes
-- Vercel Analytics
-- Vercel Speed Insights
 
 ## Project Structure
 
 ```text
-src/app/
-  archive/
-    components/        Archive table UI
-    data/              Project archive data
-    page.tsx           Archive route
+src/
+  pages/
+    index.astro          Home route
+    archive.astro        Archive route
+    404.astro            Custom 404 route
+    sitemap-index.xml.ts Sitemap output
+  layouts/
+    BaseLayout.astro     Shared document shell and metadata
   components/
-    sections/          Home page sections and copy
-  fonts/               Local font setup
-  globals.css          Global styles
-  layout.tsx           Metadata, providers, analytics
-  not-found.tsx        Custom 404 page
-  page.tsx             Home page composition
+    Dropdown.astro       Expandable experience/education rows
+    FooterLink.astro     Footer link styling
+    Icon.astro           Inline SVG icons
+    RippleLink.astro     Animated inline about links
+  data/
+    site.ts              Site config and portfolio data
+  fonts/
+    CabinetGrotesk...    Local font asset
+  styles/
+    globals.css          Global styles
 
 public/
   static/              Images, logos, previews, icons
   resume.pdf           Primary resume file
 
-eslint.config.mjs      ESLint flat config for Next.js + TypeScript
+astro.config.mjs        Astro config with Tailwind
 ```
 
 ## Local Development
@@ -73,7 +73,7 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open `http://localhost:4321`.
 
 Run lint checks with:
 
@@ -94,24 +94,21 @@ The current build succeeds and statically generates:
 
 - `/`
 - `/archive`
-- the custom not-found page
+- `/404`
+- `/sitemap-index.xml`
 
 ## Editing Content
 
-- `src/app/page.tsx` controls the section order on the home page.
-- `src/app/components/sections/*.tsx` contains the main portfolio copy and section UI.
-- `src/app/components/Sidebar.tsx` owns the profile card, social links, mobile menu, and resume CTA.
-- `src/app/archive/data/projectData.ts` is the source of truth for archive entries.
-- `src/app/layout.tsx` contains metadata, canonical URL, Open Graph config, and analytics hooks.
+- `src/pages/*.astro` defines public routes.
+- `src/layouts/BaseLayout.astro` contains document metadata, canonical URL, Open Graph config, and the theme bootstrap script.
+- `src/pages/index.astro` controls the home page layout and section order.
+- `src/pages/archive.astro` renders the project archive.
+- `src/data/site.ts` is the source of truth for site config, social links, experience, education, selected projects, and archive entries.
+- `src/components/*.astro` contains the shared static UI pieces.
 - `public/static/*` holds the portfolio images, logos, and project previews.
 - `public/resume.pdf` is the file opened by the resume buttons.
 
 ## Notes
 
 - No environment variables are required for the current site.
-- Linting uses the ESLint CLI with `eslint-config-next/core-web-vitals` and `eslint-config-next/typescript`.
-- Bundle analysis is available with:
-
-```bash
-ANALYZE=true npm run build
-```
+- The production build is fully static.

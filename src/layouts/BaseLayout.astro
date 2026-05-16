@@ -1,0 +1,69 @@
+---
+import "../styles/globals.css";
+import { defaultOpenGraphImage, defaultTwitterImage, siteConfig } from "../data/site";
+
+type Props = {
+  canonicalPath?: string;
+  description?: string;
+  title?: string;
+};
+
+const {
+  canonicalPath = "/",
+  description = siteConfig.description,
+  title = siteConfig.title,
+} = Astro.props;
+
+const canonicalUrl = new URL(canonicalPath, siteConfig.url).toString();
+const pageTitle = title === siteConfig.title ? siteConfig.title : `${title} | ${siteConfig.name}`;
+---
+
+<!doctype html>
+<html lang="en" data-scroll-behavior="smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="application-name" content={siteConfig.name} />
+    <meta name="referrer" content="origin-when-cross-origin" />
+    <meta name="keywords" content={siteConfig.keywords.join(", ")} />
+    <meta name="author" content={siteConfig.author} />
+    <meta name="creator" content={siteConfig.author} />
+    <meta name="publisher" content={siteConfig.author} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/static/favicon.svg" />
+    <link rel="shortcut icon" href="/static/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={siteConfig.locale} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:image" content={new URL(defaultOpenGraphImage.url, siteConfig.url).toString()} />
+    <meta property="og:image:width" content={String(defaultOpenGraphImage.width)} />
+    <meta property="og:image:height" content={String(defaultOpenGraphImage.height)} />
+    <meta property="og:image:alt" content={defaultOpenGraphImage.alt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(defaultTwitterImage, siteConfig.url).toString()} />
+    <meta name="format-detection" content="address=no,email=no,telephone=no" />
+    <script is:inline>
+      (() => {
+        const storageKey = "theme";
+        const root = document.documentElement;
+        const storedTheme = localStorage.getItem(storageKey);
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = storedTheme || (prefersDark ? "dark" : "light");
+        root.classList.toggle("dark", theme === "dark");
+        root.style.colorScheme = theme;
+      })();
+    </script>
+  </head>
+  <body class="antialiased bg-white dark:bg-black">
+    <slot />
+  </body>
+</html>

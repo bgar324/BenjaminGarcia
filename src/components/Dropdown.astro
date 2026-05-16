@@ -1,0 +1,91 @@
+---
+import Icon from "./Icon.astro";
+
+type Props = {
+  item: {
+    role: string;
+    position: string;
+    startDate: string;
+    endDate?: string;
+    src: string;
+    darkSrc?: string;
+    imageLink?: string;
+    description?: string;
+  };
+};
+
+const { item } = Astro.props;
+const dateText = `${item.startDate}${item.endDate ? ` - ${item.endDate}` : ""}`;
+---
+
+<div
+  data-dropdown
+  data-open="false"
+  class="pressable flex flex-col rounded-[13px] border border-gray-200 bg-white shadow-xs transition-colors duration-300 dark:border-gray-600 dark:bg-black cursor-pointer"
+>
+  <div data-dropdown-trigger role="button" tabindex="0" aria-expanded="false" class="flex flex-row">
+    <div class="flex items-center justify-center">
+      <a
+        href={item.imageLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="relative z-10 flex items-center justify-center rounded-xl focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+      >
+        <span class={`flex h-[62px] w-[62px] shrink-0 items-center justify-center rounded-xl p-1 lg:ml-0.5 ${item.darkSrc ? "dark:hidden" : ""}`}>
+          <span class="relative h-full w-full overflow-hidden rounded-lg">
+            <img
+              src={item.src}
+              alt={`${item.position} logo`}
+              width="60"
+              height="60"
+              sizes="60px"
+              loading={item.darkSrc ? "eager" : "lazy"}
+              decoding="async"
+              class="h-full w-full object-cover"
+            />
+          </span>
+        </span>
+        {item.darkSrc && (
+          <span class="hidden h-[62px] w-[62px] shrink-0 items-center justify-center rounded-xl p-1 lg:ml-0.5 dark:flex">
+            <span class="relative h-full w-full overflow-hidden rounded-lg">
+              <img
+                src={item.darkSrc}
+                alt={`${item.position} logo`}
+                width="60"
+                height="60"
+                sizes="60px"
+                loading="eager"
+                decoding="async"
+                class="h-full w-full object-cover"
+              />
+            </span>
+          </span>
+        )}
+      </a>
+    </div>
+    <div class="flex w-full items-center justify-between gap-2 py-1.5 pr-1.5 pl-1 sm:py-2 sm:pr-2 sm:pl-1.5 lg:gap-3">
+      <div class="flex min-w-0 flex-col">
+        <h3 class="w-full font-semibold text-gray-900 dark:text-slate-100 lg:text-lg">{item.role}</h3>
+        <div class="flex flex-row items-center">
+          <span class="text-sm text-gray-600 dark:text-slate-400 lg:text-base">{item.position}</span>
+        </div>
+      </div>
+      <div class="flex shrink-0 flex-row items-center">
+        <p class="hidden text-sm text-gray-600 dark:text-slate-400 sm:block lg:text-base">{dateText}</p>
+        <div class="ml-1 rounded-3xl transition-all duration-300 ease-in-out sm:ml-2">
+          <div class="grid h-4 w-4 place-items-center">
+            <span data-dropdown-chevron><Icon name="chevron-down" size={14} strokeWidth={1} class="block text-gray-600 dark:text-slate-400" /></span>
+            <span data-dropdown-x class="hidden"><Icon name="x" size={14} strokeWidth={1} class="block text-gray-600 dark:text-slate-400" /></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-dropdown-content class="dropdown-content">
+    <div class="overflow-hidden">
+      <div class="border-t border-gray-200 p-4 dark:border-gray-700">
+        <p class="text-sm text-gray-800 dark:text-slate-200 lg:text-base">{item.description}</p>
+      </div>
+    </div>
+  </div>
+</div>

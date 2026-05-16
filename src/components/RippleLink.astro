@@ -1,0 +1,57 @@
+---
+type Props = {
+  href: string;
+  text: string;
+  colors: readonly string[];
+};
+
+const { href, text, colors } = Astro.props;
+
+function hexToRgb(hex: string) {
+  const value = hex.replace("#", "");
+  return {
+    r: Number.parseInt(value.slice(0, 2), 16),
+    g: Number.parseInt(value.slice(2, 4), 16),
+    b: Number.parseInt(value.slice(4, 6), 16),
+  };
+}
+
+function toHex(value: number) {
+  return Math.round(value).toString(16).padStart(2, "0");
+}
+
+const chars = Array.from(text);
+const stops = colors.map(hexToRgb);
+const hoverColors = chars.map((_, index) => {
+  const progress = chars.length <= 1 ? 0 : index / (chars.length - 1);
+  const r = stops[0].r + (stops[1].r - stops[0].r) * progress;
+  const g = stops[0].g + (stops[1].g - stops[0].g) * progress;
+  const b = stops[0].b + (stops[1].b - stops[0].b) * progress;
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+});
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+const characterMarkup = chars
+  .map((character, index) => {
+    const style = `--hover-letter-color: ${hoverColors[index]}; transition-delay: ${50 + index * 25}ms`;
+    return `<span aria-hidden="true" class="inline-block whitespace-pre text-slate-800 dark:text-slate-100 transition duration-300 group-hover:-translate-y-px group-hover:[color:var(--hover-letter-color)]" style="${style}">${escapeHtml(character)}</span>`;
+  })
+  .join("");
+---
+
+<a
+  class="group inline-flex flex-wrap items-baseline font-medium text-slate-800 dark:text-slate-100 transition-colors duration-300 hover:text-slate-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm dark:hover:text-white"
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <span class="sr-only">{text}</span>
+  <Fragment set:html={characterMarkup} />
+</a>

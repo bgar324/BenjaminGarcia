@@ -13,14 +13,12 @@
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
+    "baseUrl": ".",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
+    "types": [
+      "astro/client"
     ],
     "paths": {
       "@/*": [
@@ -29,11 +27,9 @@
     }
   },
   "include": [
-    "next-env.d.ts",
+    ".astro/types.d.ts",
     "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    "**/*.astro"
   ],
   "exclude": [
     "node_modules"
