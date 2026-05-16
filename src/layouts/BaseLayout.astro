@@ -50,7 +50,7 @@ body {
     <link rel="canonical" href={canonicalUrl} />
     <link rel="preload" href={cabinetGroteskUrl} as="font" type="font/woff2" crossorigin />
     <link rel="preload" as="image" href={profileImage.src} imagesrcset={profileImage.avifSrcSet} imagesizes="(max-width: 1023px) 40px, 192px" type="image/avif" fetchpriority="high" />
-    <link rel="preload" as="image" href={firstProject.src} imagesrcset={firstProject.avifSrcSet} imagesizes="(max-width: 1023px) calc(100vw - 2.5rem), 388px" type="image/avif" fetchpriority="high" />
+    <link rel="preload" as="image" href={firstProject.src} imagesrcset={firstProject.avifSrcSet} imagesizes="388px" type="image/avif" fetchpriority="high" media="(min-width: 1024px)" />
     <style is:inline set:html={criticalFontCss}></style>
     <link rel="icon" href="/static/favicon.svg" />
     <link rel="shortcut icon" href="/static/favicon.svg" />

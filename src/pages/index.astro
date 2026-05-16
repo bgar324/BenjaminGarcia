@@ -22,7 +22,7 @@ const homeStructuredData = [
     "@type": "Person",
     name: siteConfig.name,
     url: siteConfig.url,
-    image: absoluteUrl("/static/me.jpg"),
+    image: absoluteUrl(profileImage.fullSrc),
     email: siteConfig.email,
     jobTitle: siteConfig.jobTitle,
     description: siteConfig.description,
@@ -445,7 +445,8 @@ const rippleLinks = {
     </div>
   </div>
 
-  <script is:inline>
+  <script>
+    // @ts-nocheck
     const root = document.documentElement;
     const body = document.body;
     const syncThemeButton = () => {
