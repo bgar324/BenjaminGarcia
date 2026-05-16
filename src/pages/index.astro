@@ -1,8 +1,15 @@
 ---
+import { getImage } from "astro:assets";
 import Icon from "../components/Icon.astro";
 import Dropdown from "../components/Dropdown.astro";
 import FooterLink from "../components/FooterLink.astro";
 import RippleLink from "../components/RippleLink.astro";
+import profilePhoto from "../assets/profile/me.jpg";
+import gitproofPreview from "../assets/projects/gitproof.png";
+import logitPreview from "../assets/projects/logit.png";
+import homIcon from "../assets/misc/hom.webp";
+import rgIcon from "../assets/misc/rg.webp";
+import logitIcon from "../assets/logit/icon-light.png";
 import {
   absoluteUrl,
   education,
@@ -16,13 +23,83 @@ import {
 } from "../data/site";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+const profileWidths = [80, 192, 384, 512, 768, 1024];
+const profileSizes = "(max-width: 1023px) 40px, 192px";
+const projectWidths = [384, 640, 768, 1024, 1280];
+const projectSizes = "(max-width: 1023px) calc(100vw - 2.5rem), 388px";
+const projectPreviewAssets = {
+  gitproof: gitproofPreview,
+  logit: logitPreview,
+} as const;
+
+const makeSrcSet = async (src: any, widths: number[], format: "avif" | "webp", quality: number) => {
+  const images = await Promise.all(widths.map((width) => getImage({ src, width, format, quality })));
+
+  return {
+    src: images[0].src,
+    srcSet: images.map((image, index) => `${image.src} ${widths[index]}w`).join(", "),
+  };
+};
+
+const profileModalAvif = await makeSrcSet(profilePhoto, profileWidths, "avif", 56);
+const profileModalWebp = await makeSrcSet(profilePhoto, profileWidths, "webp", 74);
+const profileModalFallback = await getImage({ src: profilePhoto, width: 1024, format: "webp", quality: 74 });
+const profilePreload = await makeSrcSet(profilePhoto, profileWidths, "avif", 56);
+const profileThumbAvif = await makeSrcSet(profilePhoto, [80, 192], "avif", 56);
+const profileThumbWebp = await makeSrcSet(profilePhoto, [80, 192], "webp", 74);
+const profileThumbFallback = await getImage({ src: profilePhoto, width: 80, format: "webp", quality: 74 });
+const profileCardAvif = await makeSrcSet(profilePhoto, [192, 384], "avif", 56);
+const profileCardWebp = await makeSrcSet(profilePhoto, [192, 384], "webp", 74);
+const profileCardFallback = await getImage({ src: profilePhoto, width: 192, format: "webp", quality: 74 });
+
+const projectsWithImages = await Promise.all(selectedProjects.map(async (project) => {
+  const image = projectPreviewAssets[project.imageKey];
+  const cardAvif = await makeSrcSet(image, [384, 640, 768], "avif", 58);
+  const cardWebp = await makeSrcSet(image, [384, 640, 768], "webp", 76);
+  const cardFallback = await getImage({ src: image, width: 640, format: "webp", quality: 76 });
+  const modalAvif = await makeSrcSet(image, projectWidths, "avif", 58);
+  const modalWebp = await makeSrcSet(image, projectWidths, "webp", 76);
+  const modalFallback = await getImage({ src: image, width: 1280, format: "webp", quality: 76 });
+
+  return {
+    ...project,
+    image,
+    cardAvifSrcSet: cardAvif.srcSet,
+    cardWebpSrcSet: cardWebp.srcSet,
+    cardSrc: cardFallback.src,
+    modalAvifSrcSet: modalAvif.srcSet,
+    modalWebpSrcSet: modalWebp.srcSet,
+    modalSrc: modalFallback.src,
+  };
+}));
+
+const firstProjectPreload = await makeSrcSet(projectsWithImages[0].image, projectWidths, "avif", 58);
+const homIconImage = await getImage({ src: homIcon, width: 96, format: "webp", quality: 92 });
+const rgIconImage = await getImage({ src: rgIcon, width: 96, format: "webp", quality: 92 });
+const logitMask = await getImage({ src: logitIcon, width: 144, format: "png" });
+const imagePreloads = [
+  {
+    href: profilePreload.src,
+    imagesrcset: profilePreload.srcSet,
+    imagesizes: profileSizes,
+    type: "image/avif",
+  },
+  {
+    href: firstProjectPreload.src,
+    imagesrcset: firstProjectPreload.srcSet,
+    imagesizes: "388px",
+    media: "(min-width: 1024px)",
+    type: "image/avif",
+  },
+];
+
 const homeStructuredData = [
   {
     "@context": "https://schema.org",
     "@type": "Person",
     name: siteConfig.name,
     url: siteConfig.url,
-    image: absoluteUrl(profileImage.fullSrc),
+    image: absoluteUrl(profileModalFallback.src),
     email: siteConfig.email,
     jobTitle: siteConfig.jobTitle,
     description: siteConfig.description,
@@ -88,7 +165,7 @@ const rippleLinks = {
 
 ---
 
-<BaseLayout canonicalPath="/">
+<BaseLayout canonicalPath="/" imagePreloads={imagePreloads}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(homeStructuredData)} />
 
   <div class="page-shell-gutter pt-2 md:pt-4 lg:pt-0 pb-8 lg:pb-0 max-w-5xl mx-auto flex flex-col min-h-screen lg:flex-row lg:gap-7 lg:justify-between page-reveal">
@@ -107,9 +184,9 @@ const rippleLinks = {
           <div class="flex items-center gap-3">
             <button
               data-image-modal-trigger
-              data-image-src={profileImage.fullSrc}
-              data-image-avif-srcset={profileImage.avifSrcSet}
-              data-image-webp-srcset={profileImage.webpSrcSet}
+              data-image-src={profileModalFallback.src}
+              data-image-avif-srcset={profileModalAvif.srcSet}
+              data-image-webp-srcset={profileModalWebp.srcSet}
               data-image-alt={profileImage.alt}
               data-image-width={profileImage.width}
               data-image-height={profileImage.height}
@@ -120,9 +197,9 @@ const rippleLinks = {
             >
               <span class="relative block h-10 w-10 overflow-hidden rounded-lg">
                 <picture class="contents">
-                  <source type="image/avif" srcset={profileImage.avifSrcSet} sizes="40px" />
-                  <source type="image/webp" srcset={profileImage.webpSrcSet} sizes="40px" />
-                  <img src={profileImage.src} alt={profileImage.alt} width="40" height="40" sizes="40px" class="h-full w-full object-cover" loading="eager" decoding="async" fetchpriority="high" />
+                  <source type="image/avif" srcset={profileThumbAvif.srcSet} sizes="40px" />
+                  <source type="image/webp" srcset={profileThumbWebp.srcSet} sizes="40px" />
+                  <img src={profileThumbFallback.src} alt={profileImage.alt} width="40" height="40" sizes="40px" class="h-full w-full object-cover" loading="eager" decoding="async" fetchpriority="high" />
                 </picture>
               </span>
             </button>
@@ -212,10 +289,10 @@ const rippleLinks = {
         <div class="bg-white dark:bg-black rounded-xl shadow-md dark:shadow-lg p-2 transition-colors duration-300">
           <div class="relative group/img">
             <picture>
-              <source type="image/avif" srcset={profileImage.avifSrcSet} sizes="192px" />
-              <source type="image/webp" srcset={profileImage.webpSrcSet} sizes="192px" />
+              <source type="image/avif" srcset={profileCardAvif.srcSet} sizes="192px" />
+              <source type="image/webp" srcset={profileCardWebp.srcSet} sizes="192px" />
               <img
-                src={profileImage.src}
+                src={profileCardFallback.src}
                 alt={profileImage.alt}
                 width={profileImage.width}
                 height={profileImage.height}
@@ -229,9 +306,9 @@ const rippleLinks = {
             </picture>
             <button
               data-image-modal-trigger
-              data-image-src={profileImage.fullSrc}
-              data-image-avif-srcset={profileImage.avifSrcSet}
-              data-image-webp-srcset={profileImage.webpSrcSet}
+              data-image-src={profileModalFallback.src}
+              data-image-avif-srcset={profileModalAvif.srcSet}
+              data-image-webp-srcset={profileModalWebp.srcSet}
               data-image-alt={profileImage.alt}
               data-image-width={profileImage.width}
               data-image-height={profileImage.height}
@@ -269,7 +346,7 @@ const rippleLinks = {
                 class="pressable group/social flex items-center justify-center aspect-square rounded-md bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-black dark:hover:text-white transition-all duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
               >
                 {link.icon === "logit" ? (
-                  <span aria-hidden="true" class="block h-[18px] w-[18px] bg-current [mask:url('/static/logit/icon-light.png')_center/contain_no-repeat] [-webkit-mask:url('/static/logit/icon-light.png')_center/contain_no-repeat]"></span>
+                  <span aria-hidden="true" class="block h-[18px] w-[18px] bg-current" style={`mask: url('${logitMask.src}') center / contain no-repeat; -webkit-mask: url('${logitMask.src}') center / contain no-repeat;`}></span>
                 ) : (
                   <Icon name={link.icon} size={18} />
                 )}
@@ -340,19 +417,19 @@ const rippleLinks = {
           </a>
         </div>
         <div class="grid items-start gap-4 lg:grid-cols-2">
-          {selectedProjects.map((project, index) => (
+          {projectsWithImages.map((project, index) => (
             <article class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs transition-colors duration-300 dark:border-gray-600 dark:bg-black">
               <div class="group/img relative aspect-[16/9] w-full overflow-hidden border-b border-gray-200 dark:border-gray-700">
                 <picture class="block h-full w-full">
-                  <source type="image/avif" srcset={project.avifSrcSet} sizes="(max-width: 1023px) calc(100vw - 2.5rem), 388px" />
-                  <source type="image/webp" srcset={project.webpSrcSet} sizes="(max-width: 1023px) calc(100vw - 2.5rem), 388px" />
-                  <img src={project.src} alt={project.title} width={project.width} height={project.height} loading={index === 0 ? "eager" : "lazy"} decoding="async" fetchpriority={index === 0 ? "high" : "auto"} sizes="(max-width: 1023px) calc(100vw - 2.5rem), 388px" class="h-full w-full object-cover" />
+                  <source type="image/avif" srcset={project.cardAvifSrcSet} sizes={projectSizes} />
+                  <source type="image/webp" srcset={project.cardWebpSrcSet} sizes={projectSizes} />
+                  <img src={project.cardSrc} alt={project.title} width={project.width} height={project.height} loading={index === 0 ? "eager" : "lazy"} decoding="async" fetchpriority={index === 0 ? "high" : "auto"} sizes={projectSizes} class="h-full w-full object-cover" />
                 </picture>
                 <button
                   data-image-modal-trigger
-                  data-image-src={project.fullSrc}
-                  data-image-avif-srcset={project.avifSrcSet}
-                  data-image-webp-srcset={project.webpSrcSet}
+                  data-image-src={project.modalSrc}
+                  data-image-avif-srcset={project.modalAvifSrcSet}
+                  data-image-webp-srcset={project.modalWebpSrcSet}
                   data-image-alt={project.title}
                   data-image-width={project.width}
                   data-image-height={project.height}
@@ -402,10 +479,10 @@ const rippleLinks = {
         <div class="w-full justify-between flex flex-col sm:flex-row items-center text-center pt-16 gap-3">
           <div class="flex flex-row gap-3">
             <button data-youtube-trigger data-video-id="YWdbfy231n0" type="button" class="pressable relative cursor-pointer p-1 md:p-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-md" aria-label="Watch Malenia video">
-              <img src="/static/hom.webp" width="48" height="48" sizes="(min-width: 768px) 48px, 36px" alt="Watch me defeat Malenia!" class="inline-block w-9 h-9 md:w-12 md:h-12" loading="lazy" decoding="async" />
+              <img src={homIconImage.src} width="48" height="48" sizes="(min-width: 768px) 48px, 36px" alt="Watch me defeat Malenia!" class="inline-block w-9 h-9 md:w-12 md:h-12" loading="lazy" decoding="async" />
             </button>
             <button data-youtube-trigger data-video-id="NaVNh79V4F4" type="button" class="pressable relative cursor-pointer p-1 md:p-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-md" aria-label="Watch Radahn video">
-              <img src="/static/rg.webp" width="48" height="48" sizes="(min-width: 768px) 48px, 36px" alt="Watch me defeat Promised Consort Radahn!" class="inline-block w-9 h-9 md:w-12 md:h-12" loading="lazy" decoding="async" />
+              <img src={rgIconImage.src} width="48" height="48" sizes="(min-width: 768px) 48px, 36px" alt="Watch me defeat Promised Consort Radahn!" class="inline-block w-9 h-9 md:w-12 md:h-12" loading="lazy" decoding="async" />
             </button>
           </div>
 

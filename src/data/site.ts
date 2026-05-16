@@ -1,3 +1,12 @@
+import bonterraLogo from "../assets/companies/bonterra.jpg";
+import lindyLogo from "../assets/companies/lindy.jpg";
+import tensorstaxLogo from "../assets/companies/tensorstax.png";
+import toddLogo from "../assets/companies/todd.png";
+import uclaHciLogoDark from "../assets/companies/ucla-hci-dark.png";
+import uclaHciLogo from "../assets/companies/ucla-hci.png";
+import mtsacLogo from "../assets/schools/mtsac.webp";
+import uclaLogo from "../assets/schools/ucla.webp";
+
 export const siteConfig = {
   name: "Benjamin Garcia",
   title: "Benjamin Garcia",
@@ -41,24 +50,7 @@ export function absoluteUrl(path = "/") {
   return new URL(path, siteConfig.url).toString();
 }
 
-function optimizedImage(base: string, widths: readonly number[]) {
-  const imagePath = (width: number, format: "avif" | "webp") => `/static/optimized/${base}-${width}.${format}`;
-
-  return {
-    avifSrcSet: widths.map((width) => `${imagePath(width, "avif")} ${width}w`).join(", "),
-    webpSrcSet: widths.map((width) => `${imagePath(width, "webp")} ${width}w`).join(", "),
-    fallbackSrc: imagePath(widths[Math.min(1, widths.length - 1)], "webp"),
-    largestSrc: imagePath(widths[widths.length - 1], "webp"),
-  };
-}
-
-const profileSources = optimizedImage("me", [80, 192, 384, 512, 768, 1024]);
-
 export const profileImage = {
-  src: profileSources.fallbackSrc,
-  fullSrc: profileSources.largestSrc,
-  avifSrcSet: profileSources.avifSrcSet,
-  webpSrcSet: profileSources.webpSrcSet,
   alt: "Benjamin Garcia",
   width: 4284,
   height: 5712,
@@ -98,7 +90,7 @@ export const experiences = [
     position: "Lindy",
     imageLink: "https://www.lindy.ai",
     startDate: "Summer 2026",
-    src: "/static/companies/lindy.jpg",
+    src: lindyLogo,
     description:
       "Lindy is an AI work assistant and no-code agent platform that automates inbox, meetings, scheduling, CRM updates, and other cross-app business workflows.",
   },
@@ -108,8 +100,8 @@ export const experiences = [
     imageLink: "https://www.hci.ucla.edu",
     startDate: "Dec 2025",
     endDate: "Present",
-    src: "/static/companies/ucla-hci.png",
-    darkSrc: "/static/companies/ucla-hci-dark.png",
+    src: uclaHciLogo,
+    darkSrc: uclaHciLogoDark,
     description:
       "Collaborated on HI-COS, a multi-agent scientific hypothesis generation platform built with FastAPI, Pydantic AI, Supabase, Gemini, Next.js, React Flow, Zustand, and Tailwind.",
   },
@@ -119,7 +111,7 @@ export const experiences = [
     imageLink: "https://www.toddagriscience.com/",
     startDate: "Mar 2025",
     endDate: "Oct 2025",
-    src: "/static/companies/todd.png",
+    src: toddLogo,
     description:
       "Built and deployed Todd's first client-facing dashboard using Next.js, enabling 5-10 early customers to visualize AI-powered crop insights. Work contributed to scaling the team from 1 to 14 engineers and drove initial product adoption.",
   },
@@ -129,7 +121,7 @@ export const experiences = [
     imageLink: "https://www.bonterratech.com/",
     startDate: "Jul 2025",
     endDate: "Aug 2025",
-    src: "/static/companies/bonterra.jpg",
+    src: bonterraLogo,
     description:
       "Researched and prototyped agentic AI pipelines for nonprofit event analysis. Presented findings to 40+ cross-functional stakeholders, shaping early AI adoption strategy.",
   },
@@ -139,7 +131,7 @@ export const experiences = [
     imageLink: "https://www.tensorstax.com",
     startDate: "May 2025",
     endDate: "Jun 2025",
-    src: "/static/companies/tensorstax.png",
+    src: tensorstaxLogo,
     description:
       "Designed secure credential-submission UI integrated with HashiCorp Vault, streamlining auth across 50+ enterprise data sources. Built low-latency frontend (Next.js, Redux, WebSockets) supporting 100+ concurrent beta users with sub-100ms response times.",
   },
@@ -152,7 +144,7 @@ export const education = [
     imageLink: "https://www.ucla.edu",
     startDate: "2025",
     endDate: "Present",
-    src: "/static/schools/ucla.webp",
+    src: uclaLogo,
     description:
       "ACM Hack Software Engineer Lead, Content Member & Frontend Developer at exploretech.la",
   },
@@ -162,7 +154,7 @@ export const education = [
     imageLink: "https://www.mtsac.edu",
     startDate: "2023",
     endDate: "2025",
-    src: "/static/schools/mtsac.webp",
+    src: mtsacLogo,
     description:
       "Outreach Officer & Front-End Developer for the Computer Science Club",
   },
@@ -170,10 +162,7 @@ export const education = [
 
 export const selectedProjects = [
   {
-    src: "/static/optimized/gitproof-640.webp",
-    fullSrc: "/static/optimized/gitproof-1280.webp",
-    avifSrcSet: optimizedImage("gitproof", [384, 640, 768, 1024, 1280]).avifSrcSet,
-    webpSrcSet: optimizedImage("gitproof", [384, 640, 768, 1024, 1280]).webpSrcSet,
+    imageKey: "gitproof",
     title: "GitProof",
     width: 2048,
     height: 1277,
@@ -192,10 +181,7 @@ export const selectedProjects = [
     ],
   },
   {
-    src: "/static/optimized/logit-640.webp",
-    fullSrc: "/static/optimized/logit-1280.webp",
-    avifSrcSet: optimizedImage("logit", [384, 640, 768, 1024, 1280]).avifSrcSet,
-    webpSrcSet: optimizedImage("logit", [384, 640, 768, 1024, 1280]).webpSrcSet,
+    imageKey: "logit",
     title: "Logit",
     width: 2048,
     height: 1277,
@@ -225,6 +211,20 @@ export type ArchiveProject = {
 };
 
 export const archiveProjects: ArchiveProject[] = [
+  {
+    year: 2026,
+    title: "ACM Hack Website",
+    builtWith: ["JavaScript", "CSS"],
+    websiteLink: "https://hack.uclaacm.com",
+    githubLink: "https://github.com/uclaacm/hack.uclaacm.com"
+  },
+  {
+    year: 2026,
+    title: "exploretech.la Website",
+    builtWith: ["JavaScript", "HTML", "SCSS"],
+    websiteLink: "https://exploretech.la",
+    githubLink: "https://github.com/exploretech-la/website"
+  },
   {
     year: 2026,
     title: "Poly Clubs",

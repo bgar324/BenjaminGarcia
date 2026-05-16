@@ -82,7 +82,16 @@ const archiveStructuredData = {
                   <td class="p-2 align-middle whitespace-nowrap text-base cursor-default py-4 text-gray-700 dark:text-slate-300 font-medium">{row.year}</td>
                   <td class="p-2 align-middle whitespace-nowrap text-base cursor-default">
                     <div class="flex items-center gap-2">
-                      <span class="font-semibold text-gray-900 dark:text-slate-100">{row.title}</span>
+                      {row.websiteLink ? (
+                        <>
+                          <a href={row.websiteLink} target="_blank" rel="noopener noreferrer" class="font-semibold text-gray-900 transition-colors duration-300 hover:text-gray-600 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 md:hidden dark:text-slate-100 dark:hover:text-slate-300" aria-label={`Visit ${row.title}`}>
+                            {row.title}
+                          </a>
+                          <span class="hidden font-semibold text-gray-900 md:inline dark:text-slate-100">{row.title}</span>
+                        </>
+                      ) : (
+                        <span class="font-semibold text-gray-900 dark:text-slate-100">{row.title}</span>
+                      )}
                     </div>
                   </td>
                   <td class="p-2 align-middle whitespace-nowrap text-base cursor-default hidden md:table-cell">

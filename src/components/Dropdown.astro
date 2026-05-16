@@ -1,5 +1,7 @@
 ---
+import { getImage } from "astro:assets";
 import Icon from "./Icon.astro";
+import type { ImageMetadata } from "astro";
 
 type Props = {
   item: {
@@ -7,8 +9,8 @@ type Props = {
     position: string;
     startDate: string;
     endDate?: string;
-    src: string;
-    darkSrc?: string;
+    src: ImageMetadata;
+    darkSrc?: ImageMetadata;
     imageLink?: string;
     description?: string;
   };
@@ -16,6 +18,10 @@ type Props = {
 
 const { item } = Astro.props;
 const dateText = `${item.startDate}${item.endDate ? ` - ${item.endDate}` : ""}`;
+const logo = await getImage({ src: item.src, width: 120, height: 120, format: "webp", quality: 92 });
+const darkLogo = item.darkSrc
+  ? await getImage({ src: item.darkSrc, width: 120, height: 120, format: "webp", quality: 92 })
+  : null;
 ---
 
 <div
@@ -34,7 +40,7 @@ const dateText = `${item.startDate}${item.endDate ? ` - ${item.endDate}` : ""}`;
         <span class={`flex h-[62px] w-[62px] shrink-0 items-center justify-center rounded-xl p-1 lg:ml-0.5 ${item.darkSrc ? "dark:hidden" : ""}`}>
           <span class="relative h-full w-full overflow-hidden rounded-lg">
             <img
-              src={item.src}
+              src={logo.src}
               alt={`${item.position} logo`}
               width="60"
               height="60"
@@ -49,7 +55,7 @@ const dateText = `${item.startDate}${item.endDate ? ` - ${item.endDate}` : ""}`;
           <span class="hidden h-[62px] w-[62px] shrink-0 items-center justify-center rounded-xl p-1 lg:ml-0.5 dark:flex">
             <span class="relative h-full w-full overflow-hidden rounded-lg">
               <img
-                src={item.darkSrc}
+                src={darkLogo?.src}
                 alt={`${item.position} logo`}
                 width="60"
                 height="60"

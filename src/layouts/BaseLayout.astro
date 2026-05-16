@@ -1,23 +1,30 @@
 ---
 import "../styles/globals.css";
-import { defaultOpenGraphImage, defaultTwitterImage, profileImage, selectedProjects, siteConfig } from "../data/site";
+import { defaultOpenGraphImage, defaultTwitterImage, siteConfig } from "../data/site";
 import cabinetGroteskUrl from "../fonts/CabinetGrotesk-Variable.woff2?url";
 
 type Props = {
   canonicalPath?: string;
   description?: string;
+  imagePreloads?: {
+    href: string;
+    imagesizes: string;
+    imagesrcset: string;
+    media?: string;
+    type: string;
+  }[];
   title?: string;
 };
 
 const {
   canonicalPath = "/",
   description = siteConfig.description,
+  imagePreloads = [],
   title = siteConfig.title,
 } = Astro.props;
 
 const canonicalUrl = new URL(canonicalPath, siteConfig.url).toString();
 const pageTitle = title === siteConfig.title ? siteConfig.title : `${title} | ${siteConfig.name}`;
-const firstProject = selectedProjects[0];
 const criticalFontCss = `
 @font-face {
   font-family: "Cabinet Grotesk";
@@ -49,8 +56,9 @@ body {
     <meta name="publisher" content={siteConfig.author} />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="preload" href={cabinetGroteskUrl} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" as="image" href={profileImage.src} imagesrcset={profileImage.avifSrcSet} imagesizes="(max-width: 1023px) 40px, 192px" type="image/avif" fetchpriority="high" />
-    <link rel="preload" as="image" href={firstProject.src} imagesrcset={firstProject.avifSrcSet} imagesizes="388px" type="image/avif" fetchpriority="high" media="(min-width: 1024px)" />
+    {imagePreloads.map((image) => (
+      <link rel="preload" as="image" href={image.href} imagesrcset={image.imagesrcset} imagesizes={image.imagesizes} type={image.type} fetchpriority="high" media={image.media} />
+    ))}
     <style is:inline set:html={criticalFontCss}></style>
     <link rel="icon" href="/static/favicon.svg" />
     <link rel="shortcut icon" href="/static/favicon.svg" />
