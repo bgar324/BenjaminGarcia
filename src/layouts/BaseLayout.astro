@@ -1,6 +1,7 @@
 ---
 import "../styles/globals.css";
 import { defaultOpenGraphImage, defaultTwitterImage, siteConfig } from "../data/site";
+import cabinetGroteskUrl from "../fonts/CabinetGrotesk-Variable.woff2?url";
 
 type Props = {
   canonicalPath?: string;
@@ -33,6 +34,7 @@ const pageTitle = title === siteConfig.title ? siteConfig.title : `${title} | ${
     <meta name="creator" content={siteConfig.author} />
     <meta name="publisher" content={siteConfig.author} />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="preload" href={cabinetGroteskUrl} as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/static/favicon.svg" />
     <link rel="shortcut icon" href="/static/favicon.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
