@@ -37,11 +37,18 @@ html,
 body {
   font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
 }
+html.fonts-pending body {
+  opacity: 0;
+}
+html.fonts-ready body,
+html.no-font-loading body {
+  opacity: 1;
+}
 `;
 ---
 
 <!doctype html>
-<html lang="en" data-scroll-behavior="smooth">
+<html lang="en" data-scroll-behavior="smooth" class="fonts-pending">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -80,6 +87,20 @@ body {
     <meta name="format-detection" content="address=no,email=no,telephone=no" />
     <script is:inline>
       (() => {
+        const root = document.documentElement;
+        if (!("fonts" in document)) {
+          root.classList.remove("fonts-pending");
+          root.classList.add("no-font-loading");
+          return;
+        }
+        document.fonts.load('1em "Cabinet Grotesk"').then(() => {
+          root.classList.remove("fonts-pending");
+          root.classList.add("fonts-ready");
+        });
+      })();
+    </script>
+    <script is:inline>
+      (() => {
         const storageKey = "theme";
         const root = document.documentElement;
         const storedTheme = localStorage.getItem(storageKey);
@@ -87,6 +108,14 @@ body {
         const theme = storedTheme || (prefersDark ? "dark" : "light");
         root.classList.toggle("dark", theme === "dark");
         root.style.colorScheme = theme;
+      })();
+    </script>
+    <script is:inline>
+      (() => {
+        if (!("serviceWorker" in navigator)) return;
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js").catch(() => {});
+        }, { once: true });
       })();
     </script>
   </head>

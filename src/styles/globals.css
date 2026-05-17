@@ -12,6 +12,27 @@ body {
 
 img {
   color: transparent;
+  font-size: 0;
+  overflow: hidden;
+}
+
+.ripple-letter {
+  transition-property: color, transform;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  transition-delay: 0ms;
+}
+
+.group:hover .ripple-letter {
+  color: var(--hover-letter-color);
+  transform: translateY(-1px);
+  transition-delay: var(--ripple-delay);
+}
+
+.theme-changing .group:hover .ripple-letter {
+  color: inherit;
+  transform: none;
+  transition-delay: 0ms;
 }
 
 @theme inline {

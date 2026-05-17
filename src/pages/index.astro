@@ -544,14 +544,20 @@ const rippleLinks = {
     };
 
     syncThemeButton();
+    let themeTransitionTimer = null;
     document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
       button.addEventListener("click", () => {
         const nextIsDark = !root.classList.contains("dark");
         const nextTheme = nextIsDark ? "dark" : "light";
+        if (themeTransitionTimer) window.clearTimeout(themeTransitionTimer);
+        root.classList.add("theme-changing");
         root.classList.toggle("dark", nextIsDark);
         root.style.colorScheme = nextTheme;
         localStorage.setItem("theme", nextTheme);
         syncThemeButton();
+        themeTransitionTimer = window.setTimeout(() => {
+          root.classList.remove("theme-changing");
+        }, 360);
       });
     });
 

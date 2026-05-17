@@ -40,8 +40,8 @@ function escapeHtml(value: string) {
 
 const characterMarkup = chars
   .map((character, index) => {
-    const style = `--hover-letter-color: ${hoverColors[index]}; transition-delay: ${50 + index * 25}ms`;
-    return `<span aria-hidden="true" class="inline-block whitespace-pre text-slate-800 dark:text-slate-100 transition duration-300 group-hover:-translate-y-px group-hover:[color:var(--hover-letter-color)]" style="${style}">${escapeHtml(character)}</span>`;
+    const style = `--hover-letter-color: ${hoverColors[index]}; --ripple-delay: ${50 + index * 25}ms`;
+    return `<span aria-hidden="true" class="ripple-letter inline-block whitespace-pre text-slate-800 dark:text-slate-100" style="${style}">${escapeHtml(character)}</span>`;
   })
   .join("");
 ---
