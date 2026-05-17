@@ -56,6 +56,7 @@ html.no-font-loading body {
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="application-name" content={siteConfig.name} />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="referrer" content="origin-when-cross-origin" />
     <meta name="keywords" content={siteConfig.keywords.join(", ")} />
     <meta name="author" content={siteConfig.author} />
@@ -103,11 +104,27 @@ html.no-font-loading body {
       (() => {
         const storageKey = "theme";
         const root = document.documentElement;
+        const themeColors = {
+          light: "#ffffff",
+          dark: "#000000",
+        };
+        const setTheme = (theme, options = {}) => {
+          const normalizedTheme = theme === "dark" ? "dark" : "light";
+          root.classList.toggle("dark", normalizedTheme === "dark");
+          root.style.colorScheme = normalizedTheme;
+          root.style.backgroundColor = themeColors[normalizedTheme];
+          document
+            .querySelectorAll('meta[name="theme-color"]')
+            .forEach((meta) => meta.setAttribute("content", themeColors[normalizedTheme]));
+          if (options.persist) {
+            localStorage.setItem(storageKey, normalizedTheme);
+          }
+        };
         const storedTheme = localStorage.getItem(storageKey);
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         const theme = storedTheme || (prefersDark ? "dark" : "light");
-        root.classList.toggle("dark", theme === "dark");
-        root.style.colorScheme = theme;
+        setTheme(theme);
+        window.__setSiteTheme = setTheme;
       })();
     </script>
     <script is:inline>

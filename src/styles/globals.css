@@ -10,6 +10,11 @@ body {
     color var(--theme-transition-duration) var(--theme-transition-ease);
 }
 
+html {
+  background-color: var(--background);
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-ease);
+}
+
 img {
   color: transparent;
   font-size: 0;

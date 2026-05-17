@@ -551,9 +551,13 @@ const rippleLinks = {
         const nextTheme = nextIsDark ? "dark" : "light";
         if (themeTransitionTimer) window.clearTimeout(themeTransitionTimer);
         root.classList.add("theme-changing");
-        root.classList.toggle("dark", nextIsDark);
-        root.style.colorScheme = nextTheme;
-        localStorage.setItem("theme", nextTheme);
+        if (typeof window.__setSiteTheme === "function") {
+          window.__setSiteTheme(nextTheme, { persist: true });
+        } else {
+          root.classList.toggle("dark", nextIsDark);
+          root.style.colorScheme = nextTheme;
+          localStorage.setItem("theme", nextTheme);
+        }
         syncThemeButton();
         themeTransitionTimer = window.setTimeout(() => {
           root.classList.remove("theme-changing");
