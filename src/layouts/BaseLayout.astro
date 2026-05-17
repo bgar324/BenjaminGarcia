@@ -51,7 +51,7 @@ html.no-font-loading body {
 <html lang="en" data-scroll-behavior="smooth" class="fonts-pending">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
@@ -108,23 +108,43 @@ html.no-font-loading body {
           light: "#ffffff",
           dark: "#000000",
         };
+        const syncThemeColorMeta = (color) => {
+          document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => meta.remove());
+          const themeColorMeta = document.createElement("meta");
+          themeColorMeta.name = "theme-color";
+          themeColorMeta.content = color;
+          document.head.append(themeColorMeta);
+        };
         const setTheme = (theme, options = {}) => {
           const normalizedTheme = theme === "dark" ? "dark" : "light";
+          const themeColor = themeColors[normalizedTheme];
           root.classList.toggle("dark", normalizedTheme === "dark");
           root.style.colorScheme = normalizedTheme;
-          root.style.backgroundColor = themeColors[normalizedTheme];
-          document
-            .querySelectorAll('meta[name="theme-color"]')
-            .forEach((meta) => meta.setAttribute("content", themeColors[normalizedTheme]));
+          root.style.backgroundColor = themeColor;
+          if (document.body) {
+            document.body.style.backgroundColor = themeColor;
+            document.body.style.colorScheme = normalizedTheme;
+          }
+          syncThemeColorMeta(themeColor);
+          root.dataset.theme = normalizedTheme;
+          root.dataset.themePaint = String(Date.now());
           if (options.persist) {
             localStorage.setItem(storageKey, normalizedTheme);
           }
+          requestAnimationFrame(() => {
+            root.dataset.themePaint = "";
+          });
         };
         const storedTheme = localStorage.getItem(storageKey);
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         const theme = storedTheme || (prefersDark ? "dark" : "light");
         setTheme(theme);
         window.__setSiteTheme = setTheme;
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", () => {
+            setTheme(root.dataset.theme || theme);
+          }, { once: true });
+        }
       })();
     </script>
     <script is:inline>

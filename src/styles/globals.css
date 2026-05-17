@@ -3,15 +3,21 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+html,
+body {
+  min-height: 100%;
+  background-color: var(--background);
+}
+
 body {
   font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  min-height: 100svh;
   transition:
     background-color var(--theme-transition-duration) var(--theme-transition-ease),
     color var(--theme-transition-duration) var(--theme-transition-ease);
 }
 
 html {
-  background-color: var(--background);
   transition: background-color var(--theme-transition-duration) var(--theme-transition-ease);
 }
 
