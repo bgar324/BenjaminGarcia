@@ -30,9 +30,9 @@ html {
     position: fixed;
     inset-inline: 0;
     top: 0;
-    z-index: 30;
+    z-index: 1;
     display: block;
-    height: max(6rem, calc(env(safe-area-inset-top, 0px) + 5rem));
+    height: 1px;
     pointer-events: none;
     background-color: var(--theme-canvas);
     transform: translateZ(0);
