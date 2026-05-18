@@ -17,11 +17,6 @@ body {
     color var(--theme-transition-duration) var(--theme-transition-ease);
 }
 
-body > :not(.safari-theme-edge) {
-  position: relative;
-  z-index: 2;
-}
-
 html {
   transition: background-color var(--theme-transition-duration) var(--theme-transition-ease);
 }
@@ -33,14 +28,18 @@ html {
 @media (max-width: 1023px) {
   .safari-theme-edge {
     position: fixed;
-    inset-inline: 0;
-    top: 0;
-    z-index: 1;
+    left: 50%;
+    top: 4px;
+    z-index: 999;
     display: block;
-    height: max(6rem, calc(env(safe-area-inset-top, 0px) + 5rem));
+    width: 89%;
+    height: 11px;
     pointer-events: none;
     background-color: var(--theme-canvas);
-    transform: translateZ(0);
+    -webkit-mask-image: linear-gradient(to right, transparent, transparent);
+    mask-image: linear-gradient(to right, transparent, transparent);
+    transform: translateX(-50%) translateZ(0);
+    transition: background-color var(--theme-transition-duration) var(--theme-transition-ease);
   }
 }
 

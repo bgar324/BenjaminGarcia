@@ -116,23 +116,6 @@ html.no-font-loading body {
           themeColorMeta.content = color;
           document.head.append(themeColorMeta);
         };
-        const resampleSafariChromeTint = () => {
-          const isMobileSafari = /iP(hone|ad|od)/.test(navigator.userAgent)
-            && /Safari/.test(navigator.userAgent)
-            && !/(CriOS|FxiOS|EdgiOS)/.test(navigator.userAgent);
-          if (!isMobileSafari || !window.matchMedia("(max-width: 1023px)").matches) return;
-          const scroller = document.scrollingElement || document.documentElement;
-          const start = scroller.scrollTop;
-          const max = scroller.scrollHeight - window.innerHeight;
-          if (max < 2) return;
-          const previousScrollBehavior = root.style.scrollBehavior;
-          root.style.scrollBehavior = "auto";
-          scroller.scrollTop = Math.min(max, start + (start <= 0 ? 1 : -1));
-          requestAnimationFrame(() => {
-            scroller.scrollTop = start;
-            root.style.scrollBehavior = previousScrollBehavior;
-          });
-        };
         const setTheme = (theme, options = {}) => {
           const normalizedTheme = theme === "dark" ? "dark" : "light";
           const themeColor = themeColors[normalizedTheme];
@@ -154,9 +137,6 @@ html.no-font-loading body {
           }
           requestAnimationFrame(() => {
             root.dataset.themePaint = "";
-            if (options.persist) {
-              resampleSafariChromeTint();
-            }
           });
         };
         const storedTheme = localStorage.getItem(storageKey);
