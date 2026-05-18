@@ -131,13 +131,9 @@ html.no-font-loading body {
           }
           syncThemeColorMeta(themeColor);
           root.dataset.theme = normalizedTheme;
-          root.dataset.themePaint = String(Date.now());
           if (options.persist) {
             localStorage.setItem(storageKey, normalizedTheme);
           }
-          requestAnimationFrame(() => {
-            root.dataset.themePaint = "";
-          });
         };
         const storedTheme = localStorage.getItem(storageKey);
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
