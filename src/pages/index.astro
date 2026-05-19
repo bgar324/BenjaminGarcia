@@ -666,6 +666,47 @@ const rippleLinks = {
     let imageModalCloseTimer = null;
     let imageModalOpenFrame = null;
     const imageModalDuration = 360;
+    const modalImagePreloads = new Map();
+    const preloadModalImage = (trigger) => {
+      const src = trigger.dataset.imageSrc || "";
+      const srcset = trigger.dataset.imageAvifSrcset || trigger.dataset.imageWebpSrcset || "";
+      if (!src && !srcset) return;
+      const isProfileImage = trigger.dataset.imageModalKind === "profile";
+      const sizes = isProfileImage ? "(max-width: 512px) 100vw, 512px" : "(max-width: 1024px) 100vw, 1024px";
+      const cacheKey = `${srcset}|${src}|${sizes}`;
+      if (modalImagePreloads.has(cacheKey)) return;
+
+      const image = new Image();
+      image.decoding = "async";
+      image.loading = "eager";
+      image.fetchPriority = "low";
+      image.sizes = sizes;
+      if (srcset) image.srcset = srcset;
+      if (src) image.src = src;
+      modalImagePreloads.set(cacheKey, image);
+    };
+    const preloadModalImages = () => {
+      const triggers = Array.from(document.querySelectorAll("[data-image-modal-trigger]"));
+      let index = 0;
+      const preloadNext = () => {
+        const trigger = triggers[index];
+        index += 1;
+        if (trigger instanceof HTMLElement) preloadModalImage(trigger);
+        if (index < triggers.length) window.setTimeout(preloadNext, 80);
+      };
+      preloadNext();
+    };
+    const scheduleModalImagePreloads = () => {
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          if ("requestIdleCallback" in window) {
+            window.requestIdleCallback(preloadModalImages, { timeout: 1500 });
+          } else {
+            window.setTimeout(preloadModalImages, 500);
+          }
+        });
+      });
+    };
     const closeImageModal = () => {
       if (!imageModal || imageModal.dataset.open !== "true") return;
       if (imageModalCloseTimer) window.clearTimeout(imageModalCloseTimer);
@@ -734,6 +775,11 @@ const rippleLinks = {
       if (event.target === imageModal) closeImageModal();
     });
     document.querySelector("[data-image-modal-close]")?.addEventListener("click", closeImageModal);
+    if (document.readyState === "complete") {
+      scheduleModalImagePreloads();
+    } else {
+      window.addEventListener("load", scheduleModalImagePreloads, { once: true });
+    }
 
     const videoModal = document.querySelector("[data-video-modal]");
     const videoFrame = document.querySelector("[data-video-frame]");
