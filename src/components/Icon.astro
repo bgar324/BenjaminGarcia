@@ -17,9 +17,11 @@ const strokeProps = {
 ---
 
 {name === "mail" && (
-  <svg width={size} height={size} viewBox="0 0 24 24" class={className} {...strokeProps}>
-    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+  <svg width={size} height={size} viewBox="0 0 24 24" class={className} fill="currentColor" aria-hidden="true">
+    <g transform="translate(12 12) scale(1.08) translate(-12 -12)">
+      <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.93 5.49a3 3 0 0 1-3.14 0L1.5 8.67Z"></path>
+      <path d="M22.5 6.91V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.16l9.71 5.98a1.5 1.5 0 0 0 1.58 0l9.71-5.98Z"></path>
+    </g>
   </svg>
 )}
 {name === "map-pin" && (

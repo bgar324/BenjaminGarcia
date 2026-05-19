@@ -61,10 +61,14 @@ img {
   transform: translateY(-1px);
 }
 
+.theme-changing .ripple-letter {
+  transition: none;
+  transition-delay: 0ms;
+}
+
 .theme-changing .group:hover .ripple-letter {
   color: inherit;
   transform: none;
-  transition-delay: 0ms;
 }
 
 @theme inline {
