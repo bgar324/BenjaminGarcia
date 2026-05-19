@@ -53,13 +53,12 @@ img {
   transition-property: color, transform;
   transition-duration: 300ms;
   transition-timing-function: ease;
-  transition-delay: 0ms;
+  transition-delay: var(--ripple-delay);
 }
 
 .group:hover .ripple-letter {
   color: var(--hover-letter-color);
   transform: translateY(-1px);
-  transition-delay: var(--ripple-delay);
 }
 
 .theme-changing .group:hover .ripple-letter {
@@ -309,6 +308,12 @@ html {
 
 .pressable.is-pressed {
   transform: translateY(1px) scale(0.9925);
+}
+
+.social-link-transition {
+  transition-property: color, background-color, border-color, transform;
+  transition-duration: 300ms, 300ms, 300ms, 140ms;
+  transition-timing-function: ease, ease, ease, ease-out;
 }
 
 .modal-scale {

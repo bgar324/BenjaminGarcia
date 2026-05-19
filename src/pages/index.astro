@@ -263,7 +263,7 @@ const rippleLinks = {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              class="pressable mobile-menu-link text-2xl font-semibold text-gray-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+              class="pressable social-link-transition mobile-menu-link text-2xl font-semibold text-gray-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
               style={`--menu-link-delay: ${40 + index * 30}ms`}
             >
               {link.label}
@@ -273,7 +273,7 @@ const rippleLinks = {
             href={resumeHref}
             target="_blank"
             rel="noopener noreferrer"
-            class="pressable mobile-menu-link text-2xl font-semibold text-gray-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
+            class="pressable social-link-transition mobile-menu-link text-2xl font-semibold text-gray-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm"
             style={`--menu-link-delay: ${40 + socialLinks.length * 30}ms`}
           >
             View Résumé
@@ -343,7 +343,7 @@ const rippleLinks = {
                 target="_blank"
                 rel="noopener noreferrer"
                 title={link.label}
-                class="pressable group/social flex items-center justify-center aspect-square rounded-md bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-black dark:hover:text-white transition-all duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                class="pressable social-link-transition group/social flex items-center justify-center aspect-square rounded-md bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-black dark:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
               >
                 {link.icon === "logit" ? (
                   <span aria-hidden="true" class="block h-[18px] w-[18px] bg-current" style={`mask: url('${logitMask.src}') center / contain no-repeat; -webkit-mask: url('${logitMask.src}') center / contain no-repeat;`}></span>
@@ -355,7 +355,7 @@ const rippleLinks = {
           </div>
 
           <a
-            class="pressable group flex items-center justify-center gap-1 bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-black dark:hover:text-white rounded-md px-4 py-2 text-sm font-semibold w-full text-center transition duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+            class="pressable social-link-transition group flex items-center justify-center gap-1 bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-black dark:hover:text-white rounded-md px-4 py-2 text-sm font-semibold w-full text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
             href={resumeHref}
             target="_blank"
             rel="noopener noreferrer"
