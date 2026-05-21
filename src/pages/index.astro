@@ -138,7 +138,7 @@ const homeStructuredData = [
 
 const aboutTextClass = "text-gray-600 dark:text-slate-400 lg:text-lg leading-snug";
 const sectionHeaderClass =
-  "w-fit border border-gray-300 rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider text-nowrap";
+  "w-fit border theme-border-strong rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider text-nowrap";
 
 const rippleLinks = {
   ucla: {
@@ -180,7 +180,7 @@ const rippleLinks = {
         data-mobile-header
         class="mobile-page-reveal page-shell-gutter lg:hidden fixed top-2 left-0 right-0 z-50 flex justify-center pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
       >
-        <div class="w-full max-w-5xl pointer-events-auto border border-gray-200 dark:border-gray-600 bg-white/85 dark:bg-black backdrop-blur-xl rounded-lg flex flex-row items-center justify-between p-3 shadow-md transition-colors duration-300">
+        <div class="w-full max-w-5xl pointer-events-auto border theme-border bg-white/85 dark:bg-black backdrop-blur-xl rounded-lg flex flex-row items-center justify-between p-3 theme-shadow-md transition-colors duration-300">
           <div class="flex items-center gap-3">
             <button
               data-image-modal-trigger
@@ -286,7 +286,7 @@ const rippleLinks = {
       </div>
 
       <aside class="hidden lg:flex flex-col lg:w-[204px] lg:shrink-0 lg:gap-y-3 lg:sticky lg:top-10 h-fit">
-        <div class="bg-white dark:bg-black rounded-xl shadow-md dark:shadow-lg p-2 transition-colors duration-300">
+        <div class="bg-white dark:bg-black rounded-xl theme-shadow-md p-2 transition-colors duration-300">
           <div class="relative group/img">
             <picture>
               <source type="image/avif" srcset={profileCardAvif.srcSet} sizes="192px" />
@@ -335,7 +335,7 @@ const rippleLinks = {
           </div>
         </div>
 
-        <div class="bg-white dark:bg-black rounded-xl shadow-md dark:shadow-lg p-2 transition-colors duration-300">
+        <div class="bg-white dark:bg-black rounded-xl theme-shadow-md p-2 transition-colors duration-300">
           <div class="grid grid-cols-4 gap-2 mb-2">
             {socialLinks.map((link) => (
               <a
@@ -377,7 +377,7 @@ const rippleLinks = {
           <button
             data-theme-toggle
             aria-label="Toggle dark mode"
-            class="pressable group relative w-fit border border-gray-300 rounded-md pl-1 pr-2 py-1 text-xs uppercase mt-10 mb-5 lg:mt-0 lg:mb-5 font-semibold tracking-wider flex flex-row items-center gap-0.5 hover:cursor-pointer transition-colors duration-300 ease-[var(--theme-transition-ease)]"
+            class="pressable group relative w-fit border theme-border-strong rounded-md pl-1 pr-2 py-1 text-xs uppercase mt-10 mb-5 lg:mt-0 lg:mb-5 font-semibold tracking-wider flex flex-row items-center gap-0.5 hover:cursor-pointer transition-colors duration-300 ease-[var(--theme-transition-ease)]"
             type="button"
           >
             <span class="relative flex h-4 w-4 items-center justify-center pb-[1px]">
@@ -411,15 +411,15 @@ const rippleLinks = {
       <section id="projects" aria-labelledby="projects-heading">
         <div class="flex flex-row justify-between">
           <h2 id="projects-heading" class={sectionHeaderClass}>selected projects</h2>
-          <a href="/archive" class="pressable group w-fit border border-gray-300 rounded-md px-2 py-1 uppercase mt-10 mb-5 font-semibold tracking-wider text-xs flex items-center gap-1 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">
+          <a href="/archive" class="pressable group w-fit border theme-border-strong rounded-md px-2 py-1 uppercase mt-10 mb-5 font-semibold tracking-wider text-xs flex items-center gap-1 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">
             project archive
             <Icon name="arrow-right" size={12} class="transform transition-transform duration-300 group-hover:translate-x-[0.5px] pb-[0.5px]" />
           </a>
         </div>
         <div class="grid items-start gap-4 lg:grid-cols-2">
           {projectsWithImages.map((project, index) => (
-            <article class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs transition-colors duration-300 dark:border-gray-600 dark:bg-black">
-              <div class="group/img relative aspect-[16/9] w-full overflow-hidden border-b border-gray-200 dark:border-gray-700">
+            <article class="overflow-hidden rounded-xl border theme-border bg-white theme-shadow-sm transition-colors duration-300 dark:bg-black">
+              <div class="group/img relative aspect-[16/9] w-full overflow-hidden border-b theme-border">
                 <picture class="block h-full w-full">
                   <source type="image/avif" srcset={project.cardAvifSrcSet} sizes={projectSizes} />
                   <source type="image/webp" srcset={project.cardWebpSrcSet} sizes={projectSizes} />
@@ -459,7 +459,7 @@ const rippleLinks = {
                 <p class="mt-1 text-sm text-gray-600 line-clamp-2 lg:min-h-[4rem] lg:text-base dark:text-slate-400">{project.summary}</p>
                 <div class="mt-5 flex flex-wrap gap-2 lg:mt-0">
                   {project.tags.map((tag) => (
-                    <span class="whitespace-nowrap rounded-full border border-gray-200 bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-500 transition-colors duration-300 dark:border-gray-700 dark:bg-gray-900 dark:text-slate-300">{tag}</span>
+                    <span class="whitespace-nowrap rounded-full border theme-border bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-500 transition-colors duration-300 dark:bg-gray-900 dark:text-slate-300">{tag}</span>
                   ))}
                 </div>
               </div>
