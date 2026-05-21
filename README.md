@@ -64,13 +64,13 @@ astro.config.mjs        Astro config with Tailwind
 Prerequisites:
 
 - Node.js 20+
-- npm
+- pnpm 10+
 
 Install dependencies and start the dev server:
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Open `http://localhost:4321`.
@@ -78,7 +78,7 @@ Open `http://localhost:4321`.
 Run lint checks with:
 
 ```bash
-npm run lint
+pnpm lint
 ```
 
 ## Production
@@ -86,8 +86,8 @@ npm run lint
 Build and serve the production bundle:
 
 ```bash
-npm run build
-npm run start
+pnpm build
+pnpm start
 ```
 
 The current build succeeds and statically generates:
