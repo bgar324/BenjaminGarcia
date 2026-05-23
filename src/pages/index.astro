@@ -172,13 +172,13 @@ const rippleLinks = {
     <div class="lg:py-10">
       <div
         data-mobile-scrim
-        class="mobile-page-reveal lg:hidden fixed top-0 left-0 right-0 h-16 z-40 pointer-events-none bg-gradient-to-b from-white/90 via-white/60 to-transparent dark:from-black/90 dark:via-black/60 dark:to-transparent transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
+        class="mobile-page-reveal mobile-scroll-reveal lg:hidden fixed top-0 left-0 right-0 h-16 z-40 pointer-events-none bg-gradient-to-b from-white/90 via-white/60 to-transparent dark:from-black/90 dark:via-black/60 dark:to-transparent"
         aria-hidden="true"
       ></div>
 
       <div
         data-mobile-header
-        class="mobile-page-reveal page-shell-gutter lg:hidden fixed top-2 left-0 right-0 z-50 flex justify-center pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
+        class="mobile-page-reveal mobile-scroll-reveal page-shell-gutter lg:hidden fixed top-2 left-0 right-0 z-50 flex justify-center pointer-events-none"
       >
         <div class="w-full max-w-5xl pointer-events-auto border theme-border bg-white/85 dark:bg-black backdrop-blur-xl rounded-lg flex flex-row items-center justify-between p-3 theme-shadow-md transition-colors duration-300">
           <div class="flex items-center gap-3">
@@ -844,9 +844,9 @@ const rippleLinks = {
     const setHeaderVisible = (visible) => {
       headerVisible = visible;
       mobileScrim?.classList.toggle("opacity-0", !visible);
-      mobileScrim?.classList.toggle("-translate-y-6", !visible);
+      mobileScrim?.classList.toggle("is-scroll-hidden", !visible);
       mobileHeader?.classList.toggle("opacity-0", !visible);
-      mobileHeader?.classList.toggle("-translate-y-24", !visible);
+      mobileHeader?.classList.toggle("is-scroll-hidden", !visible);
       mobileHeader?.classList.toggle("pointer-events-none", !visible);
     };
     const resetScrollTracking = () => {

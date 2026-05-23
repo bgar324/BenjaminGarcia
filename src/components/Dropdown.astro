@@ -37,7 +37,7 @@ const darkLogo = item.darkSrc
         rel="noopener noreferrer"
         class="relative z-10 flex items-center justify-center rounded-xl focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-500"
       >
-        <span class={`flex h-[62px] w-[62px] shrink-0 items-center justify-center rounded-xl p-1 lg:ml-0.5 ${item.darkSrc ? "dark:hidden" : ""}`}>
+        <span class={`flex h-[54px] w-[54px] shrink-0 items-center justify-center rounded-xl p-1 sm:h-[58px] sm:w-[58px] lg:ml-0.5 lg:h-[62px] lg:w-[62px] ${item.darkSrc ? "dark:hidden" : ""}`}>
           <span class="relative h-full w-full overflow-hidden rounded-lg">
             <img
               src={logo.src}
@@ -52,7 +52,7 @@ const darkLogo = item.darkSrc
           </span>
         </span>
         {item.darkSrc && (
-          <span class="hidden h-[62px] w-[62px] shrink-0 items-center justify-center rounded-xl p-1 lg:ml-0.5 dark:flex">
+          <span class="hidden h-[54px] w-[54px] shrink-0 items-center justify-center rounded-xl p-1 sm:h-[58px] sm:w-[58px] lg:ml-0.5 lg:h-[62px] lg:w-[62px] dark:flex">
             <span class="relative h-full w-full overflow-hidden rounded-lg">
               <img
                 src={darkLogo?.src}
