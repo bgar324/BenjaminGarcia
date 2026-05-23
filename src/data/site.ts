@@ -149,14 +149,14 @@ export const education = [
       "ACM Hack Software Engineer Lead, Content Member & Frontend Developer at exploretech.la",
   },
   {
-    role: "Mount San Antonio College",
+    role: "Mt. San Antonio College",
     position: "Honors Transfer",
     imageLink: "https://www.mtsac.edu",
     startDate: "2023",
     endDate: "2025",
     src: mtsacLogo,
     description:
-      "Outreach Officer & Front-End Developer for the Computer Science Club",
+      "Outreach Officer & Frontend Developer for the Computer Science Club",
   },
 ] as const;
 
