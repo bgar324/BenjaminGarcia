@@ -23,7 +23,16 @@
       ]
     },
     {
-      "source": "/(.*)\\.(pdf|webmanifest|xml|txt)",
+      "source": "/(.*)\\.pdf",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(webmanifest|xml|txt)",
       "headers": [
         {
           "key": "Cache-Control",
