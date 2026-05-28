@@ -374,18 +374,20 @@ const rippleLinks = {
       <section id="about" aria-labelledby="about-heading" class="flex flex-col">
         <div class="flex flex-row justify-between items-center">
           <h2 id="about-heading" class={`${sectionHeaderClass} lg:mt-0`}>about</h2>
-          <button
+          <label
             data-theme-toggle
+            for="site-theme-input"
+            role="button"
+            tabindex="0"
             aria-label="Toggle dark mode"
             class="pressable group relative w-fit border theme-border-strong rounded-md pl-1 pr-2 py-1 text-xs uppercase mt-10 mb-5 lg:mt-0 lg:mb-5 font-semibold tracking-wider flex flex-row items-center gap-0.5 hover:cursor-pointer transition-colors duration-300 ease-[var(--theme-transition-ease)]"
-            type="button"
           >
             <span class="relative flex h-4 w-4 items-center justify-center pb-[1px]">
               <span data-theme-moon class="absolute grid place-items-center pb-[0.5px]"><Icon name="moon" size={12} strokeWidth={2} class="transform-gpu transition-[opacity,scale,rotate] duration-300 ease-[var(--theme-transition-ease)]" /></span>
               <span data-theme-sun class="absolute grid place-items-center"><Icon name="sun" size={12} strokeWidth={2} class="transform-gpu transition-[opacity,scale,rotate] duration-300 ease-[var(--theme-transition-ease)]" /></span>
             </span>
             <span data-theme-label class="transition-opacity duration-300 ease-[var(--theme-transition-ease)]">Dark</span>
-          </button>
+          </label>
         </div>
 
         <p class={aboutTextClass}>
@@ -526,8 +528,10 @@ const rippleLinks = {
     // @ts-nocheck
     const root = document.documentElement;
     const body = document.body;
+    const themeInput = document.querySelector("[data-theme-input]");
     const syncThemeButton = () => {
-      const isDark = root.classList.contains("dark");
+      const isDark = Boolean(themeInput?.checked);
+      root.dataset.theme = isDark ? "dark" : "light";
       document.querySelectorAll("[data-theme-label]").forEach((label) => {
         label.textContent = isDark ? "Light" : "Dark";
       });
@@ -545,23 +549,23 @@ const rippleLinks = {
 
     syncThemeButton();
     let themeTransitionTimer = null;
+    themeInput?.addEventListener("change", () => {
+      const nextTheme = themeInput.checked ? "dark" : "light";
+      if (themeTransitionTimer) window.clearTimeout(themeTransitionTimer);
+      root.classList.add("theme-changing");
+      root.dataset.theme = nextTheme;
+      localStorage.setItem("theme", nextTheme);
+      syncThemeButton();
+      themeTransitionTimer = window.setTimeout(() => {
+        root.classList.remove("theme-changing");
+      }, 360);
+    });
     document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const nextIsDark = !root.classList.contains("dark");
-        const nextTheme = nextIsDark ? "dark" : "light";
-        if (themeTransitionTimer) window.clearTimeout(themeTransitionTimer);
-        root.classList.add("theme-changing");
-        if (typeof window.__setSiteTheme === "function") {
-          window.__setSiteTheme(nextTheme, { persist: true });
-        } else {
-          root.classList.toggle("dark", nextIsDark);
-          root.style.colorScheme = nextTheme;
-          localStorage.setItem("theme", nextTheme);
+      button.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          button.click();
         }
-        syncThemeButton();
-        themeTransitionTimer = window.setTimeout(() => {
-          root.classList.remove("theme-changing");
-        }, 360);
       });
     });
 
