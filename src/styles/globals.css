@@ -28,8 +28,9 @@ body {
 }
 
 .mobile-theme-scrim {
-  height: max(env(safe-area-inset-top, 0px), 1px);
+  height: calc(env(safe-area-inset-top, 0px) + 4rem);
   background-color: var(--theme-canvas);
+  clip-path: inset(0 0 calc(100% - max(env(safe-area-inset-top, 0px), 1px)) 0);
   transition: background-color var(--theme-transition-duration) var(--theme-transition-ease);
 }
 
