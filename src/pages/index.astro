@@ -532,10 +532,6 @@ const rippleLinks = {
     const syncThemeButton = () => {
       const isDark = Boolean(themeInput?.checked);
       const theme = isDark ? "dark" : "light";
-      const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-      if (themeColorMeta) {
-        themeColorMeta.content = isDark ? "#000000" : "#ffffff";
-      }
       root.dataset.theme = theme;
       document.querySelectorAll("[data-theme-label]").forEach((label) => {
         label.textContent = isDark ? "Light" : "Dark";

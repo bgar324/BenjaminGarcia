@@ -51,12 +51,11 @@ html.no-font-loading body {
 <html lang="en" data-scroll-behavior="smooth" class="fonts-pending">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="application-name" content={siteConfig.name} />
-    <meta name="theme-color" content="#ffffff" />
     <meta name="referrer" content="origin-when-cross-origin" />
     <meta name="keywords" content={siteConfig.keywords.join(", ")} />
     <meta name="author" content={siteConfig.author} />
@@ -118,16 +117,12 @@ html.no-font-loading body {
         const storedTheme = localStorage.getItem(storageKey);
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         const theme = storedTheme || (prefersDark ? "dark" : "light");
-        const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-        if (themeColorMeta) {
-          themeColorMeta.content = theme === "dark" ? "#000000" : "#ffffff";
-        }
+        root.dataset.theme = theme;
         root.dataset.initialTheme = theme;
       })();
     </script>
   </head>
   <body class="antialiased bg-white dark:bg-black">
-    <div class="viewport-theme-fill" aria-hidden="true"></div>
     <input data-theme-input class="theme-input" id="site-theme-input" type="checkbox" aria-hidden="true" tabindex="-1" />
     <script is:inline>
       (() => {
@@ -136,10 +131,6 @@ html.no-font-loading body {
         const input = document.querySelector("[data-theme-input]");
         if (input) {
           input.checked = theme === "dark";
-        }
-        const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-        if (themeColorMeta) {
-          themeColorMeta.content = theme === "dark" ? "#000000" : "#ffffff";
         }
         root.dataset.theme = theme;
       })();
