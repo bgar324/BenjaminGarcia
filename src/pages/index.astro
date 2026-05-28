@@ -534,10 +534,12 @@ const rippleLinks = {
       light: "#ffffff",
     };
     const applyTheme = (theme) => {
-      const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-      if (themeColorMeta) {
-        themeColorMeta.setAttribute("content", themeColors[theme] || themeColors.light);
-      }
+      const color = themeColors[theme] || themeColors.light;
+      document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => meta.remove());
+      const themeColorMeta = document.createElement("meta");
+      themeColorMeta.name = "theme-color";
+      themeColorMeta.content = color;
+      document.head.prepend(themeColorMeta);
       root.dataset.theme = theme;
     };
     const syncThemeButton = () => {

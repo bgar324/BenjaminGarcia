@@ -76,10 +76,12 @@ html.no-font-loading body {
         } catch {}
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         const theme = storedTheme || (prefersDark ? "dark" : "light");
-        const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-        if (themeColorMeta) {
-          themeColorMeta.setAttribute("content", colors[theme] || colors.light);
-        }
+        const color = colors[theme] || colors.light;
+        document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => meta.remove());
+        const themeColorMeta = document.createElement("meta");
+        themeColorMeta.name = "theme-color";
+        themeColorMeta.content = color;
+        document.head.prepend(themeColorMeta);
         root.dataset.theme = theme;
         root.dataset.initialTheme = theme;
       })();
