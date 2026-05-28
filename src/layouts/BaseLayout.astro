@@ -56,7 +56,9 @@ html.no-font-loading body {
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="application-name" content={siteConfig.name} />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" data-theme-color="light" content="#ffffff" media="all" />
+    <meta name="theme-color" data-theme-color="dark" content="#000000" media="not all" />
+    <meta name="color-scheme" content="light dark" />
     <meta name="referrer" content="origin-when-cross-origin" />
     <meta name="keywords" content={siteConfig.keywords.join(", ")} />
     <meta name="author" content={siteConfig.author} />
@@ -65,10 +67,6 @@ html.no-font-loading body {
     <script is:inline>
       (() => {
         const storageKey = "theme";
-        const colors = {
-          dark: "#000000",
-          light: "#ffffff",
-        };
         const root = document.documentElement;
         let storedTheme = null;
         try {
@@ -76,12 +74,9 @@ html.no-font-loading body {
         } catch {}
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         const theme = storedTheme || (prefersDark ? "dark" : "light");
-        const color = colors[theme] || colors.light;
-        document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => meta.remove());
-        const themeColorMeta = document.createElement("meta");
-        themeColorMeta.name = "theme-color";
-        themeColorMeta.content = color;
-        document.head.prepend(themeColorMeta);
+        document.querySelectorAll("[data-theme-color]").forEach((meta) => {
+          meta.media = meta.dataset.themeColor === theme ? "all" : "not all";
+        });
         root.dataset.theme = theme;
         root.dataset.initialTheme = theme;
       })();
