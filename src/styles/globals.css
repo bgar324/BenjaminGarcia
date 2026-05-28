@@ -177,6 +177,11 @@ body:has(.theme-input:checked) {
   --icon-contrast: #0b0f19;  /* near-black for reversed fills */
 }
 
+html:has(body .theme-input:checked) {
+  background-color: #000000;
+  color-scheme: dark;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
