@@ -15,8 +15,10 @@ body {
   min-height: 100%;
   min-height: 100svh;
   padding-top: env(safe-area-inset-top, 0px);
-  background-color: transparent;
-  transition: color var(--theme-transition-duration) var(--theme-transition-ease);
+  background-color: var(--theme-canvas);
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-ease),
+    color var(--theme-transition-duration) var(--theme-transition-ease);
 }
 
 .theme-input {
