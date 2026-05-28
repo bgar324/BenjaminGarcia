@@ -3,24 +3,20 @@
 
 @custom-variant dark (&:where(body:has(.theme-input:checked), body:has(.theme-input:checked) *));
 
-html,
-body {
+html {
   min-height: 100%;
   background-color: var(--theme-canvas);
+  color-scheme: light;
   transition: background-color var(--theme-transition-duration) var(--theme-transition-ease);
 }
 
 body {
   font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  min-height: 100%;
   min-height: 100svh;
   padding-top: env(safe-area-inset-top, 0px);
-  transition:
-    background-color var(--theme-transition-duration) var(--theme-transition-ease),
-    color var(--theme-transition-duration) var(--theme-transition-ease);
-}
-
-html {
-  color-scheme: light;
+  background-color: transparent;
+  transition: color var(--theme-transition-duration) var(--theme-transition-ease);
 }
 
 .theme-input {
@@ -31,9 +27,8 @@ html {
 
 .mobile-theme-scrim {
   height: calc(env(safe-area-inset-top, 0px) + 4rem);
-  background-color: var(--theme-canvas);
+  background-color: transparent;
   transition:
-    background-color var(--theme-transition-duration) var(--theme-transition-ease),
     opacity 300ms cubic-bezier(0.32, 0.72, 0, 1),
     transform 300ms cubic-bezier(0.32, 0.72, 0, 1);
 }
@@ -156,7 +151,7 @@ img {
   --icon-contrast: #ffffff;  /* white parts inside icons */
 }
 
-body:has(.theme-input:checked) {
+html:has(body .theme-input:checked) {
   color-scheme: dark;
   --theme-canvas: #000000;
   --background: oklch(0.145 0 0);
@@ -195,11 +190,6 @@ body:has(.theme-input:checked) {
   --icon-muted: #cbd5e1;     /* slate-300 */
   --icon: #e5e7eb;           /* slate-200 */
   --icon-contrast: #0b0f19;  /* near-black for reversed fills */
-}
-
-html:has(body .theme-input:checked) {
-  background-color: #000000;
-  color-scheme: dark;
 }
 
 @layer base {
