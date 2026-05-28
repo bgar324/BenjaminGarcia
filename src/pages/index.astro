@@ -529,16 +529,8 @@ const rippleLinks = {
     const root = document.documentElement;
     const body = document.body;
     const themeInput = document.querySelector("[data-theme-input]");
-    const applyTheme = (theme) => {
-      document.querySelectorAll("[data-theme-color]").forEach((meta) => {
-        meta.media = meta.dataset.themeColor === theme ? "all" : "not all";
-      });
-      root.dataset.theme = theme;
-    };
     const syncThemeButton = () => {
       const isDark = Boolean(themeInput?.checked);
-      const theme = isDark ? "dark" : "light";
-      applyTheme(theme);
       document.querySelectorAll("[data-theme-label]").forEach((label) => {
         label.textContent = isDark ? "Light" : "Dark";
       });

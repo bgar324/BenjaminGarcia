@@ -56,8 +56,6 @@ html.no-font-loading body {
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="application-name" content={siteConfig.name} />
-    <meta name="theme-color" data-theme-color="light" content="#ffffff" media="all" />
-    <meta name="theme-color" data-theme-color="dark" content="#000000" media="not all" />
     <meta name="color-scheme" content="light dark" />
     <meta name="referrer" content="origin-when-cross-origin" />
     <meta name="keywords" content={siteConfig.keywords.join(", ")} />
@@ -74,10 +72,6 @@ html.no-font-loading body {
         } catch {}
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         const theme = storedTheme || (prefersDark ? "dark" : "light");
-        document.querySelectorAll("[data-theme-color]").forEach((meta) => {
-          meta.media = meta.dataset.themeColor === theme ? "all" : "not all";
-        });
-        root.dataset.theme = theme;
         root.dataset.initialTheme = theme;
       })();
     </script>
@@ -145,7 +139,6 @@ html.no-font-loading body {
         if (input) {
           input.checked = theme === "dark";
         }
-        root.dataset.theme = theme;
       })();
     </script>
     <slot />

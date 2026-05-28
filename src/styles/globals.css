@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:where(html[data-theme="dark"], html[data-theme="dark"] *, body:has(.theme-input:checked), body:has(.theme-input:checked) *));
+@custom-variant dark (&:where(body:has(.theme-input:checked), body:has(.theme-input:checked) *));
 
 html,
 body {
@@ -12,9 +12,7 @@ body {
 body {
   font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
   min-height: 100svh;
-  transition:
-    background-color var(--theme-transition-duration) var(--theme-transition-ease),
-    color var(--theme-transition-duration) var(--theme-transition-ease);
+  transition: color var(--theme-transition-duration) var(--theme-transition-ease);
 }
 
 html {
@@ -136,7 +134,6 @@ img {
   --icon-contrast: #ffffff;  /* white parts inside icons */
 }
 
-html[data-theme="dark"],
 body:has(.theme-input:checked) {
   color-scheme: dark;
   --theme-canvas: #000000;
@@ -178,7 +175,6 @@ body:has(.theme-input:checked) {
   --icon-contrast: #0b0f19;  /* near-black for reversed fills */
 }
 
-html[data-theme="dark"],
 html:has(body .theme-input:checked) {
   background-color: #000000;
   color-scheme: dark;
@@ -288,7 +284,6 @@ html {
   border-color: rgb(229 231 235);
 }
 
-html[data-theme="dark"] .theme-border,
 body:has(.theme-input:checked) .theme-border {
   border-color: rgb(255 255 255 / 10%);
 }
@@ -297,7 +292,6 @@ body:has(.theme-input:checked) .theme-border {
   border-color: rgb(209 213 219);
 }
 
-html[data-theme="dark"] .theme-border-strong,
 body:has(.theme-input:checked) .theme-border-strong {
   border-color: rgb(255 255 255 / 16%);
 }
@@ -306,7 +300,6 @@ body:has(.theme-input:checked) .theme-border-strong {
   border-color: rgb(243 244 246);
 }
 
-html[data-theme="dark"] .theme-border-subtle,
 body:has(.theme-input:checked) .theme-border-subtle {
   border-color: rgb(255 255 255 / 5%);
 }
@@ -315,7 +308,6 @@ body:has(.theme-input:checked) .theme-border-subtle {
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
 }
 
-html[data-theme="dark"] .theme-shadow-sm,
 body:has(.theme-input:checked) .theme-shadow-sm {
   box-shadow: 0 1px 2px 0 rgb(255 255 255 / 5%);
 }
@@ -326,7 +318,6 @@ body:has(.theme-input:checked) .theme-shadow-sm {
     0 2px 4px -2px rgb(0 0 0 / 10%);
 }
 
-html[data-theme="dark"] .theme-shadow-md,
 body:has(.theme-input:checked) .theme-shadow-md {
   box-shadow:
     0 4px 6px -1px rgb(255 255 255 / 6%),
@@ -561,12 +552,10 @@ body:has(.theme-input:checked) .theme-shadow-md {
   background: oklch(0.7 0 0);
 }
 
-html[data-theme="dark"]::-webkit-scrollbar-thumb,
 body:has(.theme-input:checked)::-webkit-scrollbar-thumb {
   background: oklch(0.3 0 0);
 }
 
-html[data-theme="dark"]::-webkit-scrollbar-thumb:hover,
 body:has(.theme-input:checked)::-webkit-scrollbar-thumb:hover {
   background: oklch(0.4 0 0);
 }
@@ -576,7 +565,6 @@ body:has(.theme-input:checked)::-webkit-scrollbar-thumb:hover {
   scrollbar-color: oklch(0.8 0 0) transparent;
 }
 
-html[data-theme="dark"] *,
 body:has(.theme-input:checked) * {
   scrollbar-color: oklch(0.3 0 0) transparent;
 }
