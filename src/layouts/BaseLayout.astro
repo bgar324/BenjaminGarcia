@@ -51,7 +51,7 @@ html.no-font-loading body {
 <html lang="en" data-scroll-behavior="smooth" class="fonts-pending">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
@@ -118,6 +118,7 @@ html.no-font-loading body {
     </script>
   </head>
   <body class="antialiased bg-white dark:bg-black">
+    <div class="viewport-theme-fill" aria-hidden="true"></div>
     <input data-theme-input class="theme-input" id="site-theme-input" type="checkbox" aria-hidden="true" tabindex="-1" />
     <script is:inline>
       (() => {
