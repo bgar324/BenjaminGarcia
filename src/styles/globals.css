@@ -33,12 +33,7 @@ html {
   width: 100%;
   height: 1px;
   pointer-events: none;
-  background-color: #ffffff;
-  transition: background-color var(--theme-transition-duration) var(--theme-transition-ease);
-}
-
-body:has(.theme-input:checked) .safari-theme-sampler {
-  background-color: #000000;
+  background-color: var(--theme-canvas);
 }
 
 img {
