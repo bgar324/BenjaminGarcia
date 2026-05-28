@@ -842,11 +842,8 @@ const rippleLinks = {
     let scrollFrame = null;
     let headerVisible = true;
     const mobileHeader = document.querySelector("[data-mobile-header]");
-    const mobileScrim = document.querySelector("[data-mobile-scrim]");
     const setHeaderVisible = (visible) => {
       headerVisible = visible;
-      mobileScrim?.classList.toggle("opacity-0", !visible);
-      mobileScrim?.classList.toggle("-translate-y-6", !visible);
       mobileHeader?.classList.toggle("opacity-0", !visible);
       mobileHeader?.classList.toggle("-translate-y-24", !visible);
       mobileHeader?.classList.toggle("pointer-events-none", !visible);
