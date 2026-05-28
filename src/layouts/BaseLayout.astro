@@ -56,11 +56,34 @@ html.no-font-loading body {
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="application-name" content={siteConfig.name} />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="referrer" content="origin-when-cross-origin" />
     <meta name="keywords" content={siteConfig.keywords.join(", ")} />
     <meta name="author" content={siteConfig.author} />
     <meta name="creator" content={siteConfig.author} />
     <meta name="publisher" content={siteConfig.author} />
+    <script is:inline>
+      (() => {
+        const storageKey = "theme";
+        const colors = {
+          dark: "#000000",
+          light: "#ffffff",
+        };
+        const root = document.documentElement;
+        let storedTheme = null;
+        try {
+          storedTheme = localStorage.getItem(storageKey);
+        } catch {}
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = storedTheme || (prefersDark ? "dark" : "light");
+        const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+        if (themeColorMeta) {
+          themeColorMeta.setAttribute("content", colors[theme] || colors.light);
+        }
+        root.dataset.theme = theme;
+        root.dataset.initialTheme = theme;
+      })();
+    </script>
     <link rel="canonical" href={canonicalUrl} />
     <link rel="preload" href={cabinetGroteskUrl} as="font" type="font/woff2" crossorigin />
     {imagePreloads.map((image) => (
@@ -112,13 +135,6 @@ html.no-font-loading body {
             });
           }).catch(() => {});
         }
-        const storageKey = "theme";
-        const root = document.documentElement;
-        const storedTheme = localStorage.getItem(storageKey);
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const theme = storedTheme || (prefersDark ? "dark" : "light");
-        root.dataset.theme = theme;
-        root.dataset.initialTheme = theme;
       })();
     </script>
   </head>

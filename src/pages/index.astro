@@ -529,10 +529,21 @@ const rippleLinks = {
     const root = document.documentElement;
     const body = document.body;
     const themeInput = document.querySelector("[data-theme-input]");
+    const themeColors = {
+      dark: "#000000",
+      light: "#ffffff",
+    };
+    const applyTheme = (theme) => {
+      const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+      if (themeColorMeta) {
+        themeColorMeta.setAttribute("content", themeColors[theme] || themeColors.light);
+      }
+      root.dataset.theme = theme;
+    };
     const syncThemeButton = () => {
       const isDark = Boolean(themeInput?.checked);
       const theme = isDark ? "dark" : "light";
-      root.dataset.theme = theme;
+      applyTheme(theme);
       document.querySelectorAll("[data-theme-label]").forEach((label) => {
         label.textContent = isDark ? "Light" : "Dark";
       });
@@ -554,7 +565,6 @@ const rippleLinks = {
       const nextTheme = themeInput.checked ? "dark" : "light";
       if (themeTransitionTimer) window.clearTimeout(themeTransitionTimer);
       root.classList.add("theme-changing");
-      root.dataset.theme = nextTheme;
       localStorage.setItem("theme", nextTheme);
       syncThemeButton();
       themeTransitionTimer = window.setTimeout(() => {
