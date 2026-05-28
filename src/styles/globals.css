@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:where(html:has(.theme-input:checked), html:has(.theme-input:checked) *));
+@custom-variant dark (&:where(body:has(.theme-input:checked), body:has(.theme-input:checked) *));
 
 html,
 body {
@@ -19,7 +19,6 @@ body {
 
 html {
   color-scheme: light;
-  transition: background-color var(--theme-transition-duration) var(--theme-transition-ease);
 }
 
 .theme-input {
@@ -137,7 +136,7 @@ img {
   --icon-contrast: #ffffff;  /* white parts inside icons */
 }
 
-html:has(.theme-input:checked) {
+body:has(.theme-input:checked) {
   color-scheme: dark;
   --theme-canvas: #000000;
   --background: oklch(0.145 0 0);
@@ -282,7 +281,7 @@ html {
   border-color: rgb(229 231 235);
 }
 
-html:has(.theme-input:checked) .theme-border {
+body:has(.theme-input:checked) .theme-border {
   border-color: rgb(255 255 255 / 10%);
 }
 
@@ -290,7 +289,7 @@ html:has(.theme-input:checked) .theme-border {
   border-color: rgb(209 213 219);
 }
 
-html:has(.theme-input:checked) .theme-border-strong {
+body:has(.theme-input:checked) .theme-border-strong {
   border-color: rgb(255 255 255 / 16%);
 }
 
@@ -298,7 +297,7 @@ html:has(.theme-input:checked) .theme-border-strong {
   border-color: rgb(243 244 246);
 }
 
-html:has(.theme-input:checked) .theme-border-subtle {
+body:has(.theme-input:checked) .theme-border-subtle {
   border-color: rgb(255 255 255 / 5%);
 }
 
@@ -306,7 +305,7 @@ html:has(.theme-input:checked) .theme-border-subtle {
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
 }
 
-html:has(.theme-input:checked) .theme-shadow-sm {
+body:has(.theme-input:checked) .theme-shadow-sm {
   box-shadow: 0 1px 2px 0 rgb(255 255 255 / 5%);
 }
 
@@ -316,7 +315,7 @@ html:has(.theme-input:checked) .theme-shadow-sm {
     0 2px 4px -2px rgb(0 0 0 / 10%);
 }
 
-html:has(.theme-input:checked) .theme-shadow-md {
+body:has(.theme-input:checked) .theme-shadow-md {
   box-shadow:
     0 4px 6px -1px rgb(255 255 255 / 6%),
     0 2px 4px -2px rgb(255 255 255 / 4%);
@@ -550,11 +549,11 @@ html:has(.theme-input:checked) .theme-shadow-md {
   background: oklch(0.7 0 0);
 }
 
-html:has(.theme-input:checked)::-webkit-scrollbar-thumb {
+body:has(.theme-input:checked)::-webkit-scrollbar-thumb {
   background: oklch(0.3 0 0);
 }
 
-html:has(.theme-input:checked)::-webkit-scrollbar-thumb:hover {
+body:has(.theme-input:checked)::-webkit-scrollbar-thumb:hover {
   background: oklch(0.4 0 0);
 }
 
@@ -563,6 +562,6 @@ html:has(.theme-input:checked)::-webkit-scrollbar-thumb:hover {
   scrollbar-color: oklch(0.8 0 0) transparent;
 }
 
-html:has(.theme-input:checked) * {
+body:has(.theme-input:checked) * {
   scrollbar-color: oklch(0.3 0 0) transparent;
 }
