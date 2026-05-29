@@ -830,6 +830,68 @@ const rippleLinks = {
     menuToggle?.addEventListener("click", () => setMenu(menu?.dataset.open !== "true"));
     document.querySelector("[data-menu-close]")?.addEventListener("click", () => setMenu(false));
 
+    let lastScrollY = window.scrollY;
+    let directionAnchorY = window.scrollY;
+    let scrollDirection = null;
+    let scrollFrame = null;
+    let headerVisible = true;
+    const mobileHeader = document.querySelector("[data-mobile-header]");
+    const setHeaderVisible = (visible) => {
+      headerVisible = visible;
+      mobileHeader?.classList.toggle("opacity-0", !visible);
+      mobileHeader?.classList.toggle("-translate-y-24", !visible);
+      mobileHeader?.classList.toggle("pointer-events-none", !visible);
+    };
+    const resetScrollTracking = () => {
+      lastScrollY = window.scrollY;
+      directionAnchorY = window.scrollY;
+      scrollDirection = null;
+    };
+    window.addEventListener("scroll", () => {
+      if (scrollFrame !== null) return;
+      scrollFrame = requestAnimationFrame(() => {
+        scrollFrame = null;
+        if (window.matchMedia("(min-width: 1024px)").matches || menu?.dataset.open === "true" || imageModal?.classList.contains("flex")) {
+          resetScrollTracking();
+          return;
+        }
+
+        const minDelta = 3;
+        const topRevealOffset = 32;
+        const hideStartOffset = 88;
+        const toggleAfter = 48;
+        const current = window.scrollY;
+        const delta = current - lastScrollY;
+        lastScrollY = current;
+        if (Math.abs(delta) < minDelta) return;
+
+        if (current <= topRevealOffset) {
+          directionAnchorY = current;
+          scrollDirection = null;
+          setHeaderVisible(true);
+          return;
+        }
+
+        const direction = delta > 0 ? "down" : "up";
+        if (scrollDirection !== direction) {
+          scrollDirection = direction;
+          directionAnchorY = current;
+        }
+
+        const travelSinceDirectionChange = Math.abs(current - directionAnchorY);
+
+        if (direction === "down" && headerVisible && current >= hideStartOffset && travelSinceDirectionChange >= toggleAfter) {
+          directionAnchorY = current;
+          setHeaderVisible(false);
+        }
+
+        if (direction === "up" && !headerVisible && travelSinceDirectionChange >= toggleAfter) {
+          directionAnchorY = current;
+          setHeaderVisible(true);
+        }
+      });
+    }, { passive: true });
+
     window.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         closeImageModal();
