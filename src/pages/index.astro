@@ -171,12 +171,6 @@ const rippleLinks = {
   <div class="page-shell-gutter pt-2 md:pt-4 lg:pt-0 pb-8 lg:pb-0 max-w-5xl mx-auto flex flex-col min-h-screen lg:flex-row lg:gap-7 lg:justify-between page-reveal">
     <div class="lg:py-10">
       <div
-        data-mobile-scrim
-        class="mobile-theme-scrim lg:hidden fixed top-0 left-0 right-0 z-40 pointer-events-none"
-        aria-hidden="true"
-      ></div>
-
-      <div
         data-mobile-header
         class="mobile-header-shell mobile-page-reveal page-shell-gutter lg:hidden fixed left-0 right-0 z-50 flex justify-center pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
       >
@@ -835,69 +829,6 @@ const rippleLinks = {
     };
     menuToggle?.addEventListener("click", () => setMenu(menu?.dataset.open !== "true"));
     document.querySelector("[data-menu-close]")?.addEventListener("click", () => setMenu(false));
-
-    let lastScrollY = window.scrollY;
-    let directionAnchorY = window.scrollY;
-    let scrollDirection = null;
-    let scrollFrame = null;
-    let headerVisible = true;
-    const mobileHeader = document.querySelector("[data-mobile-header]");
-    const setHeaderVisible = (visible) => {
-      headerVisible = visible;
-      mobileHeader?.classList.toggle("opacity-0", !visible);
-      mobileHeader?.classList.toggle("-translate-y-24", !visible);
-      mobileHeader?.classList.toggle("pointer-events-none", !visible);
-    };
-    const resetScrollTracking = () => {
-      lastScrollY = window.scrollY;
-      directionAnchorY = window.scrollY;
-      scrollDirection = null;
-    };
-    window.addEventListener("scroll", () => {
-      if (scrollFrame !== null) return;
-      scrollFrame = requestAnimationFrame(() => {
-        scrollFrame = null;
-        if (window.matchMedia("(min-width: 1024px)").matches || menu?.dataset.open === "true" || imageModal?.classList.contains("flex")) {
-          resetScrollTracking();
-          return;
-        }
-
-        const minDelta = 3;
-        const topRevealOffset = 32;
-        const hideStartOffset = 88;
-        const toggleAfter = 48;
-
-      const current = window.scrollY;
-        const delta = current - lastScrollY;
-        lastScrollY = current;
-        if (Math.abs(delta) < minDelta) return;
-
-        if (current <= topRevealOffset) {
-          directionAnchorY = current;
-          scrollDirection = null;
-        setHeaderVisible(true);
-          return;
-        }
-
-        const direction = delta > 0 ? "down" : "up";
-        if (scrollDirection !== direction) {
-          scrollDirection = direction;
-          directionAnchorY = current;
-        }
-
-        const travelSinceDirectionChange = Math.abs(current - directionAnchorY);
-
-        if (direction === "down" && headerVisible && current >= hideStartOffset && travelSinceDirectionChange >= toggleAfter) {
-          directionAnchorY = current;
-          setHeaderVisible(false);
-        }
-
-        if (direction === "up" && !headerVisible && travelSinceDirectionChange >= toggleAfter) {
-          directionAnchorY = current;
-          setHeaderVisible(true);
-        }
-      });
-    }, { passive: true });
 
     window.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
