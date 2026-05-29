@@ -29,10 +29,12 @@ body {
 
 .mobile-header-shell {
   top: calc(env(safe-area-inset-top, 0px) + 0.5rem);
+  transform: translateY(0);
 }
 
 .mobile-header-hidden {
   opacity: 0;
+  transform: translateY(-0.75rem);
 }
 
 img {
