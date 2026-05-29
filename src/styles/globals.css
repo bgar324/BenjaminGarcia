@@ -31,6 +31,10 @@ body {
   top: calc(env(safe-area-inset-top, 0px) + 0.5rem);
 }
 
+.mobile-header-hidden {
+  opacity: 0;
+}
+
 img {
   color: transparent;
   font-size: 0;
