@@ -839,7 +839,6 @@ const rippleLinks = {
     const setHeaderVisible = (visible) => {
       headerVisible = visible;
       mobileHeader?.classList.toggle("opacity-0", !visible);
-      mobileHeader?.classList.toggle("-translate-y-24", !visible);
       mobileHeader?.classList.toggle("pointer-events-none", !visible);
     };
     const resetScrollTracking = () => {
