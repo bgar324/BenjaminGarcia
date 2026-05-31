@@ -430,18 +430,17 @@ body:has(.theme-input:checked) .theme-shadow-md {
 }
 
 .mobile-menu-overlay {
-  opacity: 0;
-  transform: translateY(-18px) scale(0.985);
+  clip-path: inset(0 0 100% 0);
+  opacity: 0.98;
   pointer-events: none;
   transition:
-    opacity 220ms cubic-bezier(0.32, 0.72, 0, 1),
-    transform 220ms cubic-bezier(0.32, 0.72, 0, 1);
-  will-change: opacity, transform;
+    clip-path 180ms cubic-bezier(0.32, 0.72, 0, 1),
+    opacity 180ms cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .mobile-menu-overlay[data-open="true"] {
+  clip-path: inset(0 0 0% 0);
   opacity: 1;
-  transform: translateY(0) scale(1);
   pointer-events: auto;
 }
 
