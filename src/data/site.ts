@@ -89,7 +89,8 @@ export const experiences = [
     role: "Software Engineer Intern",
     position: "Lindy",
     imageLink: "https://www.lindy.ai",
-    startDate: "Summer 2026",
+    startDate: "Jun 2026",
+    endDate: "Present",
     src: lindyLogo,
     description:
       "Lindy is an AI work assistant and no-code agent platform that automates inbox, meetings, scheduling, CRM updates, and other cross-app business workflows.",
@@ -146,7 +147,7 @@ export const education = [
     endDate: "Present",
     src: uclaLogo,
     description:
-      "ACM Hack Software Engineer Lead, Content Member & Frontend Developer at exploretech.la",
+      "Software Engineer Lead at ACM Hack & exploretech.la",
   },
   {
     role: "Mt. San Antonio College",
