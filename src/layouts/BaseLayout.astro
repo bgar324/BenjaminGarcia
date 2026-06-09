@@ -133,7 +133,6 @@ html.no-font-loading body {
     <input data-theme-input class="theme-input" id="site-theme-input" type="checkbox" aria-hidden="true" tabindex="-1" />
     <script is:inline>
       (() => {
-        const root = document.documentElement;
         const theme = document.documentElement.dataset.initialTheme || "light";
         const input = document.querySelector("[data-theme-input]");
         if (input) {
