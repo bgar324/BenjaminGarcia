@@ -43,28 +43,6 @@ img {
   overflow: hidden;
 }
 
-.ripple-letter {
-  transition-property: color, transform;
-  transition-duration: 300ms;
-  transition-timing-function: ease;
-  transition-delay: var(--ripple-delay);
-}
-
-.group:hover .ripple-letter {
-  color: var(--hover-letter-color);
-  transform: translateY(-1px);
-}
-
-.theme-changing .ripple-letter {
-  transition: none;
-  transition-delay: 0ms;
-}
-
-.theme-changing .group:hover .ripple-letter {
-  color: inherit;
-  transform: none;
-}
-
 .transition-colors {
   transition-duration: var(--theme-transition-duration);
   transition-timing-function: var(--theme-transition-ease);

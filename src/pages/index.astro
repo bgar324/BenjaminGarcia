@@ -140,26 +140,22 @@ const aboutTextClass = "text-gray-600 dark:text-slate-400 lg:text-lg leading-snu
 const sectionHeaderClass =
   "w-fit border theme-border-strong rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider text-nowrap";
 
-const rippleLinks = {
+const featuredLinks = {
   ucla: {
     href: "https://ucla.edu/",
     text: "UCLA",
-    colors: ["#1e3a8a", "#b45309"],
   },
   lindy: {
     href: "https://www.lindy.ai",
     text: "Lindy",
-    colors: ["#ffd447", "#573b0a"],
   },
   hci: {
     href: "https://hci.ucla.edu",
     text: "HCI Research Lab",
-    colors: ["#1b3783", "#2f68d4"],
   },
   lands: {
     href: "https://en.bandainamcoent.eu/elden-ring/elden-ring",
     text: "Lands Between.",
-    colors: ["#092322", "#996A48"],
   },
 } as const;
 
@@ -386,14 +382,14 @@ const rippleLinks = {
 
         <p class={aboutTextClass}>
           I'm a junior studying Computer Science at{" "}
-          <RippleLink {...rippleLinks.ucla} />. This summer, I'm joining{" "}
-          <RippleLink {...rippleLinks.lindy} /> as a software engineering intern, and I also conduct research in UCLA's{" "}
-          <RippleLink {...rippleLinks.hci} />, where I explore AI systems for scientific hypothesis generation. I care deeply about building responsive, accessible interfaces that make complex systems feel clear and usable.
+          <RippleLink {...featuredLinks.ucla} />. This summer, I'm joining{" "}
+          <RippleLink {...featuredLinks.lindy} /> as a software engineering intern, and I also conduct research in UCLA's{" "}
+          <RippleLink {...featuredLinks.hci} />, where I explore AI systems for scientific hypothesis generation. I care deeply about building responsive, accessible interfaces that make complex systems feel clear and usable.
         </p>
 
         <p class={`${aboutTextClass} mt-2`}>
           Outside of building, I enjoy weightlifting, time with my dog, and exploring the{" "}
-          <RippleLink {...rippleLinks.lands} />
+          <RippleLink {...featuredLinks.lands} />
         </p>
       </section>
 
