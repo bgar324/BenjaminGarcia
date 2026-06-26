@@ -93,7 +93,7 @@ export const experiences = [
     endDate: "Present",
     src: lindyLogo,
     description:
-      "Lindy is an AI work assistant and no-code agent platform that automates inbox, meetings, scheduling, CRM updates, and other cross-app business workflows.",
+      "Building core infrastructure and services for Lindy's email and meeting agents, supporting the AI work assistant and no-code agent platform across inbox, scheduling, CRM, and other cross-app workflows.",
   },
   {
     role: "Undergraduate Researcher",

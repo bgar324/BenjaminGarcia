@@ -3,7 +3,6 @@ import { getImage } from "astro:assets";
 import Icon from "../components/Icon.astro";
 import Dropdown from "../components/Dropdown.astro";
 import FooterLink from "../components/FooterLink.astro";
-import RippleLink from "../components/RippleLink.astro";
 import profilePhoto from "../assets/profile/me.jpg";
 import gitproofPreview from "../assets/projects/gitproof.png";
 import logitPreview from "../assets/projects/logit.png";
@@ -139,25 +138,6 @@ const homeStructuredData = [
 const aboutTextClass = "text-gray-600 dark:text-slate-400 lg:text-lg leading-snug";
 const sectionHeaderClass =
   "w-fit border theme-border-strong rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider text-nowrap";
-
-const featuredLinks = {
-  ucla: {
-    href: "https://ucla.edu/",
-    text: "UCLA",
-  },
-  lindy: {
-    href: "https://www.lindy.ai",
-    text: "Lindy",
-  },
-  hci: {
-    href: "https://hci.ucla.edu",
-    text: "HCI Research Lab",
-  },
-  lands: {
-    href: "https://en.bandainamcoent.eu/elden-ring/elden-ring",
-    text: "Lands Between.",
-  },
-} as const;
 
 ---
 
@@ -382,14 +362,14 @@ const featuredLinks = {
 
         <p class={aboutTextClass}>
           I'm a junior studying Computer Science at{" "}
-          <RippleLink {...featuredLinks.ucla} />. This summer, I'm joining{" "}
-          <RippleLink {...featuredLinks.lindy} /> as a software engineering intern, and I also conduct research in UCLA's{" "}
-          <RippleLink {...featuredLinks.hci} />, where I explore AI systems for scientific hypothesis generation. I care deeply about building responsive, accessible interfaces that make complex systems feel clear and usable.
+          <a class="font-medium text-gray-700 transition-colors duration-200 ease-out hover:text-gray-900 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:text-slate-300 dark:hover:text-slate-100" href="https://ucla.edu/" target="_blank" rel="noopener noreferrer">UCLA</a>. Currently, I work at{" "}
+          <a class="font-medium text-gray-700 transition-colors duration-200 ease-out hover:text-gray-900 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:text-slate-300 dark:hover:text-slate-100" href="https://www.lindy.ai" target="_blank" rel="noopener noreferrer">Lindy</a> as a Software Engineer Intern, where I build core infrastructure and services for email and meeting agents. I also conduct research in UCLA's{" "}
+          <a class="font-medium text-gray-700 transition-colors duration-200 ease-out hover:text-gray-900 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:text-slate-300 dark:hover:text-slate-100" href="https://hci.ucla.edu" target="_blank" rel="noopener noreferrer">HCI Research Lab</a>, where I work on multi-agent systems for scientific hypothesis generation. I care deeply about building responsive, accessible interfaces that make complex systems feel clear, useful, and intuitive.
         </p>
 
         <p class={`${aboutTextClass} mt-2`}>
           Outside of building, I enjoy weightlifting, time with my dog, and exploring the{" "}
-          <RippleLink {...featuredLinks.lands} />
+          <a class="font-medium text-gray-700 transition-colors duration-200 ease-out hover:text-gray-900 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:text-slate-300 dark:hover:text-slate-100" href="https://en.bandainamcoent.eu/elden-ring/elden-ring" target="_blank" rel="noopener noreferrer">Lands Between.</a>
         </p>
       </section>
 

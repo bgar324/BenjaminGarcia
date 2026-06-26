@@ -44,7 +44,6 @@ src/
     Dropdown.astro       Expandable experience/education rows
     FooterLink.astro     Footer link styling
     Icon.astro           Inline SVG icons
-    RippleLink.astro     Animated inline about links
   data/
     site.ts              Site config and portfolio data
   fonts/
