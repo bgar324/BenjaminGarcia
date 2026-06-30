@@ -31,7 +31,7 @@ const criticalFontCss = `
   src: url("${cabinetGroteskUrl}") format("woff2");
   font-weight: 100 900;
   font-style: normal;
-  font-display: block;
+  font-display: swap;
 }
 html,
 body {
@@ -83,6 +83,9 @@ html.no-font-loading body {
     <style is:inline set:html={criticalFontCss}></style>
     <link rel="icon" href="/static/favicon.svg" />
     <link rel="shortcut icon" href="/static/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={siteConfig.locale} />
     <meta property="og:url" content={canonicalUrl} />
@@ -106,25 +109,32 @@ html.no-font-loading body {
           root.classList.add("no-font-loading");
           return;
         }
-        document.fonts.load('1em "Cabinet Grotesk"').then(() => {
+        let fontLoadingSettled = false;
+        const finishFontLoading = (className) => {
+          if (fontLoadingSettled) return;
+          fontLoadingSettled = true;
           root.classList.remove("fonts-pending");
-          root.classList.add("fonts-ready");
-        });
+          root.classList.add(className);
+        };
+        const fallbackTimer = window.setTimeout(() => finishFontLoading("no-font-loading"), 1500);
+        document.fonts.load('1em "Cabinet Grotesk"').then(
+          () => {
+            window.clearTimeout(fallbackTimer);
+            finishFontLoading("fonts-ready");
+          },
+          () => {
+            window.clearTimeout(fallbackTimer);
+            finishFontLoading("no-font-loading");
+          },
+        );
       })();
     </script>
     <script is:inline>
       (() => {
         if ("serviceWorker" in navigator) {
-          navigator.serviceWorker.getRegistrations?.().then((registrations) => {
-            registrations.forEach((registration) => registration.unregister());
-          }).catch(() => {});
-        }
-        if ("caches" in window) {
-          caches.keys().then((keys) => {
-            keys.forEach((key) => {
-              if (key.startsWith("portfolio-assets-")) caches.delete(key);
-            });
-          }).catch(() => {});
+          window.addEventListener("load", () => {
+            navigator.serviceWorker.register("/sw.js").catch(() => {});
+          });
         }
       })();
     </script>

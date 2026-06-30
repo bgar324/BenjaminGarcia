@@ -3,6 +3,8 @@ import { getImage } from "astro:assets";
 import Icon from "../components/Icon.astro";
 import Dropdown from "../components/Dropdown.astro";
 import FooterLink from "../components/FooterLink.astro";
+import HomeInteractions from "../components/HomeInteractions.astro";
+import SectionHeading from "../components/SectionHeading.astro";
 import profilePhoto from "../assets/profile/me.jpg";
 import gitproofPreview from "../assets/projects/gitproof.png";
 import logitPreview from "../assets/projects/logit.png";
@@ -136,8 +138,6 @@ const homeStructuredData = [
 ];
 
 const aboutTextClass = "text-gray-600 dark:text-slate-400 lg:text-lg leading-snug";
-const sectionHeaderClass =
-  "w-fit border theme-border-strong rounded-md px-2 py-1 text-xs uppercase mt-10 mb-5 font-semibold tracking-wider text-nowrap";
 
 ---
 
@@ -150,7 +150,7 @@ const sectionHeaderClass =
         data-mobile-header
         class="mobile-header-shell page-shell-gutter lg:hidden fixed left-0 right-0 z-50 flex justify-center pointer-events-none transition-opacity duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
       >
-        <div class="w-full max-w-5xl pointer-events-auto border theme-border bg-white dark:bg-black rounded-lg flex flex-row items-center justify-between p-3 theme-shadow-md transition-colors duration-300">
+        <div class="surface-raised w-full max-w-5xl pointer-events-auto flex flex-row items-center justify-between p-3 rounded-lg">
           <div class="flex items-center gap-3">
             <button
               data-image-modal-trigger
@@ -256,7 +256,7 @@ const sectionHeaderClass =
       </div>
 
       <aside class="hidden lg:flex flex-col lg:w-[204px] lg:shrink-0 lg:gap-y-3 lg:sticky lg:top-10 h-fit">
-        <div class="bg-white dark:bg-black rounded-xl theme-shadow-md p-2 transition-colors duration-300">
+        <div class="surface-raised p-2">
           <div class="relative group/img">
             <picture>
               <source type="image/avif" srcset={profileCardAvif.srcSet} sizes="192px" />
@@ -305,7 +305,7 @@ const sectionHeaderClass =
           </div>
         </div>
 
-        <div class="bg-white dark:bg-black rounded-xl theme-shadow-md p-2 transition-colors duration-300">
+        <div class="surface-raised p-2">
           <div class="grid grid-cols-4 gap-2 mb-2">
             {socialLinks.map((link) => (
               <a
@@ -313,7 +313,7 @@ const sectionHeaderClass =
                 target="_blank"
                 rel="noopener noreferrer"
                 title={link.label}
-                class="pressable social-link-transition group/social flex items-center justify-center aspect-square rounded-md bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-black dark:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                class="pressable social-link-transition control-surface focus-ring flex aspect-square items-center justify-center"
               >
                 {link.icon === "logit" ? (
                   <span aria-hidden="true" class="block h-5 w-5 bg-current" style={`mask: url('${logitMask.src}') center / contain no-repeat; -webkit-mask: url('${logitMask.src}') center / contain no-repeat;`}></span>
@@ -325,7 +325,7 @@ const sectionHeaderClass =
           </div>
 
           <a
-            class="pressable social-link-transition group flex items-center justify-center gap-1 bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-black dark:hover:text-white rounded-md px-4 py-2 text-sm font-semibold w-full text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+            class="pressable social-link-transition control-surface focus-ring group flex w-full items-center justify-center gap-1 px-4 py-2 text-center text-sm font-semibold"
             href={resumeHref}
             target="_blank"
             rel="noopener noreferrer"
@@ -343,7 +343,7 @@ const sectionHeaderClass =
 
       <section id="about" aria-labelledby="about-heading" class="flex flex-col">
         <div class="flex flex-row justify-between items-center">
-          <h2 id="about-heading" class={`${sectionHeaderClass} lg:mt-0`}>about</h2>
+          <SectionHeading id="about-heading" class="mt-10 mb-5 lg:mt-0">about</SectionHeading>
           <label
             data-theme-toggle
             for="site-theme-input"
@@ -362,19 +362,19 @@ const sectionHeaderClass =
 
         <p class={aboutTextClass}>
           I'm a junior studying Computer Science at{" "}
-          <a class="font-medium text-gray-700 transition-colors duration-200 ease-out hover:text-gray-900 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:text-slate-300 dark:hover:text-slate-100" href="https://ucla.edu/" target="_blank" rel="noopener noreferrer">UCLA</a>. Currently, I work at{" "}
-          <a class="font-medium text-gray-700 transition-colors duration-200 ease-out hover:text-gray-900 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:text-slate-300 dark:hover:text-slate-100" href="https://www.lindy.ai" target="_blank" rel="noopener noreferrer">Lindy</a> as a Software Engineer Intern, where I build core infrastructure and services for email and meeting agents. I also conduct research in UCLA's{" "}
-          <a class="font-medium text-gray-700 transition-colors duration-200 ease-out hover:text-gray-900 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:text-slate-300 dark:hover:text-slate-100" href="https://hci.ucla.edu" target="_blank" rel="noopener noreferrer">HCI Research Lab</a>, where I work on multi-agent systems for scientific hypothesis generation. I care deeply about building responsive, accessible interfaces that make complex systems feel clear, useful, and intuitive.
+          <a class="text-link" href="https://ucla.edu/" target="_blank" rel="noopener noreferrer">UCLA</a>. Currently, I work at{" "}
+          <a class="text-link" href="https://www.lindy.ai" target="_blank" rel="noopener noreferrer">Lindy</a> as a Software Engineer Intern, where I build core infrastructure and services for email and meeting agents. I also conduct research in UCLA's{" "}
+          <a class="text-link" href="https://hci.ucla.edu" target="_blank" rel="noopener noreferrer">HCI Research Lab</a>, where I work on multi-agent systems for scientific hypothesis generation. I care deeply about building responsive, accessible interfaces that make complex systems feel clear, useful, and intuitive.
         </p>
 
         <p class={`${aboutTextClass} mt-2`}>
           Outside of building, I enjoy weightlifting, time with my dog, and exploring the{" "}
-          <a class="font-medium text-gray-700 transition-colors duration-200 ease-out hover:text-gray-900 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:text-slate-300 dark:hover:text-slate-100" href="https://en.bandainamcoent.eu/elden-ring/elden-ring" target="_blank" rel="noopener noreferrer">Lands Between.</a>
+          <a class="text-link" href="https://en.bandainamcoent.eu/elden-ring/elden-ring" target="_blank" rel="noopener noreferrer">Lands Between.</a>
         </p>
       </section>
 
       <section id="experience" aria-labelledby="experience-heading" class="flex flex-col">
-        <h2 id="experience-heading" class={sectionHeaderClass}>experience</h2>
+        <SectionHeading id="experience-heading" class="mt-10 mb-5">experience</SectionHeading>
         <div class="flex flex-col gap-4">
           {experiences.map((item) => <Dropdown item={item} />)}
         </div>
@@ -382,15 +382,15 @@ const sectionHeaderClass =
 
       <section id="projects" aria-labelledby="projects-heading">
         <div class="flex flex-row justify-between">
-          <h2 id="projects-heading" class={sectionHeaderClass}>selected projects</h2>
-          <a href="/archive" class="pressable group w-fit border theme-border-strong rounded-md px-2 py-1 uppercase mt-10 mb-5 font-semibold tracking-wider text-xs flex items-center gap-1 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">
+          <SectionHeading id="projects-heading" class="mt-10 mb-5">selected projects</SectionHeading>
+          <a href="/archive" class="pressable section-kicker focus-ring group mt-10 mb-5 flex items-center gap-1 text-center">
             project archive
             <Icon name="arrow-right" size={12} class="transform transition-transform duration-300 group-hover:translate-x-[0.5px] pb-[0.5px]" />
           </a>
         </div>
         <div class="grid items-start gap-4 lg:grid-cols-2">
           {projectsWithImages.map((project, index) => (
-            <article class="overflow-hidden rounded-xl border theme-border bg-white theme-shadow-sm transition-colors duration-300 dark:bg-black">
+            <article class="surface-subtle overflow-hidden">
               <div class="group/img relative aspect-[16/9] w-full overflow-hidden border-b theme-border">
                 <picture class="block h-full w-full">
                   <source type="image/avif" srcset={project.cardAvifSrcSet} sizes={projectSizes} />
@@ -420,10 +420,10 @@ const sectionHeaderClass =
                     <h3 class="text-lg font-semibold text-gray-900 md:text-xl dark:text-slate-100">{project.title}</h3>
                   </div>
                   <div class="flex shrink-0 items-center gap-3 pl-2">
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-600 transition-colors duration-300 hover:text-gray-900 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:text-slate-400 dark:hover:text-slate-200" title="Visit Site" aria-label={`Visit ${project.title}`}>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" class="icon-link" title="Visit Site" aria-label={`Visit ${project.title}`}>
                       <Icon name="globe" size={16} />
                     </a>
-                    <a href={project.githubLink} target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-600 transition-colors duration-300 hover:text-gray-900 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:text-slate-400 dark:hover:text-slate-200" title="View on GitHub" aria-label={`View ${project.title} on GitHub`}>
+                    <a href={project.githubLink} target="_blank" rel="noopener noreferrer" class="icon-link" title="View on GitHub" aria-label={`View ${project.title} on GitHub`}>
                       <Icon name="github" size={18} />
                     </a>
                   </div>
@@ -431,7 +431,7 @@ const sectionHeaderClass =
                 <p class="mt-1 text-sm text-gray-600 line-clamp-2 lg:min-h-[4rem] lg:text-base dark:text-slate-400">{project.summary}</p>
                 <div class="mt-5 flex flex-wrap gap-2 lg:mt-0">
                   {project.tags.map((tag) => (
-                    <span class="whitespace-nowrap rounded-full border theme-border bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-500 transition-colors duration-300 dark:bg-gray-900 dark:text-slate-300">{tag}</span>
+                    <span class="chip">{tag}</span>
                   ))}
                 </div>
               </div>
@@ -441,7 +441,7 @@ const sectionHeaderClass =
       </section>
 
       <section id="education" aria-labelledby="education-heading" class="mt-10">
-        <h2 id="education-heading" class={sectionHeaderClass}>education</h2>
+        <SectionHeading id="education-heading" class="mt-10 mb-5">education</SectionHeading>
         <div class="flex flex-col gap-4">
           {education.map((item) => <Dropdown item={item} />)}
         </div>
@@ -470,7 +470,7 @@ const sectionHeaderClass =
     </main>
   </div>
 
-  <div data-image-modal data-open="false" data-phase="closed" class="image-modal-overlay fixed inset-0 z-[70] items-center justify-center p-4 bg-black/80 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Expanded image preview" inert>
+  <div data-image-modal data-open="false" data-phase="closed" class="image-modal-overlay fixed inset-0 z-[70] items-center justify-center p-4 bg-black/80 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Expanded image preview" aria-hidden="true" inert>
     <div data-image-modal-content class="image-modal-content relative w-full max-w-5xl">
       <button data-image-modal-close class="absolute top-2 right-2 z-10 p-2 text-gray-100 hover:text-white transition-colors duration-300 bg-black/60 rounded-full backdrop-blur-sm hover:bg-black/80 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500" aria-label="Close image preview" type="button">
         <Icon name="x" size={20} />
@@ -483,396 +483,16 @@ const sectionHeaderClass =
     </div>
   </div>
 
-  <div data-video-modal class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Video preview">
+  <div data-video-modal class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Video preview" aria-hidden="true" inert>
     <div class="relative w-full max-w-4xl bg-gray-900 rounded-lg overflow-hidden shadow-2xl modal-scale">
-      <button data-video-modal-close class="absolute top-2 -right-2 -translate-x-1/2 z-10 p-2 text-gray-100 hover:text-white transition-colors duration-300 bg-black/10 rounded-full backdrop-blur-sm hover:bg-black/50 cursor-pointer" aria-label="Close video" type="button">
+      <button data-video-modal-close class="absolute top-2 -right-2 -translate-x-1/2 z-10 p-2 text-gray-100 hover:text-white transition-colors duration-300 bg-black/10 rounded-full backdrop-blur-sm hover:bg-black/50 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500" aria-label="Close video" type="button">
         <Icon name="x" size={24} />
       </button>
       <div class="aspect-video w-full">
-        <iframe data-video-frame src="" class="w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe data-video-frame src="" title="YouTube video preview" class="w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
   </div>
 
-  <script>
-    // @ts-nocheck
-    const root = document.documentElement;
-    const body = document.body;
-    const themeInput = document.querySelector("[data-theme-input]");
-    const syncThemeButton = () => {
-      const isDark = Boolean(themeInput?.checked);
-      document.querySelectorAll("[data-theme-label]").forEach((label) => {
-        label.textContent = isDark ? "Light" : "Dark";
-      });
-      document.querySelectorAll("[data-theme-moon]").forEach((icon) => {
-        icon.classList.toggle("opacity-0", isDark);
-        icon.classList.toggle("rotate-90", isDark);
-        icon.classList.toggle("scale-0", isDark);
-      });
-      document.querySelectorAll("[data-theme-sun]").forEach((icon) => {
-        icon.classList.toggle("opacity-0", !isDark);
-        icon.classList.toggle("-rotate-90", !isDark);
-        icon.classList.toggle("scale-0", !isDark);
-      });
-    };
-
-    syncThemeButton();
-    let themeTransitionTimer = null;
-    themeInput?.addEventListener("change", () => {
-      const nextTheme = themeInput.checked ? "dark" : "light";
-      if (themeTransitionTimer) window.clearTimeout(themeTransitionTimer);
-      root.classList.add("theme-changing");
-      localStorage.setItem("theme", nextTheme);
-      syncThemeButton();
-      themeTransitionTimer = window.setTimeout(() => {
-        root.classList.remove("theme-changing");
-      }, 360);
-    });
-    document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
-      button.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          button.click();
-        }
-      });
-    });
-
-    document.querySelectorAll("[data-dropdown-trigger]").forEach((trigger) => {
-      const dropdown = trigger.closest("[data-dropdown]");
-      const setPressed = (pressed) => {
-        dropdown?.classList.toggle("is-pressed", pressed);
-      };
-      trigger.addEventListener("click", () => {
-        const isOpen = dropdown?.dataset.open === "true";
-        if (dropdown) animateDropdown(dropdown, !isOpen);
-        trigger.setAttribute("aria-expanded", String(!isOpen));
-        dropdown?.querySelector("[data-dropdown-chevron]")?.classList.toggle("hidden", !isOpen);
-        dropdown?.querySelector("[data-dropdown-x]")?.classList.toggle("hidden", isOpen);
-      });
-      trigger.addEventListener("pointerdown", () => setPressed(true));
-      trigger.addEventListener("pointerup", () => setPressed(false));
-      trigger.addEventListener("pointerleave", () => setPressed(false));
-      trigger.addEventListener("pointercancel", () => setPressed(false));
-      trigger.addEventListener("blur", () => setPressed(false));
-      trigger.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          setPressed(true);
-        }
-      });
-      trigger.addEventListener("keyup", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          setPressed(false);
-          trigger.click();
-        }
-      });
-    });
-    document.querySelectorAll("[data-dropdown] a").forEach((link) => {
-      link.addEventListener("click", (event) => event.stopPropagation());
-      link.addEventListener("pointerdown", (event) => event.stopPropagation());
-      link.addEventListener("keydown", (event) => event.stopPropagation());
-      link.addEventListener("keyup", (event) => event.stopPropagation());
-    });
-
-    const dropdownAnimations = new WeakMap();
-    const animateDropdown = (dropdown, open) => {
-      const content = dropdown.querySelector("[data-dropdown-content]");
-      if (!content) return;
-
-      const previousAnimation = dropdownAnimations.get(content);
-      if (previousAnimation) cancelAnimationFrame(previousAnimation);
-
-      const fromHeight = content.getBoundingClientRect().height;
-      content.style.height = open ? "auto" : `${fromHeight}px`;
-      const toHeight = open ? content.scrollHeight : 0;
-      const fromOpacity = Number(getComputedStyle(content).opacity || 0);
-      const toOpacity = open ? 1 : 0;
-
-      dropdown.dataset.open = String(open);
-      content.style.height = `${fromHeight}px`;
-      content.style.opacity = String(fromOpacity);
-
-      const stiffness = 300;
-      const damping = 30;
-      const mass = 1;
-      let position = 0;
-      let velocity = 0;
-      let lastTime = performance.now();
-
-      const step = (time) => {
-        const deltaSeconds = Math.min((time - lastTime) / 1000, 0.05);
-        lastTime = time;
-
-        const displacement = position - 1;
-        const springForce = -stiffness * displacement;
-        const dampingForce = -damping * velocity;
-        const acceleration = (springForce + dampingForce) / mass;
-
-        velocity += acceleration * deltaSeconds;
-        position += velocity * deltaSeconds;
-
-        const progress = Math.max(0, Math.min(1, position));
-        content.style.height = `${fromHeight + (toHeight - fromHeight) * progress}px`;
-        content.style.opacity = String(fromOpacity + (toOpacity - fromOpacity) * progress);
-
-        if (Math.abs(velocity) < 0.01 && Math.abs(1 - position) < 0.01) {
-          content.style.opacity = String(toOpacity);
-          content.style.height = open ? "auto" : "0px";
-          dropdownAnimations.delete(content);
-          return;
-        }
-
-        dropdownAnimations.set(content, requestAnimationFrame(step));
-      };
-
-      dropdownAnimations.set(content, requestAnimationFrame(step));
-    };
-
-    const imageModal = document.querySelector("[data-image-modal]");
-    const imageModalContent = document.querySelector("[data-image-modal-content]");
-    const imageModalImg = document.querySelector("[data-image-modal-img]");
-    const imageModalAvif = document.querySelector("[data-image-modal-avif]");
-    const imageModalWebp = document.querySelector("[data-image-modal-webp]");
-    let lastImageTrigger = null;
-    let imageModalCloseTimer = null;
-    let imageModalOpenFrame = null;
-    const imageModalDuration = 360;
-    const modalImagePreloads = new Map();
-    const preloadModalImage = (trigger) => {
-      const src = trigger.dataset.imageSrc || "";
-      const srcset = trigger.dataset.imageAvifSrcset || trigger.dataset.imageWebpSrcset || "";
-      if (!src && !srcset) return;
-      const isProfileImage = trigger.dataset.imageModalKind === "profile";
-      const sizes = isProfileImage ? "(max-width: 512px) 100vw, 512px" : "(max-width: 1024px) 100vw, 1024px";
-      const cacheKey = `${srcset}|${src}|${sizes}`;
-      if (modalImagePreloads.has(cacheKey)) return;
-
-      const image = new Image();
-      image.decoding = "async";
-      image.loading = "eager";
-      image.fetchPriority = "low";
-      image.sizes = sizes;
-      if (srcset) image.srcset = srcset;
-      if (src) image.src = src;
-      modalImagePreloads.set(cacheKey, image);
-    };
-    const preloadModalImages = () => {
-      const triggers = Array.from(document.querySelectorAll("[data-image-modal-trigger]"));
-      let index = 0;
-      const preloadNext = () => {
-        const trigger = triggers[index];
-        index += 1;
-        if (trigger instanceof HTMLElement) preloadModalImage(trigger);
-        if (index < triggers.length) window.setTimeout(preloadNext, 80);
-      };
-      preloadNext();
-    };
-    const scheduleModalImagePreloads = () => {
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
-          if ("requestIdleCallback" in window) {
-            window.requestIdleCallback(preloadModalImages, { timeout: 1500 });
-          } else {
-            window.setTimeout(preloadModalImages, 500);
-          }
-        });
-      });
-    };
-    const closeImageModal = () => {
-      if (!imageModal || imageModal.dataset.open !== "true") return;
-      if (imageModalCloseTimer) window.clearTimeout(imageModalCloseTimer);
-      if (imageModalOpenFrame) window.cancelAnimationFrame(imageModalOpenFrame);
-      imageModal.dataset.open = "false";
-      imageModal.dataset.phase = "closing";
-      imageModal.setAttribute("aria-hidden", "true");
-      imageModal.setAttribute("inert", "");
-      imageModalCloseTimer = window.setTimeout(() => {
-        if (imageModal.dataset.open === "true") return;
-        imageModal.dataset.phase = "closed";
-        body.style.overflow = "";
-        if (imageModalAvif instanceof HTMLSourceElement) imageModalAvif.srcset = "";
-        if (imageModalWebp instanceof HTMLSourceElement) imageModalWebp.srcset = "";
-        if (imageModalImg instanceof HTMLImageElement) {
-          imageModalImg.removeAttribute("srcset");
-          imageModalImg.src = "";
-        }
-        lastImageTrigger?.focus?.();
-      }, imageModalDuration);
-    };
-    document.querySelectorAll("[data-image-modal-trigger]").forEach((trigger) => {
-      trigger.addEventListener("click", () => {
-        lastImageTrigger = trigger;
-        const isProfileImage = trigger.dataset.imageModalKind === "profile";
-        if (imageModalContent instanceof HTMLElement) {
-          imageModalContent.dataset.imageKind = isProfileImage ? "profile" : "project";
-        }
-        imageModalContent?.classList.toggle("max-w-lg", isProfileImage);
-        imageModalContent?.classList.toggle("max-w-5xl", !isProfileImage);
-        if (imageModalAvif instanceof HTMLSourceElement) {
-          imageModalAvif.srcset = trigger.dataset.imageAvifSrcset || "";
-          imageModalAvif.sizes = isProfileImage ? "(max-width: 639px) 18rem, 512px" : "(max-width: 639px) 21rem, 1024px";
-        }
-        if (imageModalWebp instanceof HTMLSourceElement) {
-          imageModalWebp.srcset = trigger.dataset.imageWebpSrcset || "";
-          imageModalWebp.sizes = isProfileImage ? "(max-width: 639px) 18rem, 512px" : "(max-width: 639px) 21rem, 1024px";
-        }
-        if (imageModalImg instanceof HTMLImageElement) {
-          imageModalImg.src = trigger.dataset.imageSrc || "";
-          imageModalImg.alt = trigger.dataset.imageAlt || "Expanded image preview";
-          imageModalImg.width = Number(trigger.dataset.imageWidth || 2048);
-          imageModalImg.height = Number(trigger.dataset.imageHeight || 1277);
-          imageModalImg.sizes = isProfileImage ? "(max-width: 512px) 100vw, 512px" : "(max-width: 1024px) 100vw, 1024px";
-        }
-        if (imageModalCloseTimer) window.clearTimeout(imageModalCloseTimer);
-        if (imageModalOpenFrame) window.cancelAnimationFrame(imageModalOpenFrame);
-        if (imageModal) {
-          imageModal.dataset.open = "false";
-          imageModal.dataset.phase = "opening";
-          imageModal.setAttribute("aria-hidden", "false");
-          imageModal.removeAttribute("inert");
-          imageModalOpenFrame = window.requestAnimationFrame(() => {
-            imageModalOpenFrame = window.requestAnimationFrame(() => {
-              if (!imageModal) return;
-              imageModal.dataset.open = "true";
-              imageModal.dataset.phase = "open";
-            });
-          });
-        }
-        body.style.overflow = "hidden";
-        imageModal?.querySelector("button")?.focus();
-      });
-    });
-    imageModal?.addEventListener("click", (event) => {
-      if (event.target === imageModal) closeImageModal();
-    });
-    document.querySelector("[data-image-modal-close]")?.addEventListener("click", closeImageModal);
-    if (document.readyState === "complete") {
-      scheduleModalImagePreloads();
-    } else {
-      window.addEventListener("load", scheduleModalImagePreloads, { once: true });
-    }
-
-    const videoModal = document.querySelector("[data-video-modal]");
-    const videoFrame = document.querySelector("[data-video-frame]");
-    const closeVideoModal = () => {
-      videoModal?.classList.add("hidden");
-      videoModal?.classList.remove("flex");
-      if (videoFrame instanceof HTMLIFrameElement) videoFrame.src = "";
-      body.style.overflow = "";
-    };
-    document.querySelectorAll("[data-youtube-trigger]").forEach((trigger) => {
-      trigger.addEventListener("click", () => {
-        const id = trigger.dataset.videoId;
-        if (videoFrame instanceof HTMLIFrameElement && id) {
-          videoFrame.src = `https://www.youtube.com/embed/${id}?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0&fs=1`;
-        }
-        videoModal?.classList.remove("hidden");
-        videoModal?.classList.add("flex");
-        body.style.overflow = "hidden";
-      });
-    });
-    videoModal?.addEventListener("click", (event) => {
-      if (event.target === videoModal) closeVideoModal();
-    });
-    document.querySelector("[data-video-modal-close]")?.addEventListener("click", closeVideoModal);
-
-    const menu = document.querySelector("[data-mobile-menu]");
-    const menuToggle = document.querySelector("[data-menu-toggle]");
-    const openIcon = document.querySelector("[data-menu-open-icon]");
-    const closeIcon = document.querySelector("[data-menu-close-icon]");
-    let menuCloseTimer = null;
-    const setMenu = (open) => {
-      if (menu) {
-        if (menuCloseTimer) window.clearTimeout(menuCloseTimer);
-        menu.dataset.open = String(open);
-        menu.dataset.phase = open ? "open" : "closing";
-        menu.setAttribute("aria-hidden", String(!open));
-        if (open) {
-          menu.removeAttribute("inert");
-        } else {
-          menu.setAttribute("inert", "");
-          menuCloseTimer = window.setTimeout(() => {
-            if (menu.dataset.open !== "true") menu.dataset.phase = "closed";
-          }, 340);
-        }
-      }
-      body.style.overflow = open ? "hidden" : "";
-      menuToggle?.setAttribute("aria-expanded", String(open));
-      menuToggle?.setAttribute("aria-label", open ? "Close full-screen menu" : "Open full-screen menu");
-      openIcon?.classList.toggle("hidden", open);
-      closeIcon?.classList.toggle("hidden", !open);
-    };
-    menuToggle?.addEventListener("click", () => setMenu(menu?.dataset.open !== "true"));
-    document.querySelector("[data-menu-close]")?.addEventListener("click", () => setMenu(false));
-
-    let lastScrollY = window.scrollY;
-    let directionAnchorY = window.scrollY;
-    let scrollDirection = null;
-    let scrollFrame = null;
-    let headerVisible = true;
-    const mobileHeader = document.querySelector("[data-mobile-header]");
-    const setHeaderVisible = (visible) => {
-      headerVisible = visible;
-      mobileHeader?.classList.toggle("mobile-header-hidden", !visible);
-      mobileHeader?.classList.toggle("pointer-events-none", !visible);
-    };
-    const resetScrollTracking = () => {
-      lastScrollY = window.scrollY;
-      directionAnchorY = window.scrollY;
-      scrollDirection = null;
-    };
-    window.addEventListener("scroll", () => {
-      if (scrollFrame !== null) return;
-      scrollFrame = requestAnimationFrame(() => {
-        scrollFrame = null;
-        if (window.matchMedia("(min-width: 1024px)").matches || menu?.dataset.open === "true" || imageModal?.classList.contains("flex")) {
-          resetScrollTracking();
-          return;
-        }
-
-        const minDelta = 3;
-        const topRevealOffset = 32;
-        const hideStartOffset = 88;
-        const toggleAfter = 48;
-        const current = window.scrollY;
-        const delta = current - lastScrollY;
-        lastScrollY = current;
-        if (Math.abs(delta) < minDelta) return;
-
-        if (current <= topRevealOffset) {
-          directionAnchorY = current;
-          scrollDirection = null;
-          setHeaderVisible(true);
-          return;
-        }
-
-        const direction = delta > 0 ? "down" : "up";
-        if (scrollDirection !== direction) {
-          scrollDirection = direction;
-          directionAnchorY = current;
-        }
-
-        const travelSinceDirectionChange = Math.abs(current - directionAnchorY);
-
-        if (direction === "down" && headerVisible && current >= hideStartOffset && travelSinceDirectionChange >= toggleAfter) {
-          directionAnchorY = current;
-          setHeaderVisible(false);
-        }
-
-        if (direction === "up" && !headerVisible && travelSinceDirectionChange >= toggleAfter) {
-          directionAnchorY = current;
-          setHeaderVisible(true);
-        }
-      });
-    }, { passive: true });
-
-    window.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        closeImageModal();
-        closeVideoModal();
-        setMenu(false);
-      }
-    });
-  </script>
+  <HomeInteractions />
 </BaseLayout>

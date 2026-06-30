@@ -20,11 +20,5 @@
     "tailwindcss": "^4.1.3",
     "tw-animate-css": "^1.2.8",
     "typescript": "^5"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp"
-    ]
   }
 }

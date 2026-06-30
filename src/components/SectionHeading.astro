@@ -1,0 +1,7 @@
+---
+const { as: Tag = "h2", class: className = "", id, size = "sm" } = Astro.props;
+---
+
+<Tag id={id} class:list={["section-kicker", size === "lg" && "section-kicker-lg", className]}>
+  <slot />
+</Tag>

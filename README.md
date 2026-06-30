@@ -37,7 +37,9 @@ src/
     index.astro          Home route
     archive.astro        Archive route
     404.astro            Custom 404 route
+    opengraph-image.png.ts Social preview image
     sitemap-index.xml.ts Sitemap output
+    twitter-image.png.ts   Social preview image
   layouts/
     BaseLayout.astro     Shared document shell and metadata
   components/
@@ -48,12 +50,18 @@ src/
     site.ts              Site config and portfolio data
   fonts/
     CabinetGrotesk...    Local font asset
+  lib/
+    socialImage.ts       Shared social image renderer
+  assets/
+    ...                  Profile, company, school, and project images
   styles/
     globals.css          Global styles
 
 public/
-  static/              Images, logos, previews, icons
+  static/              Static favicon
+  manifest.webmanifest PWA manifest
   resume.pdf           Primary resume file
+  sw.js                Static asset service worker
 
 astro.config.mjs        Astro config with Tailwind
 ```
@@ -94,7 +102,9 @@ The current build succeeds and statically generates:
 - `/`
 - `/archive`
 - `/404`
+- `/opengraph-image.png`
 - `/sitemap-index.xml`
+- `/twitter-image.png`
 
 ## Editing Content
 
@@ -104,7 +114,8 @@ The current build succeeds and statically generates:
 - `src/pages/archive.astro` renders the project archive.
 - `src/data/site.ts` is the source of truth for site config, social links, experience, education, selected projects, and archive entries.
 - `src/components/*.astro` contains the shared static UI pieces.
-- `public/static/*` holds the portfolio images, logos, and project previews.
+- `src/assets/*` holds the portfolio images, logos, and project previews.
+- `public/static/*` holds files that must be served without Astro asset processing.
 - `public/resume.pdf` is the file opened by the resume buttons.
 
 ## Notes

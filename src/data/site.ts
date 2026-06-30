@@ -12,6 +12,7 @@ export const siteConfig = {
   title: "Benjamin Garcia",
   description:
     "Full-stack engineer building production interfaces at scale. Experience at Todd Agriscience, Bonterra, TensorStax, and Lindy. CS @ UCLA.",
+  socialTagline: "Production interfaces, full-stack systems, and AI tools.",
   url: "https://bentgarcia.com",
   locale: "en_US",
   author: "Benjamin Garcia",
@@ -38,13 +39,13 @@ export const siteConfig = {
 } as const;
 
 export const defaultOpenGraphImage = {
-  url: "/opengraph-image",
+  url: "/opengraph-image.png",
   width: 1200,
   height: 630,
   alt: "Benjamin Garcia portfolio preview",
 } as const;
 
-export const defaultTwitterImage = "/twitter-image";
+export const defaultTwitterImage = "/twitter-image.png";
 
 export function absoluteUrl(path = "/") {
   return new URL(path, siteConfig.url).toString();

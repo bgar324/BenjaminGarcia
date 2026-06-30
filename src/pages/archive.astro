@@ -1,5 +1,6 @@
 ---
 import Icon from "../components/Icon.astro";
+import SectionHeading from "../components/SectionHeading.astro";
 import { absoluteUrl, archiveProjects, siteConfig } from "../data/site";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
@@ -59,12 +60,12 @@ const archiveStructuredData = {
       </a>
 
       <div class="flex justify-between items-start gap-4 mt-5 mb-5">
-        <h1 class="w-fit border theme-border-strong rounded-md px-2 py-1 uppercase tracking-wider flex items-center gap-1 text-xl md:text-2xl font-bold">
+        <SectionHeading as="h1" size="lg" class="flex items-center gap-1">
           Project Archive
-        </h1>
+        </SectionHeading>
       </div>
 
-      <div class="bg-white dark:bg-black rounded-xl theme-shadow-md p-4 md:p-6 transition-colors duration-300">
+      <div class="surface-raised p-4 md:p-6">
         <div class="overflow-x-auto">
           <table class="w-full caption-bottom text-sm">
             <caption class="sr-only">Archived projects with build stack and links.</caption>
@@ -81,10 +82,10 @@ const archiveStructuredData = {
                 <tr class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors duration-300 theme-border-subtle">
                   <td class="p-2 align-middle whitespace-nowrap text-base cursor-default py-4 text-gray-700 dark:text-slate-300 font-medium">{row.year}</td>
                   <td class="p-2 align-middle whitespace-nowrap text-base cursor-default">
-                    <div class="flex items-center gap-2">
+                    <div class="flex flex-col gap-1">
                       {row.websiteLink ? (
                         <>
-                          <a href={row.websiteLink} target="_blank" rel="noopener noreferrer" class="font-semibold text-gray-900 transition-colors duration-300 hover:text-gray-600 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 md:hidden dark:text-slate-100 dark:hover:text-slate-300" aria-label={`Visit ${row.title}`}>
+                          <a href={row.websiteLink} target="_blank" rel="noopener noreferrer" class="archive-link font-semibold text-gray-900 md:hidden dark:text-slate-100" aria-label={`Visit ${row.title}`}>
                             {row.title}
                           </a>
                           <span class="hidden font-semibold text-gray-900 md:inline dark:text-slate-100">{row.title}</span>
@@ -92,12 +93,26 @@ const archiveStructuredData = {
                       ) : (
                         <span class="font-semibold text-gray-900 dark:text-slate-100">{row.title}</span>
                       )}
+                      {(row.websiteLink || row.githubLink) && (
+                        <div class="flex items-center gap-3 text-xs font-medium text-gray-500 md:hidden dark:text-slate-400">
+                          {row.websiteLink && (
+                            <a href={row.websiteLink} target="_blank" rel="noopener noreferrer" class="archive-link">
+                              Site
+                            </a>
+                          )}
+                          {row.githubLink && (
+                            <a href={row.githubLink} target="_blank" rel="noopener noreferrer" class="archive-link">
+                              GitHub
+                            </a>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </td>
                   <td class="p-2 align-middle whitespace-nowrap text-base cursor-default hidden md:table-cell">
                     <div class="flex flex-wrap gap-2">
                       {row.builtWith.map((tag) => (
-                        <span class="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-slate-300 px-2.5 py-1 rounded-full text-xs font-medium cursor-default border theme-border transition-colors duration-300 whitespace-nowrap">
+                        <span class="chip cursor-default text-gray-700">
                           {tag}
                         </span>
                       ))}
@@ -107,14 +122,14 @@ const archiveStructuredData = {
                     {row.websiteLink || row.githubLink ? (
                       <div class="grid grid-cols-[16px_18px] items-center justify-end gap-3">
                         {row.websiteLink ? (
-                          <a href={row.websiteLink} target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-100 transition-colors duration-300 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm" title={`Visit ${row.title}`} aria-label={`Visit ${row.title}`}>
+                          <a href={row.websiteLink} target="_blank" rel="noopener noreferrer" class="icon-link dark:hover:text-slate-100" title={`Visit ${row.title}`} aria-label={`Visit ${row.title}`}>
                             <Icon name="globe" size={16} />
                           </a>
                         ) : (
                           <span aria-hidden="true"></span>
                         )}
                         {row.githubLink && (
-                          <a href={row.githubLink} target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-100 transition-colors duration-300 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 focus-visible:rounded-sm" title={`View ${row.title} on GitHub`} aria-label={`View ${row.title} on GitHub`}>
+                          <a href={row.githubLink} target="_blank" rel="noopener noreferrer" class="icon-link dark:hover:text-slate-100" title={`View ${row.title} on GitHub`} aria-label={`View ${row.title} on GitHub`}>
                             <Icon name="github" size={18} />
                           </a>
                         )}

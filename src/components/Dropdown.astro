@@ -1,5 +1,6 @@
 ---
 import { getImage } from "astro:assets";
+import DropdownLogo from "./DropdownLogo.astro";
 import Icon from "./Icon.astro";
 import type { ImageMetadata } from "astro";
 
@@ -27,51 +28,21 @@ const darkLogo = item.darkSrc
 <div
   data-dropdown
   data-open="false"
-  class="pressable theme-shadow-sm flex flex-col rounded-[13px] border theme-border bg-white transition-colors duration-300 dark:bg-black"
+  class="pressable dropdown-card"
 >
-  <div data-dropdown-trigger role="button" tabindex="0" aria-expanded="false" class="flex select-none flex-row">
+  <div class="flex select-none flex-row">
     <div class="flex items-center justify-center">
-      <a
+      <DropdownLogo
+        alt={`${item.position} logo`}
+        darkSrc={darkLogo?.src}
+        eager={Boolean(item.darkSrc)}
         href={item.imageLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="relative z-10 flex items-center justify-center rounded-xl focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-500"
-      >
-        <span class={`flex h-[54px] w-[54px] shrink-0 items-center justify-center rounded-xl p-1 sm:h-[58px] sm:w-[58px] lg:ml-0.5 lg:h-[62px] lg:w-[62px] ${item.darkSrc ? "dark:hidden" : ""}`}>
-          <span class="relative h-full w-full overflow-hidden rounded-lg">
-            <img
-              src={logo.src}
-              alt={`${item.position} logo`}
-              width="60"
-              height="60"
-              sizes="60px"
-              loading={item.darkSrc ? "eager" : "lazy"}
-              decoding="async"
-              class="h-full w-full object-cover"
-            />
-          </span>
-        </span>
-        {item.darkSrc && (
-          <span class="hidden h-[54px] w-[54px] shrink-0 items-center justify-center rounded-xl p-1 sm:h-[58px] sm:w-[58px] lg:ml-0.5 lg:h-[62px] lg:w-[62px] dark:flex">
-            <span class="relative h-full w-full overflow-hidden rounded-lg">
-              <img
-                src={darkLogo?.src}
-                alt={`${item.position} logo`}
-                width="60"
-                height="60"
-                sizes="60px"
-                loading="eager"
-                decoding="async"
-                class="h-full w-full object-cover"
-              />
-            </span>
-          </span>
-        )}
-      </a>
+        src={logo.src}
+      />
     </div>
-    <div class="flex w-full items-center justify-between gap-2 py-1.5 pr-1.5 pl-1 sm:py-2 sm:pr-2 sm:pl-1.5 lg:gap-3">
+    <button data-dropdown-trigger type="button" aria-expanded="false" class="flex w-full items-center justify-between gap-2 bg-transparent py-1.5 pr-1.5 pl-1 text-left sm:py-2 sm:pr-2 sm:pl-1.5 lg:gap-3">
       <div class="flex min-w-0 flex-col">
-        <h3 class="w-full font-semibold text-gray-900 dark:text-slate-100 lg:text-lg">{item.role}</h3>
+        <span class="w-full font-semibold text-gray-900 dark:text-slate-100 lg:text-lg">{item.role}</span>
         <div class="flex flex-row items-center">
           <span class="text-sm text-gray-600 dark:text-slate-400 lg:text-base">{item.position}</span>
         </div>
@@ -85,7 +56,7 @@ const darkLogo = item.darkSrc
           </div>
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div data-dropdown-content class="dropdown-content">
     <div class="overflow-hidden">
@@ -95,3 +66,88 @@ const darkLogo = item.darkSrc
     </div>
   </div>
 </div>
+
+<script>
+  const dropdownAnimations = new WeakMap<Element, number>();
+  const animateDropdown = (dropdown: HTMLElement, open: boolean) => {
+    const content = dropdown.querySelector<HTMLElement>("[data-dropdown-content]");
+    if (!content) return;
+
+    const previousAnimation = dropdownAnimations.get(content);
+    if (previousAnimation) cancelAnimationFrame(previousAnimation);
+
+    const fromHeight = content.getBoundingClientRect().height;
+    content.style.height = open ? "auto" : `${fromHeight}px`;
+    const toHeight = open ? content.scrollHeight : 0;
+    const fromOpacity = Number(getComputedStyle(content).opacity || 0);
+    const toOpacity = open ? 1 : 0;
+
+    dropdown.dataset.open = String(open);
+    content.style.height = `${fromHeight}px`;
+    content.style.opacity = String(fromOpacity);
+
+    const stiffness = 300;
+    const damping = 30;
+    const mass = 1;
+    let position = 0;
+    let velocity = 0;
+    let lastTime = performance.now();
+
+    const step = (time: number) => {
+      const deltaSeconds = Math.min((time - lastTime) / 1000, 0.05);
+      lastTime = time;
+
+      const displacement = position - 1;
+      const springForce = -stiffness * displacement;
+      const dampingForce = -damping * velocity;
+      const acceleration = (springForce + dampingForce) / mass;
+
+      velocity += acceleration * deltaSeconds;
+      position += velocity * deltaSeconds;
+
+      const progress = Math.max(0, Math.min(1, position));
+      content.style.height = `${fromHeight + (toHeight - fromHeight) * progress}px`;
+      content.style.opacity = String(fromOpacity + (toOpacity - fromOpacity) * progress);
+
+      if (Math.abs(velocity) < 0.01 && Math.abs(1 - position) < 0.01) {
+        content.style.opacity = String(toOpacity);
+        content.style.height = open ? "auto" : "0px";
+        dropdownAnimations.delete(content);
+        return;
+      }
+
+      dropdownAnimations.set(content, requestAnimationFrame(step));
+    };
+
+    dropdownAnimations.set(content, requestAnimationFrame(step));
+  };
+
+  document.querySelectorAll<HTMLElement>("[data-dropdown-trigger]").forEach((trigger) => {
+    if (trigger.dataset.dropdownBound === "true") return;
+    trigger.dataset.dropdownBound = "true";
+
+    const dropdown = trigger.closest<HTMLElement>("[data-dropdown]");
+    const setPressed = (pressed: boolean) => {
+      dropdown?.classList.toggle("is-pressed", pressed);
+    };
+
+    trigger.addEventListener("click", () => {
+      const isOpen = dropdown?.dataset.open === "true";
+      if (dropdown) animateDropdown(dropdown, !isOpen);
+      trigger.setAttribute("aria-expanded", String(!isOpen));
+      dropdown?.querySelector("[data-dropdown-chevron]")?.classList.toggle("hidden", !isOpen);
+      dropdown?.querySelector("[data-dropdown-x]")?.classList.toggle("hidden", isOpen);
+    });
+    trigger.addEventListener("pointerdown", () => setPressed(true));
+    trigger.addEventListener("pointerup", () => setPressed(false));
+    trigger.addEventListener("pointerleave", () => setPressed(false));
+    trigger.addEventListener("pointercancel", () => setPressed(false));
+    trigger.addEventListener("blur", () => setPressed(false));
+    trigger.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") setPressed(true);
+    });
+    trigger.addEventListener("keyup", (event) => {
+      if (event.key === "Enter" || event.key === " ") setPressed(false);
+    });
+  });
+</script>
