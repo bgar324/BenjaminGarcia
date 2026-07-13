@@ -164,6 +164,18 @@ export const education = [
 
 export const selectedProjects = [
   {
+    imageKey: "policyc",
+    title: "PolicyC",
+    width: 612,
+    height: 792,
+    summary:
+      "Policy-prompt compiler that cuts LLM context by up to 98% while measuring whether request-specific policy slices preserve the full prompt's critical obligations.",
+    link: "/policyc.pdf",
+    githubLink: "https://github.com/bgar324/policyc",
+    featuredTags: ["TypeScript", "Python", "OpenAI API", "SQLite"],
+    tags: ["TypeScript", "Python", "OpenAI API", "SQLite", "FastAPI", "Zod"],
+  },
+  {
     imageKey: "gitproof",
     title: "GitProof",
     width: 2048,
@@ -172,6 +184,7 @@ export const selectedProjects = [
       "Recruiter-facing GitHub reports that make public contribution history legible and credible.",
     link: "https://gitproof.dev",
     githubLink: "https://github.com/bgar324/gitproof-2",
+    featuredTags: ["TypeScript", "Tailwind", "Postgres"],
     tags: [
       "Astro",
       "TypeScript",
@@ -191,6 +204,7 @@ export const selectedProjects = [
       "A lightweight workout tracker built for fast logging and clear progress review.",
     link: "https://trylogit.me",
     githubLink: "https://github.com/bgar324/log-it",
+    featuredTags: ["TypeScript", "Tailwind", "Postgres"],
     tags: [
       "Next.js",
       "TypeScript",

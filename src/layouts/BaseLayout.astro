@@ -1,7 +1,7 @@
 ---
+import "@fontsource-variable/inter";
 import "../styles/globals.css";
 import { defaultOpenGraphImage, defaultTwitterImage, siteConfig } from "../data/site";
-import cabinetGroteskUrl from "../fonts/CabinetGrotesk-Variable.woff2?url";
 
 type Props = {
   canonicalPath?: string;
@@ -25,30 +25,10 @@ const {
 
 const canonicalUrl = new URL(canonicalPath, siteConfig.url).toString();
 const pageTitle = title === siteConfig.title ? siteConfig.title : `${title} | ${siteConfig.name}`;
-const criticalFontCss = `
-@font-face {
-  font-family: "Cabinet Grotesk";
-  src: url("${cabinetGroteskUrl}") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-html,
-body {
-  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
-}
-html.fonts-pending body {
-  opacity: 0;
-}
-html.fonts-ready body,
-html.no-font-loading body {
-  opacity: 1;
-}
-`;
 ---
 
 <!doctype html>
-<html lang="en" data-scroll-behavior="smooth" class="fonts-pending">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -56,36 +36,20 @@ html.no-font-loading body {
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="application-name" content={siteConfig.name} />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="dark" />
     <meta name="referrer" content="origin-when-cross-origin" />
     <meta name="keywords" content={siteConfig.keywords.join(", ")} />
     <meta name="author" content={siteConfig.author} />
     <meta name="creator" content={siteConfig.author} />
     <meta name="publisher" content={siteConfig.author} />
-    <script is:inline>
-      (() => {
-        const storageKey = "theme";
-        const root = document.documentElement;
-        let storedTheme = null;
-        try {
-          storedTheme = localStorage.getItem(storageKey);
-        } catch {}
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const theme = storedTheme || (prefersDark ? "dark" : "light");
-        root.dataset.initialTheme = theme;
-      })();
-    </script>
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="preload" href={cabinetGroteskUrl} as="font" type="font/woff2" crossorigin />
     {imagePreloads.map((image) => (
       <link rel="preload" as="image" href={image.href} imagesrcset={image.imagesrcset} imagesizes={image.imagesizes} type={image.type} fetchpriority="high" media={image.media} />
     ))}
-    <style is:inline set:html={criticalFontCss}></style>
     <link rel="icon" href="/static/favicon.svg" />
     <link rel="shortcut icon" href="/static/favicon.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#171717" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={siteConfig.locale} />
     <meta property="og:url" content={canonicalUrl} />
@@ -103,34 +67,6 @@ html.no-font-loading body {
     <meta name="format-detection" content="address=no,email=no,telephone=no" />
     <script is:inline>
       (() => {
-        const root = document.documentElement;
-        if (!("fonts" in document)) {
-          root.classList.remove("fonts-pending");
-          root.classList.add("no-font-loading");
-          return;
-        }
-        let fontLoadingSettled = false;
-        const finishFontLoading = (className) => {
-          if (fontLoadingSettled) return;
-          fontLoadingSettled = true;
-          root.classList.remove("fonts-pending");
-          root.classList.add(className);
-        };
-        const fallbackTimer = window.setTimeout(() => finishFontLoading("no-font-loading"), 1500);
-        document.fonts.load('1em "Cabinet Grotesk"').then(
-          () => {
-            window.clearTimeout(fallbackTimer);
-            finishFontLoading("fonts-ready");
-          },
-          () => {
-            window.clearTimeout(fallbackTimer);
-            finishFontLoading("no-font-loading");
-          },
-        );
-      })();
-    </script>
-    <script is:inline>
-      (() => {
         if ("serviceWorker" in navigator) {
           window.addEventListener("load", () => {
             navigator.serviceWorker.register("/sw.js").catch(() => {});
@@ -139,17 +75,7 @@ html.no-font-loading body {
       })();
     </script>
   </head>
-  <body class="antialiased">
-    <input data-theme-input class="theme-input" id="site-theme-input" type="checkbox" aria-hidden="true" tabindex="-1" />
-    <script is:inline>
-      (() => {
-        const theme = document.documentElement.dataset.initialTheme || "light";
-        const input = document.querySelector("[data-theme-input]");
-        if (input) {
-          input.checked = theme === "dark";
-        }
-      })();
-    </script>
+  <body>
     <slot />
   </body>
 </html>

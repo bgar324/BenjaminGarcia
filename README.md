@@ -6,119 +6,86 @@ Live site: [bentgarcia.com](https://bentgarcia.com)
 
 ## Overview
 
-This repo powers a static portfolio site with two public routes:
+This repository contains a deliberately minimal, static portfolio with two public routes:
 
-- `/` - a one-page portfolio with profile, experience, projects, education, and closing sections
-- `/archive` - a larger project archive with links to live sites and source code
+- `/` - introduction, experience, selected work, about, and contact links
+- `/archive` - a chronological archive of projects with live-site and source links
 
-The site is intentionally easy to maintain. Most content lives in Astro pages/components, shared portfolio data is centralized in one typed data file, and media ships from `public/static`.
+The interface uses a single-column charcoal layout, restrained typography, calm staggered reveals, and underline-to-fill link interactions. There is no client-side framework, theme toggle, navigation shell, or UI state to maintain.
 
 ## Highlights
 
-- Astro static generation with framework-free interactive UI
-- Light and dark mode with a small persisted theme controller
-- Animated page reveals, dropdown cards, and image/video modals with CSS and vanilla JavaScript
-- Typed project archive data
-- Astro diagnostics via `astro check`
-- SEO metadata, Open Graph tags, web manifest, robots, and sitemap output
-- Resume served from `public/resume.pdf`
+- Astro static generation with no client-side framework runtime
+- Responsive single-column layout for desktop and mobile
+- Accessible reduced-motion support and keyboard focus states
+- Typed experience, selected-project, and archive data
+- Generated Open Graph and Twitter images
+- Canonical metadata, structured data, sitemap, robots, and web manifest
+- Resume and PolicyC paper served as public PDF assets
 
 ## Stack
 
 - Astro 5
 - TypeScript 5
-- Tailwind 4
+- Tailwind CSS 4
+- Inter Variable via Fontsource
 
 ## Project Structure
 
 ```text
 src/
   pages/
-    index.astro          Home route
-    archive.astro        Archive route
-    404.astro            Custom 404 route
-    opengraph-image.png.ts Social preview image
-    sitemap-index.xml.ts Sitemap output
-    twitter-image.png.ts   Social preview image
+    index.astro             Home page
+    archive.astro           Complete project archive
+    404.astro               Custom 404 page
+    opengraph-image.png.ts  Generated Open Graph image
+    twitter-image.png.ts    Generated Twitter image
+    sitemap-index.xml.ts    Generated sitemap
   layouts/
-    BaseLayout.astro     Shared document shell and metadata
-  components/
-    Dropdown.astro       Expandable experience/education rows
-    FooterLink.astro     Footer link styling
-    Icon.astro           Inline SVG icons
+    BaseLayout.astro        Shared document shell and metadata
   data/
-    site.ts              Site config and portfolio data
-  fonts/
-    CabinetGrotesk...    Local font asset
+    site.ts                 Portfolio content and site configuration
   lib/
-    socialImage.ts       Shared social image renderer
-  assets/
-    ...                  Profile, company, school, and project images
+    socialImage.ts          Shared social-image renderer
   styles/
-    globals.css          Global styles
+    globals.css             Layout, typography, motion, and interaction styles
 
 public/
-  static/              Static favicon
-  manifest.webmanifest PWA manifest
-  resume.pdf           Primary resume file
-  sw.js                Static asset service worker
-
-astro.config.mjs        Astro config with Tailwind
+  static/favicon.svg
+  manifest.webmanifest
+  policyc.pdf
+  resume.pdf
+  robots.txt
+  sw.js
 ```
 
 ## Local Development
 
-Prerequisites:
-
-- Node.js 20+
-- pnpm 10+
-
-Install dependencies and start the dev server:
+Requires Node.js 20+ and pnpm 10+.
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-Open `http://localhost:4321`.
+Open [localhost:4321](http://localhost:4321).
 
-Run lint checks with:
+## Validation and Production
 
 ```bash
 pnpm lint
-```
-
-## Production
-
-Build and serve the production bundle:
-
-```bash
 pnpm build
 pnpm start
 ```
 
-The current build succeeds and statically generates:
-
-- `/`
-- `/archive`
-- `/404`
-- `/opengraph-image.png`
-- `/sitemap-index.xml`
-- `/twitter-image.png`
+`pnpm lint` runs Astro diagnostics. `pnpm build` creates the fully static production output in `dist/`.
 
 ## Editing Content
 
-- `src/pages/*.astro` defines public routes.
-- `src/layouts/BaseLayout.astro` contains document metadata, canonical URL, Open Graph config, and the theme bootstrap script.
-- `src/pages/index.astro` controls the home page layout and section order.
-- `src/pages/archive.astro` renders the project archive.
-- `src/data/site.ts` is the source of truth for site config, social links, experience, education, selected projects, and archive entries.
-- `src/components/*.astro` contains the shared static UI pieces.
-- `src/assets/*` holds the portfolio images, logos, and project previews.
-- `public/static/*` holds files that must be served without Astro asset processing.
-- `public/resume.pdf` is the file opened by the resume buttons.
+- Update homepage structure and copy in `src/pages/index.astro`.
+- Update experience, selected work, archive entries, social links, and site metadata in `src/data/site.ts`.
+- Update the project archive layout in `src/pages/archive.astro`.
+- Update global visual styling and motion in `src/styles/globals.css`.
+- Replace `public/resume.pdf` or `public/policyc.pdf` to publish newer document versions at the same URLs.
 
-## Notes
-
-- No environment variables are required for the current site.
-- The production build is fully static.
+No environment variables are required.
