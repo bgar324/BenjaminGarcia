@@ -1,6 +1,6 @@
 # Benjamin Garcia Portfolio
 
-Personal portfolio for Benjamin Garcia, built with Astro and deployed on Vercel.
+Personal portfolio for Benjamin Garcia, written in plain HTML and CSS and deployed on Vercel.
 
 Live site: [bentgarcia.com](https://bentgarcia.com)
 
@@ -11,81 +11,50 @@ This repository contains a deliberately minimal, static portfolio with two publi
 - `/` - introduction, experience, selected work, about, and contact links
 - `/archive` - a chronological archive of projects with live-site and source links
 
-The interface uses a single-column charcoal layout, restrained typography, calm staggered reveals, and underline-to-fill link interactions. There is no client-side framework, theme toggle, navigation shell, or UI state to maintain.
+The interface uses a single-column charcoal layout, restrained typography, calm staggered reveals, and underline-to-fill link interactions. There is no JavaScript, build step, framework, theme toggle, navigation shell, or UI state to maintain.
 
 ## Highlights
 
-- Astro static generation with no client-side framework runtime
+- Plain HTML and CSS with zero JavaScript and zero dependencies
 - Responsive single-column layout for desktop and mobile
 - Accessible reduced-motion support and keyboard focus states
-- Typed experience, selected-project, and archive data
-- Generated Open Graph and Twitter images
+- Pure-CSS staggered reveal animations and link interactions
 - Canonical metadata, structured data, sitemap, robots, and web manifest
+- Self-hosted Inter Variable font
 - Resume and PolicyC paper served as public PDF assets
-
-## Stack
-
-- Astro 5
-- TypeScript 5
-- Tailwind CSS 4
-- Inter Variable via Fontsource
 
 ## Project Structure
 
 ```text
-src/
-  pages/
-    index.astro             Home page
-    archive.astro           Complete project archive
-    404.astro               Custom 404 page
-    opengraph-image.png.ts  Generated Open Graph image
-    twitter-image.png.ts    Generated Twitter image
-    sitemap-index.xml.ts    Generated sitemap
-  layouts/
-    BaseLayout.astro        Shared document shell and metadata
-  data/
-    site.ts                 Portfolio content and site configuration
-  lib/
-    socialImage.ts          Shared social-image renderer
-  styles/
-    globals.css             Layout, typography, motion, and interaction styles
-
-public/
-  static/favicon.svg
-  manifest.webmanifest
-  policyc.pdf
-  resume.pdf
-  robots.txt
-  sw.js
+index.html            Home page
+archive/index.html    Complete project archive
+404.html              Custom 404 page
+styles.css            Layout, typography, motion, and interaction styles
+fonts/                Self-hosted Inter Variable woff2 files
+static/favicon.svg
+manifest.webmanifest
+sitemap.xml
+robots.txt
+policyc.pdf
+resume.pdf
+vercel.json           Clean URLs and cache headers
 ```
 
 ## Local Development
 
-Requires Node.js 20+ and pnpm 10+.
+No install or build step. Serve the directory with any static file server:
 
 ```bash
-pnpm install
-pnpm dev
+python3 -m http.server 8000
 ```
 
-Open [localhost:4321](http://localhost:4321).
-
-## Validation and Production
-
-```bash
-pnpm lint
-pnpm build
-pnpm start
-```
-
-`pnpm lint` runs Astro diagnostics. `pnpm build` creates the fully static production output in `dist/`.
+Open [localhost:8000](http://localhost:8000).
 
 ## Editing Content
 
-- Update homepage structure and copy in `src/pages/index.astro`.
-- Update experience, selected work, archive entries, social links, and site metadata in `src/data/site.ts`.
-- Update the project archive layout in `src/pages/archive.astro`.
-- Update global visual styling and motion in `src/styles/globals.css`.
-- Replace `public/resume.pdf` or `public/policyc.pdf` to publish newer document versions at the same URLs.
+- Update homepage structure and copy in `index.html`.
+- Update the project archive in `archive/index.html`.
+- Update global visual styling and motion in `styles.css`.
+- Replace `resume.pdf` or `policyc.pdf` to publish newer document versions at the same URLs.
 
 No environment variables are required.

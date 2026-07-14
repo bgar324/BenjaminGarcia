@@ -1,11 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "astro",
-  "buildCommand": "pnpm run build",
-  "outputDirectory": "dist",
+  "framework": null,
+  "buildCommand": null,
+  "installCommand": null,
+  "outputDirectory": null,
+  "cleanUrls": true,
   "headers": [
     {
-      "source": "/_astro/(.*)",
+      "source": "/fonts/(.*)\\.woff2",
       "headers": [
         {
           "key": "Cache-Control",
