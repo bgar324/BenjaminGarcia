@@ -20,6 +20,7 @@
 :root {
   --background: #171717;
   --foreground: #ededed;
+  --soft: #b8b8b8;
   --muted: #9a9a9a;
   --line: #303030;
   --focus: #ffffff;
@@ -116,7 +117,8 @@ a:focus-visible {
 
 .intro-greeting {
   margin: 0 0 1.5rem;
-  font-size: 1.125rem;
+  color: var(--soft);
+  font-size: 1.25rem;
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.4;
@@ -258,8 +260,8 @@ a:focus-visible {
 .about-copy p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.98rem;
-  line-height: 1.7;
+  font-size: 0.9rem;
+  line-height: 1.65;
 }
 
 .about-copy p + p {
