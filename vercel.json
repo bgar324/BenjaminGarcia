@@ -5,6 +5,13 @@
   "installCommand": null,
   "outputDirectory": null,
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/archive",
+      "destination": "/projects",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/fonts/(.*)\\.woff2",

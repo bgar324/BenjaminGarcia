@@ -9,7 +9,7 @@ Live site: [bentgarcia.com](https://bentgarcia.com)
 This repository contains a deliberately minimal, static portfolio with two public routes:
 
 - `/` - introduction, experience, selected work, about, and contact links
-- `/archive` - a chronological archive of projects with live-site and source links
+- `/projects` - a chronological collection of projects with live-site and source links
 
 The interface uses a single-column charcoal layout, restrained typography, calm staggered reveals, and underline-to-fill link interactions. There is no JavaScript, build step, framework, theme toggle, navigation shell, or UI state to maintain.
 
@@ -27,7 +27,7 @@ The interface uses a single-column charcoal layout, restrained typography, calm 
 
 ```text
 index.html            Home page
-archive/index.html    Complete project archive
+projects/index.html   Complete project collection
 404.html              Custom 404 page
 styles.css            Layout, typography, motion, and interaction styles
 fonts/                Self-hosted Inter Variable woff2 files
@@ -53,7 +53,7 @@ Open [localhost:8000](http://localhost:8000).
 ## Editing Content
 
 - Update homepage structure and copy in `index.html`.
-- Update the project archive in `archive/index.html`.
+- Update the project collection in `projects/index.html`.
 - Update global visual styling and motion in `styles.css`.
 - Replace `resume.pdf` or `policyc.pdf` to publish newer document versions at the same URLs.
 
