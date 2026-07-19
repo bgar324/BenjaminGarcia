@@ -11,16 +11,16 @@ This repository contains a deliberately minimal, static portfolio with two publi
 - `/` - introduction, experience, selected work, about, and contact links
 - `/projects` - a chronological collection of projects with live-site and source links
 
-The interface uses a single-column charcoal layout, restrained typography, calm staggered reveals, and underline-to-fill link interactions. There is no JavaScript, build step, framework, theme toggle, navigation shell, or UI state to maintain.
+The interface uses a single-column charcoal layout, a conventional system-font scale, and underline-to-fill link interactions. There is no JavaScript, build step, framework, theme toggle, navigation shell, or UI state to maintain.
 
 ## Highlights
 
 - Plain HTML and CSS with zero JavaScript and zero dependencies
 - Responsive single-column layout for desktop and mobile
-- Accessible reduced-motion support and keyboard focus states
-- Pure-CSS staggered reveal animations and link interactions
+- Accessible keyboard focus states and reduced-motion handling
+- Immediate content rendering with no entrance animation or font download
 - Canonical metadata, structured data, sitemap, robots, and web manifest
-- Self-hosted Inter Variable font
+- Native system font stack with standard 400, 500, and 600 weights
 - Resume and PolicyC paper served as public PDF assets
 
 ## Project Structure
@@ -29,8 +29,7 @@ The interface uses a single-column charcoal layout, restrained typography, calm 
 index.html            Home page
 projects/index.html   Complete project collection
 404.html              Custom 404 page
-styles.css            Layout, typography, motion, and interaction styles
-fonts/                Self-hosted Inter Variable woff2 files
+styles.css            Layout, typography, and interaction styles
 static/favicon.svg
 manifest.webmanifest
 sitemap.xml

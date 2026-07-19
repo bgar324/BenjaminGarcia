@@ -1,22 +1,3 @@
-/* Inter Variable, self-hosted (from @fontsource-variable/inter) */
-@font-face {
-  font-family: "Inter Variable";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 100 900;
-  src: url(/fonts/inter-latin-ext-wght-normal.woff2) format("woff2-variations");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-
-@font-face {
-  font-family: "Inter Variable";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 100 900;
-  src: url(/fonts/inter-latin-wght-normal.woff2) format("woff2-variations");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
 :root {
   --background: #171717;
   --foreground: #ededed;
@@ -24,6 +5,16 @@
   --muted: #9a9a9a;
   --line: #303030;
   --focus: #ffffff;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-display: clamp(2.25rem, 5.5vw, 3rem);
+  --leading-tight: 1.15;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --tracking-tight: -0.02em;
 }
 
 html {
@@ -31,7 +22,7 @@ html {
   scroll-behavior: smooth;
   background: var(--background);
   color-scheme: dark;
-  line-height: 1.5;
+  line-height: var(--leading-normal);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
 }
@@ -42,7 +33,9 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: "Inter Variable", Inter, ui-sans-serif, sans-serif;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 400;
   font-kerning: normal;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -66,8 +59,8 @@ a {
   color: inherit;
   text-decoration: none;
   transition:
-    background-size 620ms cubic-bezier(0.16, 1, 0.3, 1),
-    color 360ms ease;
+    background-size 160ms ease,
+    color 160ms ease;
 }
 
 @media (hover: hover) {
@@ -107,7 +100,7 @@ a:focus-visible {
   flex-shrink: 0;
   gap: 1.1rem;
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: var(--text-xs);
 }
 
 .intro {
@@ -118,27 +111,27 @@ a:focus-visible {
 .intro-greeting {
   margin: 0 0 1.5rem;
   color: var(--soft);
-  font-size: 1.25rem;
+  font-size: var(--text-lg);
   font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.4;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-normal);
 }
 
 .intro h1 {
   max-width: 21ch;
   margin: 0;
-  font-size: clamp(2.1rem, 5.5vw, 3.05rem);
-  font-weight: 490;
-  letter-spacing: -0.043em;
-  line-height: 1.1;
+  font-size: var(--text-display);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
 }
 
 .intro-copy {
   max-width: 610px;
   margin: 2rem 0 0;
   color: var(--muted);
-  font-size: 0.98rem;
-  line-height: 1.7;
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
 }
 
 .intro-copy a,
@@ -161,15 +154,15 @@ a:focus-visible {
 
 .section-heading h2 {
   margin: 0;
-  font-size: 1rem;
-  font-weight: 540;
-  letter-spacing: -0.015em;
+  font-size: var(--text-base);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
 }
 
 .section-link {
   flex-shrink: 0;
   color: #737373;
-  font-size: 0.75rem;
+  font-size: var(--text-xs);
 }
 
 .project-list,
@@ -218,9 +211,9 @@ a:focus-visible {
 .experience-row h3,
 .projects-entry h2 {
   margin: 0;
-  font-size: 1.02rem;
-  font-weight: 540;
-  letter-spacing: -0.015em;
+  font-size: var(--text-base);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
 }
 
 .project > p,
@@ -229,8 +222,8 @@ a:focus-visible {
   max-width: 610px;
   margin: 0.65rem 0 0;
   color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.65;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
 }
 
 .project-heading h3,
@@ -244,7 +237,7 @@ a:focus-visible {
 .projects-year {
   margin: 0.65rem 0 0;
   color: #737373;
-  font-size: 0.75rem;
+  font-size: var(--text-xs);
 }
 
 .experience-heading > p {
@@ -259,8 +252,8 @@ a:focus-visible {
 .about-copy p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.65;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
 }
 
 .about-copy p + p {
@@ -274,7 +267,7 @@ a:focus-visible {
   padding-block: 2.25rem 4rem;
   border-top: 1px solid var(--line);
   color: #737373;
-  font-size: 0.75rem;
+  font-size: var(--text-xs);
   text-align: center;
 }
 
@@ -290,17 +283,17 @@ a:focus-visible {
   display: inline-block;
   margin-bottom: 6rem;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: var(--text-sm);
 }
 
 .projects-header h1,
 .not-found h1 {
   max-width: 18ch;
   margin: 0;
-  font-size: clamp(2rem, 6vw, 3rem);
-  font-weight: 500;
-  letter-spacing: -0.045em;
-  line-height: 1.12;
+  font-size: var(--text-display);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
 }
 
 .projects-row {
@@ -332,32 +325,14 @@ a:focus-visible {
 .not-found-code {
   margin: 0 0 1rem;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: var(--text-sm);
 }
 
 .not-found .text-arrow-link {
   width: fit-content;
   margin-top: 2rem;
   color: var(--muted);
-  font-size: 0.82rem;
-}
-
-.reveal {
-  animation: reveal 1500ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: var(--delay, 0ms);
-}
-
-@keyframes reveal {
-  from {
-    opacity: 0;
-    filter: blur(8px);
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
-  }
+  font-size: var(--text-sm);
 }
 
 @media (max-width: 620px) {
@@ -419,10 +394,6 @@ a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .reveal {
-    animation: none;
   }
 
   a {
