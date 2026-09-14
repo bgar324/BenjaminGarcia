@@ -5,6 +5,13 @@ from dataclasses import dataclass
 from html import escape
 from pathlib import Path
 
+from embedded_inter_font import (
+    EMBEDDED_STYLE,
+    FONT_FAMILY,
+    assert_svg_font_coverage,
+    bump_svg_cache_versions,
+)
+
 
 ROOT = Path(__file__).resolve().parents[1]
 STATIC = ROOT / "static"
@@ -18,7 +25,22 @@ BLUE = "#c6d6e5"
 CORAL = "#d7a18d"
 GRAY = "#aaa6a0"
 RUST = "#8f684e"
-FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+FONT = FONT_FAMILY
+GENERATED_SVGS = (
+    "policyc-input-reduction.svg",
+    "policyc-preservation.svg",
+    "policyc-cost-reduction.svg",
+    "policyc-billed-cost.svg",
+    "policyc-latency.svg",
+    "policyc-compiler-pipeline.svg",
+    "policyc-compiler-pipeline-v09.svg",
+    "policyc-study-protocol.svg",
+    "policyc-paired-outcomes.svg",
+    "policyc-polaris-pipeline.svg",
+    "policyc-canary-protocol.svg",
+    "policyc-canary-arms.svg",
+    "policyc-reader-economics.svg",
+)
 
 
 @dataclass(frozen=True)
@@ -84,11 +106,12 @@ def line(x1: float, y1: float, x2: float, y2: float, **attrs: object) -> str:
 
 
 def svg_document(width: int, height: int, title_value: str, description: str, body: list[str], defs: str = "") -> str:
-    return "\n".join(
+    document = "\n".join(
         [
             f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title description">',
             f'  <title id="title">{escape(title_value)}</title>',
             f'  <desc id="description">{escape(description)}</desc>',
+            EMBEDDED_STYLE,
             defs,
             f'  <rect width="{width}" height="{height}" fill="{BACKGROUND}" />',
             f'  <g font-family="{FONT}" fill="{INK}">',
@@ -98,7 +121,8 @@ def svg_document(width: int, height: int, title_value: str, description: str, bo
             "",
         ]
     )
-
+    assert_svg_font_coverage(document)
+    return document
 
 def write_svg(filename: str, width: int, height: int, title_value: str, description: str, body: list[str], defs: str = "") -> None:
     (STATIC / filename).write_text(svg_document(width, height, title_value, description, body, defs), encoding="utf-8")
@@ -887,9 +911,15 @@ def validate_data() -> None:
     assert sum(canary.calls for canary in CANARIES) == 321
 
 
+
+
 def main() -> None:
     STATIC.mkdir(exist_ok=True)
     validate_data()
+    before = {
+        name: (STATIC / name).read_bytes() if (STATIC / name).is_file() else None
+        for name in GENERATED_SVGS
+    }
     input_chart()
     preservation_chart()
     cost_chart()
@@ -903,6 +933,12 @@ def main() -> None:
     canary_arms_chart()
     reader_economics_chart()
     canary_protocol_chart()
+    changed = {
+        name
+        for name, previous in before.items()
+        if (STATIC / name).read_bytes() != previous
+    }
+    bump_svg_cache_versions(changed)
 
 
 if __name__ == "__main__":

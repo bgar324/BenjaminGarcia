@@ -22,7 +22,7 @@
     <meta property="og:title" content="Building PolicyC, a policy compiler" />
     <meta property="og:description" content="Six compiler versions, five frozen studies, and five canaries: why smaller policy prompts lost critical behavior, how a model reading the policy's own clauses recovered it, and what that reading costs." />
     <meta property="og:site_name" content="Benjamin Garcia" />
-    <meta property="og:image" content="https://www.bentgarcia.com/static/og.png?v=4" />
+    <meta property="og:image" content="https://www.bentgarcia.com/static/og.png?v=5" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Benjamin Garcia — I build software that turns complex systems into simple experiences." />
@@ -31,7 +31,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Building PolicyC, a policy compiler" />
     <meta name="twitter:description" content="Six compiler versions, five frozen studies, and five canaries: why smaller policy prompts lost critical behavior, how a model reading the policy's own clauses recovered it, and what that reading costs." />
-    <meta name="twitter:image" content="https://www.bentgarcia.com/static/og.png?v=4" />
+    <meta name="twitter:image" content="https://www.bentgarcia.com/static/og.png?v=5" />
     <meta name="format-detection" content="address=no,email=no,telephone=no" />
     <script type="application/ld+json">
       {
@@ -44,7 +44,7 @@
         "datePublished": "2026-09-03",
         "dateModified": "2026-09-06",
         "inLanguage": "en-US",
-        "image": "https://www.bentgarcia.com/static/og.png?v=4",
+        "image": "https://www.bentgarcia.com/static/og.png?v=5",
         "keywords": ["PolicyC", "Polaris", "policy compilation", "LLM", "prompt engineering", "TypeScript", "Python", "OpenAI", "evaluation"],
         "author": {
           "@type": "Person",
@@ -92,36 +92,36 @@
 
           <div class="article-chart-panels">
             <figure class="article-chart-panel" data-chart="input">
-              <a href="/static/policyc-input-reduction.svg?v=5" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC input-reduction chart at full size">
-                <img src="/static/policyc-input-reduction.svg?v=5" width="1130" height="762" decoding="async" alt="Mean actual input-token reduction by compiler: 98.23 percent for 0.5, 89.69 percent for 0.6, 93.75 percent for 0.7, 94.76 percent for 0.8, and 92.99 percent for 0.9. More reduction is better; less is worse." />
+              <a href="/static/policyc-input-reduction.svg?v=6" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC input-reduction chart at full size">
+                <img src="/static/policyc-input-reduction.svg?v=6" width="1130" height="762" decoding="async" alt="Mean actual input-token reduction by compiler: 98.23 percent for 0.5, 89.69 percent for 0.6, 93.75 percent for 0.7, 94.76 percent for 0.8, and 92.99 percent for 0.9. More reduction is better; less is worse." />
               </a>
               <figcaption>Every frozen compiler removed between 89.69% and 98.23% of mean input context. Each version used a new held-out set, so the line shows study order rather than controlled gains.</figcaption>
             </figure>
 
             <figure class="article-chart-panel" data-chart="preservation">
-              <a href="/static/policyc-preservation.svg?v=7" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC preservation chart at full size">
-                <img src="/static/policyc-preservation.svg?v=7" width="1130" height="762" decoding="async" alt="Conditional critical-obligation preservation by compiler: 85.98 percent for 0.5, 86.49 percent for 0.6, 79.75 percent for 0.7, 75.76 percent for 0.8, and 75.91 percent for 0.9. Trial-level Wilson intervals for every version remain below the 95 percent target. A second dashed line at 90.4 percent marks how often one full-policy sample reproduced another's pass on held-out v5. More preservation is better; less is worse." />
+              <a href="/static/policyc-preservation.svg?v=8" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC preservation chart at full size">
+                <img src="/static/policyc-preservation.svg?v=8" width="1130" height="762" decoding="async" alt="Conditional critical-obligation preservation by compiler: 85.98 percent for 0.5, 86.49 percent for 0.6, 79.75 percent for 0.7, 75.76 percent for 0.8, and 75.91 percent for 0.9. Trial-level Wilson intervals for every version remain below the 95 percent target. A second dashed line at 90.4 percent marks how often one full-policy sample reproduced another's pass on held-out v5. More preservation is better; less is worse." />
               </a>
               <figcaption>No frozen study reached the 95% target. The lower dashed line is the reference's own self-consistency: on held-out v5, a second sample of the full policy reproduced the first sample's pass 90.4% of the time. A baseline, not a ceiling.</figcaption>
             </figure>
 
             <figure class="article-chart-panel" data-chart="cost">
-              <a href="/static/policyc-cost-reduction.svg?v=7" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC cost-reduction chart at full size">
-                <img src="/static/policyc-cost-reduction.svg?v=7" width="1130" height="762" decoding="async" alt="Paired-execution billed-cost reduction by compiler was 23.01 percent for 0.5, 24.50 percent for 0.6, 12.14 percent for 0.7, 18.03 percent for 0.8, and 17.21 percent for 0.9. Uncached-equivalent cost reduction was 67.80, 55.36, 59.46, 66.00, and 58.69 percent. More reduction is better; less is worse. Compiler 0.9's billed comparison uses the same 177 complete pairs in both conditions; its 60 compile-time extractor calls cost 0.2678 dollars and are reported separately." />
+              <a href="/static/policyc-cost-reduction.svg?v=8" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC cost-reduction chart at full size">
+                <img src="/static/policyc-cost-reduction.svg?v=8" width="1130" height="762" decoding="async" alt="Paired-execution billed-cost reduction by compiler was 23.01 percent for 0.5, 24.50 percent for 0.6, 12.14 percent for 0.7, 18.03 percent for 0.8, and 17.21 percent for 0.9. Uncached-equivalent cost reduction was 67.80, 55.36, 59.46, 66.00, and 58.69 percent. More reduction is better; less is worse. Compiler 0.9's billed comparison uses the same 177 complete pairs in both conditions; its 60 compile-time extractor calls cost 0.2678 dollars and are reported separately." />
               </a>
               <figcaption>Prompt caching and tool fees narrowed the observed bill. Each percentage follows its frozen audit's paired comparison basis; compiler 0.9 uses the same 177 complete pairs in both conditions and reports its 60 extractor calls separately at $0.2678.</figcaption>
             </figure>
 
             <figure class="article-chart-panel" data-chart="billed">
-              <a href="/static/policyc-billed-cost.svg?v=3" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC billed-cost chart at full size">
-                <img src="/static/policyc-billed-cost.svg?v=3" width="1130" height="762" decoding="async" alt="Measured billed cost per execution, full-policy billed versus compiler-slice billed: 0.002592 dollars versus 0.001995 dollars for compiler 0.5; 0.003934 versus 0.002970 for 0.6; 0.002760 versus 0.002425 for 0.7; 0.002885 versus 0.002365 for 0.8; and 0.003427 versus 0.002837 for 0.9. Versions 0.5 through 0.7 use all planned executions, 0.8 uses the same 163 complete pairs in both conditions, and 0.9 uses the same 177 complete pairs. Both values are observed costs, not forecasts; lower is better." />
+              <a href="/static/policyc-billed-cost.svg?v=4" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC billed-cost chart at full size">
+                <img src="/static/policyc-billed-cost.svg?v=4" width="1130" height="762" decoding="async" alt="Measured billed cost per execution, full-policy billed versus compiler-slice billed: 0.002592 dollars versus 0.001995 dollars for compiler 0.5; 0.003934 versus 0.002970 for 0.6; 0.002760 versus 0.002425 for 0.7; 0.002885 versus 0.002365 for 0.8; and 0.003427 versus 0.002837 for 0.9. Versions 0.5 through 0.7 use all planned executions, 0.8 uses the same 163 complete pairs in both conditions, and 0.9 uses the same 177 complete pairs. Both values are observed costs, not forecasts; lower is better." />
               </a>
               <figcaption>Both bars are observed billed spend, including tool fees—not forecasts. Versions 0.5–0.7 normalize all planned executions; 0.8 and 0.9 normalize the same 163 and 177 complete pairs, respectively. Figure 2's run total still covers every issued call, including 0.9's 179 full-policy and 180 compiler-slice calls.</figcaption>
             </figure>
 
             <figure class="article-chart-panel" data-chart="latency">
-              <a href="/static/policyc-latency.svg?v=5" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC latency chart at full size">
-                <img src="/static/policyc-latency.svg?v=5" width="1130" height="762" decoding="async" alt="Latency change relative to the full policy: compiler 0.5 was 19.95 percent faster, 0.6 was 0.39 percent slower, 0.7 was 14.63 percent slower, 0.8 was 7.07 percent faster, and 0.9 was 13.36 percent slower. Less latency change is better; more is worse." />
+              <a href="/static/policyc-latency.svg?v=6" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC latency chart at full size">
+                <img src="/static/policyc-latency.svg?v=6" width="1130" height="762" decoding="async" alt="Latency change relative to the full policy: compiler 0.5 was 19.95 percent faster, 0.6 was 0.39 percent slower, 0.7 was 14.63 percent slower, 0.8 was 7.07 percent faster, and 0.9 was 13.36 percent slower. Less latency change is better; more is worse." />
               </a>
               <figcaption>Less input did not guarantee less wall-clock time. Only 0.5 and 0.8 were faster than their full-policy conditions.</figcaption>
             </figure>
@@ -157,22 +157,22 @@
 
               <div class="article-chart-panels">
                 <figure class="article-chart-panel" data-chart="architecture-legacy" aria-labelledby="policyc-pipeline-legacy-caption">
-                  <a href="/static/policyc-compiler-pipeline.svg?v=3" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC 0.5 through 0.8 pipeline figure at full size">
-                    <img src="/static/policyc-compiler-pipeline.svg?v=3" width="1130" height="520" loading="lazy" decoding="async" alt="PolicyC compilers 0.5 through 0.8 match and retain policy nodes, close their dependencies, then specialize and emit a compact prompt. Compiler 0.8 adds one regular-expression predicate, while most state, limits, and precedence remain in matching code and emitted prose." />
+                  <a href="/static/policyc-compiler-pipeline.svg?v=4" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC 0.5 through 0.8 pipeline figure at full size">
+                    <img src="/static/policyc-compiler-pipeline.svg?v=4" width="1130" height="520" loading="lazy" decoding="async" alt="PolicyC compilers 0.5 through 0.8 match and retain policy nodes, close their dependencies, then specialize and emit a compact prompt. Compiler 0.8 adds one regular-expression predicate, while most state, limits, and precedence remain in matching code and emitted prose." />
                   </a>
                   <figcaption id="policyc-pipeline-legacy-caption"><strong>Figure 1A.</strong> Compilers 0.5–0.8 use a filter-first pipeline. Version 0.8 adds one specialization predicate without changing the larger architecture.</figcaption>
                 </figure>
 
                 <figure class="article-chart-panel" data-chart="architecture-v09" aria-labelledby="policyc-pipeline-v09-caption">
-                  <a href="/static/policyc-compiler-pipeline-v09.svg?v=2" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC 0.9 compiler pipeline figure at full size">
-                    <img src="/static/policyc-compiler-pipeline-v09.svg?v=2" width="1130" height="580" loading="lazy" decoding="async" alt="PolicyC compiler 0.9 reads the request once into a typed RequestState while selecting and closing policy nodes. For the held-out study, its model-assisted extractor makes one compile-time call per request and persists that state before either execution condition runs. Partial evaluation chooses declared branches, applies obligation precedence, lowers unavailable tools, and passes a resolved program to a printer that makes no policy decisions." />
+                  <a href="/static/policyc-compiler-pipeline-v09.svg?v=3" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC 0.9 compiler pipeline figure at full size">
+                    <img src="/static/policyc-compiler-pipeline-v09.svg?v=3" width="1130" height="580" loading="lazy" decoding="async" alt="PolicyC compiler 0.9 reads the request once into a typed RequestState while selecting and closing policy nodes. For the held-out study, its model-assisted extractor makes one compile-time call per request and persists that state before either execution condition runs. Partial evaluation chooses declared branches, applies obligation precedence, lowers unavailable tools, and passes a resolved program to a printer that makes no policy decisions." />
                   </a>
                   <figcaption id="policyc-pipeline-v09-caption"><strong>Figure 1B.</strong> Compiler 0.9 separates reading, selection, semantic evaluation, and printing; 0.10 extends the state and the field contracts without changing the shape. The held-out frontend made one model call per request and persisted the resulting state before either execution condition ran.</figcaption>
                 </figure>
 
                 <figure class="article-chart-panel" data-chart="architecture-polaris" aria-labelledby="policyc-pipeline-polaris-caption">
-                  <a href="/static/policyc-polaris-pipeline.svg?v=1" target="_blank" rel="noopener noreferrer" aria-label="Open the Polaris model-reader pipeline figure at full size">
-                    <img src="/static/policyc-polaris-pipeline.svg?v=1" width="1130" height="580" loading="lazy" decoding="async" alt="Polaris keeps the policy's original 61 clauses, deduplicates repeated boilerplate, and prunes only on a structural fact the case declares, giving a verbatim slice of about three thousand tokens. A separate model call reads that slice and the request and writes request-specific directives; under contract 2 it answers each condition listed from a frozen source-first index exactly once. Only the directives are appended for the answer call, and an empty reading renders the bare slice." />
+                  <a href="/static/policyc-polaris-pipeline.svg?v=2" target="_blank" rel="noopener noreferrer" aria-label="Open the Polaris model-reader pipeline figure at full size">
+                    <img src="/static/policyc-polaris-pipeline.svg?v=2" width="1130" height="580" loading="lazy" decoding="async" alt="Polaris keeps the policy's original 61 clauses, deduplicates repeated boilerplate, and prunes only on a structural fact the case declares, giving a verbatim slice of about three thousand tokens. A separate model call reads that slice and the request and writes request-specific directives; under contract 2 it answers each condition listed from a frozen source-first index exactly once. Only the directives are appended for the answer call, and an empty reading renders the bare slice." />
                   </a>
                   <figcaption id="policyc-pipeline-polaris-caption"><strong>Figure 1C.</strong> Polaris, the second approach. The policy stays in its own words; a model reads the slice and the request and writes directives. Nothing deterministic sits between the request and the directive.</figcaption>
                 </figure>
@@ -187,8 +187,8 @@
             <p>Once I inspected a frozen study, its cases became development evidence and were never reused as fresh held-out evidence. Compilers 0.5 through 0.9 therefore faced different case sets. Their sequence shows what each version exposed, not a controlled comparison between versions.</p>
             <p>Every case declared its request, context, obligations, prohibitions, tool expectations, and semantic rubric independently of the candidate prompt. The same request ran three times under the full policy and three times under the compiled slice using one pinned GPT-5 mini snapshot.</p>
             <figure class="article-dashboard article-diagram" aria-labelledby="policyc-protocol-caption">
-              <a href="/static/policyc-study-protocol.svg?v=5" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC held-out study table at full size">
-                <img src="/static/policyc-study-protocol.svg?v=5" width="1130" height="760" loading="lazy" decoding="async" alt="Five frozen studies used 280 cases and 1,680 planned trial slots. The table compares observed full-policy billed and compiler-slice billed cost per execution: 0.002592 dollars versus 0.001995 dollars for compiler 0.5; 0.003934 versus 0.002970 for 0.6; 0.002760 versus 0.002425 for 0.7; 0.002885 versus 0.002365 for 0.8; and 0.003427 versus 0.002837 for 0.9. Version 0.9's normalized columns use the same 177 complete pairs, while its run total includes 179 issued full-policy and 180 issued compiler-slice calls. Run cost across all issued paired-study calls was 4.9013 dollars. Compiler 0.9 also used 60 compile-time extractor calls costing 0.2678 dollars, reported separately." />
+              <a href="/static/policyc-study-protocol.svg?v=6" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC held-out study table at full size">
+                <img src="/static/policyc-study-protocol.svg?v=6" width="1130" height="760" loading="lazy" decoding="async" alt="Five frozen studies used 280 cases and 1,680 planned trial slots. The table compares observed full-policy billed and compiler-slice billed cost per execution: 0.002592 dollars versus 0.001995 dollars for compiler 0.5; 0.003934 versus 0.002970 for 0.6; 0.002760 versus 0.002425 for 0.7; 0.002885 versus 0.002365 for 0.8; and 0.003427 versus 0.002837 for 0.9. Version 0.9's normalized columns use the same 177 complete pairs, while its run total includes 179 issued full-policy and 180 issued compiler-slice calls. Run cost across all issued paired-study calls was 4.9013 dollars. Compiler 0.9 also used 60 compile-time extractor calls costing 0.2678 dollars, reported separately." />
               </a>
               <figcaption id="policyc-protocol-caption"><strong>Figure 2.</strong> Full-policy billed / execution and Compiler-slice billed / execution are observed costs on equal denominators within each version. Versions 0.5–0.7 use all planned executions; 0.8 and 0.9 use 163 and 177 complete pairs. The All issued / run total column includes every issued study call, including 0.9's unmatched 180th compiler-slice call. The five studies cost $4.9013; compiler 0.9's 60 extractor calls cost $0.2678 separately.</figcaption>
             </figure>
@@ -246,8 +246,8 @@
             <p>Reading the 60 held-out requests cost $0.2678. That compile-time extraction spend is reported beside the execution study, not netted into its cost reductions: the 17.21% billed and 58.69% uncached-equivalent figures compare only the paired full-policy and compiled execution conditions.</p>
             <p>The architecture changed, but the fifth held-out study still failed. Among 177 complete pairs, compiler 0.9 preserved 104 of 137 full-policy successes, or 75.91%. Mean input fell by 92.99%, uncached-equivalent cost by 58.69%, and billed cost by 17.21%. Sixteen cases contained at least one full-only regression.</p>
             <figure class="article-dashboard article-diagram" aria-labelledby="policyc-outcomes-caption">
-              <a href="/static/policyc-paired-outcomes.svg?v=2" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC paired-outcomes chart at full size">
-                <img src="/static/policyc-paired-outcomes.svg?v=2" width="1130" height="900" loading="lazy" decoding="async" alt="Primary strategy-blind semantic paired outcomes. Compiler 0.5 had 92 both-pass, 15 full-only, 9 compiler-only, and 13 both-fail pairs. Compiler 0.6 had 64 both-pass, 10 full-only, 9 compiler-only, and 53 both-fail pairs, plus 3 ungradable pairs. Compiler 0.7 had 130, 33, 11, and 6. Compiler 0.8 had 100, 32, 11, and 20. Compiler 0.9 had 104, 33, 21, and 19." />
+              <a href="/static/policyc-paired-outcomes.svg?v=3" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC paired-outcomes chart at full size">
+                <img src="/static/policyc-paired-outcomes.svg?v=3" width="1130" height="900" loading="lazy" decoding="async" alt="Primary strategy-blind semantic paired outcomes. Compiler 0.5 had 92 both-pass, 15 full-only, 9 compiler-only, and 13 both-fail pairs. Compiler 0.6 had 64 both-pass, 10 full-only, 9 compiler-only, and 53 both-fail pairs, plus 3 ungradable pairs. Compiler 0.7 had 130, 33, 11, and 6. Compiler 0.8 had 100, 32, 11, and 20. Compiler 0.9 had 104, 33, 21, and 19." />
               </a>
               <figcaption id="policyc-outcomes-caption"><strong>Figure 3.</strong> Primary strategy-blind semantic outcomes. Different datasets and denominators make the bars descriptive study results, not a controlled version comparison.</figcaption>
             </figure>
@@ -291,8 +291,8 @@
             </dl>
             <blockquote><p>The model re-verifies facts. It follows directives. Everything I built after this emits directives or nothing.</p></blockquote>
             <figure class="article-dashboard article-diagram" aria-labelledby="policyc-canary-protocol-caption">
-              <a href="/static/policyc-canary-protocol.svg?v=1" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC canary protocol table at full size">
-                <img src="/static/policyc-canary-protocol.svg?v=1" width="1130" height="760" loading="lazy" decoding="async" alt="Five canaries. Canary 1: 4 cases, full, clause, and compiler arms, 29 calls, 0.0616 dollars, asked whether the model applies a preserved condition; no, it re-asked on the confirmed send. Canary 2: 8 cases, adding two evidence-binding arms, 80 calls, 0.1639 dollars; quoted evidence made it worse. Canary 3: 8 cases, adding the model reader, 92 calls, 0.411 dollars; the reader read 3 of 4 fresh confirmations with 0 unsafe actions. Canary 4: 8 cases, 3 cheaper readers, 24 calls, 0.026 dollars; all killed at the ledger gate. Canary 5: 8 cases, 4 readers and the condition list, 96 calls, 0.245 dollars; cheap readers still did not read. 321 paid calls and 0.907 dollars in total." />
+              <a href="/static/policyc-canary-protocol.svg?v=2" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC canary protocol table at full size">
+                <img src="/static/policyc-canary-protocol.svg?v=2" width="1130" height="760" loading="lazy" decoding="async" alt="Five canaries. Canary 1: 4 cases, full, clause, and compiler arms, 29 calls, 0.0616 dollars, asked whether the model applies a preserved condition; no, it re-asked on the confirmed send. Canary 2: 8 cases, adding two evidence-binding arms, 80 calls, 0.1639 dollars; quoted evidence made it worse. Canary 3: 8 cases, adding the model reader, 92 calls, 0.411 dollars; the reader read 3 of 4 fresh confirmations with 0 unsafe actions. Canary 4: 8 cases, 3 cheaper readers, 24 calls, 0.026 dollars; all killed at the ledger gate. Canary 5: 8 cases, 4 readers and the condition list, 96 calls, 0.245 dollars; cheap readers still did not read. 321 paid calls and 0.907 dollars in total." />
               </a>
               <figcaption id="policyc-canary-protocol-caption"><strong>Figure 4.</strong> The canaries. Each one had a question, an isolated author, a rubric locked before any output, and, from canary 2 on, a separate isolated blind grader. Eight cases is direction, not rate, and every set is spent after one use.</figcaption>
             </figure>
@@ -303,8 +303,8 @@
             <p>The third canary held the clause slice fixed and added one thing: a gpt-5-mini call that reads the verbatim clauses and the request, resolves the policy's own conditions, and writes directives. Only the directives are appended. No <code>RequestState</code>, no regex, no enumerated authorization vocabulary anywhere on the path. The reader prompt was written before any case existed and never revised.</p>
             <p>On the four fresh confirmation phrasings the author wrote ("word for word the text is…", "read it back and it is exactly…", "carry on…"), the deterministic frontend read <code>authorization: absent</code> on every one, so the compiler asked on every sample. The model reader read three as confirmed, wrote "proceed, do not ask for further confirmation," and the answering model acted on all six corresponding trials. Its one miss was in the safe direction.</p>
             <figure class="article-dashboard article-diagram" aria-labelledby="policyc-canary-arms-caption">
-              <a href="/static/policyc-canary-arms.svg?v=1" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC canary arms chart at full size">
-                <img src="/static/policyc-canary-arms.svg?v=1" width="1130" height="970" loading="lazy" decoding="async" alt="Canary 3, sixteen trials per arm: the compiler slice passed 2 with 0 unsafe actions and 8 redundant re-asks and kept 1 of 6 full-policy passes; the clause slice passed 5 with 2 unsafe and 3 re-asks and kept 2 of 6; the full policy passed 6 with 3 unsafe and 2 re-asks and reproduced 2 of 6 of its own; the model reader passed 6 with 0 unsafe and 2 re-asks and kept 4 of 6. Canary 5 without a reader: compiler 4 passes, 8 re-asks, kept 4 of 5; clause slice 4 passes, 7 re-asks, kept 4 of 5; full policy 5 passes with 2 unsafe actions, reproduced 4 of 5 of its own; condition list 3 passes, 4 re-asks, kept 3 of 5." />
+              <a href="/static/policyc-canary-arms.svg?v=2" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC canary arms chart at full size">
+                <img src="/static/policyc-canary-arms.svg?v=2" width="1130" height="970" loading="lazy" decoding="async" alt="Canary 3, sixteen trials per arm: the compiler slice passed 2 with 0 unsafe actions and 8 redundant re-asks and kept 1 of 6 full-policy passes; the clause slice passed 5 with 2 unsafe and 3 re-asks and kept 2 of 6; the full policy passed 6 with 3 unsafe and 2 re-asks and reproduced 2 of 6 of its own; the model reader passed 6 with 0 unsafe and 2 re-asks and kept 4 of 6. Canary 5 without a reader: compiler 4 passes, 8 re-asks, kept 4 of 5; clause slice 4 passes, 7 re-asks, kept 4 of 5; full policy 5 passes with 2 unsafe actions, reproduced 4 of 5 of its own; condition list 3 passes, 4 re-asks, kept 3 of 5." />
               </a>
               <figcaption id="policyc-canary-arms-caption"><strong>Figure 5.</strong> Top: the model reader matched the full policy's passes, took no unsafe action where the full policy took three, and kept 4 of the full policy's 6 passes where the compiler kept 1. Bottom: canary 5's answer run, where the conditions were listed in the answer prompt with no reader.</figcaption>
             </figure>
@@ -319,8 +319,8 @@
             <p>All three were. Mini at minimal effort, with zero reasoning tokens, wrote seven contradictory resolutions on one confirmed forward and settled on "only after the user confirms." Nano at minimal returned an empty reading on every confirmed action. Nano at low effort read every confirmed action as "ask" and the privileged external send as "proceed." Every cheap reader was right on the unconfirmed cases and wrong on the confirmed ones. They kept the rule and lost the request, which is exactly what the regex had done.</p>
             <p>I thought the failure was search: finding the request-dependent rules in three thousand tokens of clauses. So I audited the whole policy once, offline, for every sentence whose effect depends on what the request says, froze sixteen conditions over twelve clauses, and wrote a second reader contract. The conditions of the retained clauses are listed for the reader, and it must answer each exactly once with a verdict, a quote, and a directive; the runtime rejects anything else. Alongside, a single-call arm lists the same sentences in the answer prompt with no reader at all, to ask whether a separate reader was needed.</p>
             <figure class="article-dashboard article-diagram" aria-labelledby="policyc-reader-economics-caption">
-              <a href="/static/policyc-reader-economics.svg?v=1" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC reader economics chart at full size">
-                <img src="/static/policyc-reader-economics.svg?v=1" width="1130" height="830" loading="lazy" decoding="async" alt="Reader cost per case on a log scale. gpt-5-mini at default effort cost 0.0059 dollars and 24 seconds under contract 1 and 0.0077 dollars and 30.6 seconds under contract 2, and read the confirmations both times, above the full-policy answer's 0.0046 dollars. mini at minimal effort cost 0.0026 and 0.0024 dollars and did not read. nano at low effort cost 0.00047 and 0.0009 dollars and did not read. nano at minimal effort cost 0.00014 and 0.0003 dollars and did not read. The break-even reader budget is about 0.001 dollars." />
+              <a href="/static/policyc-reader-economics.svg?v=2" target="_blank" rel="noopener noreferrer" aria-label="Open the PolicyC reader economics chart at full size">
+                <img src="/static/policyc-reader-economics.svg?v=2" width="1130" height="830" loading="lazy" decoding="async" alt="Reader cost per case on a log scale. gpt-5-mini at default effort cost 0.0059 dollars and 24 seconds under contract 1 and 0.0077 dollars and 30.6 seconds under contract 2, and read the confirmations both times, above the full-policy answer's 0.0046 dollars. mini at minimal effort cost 0.0026 and 0.0024 dollars and did not read. nano at low effort cost 0.00047 and 0.0009 dollars and did not read. nano at minimal effort cost 0.00014 and 0.0003 dollars and did not read. The break-even reader budget is about 0.001 dollars." />
               </a>
               <figcaption id="policyc-reader-economics-caption"><strong>Figure 6.</strong> Every reader I tried, by cost per request. The only two that read the fresh confirmations are the two above the full-policy answer's cost. Everything under the break-even line did not read.</figcaption>
             </figure>

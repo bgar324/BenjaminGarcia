@@ -5,8 +5,8 @@ The card mirrors the homepage: site name, the h1, the intro paragraph, and the
 canonical host. All four strings are read out of index.html, so editing the site
 copy and rerunning this script is the only supported way to change the image.
 
-Rendering uses headless Chrome with the site's own palette and font stack, which
-is why the output matches the rest of the site on macOS (-apple-system -> SF Pro).
+Rendering embeds the repository's bundled Inter font in the temporary HTML,
+so the card uses the same deterministic face as the page on every machine.
 
     python3 scripts/generate-og-image.py
 
@@ -16,6 +16,7 @@ to N+1 so CDN and social-scraper caches fetch the new image.
 
 from __future__ import annotations
 
+import base64
 import html
 import re
 import shutil
@@ -33,13 +34,23 @@ WIDTH = 1200
 HEIGHT = 630
 RENDER_TIMEOUT = 90
 
-# Palette and type stack copied from the :root block in styles.css.
+# Palette and type values copied from the :root block in styles.css.
 BACKGROUND = "#fcfcfb"
 FOREGROUND = "#2c2826"
 SOFT = "color-mix(in srgb, #2c2826 86%, #fcfcfb)"
 MUTED = "color-mix(in srgb, #2c2826 75%, #fcfcfb)"
 SUBTLE = "color-mix(in srgb, #2c2826 64%, #fcfcfb)"
-FONT = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+INTER_FONT = ROOT / "static" / "inter-variable.woff2"
+INTER_FONT_DATA_URI = "data:font/woff2;base64," + base64.b64encode(INTER_FONT.read_bytes()).decode("ascii")
+EMBEDDED_FONT_FAMILY = "PortfolioEmbeddedInter"
+FONT_FACE = f"""@font-face {{
+  font-family: "{EMBEDDED_FONT_FAMILY}";
+  src: url("{INTER_FONT_DATA_URI}") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: block;
+}}"""
+FONT = f'"{EMBEDDED_FONT_FAMILY}", sans-serif'
 
 CHROME_CANDIDATES = (
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
@@ -100,6 +111,7 @@ def build_document(copy: dict[str, str]) -> str:
   <head>
     <meta charset="utf-8" />
     <style>
+      {FONT_FACE}
       html, body {{ margin: 0; padding: 0; }}
       body {{
         width: {WIDTH}px;
@@ -112,6 +124,8 @@ def build_document(copy: dict[str, str]) -> str:
         color: {FOREGROUND};
         font-family: {FONT};
         font-synthesis: none;
+        font-size-adjust: 0.53;
+        letter-spacing: -0.0025em;
         -webkit-font-smoothing: antialiased;
       }}
       p {{ margin: 0; }}
@@ -127,6 +141,7 @@ def build_document(copy: dict[str, str]) -> str:
         font-weight: 600;
         line-height: 1.164;
         letter-spacing: -0.02em;
+        font-size-adjust: 0.508;
       }}
       .lead {{
         margin: 26px 0 0;
@@ -212,7 +227,9 @@ def render(document: str) -> bytes:
 def bump_cache_version() -> int | None:
     """Advance every `static/og.png?v=N` reference; returns the new version."""
     pattern = re.compile(r"(static/og\.png\?v=)(\d+)")
-    pages = sorted(ROOT.glob("**/*.html"))
+    pages = sorted(
+        path for path in ROOT.glob("**/*.html") if ".worktrees" not in path.parts
+    )
     versions = {
         int(match.group(2))
         for page in pages

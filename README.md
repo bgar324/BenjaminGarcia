@@ -14,16 +14,16 @@ This repository contains a deliberately minimal, static portfolio with five publ
 - `/blog/policyc` - a case study about testing request-specific policy compilation
 - `/blog/logit` - a case study about designing a workout logger that gets out of the way
 
-The interface uses a single-column charcoal layout, a conventional system-font scale, and underline-to-fill link interactions. One small shared script restores each page's last scroll position within the current tab. There is no build step, framework, theme toggle, or navigation shell to maintain.
+The interface uses a single-column charcoal layout, a bundled Inter type scale, and underline-to-fill link interactions. One small shared script restores each page's last scroll position within the current tab. There is no build step, framework, theme toggle, or navigation shell to maintain.
 
 ## Highlights
 
 - Plain HTML and CSS with one dependency-free scroll-restoration script
 - Responsive single-column layout for desktop and mobile
 - Accessible keyboard focus states and reduced-motion handling
-- Immediate content rendering with no entrance animation or font download
+- Immediate content rendering with no entrance animation
 - Canonical metadata, structured data, sitemap, robots, and web manifest
-- Native system font stack with standard 400, 500, and 600 weights
+- Bundled Inter variable font with standard 400, 500, and 600 weights
 - Resume and PolicyC paper served as public PDF assets
 
 ## Project Structure
@@ -36,6 +36,14 @@ blog/policyc/index.html Blog article about PolicyC
 blog/logit/index.html  Blog article about Logit
 404.html              Custom 404 page
 styles.css            Layout, typography, and interaction styles
+static/inter-variable.woff2     Bundled page font
+static/inter-variable-italic.woff2   Bundled italic page font
+static/inter-diagrams.woff2    Subset embedded in SVG image assets
+static/inter-diagrams.unicodes Glyph coverage checked before SVG emission
+static/inter-diagrams.sha256   Checksums for the generated diagram subset
+scripts/requirements.txt       Pinned font-subset build dependencies
+scripts/build-inter-diagram-font.py  Rebuilds the subset from the bundled font
+scripts/embedded_inter_font.py Embeds the diagram font in SVG assets
 static/scroll-restoration.js   Restores per-page scroll position within a tab
 scripts/generate-policyc-charts.py   Regenerates the PolicyC SVG figures
 static/favicon.svg
@@ -88,7 +96,8 @@ Open [localhost:8000](http://localhost:8000).
 - Update the project collection in `projects/index.html`.
 - Update global visual styling and motion in `styles.css`.
 - Add portfolio articles under `blog/<slug>/index.html` and their images under `static/`.
-- Run `python3 scripts/generate-policyc-charts.py` after changing PolicyC study data or figure copy.
+- Run `python3 -m pip install -r scripts/requirements.txt` once when rebuilding the diagram font. `static/inter-diagrams.unicodes` is the explicit subset input: if generator output reports a missing U+ codepoint, add it there, then run `python3 scripts/build-inter-diagram-font.py`, `python3 scripts/generate-policyc-charts.py`, and `python3 scripts/embedded_inter_font.py`. The builder derives the subset from the bundled page font and asserts that its cmap exactly matches the manifest.
+- Run `python3 scripts/generate-og-image.py` after changing homepage card copy. The generator embeds the bundled page font.
 - Replace `resume.pdf` or `policyc.pdf` to publish newer document versions at the same URLs.
 
 No environment variables are required.
