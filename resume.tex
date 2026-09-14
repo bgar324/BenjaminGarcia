@@ -1,0 +1,178 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage[english]{babel}
+
+\pagestyle{empty}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\ifdefined\pdfgentounicode
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
+
+\newcommand{\resumeItem}[1]{\item\small{#1\vspace{-1pt}}}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{\small#3} & \textit{\small#4} \\
+  \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+  \vspace{-2pt}\item
+  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \small#1 & #2 \\
+  \end{tabular*}\vspace{-5pt}
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{
+  \begin{itemize}[leftmargin=0.15in, label={}, itemsep=2pt]
+}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=1pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+\begin{center}
+  \textbf{\LARGE Benjamin Garcia} \\ \vspace{1pt}
+  \small (626) 246-4778 $|$
+  \href{mailto:bentgarcia05@gmail.com}{\underline{bentgarcia05@gmail.com}} $|$
+  \href{https://github.com/bgar324}{\underline{GitHub}} $|$
+  \href{https://www.linkedin.com/in/btgarcia05}{\underline{LinkedIn}} $|$
+  \href{https://www.bentgarcia.com/}{\underline{Portfolio}}
+\end{center}
+
+\section{Education}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{University of California, Los Angeles}{Los Angeles, CA}
+{B.S. in Computer Science}{Expected Dec. 2027}
+
+\vspace{4pt}
+\item[]\small{
+\textbf{Relevant coursework:} Data Structures and Algorithms, Operating Systems, Computer Architecture, Programming Languages
+}
+
+\resumeSubHeadingListEnd
+
+\section{Experience}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{Undergraduate Researcher}{Dec. 2025 -- Present}
+{UCLA Human-Computer Interaction Research Lab}{Los Angeles, CA}
+\resumeItemListStart
+
+\resumeItem{Built and deployed a multi-agent research platform in Next.js, TypeScript, FastAPI, and PostgreSQL; adapted it into the baseline for a \textbf{10-participant study}.}
+
+\resumeItem{Evaluated retrieval methods across \textbf{5 research domains}; built a Semantic Scholar pipeline with query expansion, \textbf{SPECTER embeddings, HDBSCAN clustering, and diversity-aware selection}.}
+
+\resumeItem{Instrumented both study conditions with participant-workspace mapping and revision-checked saves, tested with \textbf{173 pytest and 40 Playwright tests} covering retrieval, interactions, and failure recovery.}
+
+\resumeItem{Conducted \textbf{10 study sessions} and contributed hypothesis evaluations, figures, and manuscript revisions to \textbf{PerspectEvolver, submitted to CHI 2027}.}
+
+\resumeItemListEnd
+
+\resumeSubheading
+{Production Engineer Fellow}{Jun. 2026 -- Sep. 2026}
+{Meta \& Major League Hacking}{Remote}
+\resumeItemListStart
+
+\resumeItem{Deployed a containerized Flask/MySQL application on CentOS behind Nginx during a 12-week fellowship, with unittest-gated CI/CD, structured logging, and deployment health checks.}
+
+\resumeItem{Monitored host and container health with Prometheus and Grafana; configured alerts for container failures and unavailable endpoints.}
+
+\resumeItemListEnd
+
+\resumeSubheading
+{Software Engineer Intern}{Jun. 2026 -- Aug. 2026}
+{Lindy}{San Francisco, CA}
+\resumeItemListStart
+
+\resumeItem{Built multi-tenant AI-agent guardrails with fail-closed enforcement and Slack/web approvals, handling \textbf{5,104 production decisions across 674 workspaces}.}
+
+\resumeItem{Took over a stalled project to unify personal and team integrations; reached general availability and removed a net \textbf{4,521 lines of code}.}
+
+\resumeItem{Instrumented and launched an unreleased Home page to all users; reached \textbf{64\% of weekly product users} and removed \textbf{2,031 lines of legacy code}.}
+
+\resumeItem{Led engineering for existing users' migration to Teammate, shipping Slack authorization, durable memory import, and E2E launch checks; recorded \textbf{78 completed migrations and 50 activations}.}
+
+\resumeItem{Traced a \textbf{21-minute Slack data-loading stall} to KEDA scale-down; migrated BullMQ orchestration to Temporal in one day, with \textbf{one failure in 409 runs} over the next 14 days.}
+
+\resumeItem{Removed a \textbf{60-second email delay} on a path handling \textbf{28K sends/week} after confirming \textbf{all 68 sampled prompts} were redundant countdowns, not approval requests.}
+
+\resumeItemListEnd
+
+\resumeSubheading
+{Software Engineer Intern}{Mar. 2025 -- Aug. 2025}
+{Todd Agriscience}{Los Angeles, CA}
+
+\resumeItemListStart
+
+\resumeItem{
+Shipped production Next.js crop-intelligence dashboards for \textbf{10 clients}, integrating Palantir Foundry pipelines and AWS Lambda services.
+}
+
+\resumeItem{
+Built data pipelines for \textbf{20\texttt{+} agricultural data streams}, feeding soil, irrigation, weather, and yield visualizations.
+}
+
+\resumeItem{
+Supported the engineering team's growth from \textbf{1 intern to 14 engineers} by writing development documentation, standardizing onboarding, and guiding new contributors through the codebase.
+}
+
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\section{Projects}
+\resumeSubHeadingListStart
+
+\resumeProjectHeading
+{\textbf{PolicyC} $|$ \emph{TypeScript, Python, asyncio, SQLite, OpenAI API, Zod, FastAPI}}{Jul. 2026 -- Present}
+\resumeItemListStart
+
+\resumeItem{Built a compiler that selects applicable rules from policy graphs using typed request state, reducing mean prompt input by \textbf{89--98\%} across five frozen held-out studies.}
+
+\resumeItem{Preserved \textbf{76--86\% of full-prompt critical-policy passes} in a strategy-blind evaluation of \textbf{1,680 GPT-5 mini runs across 280 held-out cases}; reference self-consistency was 90.4\%.}
+
+\resumeItem{Built a resumable Python asyncio runner with atomic persistence, hash-linked artifacts, and cost ceilings, reaching \textbf{3.60$\times$ effective throughput}; rejected a sixth compiler version at a preregistered gate of 440 hidden assertions.}
+
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Technical skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Languages:} Python, TypeScript, JavaScript, C++, Java, SQL \\
+    \textbf{Technologies:} React, Next.js, Node.js, FastAPI, Flask, Temporal, Redis, PostgreSQL, SQLite, MySQL, GraphQL, WebSockets \\
+    \textbf{Infrastructure:} Docker, Linux/Unix, Nginx, Prometheus, Grafana, GitHub Actions, AWS Lambda, Playwright, Git
+  }}
+\end{itemize}
+
+\end{document}
