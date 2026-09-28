@@ -8,7 +8,7 @@ Live site: [bentgarcia.com](https://www.bentgarcia.com)
 
 This repository contains a deliberately minimal, static portfolio with five public routes:
 
-- `/` - introduction, experience, selected work, about, and contact links
+- `/` - introduction, experience, selected work, about, GitHub contributions, and contact links
 - `/projects` - a chronological collection of projects with live-site and source links
 - `/blog/annie` - a case study about building Annie, a personal iMessage assistant
 - `/blog/policyc` - a case study about testing request-specific policy compilation
@@ -100,4 +100,46 @@ Open [localhost:8000](http://localhost:8000).
 - Run `python3 scripts/generate-og-image.py` after changing homepage card copy. The generator embeds the bundled page font.
 - Replace `resume.pdf` or `policyc.pdf` to publish newer document versions at the same URLs.
 
-No environment variables are required.
+No environment variables are required to serve the site.
+
+### Daily GitHub calendar
+
+The homepage ends with a contribution calendar below About, generated as HTML
+and styled by `styles.css`.
+CSS tooltips show each day's count on hover or keyboard focus, using the site's
+colors and typography. They stay centered over the cell; CSS anchor positioning
+lets them extend beyond the calendar's bounds in supporting browsers.
+The tooltips do not intercept pointer movement between cells. Hovering a cell
+does not outline it; keyboard focus retains a visible indicator.
+On narrow screens, the full year remains horizontally scrollable, but the
+scroller opens at the newest months.
+The calendar makes no browser API calls and works with JavaScript disabled.
+It shows all
+GitHub contributions, not just commits, including private contribution counts
+shared on the profile. No repository names or commit details are published.
+
+To refresh locally, run:
+
+```bash
+python3 scripts/generate-contributions.py
+```
+
+The generator fetches GitHub's public profile contribution calendar, selects
+the 365 dates ending at today's UTC date, and replaces only the block between
+`contributions:start` and `contributions:end` in `index.html`. Use
+`--through YYYY-MM-DD` to reproduce a particular date range. The public
+profile includes anonymized private activity, so no personal GitHub token is
+needed to read the data. An incomplete response or API failure leaves the
+previous calendar intact.
+
+`.github/workflows/contributions.yml` runs daily at approximately 10:23 UTC
+and can also be started manually from the Actions tab. GitHub's automatic
+workflow token is used by checkout and the final commit/push, not to read
+your profile data. The workflow commits only `index.html` when it changes.
+The existing GitHub-to-Vercel integration deploys the resulting push.
+
+The schedule becomes active once the workflow is pushed to `main`. Repository
+rules must allow its token to push to `main`; GitHub may delay scheduled jobs
+or disable them after 60 days without repository activity. Check the Actions
+run and resulting Vercel deployment after enabling it. If a refresh fails, the
+site keeps the last successful calendar.

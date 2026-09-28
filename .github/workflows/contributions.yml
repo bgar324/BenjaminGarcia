@@ -1,0 +1,34 @@
+name: Refresh contribution calendar
+
+on:
+  schedule:
+    - cron: '23 10 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: contribution-calendar
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Generate static calendar
+        run: python3 scripts/generate-contributions.py
+      - name: Publish changed calendar
+        run: |
+          if git diff --quiet -- index.html; then
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- index.html
+          git commit -m "Refresh GitHub contribution calendar"
+          git push origin HEAD:main

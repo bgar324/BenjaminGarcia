@@ -258,6 +258,129 @@ a {
   margin-top: 1.25rem;
 }
 
+.contributions {
+  border-top: 0;
+}
+
+.contributions .section-heading {
+  margin-bottom: 0;
+}
+
+
+.contribution-region {
+  overflow-x: auto;
+  padding: 24px 2px 2px;
+  direction: rtl;
+}
+
+.contribution-region:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 4px;
+}
+
+.contribution-calendar {
+  display: grid;
+  direction: ltr;
+  grid-template-columns: 32px repeat(53, minmax(0, 1fr));
+  grid-template-rows: 18px repeat(7, 10px);
+  gap: 3px;
+  min-width: 660px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.contribution-weekday {
+  line-height: 10px;
+}
+
+.contribution-day {
+  position: relative;
+  border-radius: 2px;
+  outline-offset: 2px;
+}
+
+.contribution-day:is(:hover, :focus-visible) {
+  z-index: 1;
+}
+
+.contribution-day:focus-visible {
+  outline: 1px solid var(--foreground);
+}
+
+.contribution-tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: hidden;
+  pointer-events: none;
+  width: max-content;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--background);
+  color: var(--foreground);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  line-height: var(--leading-normal);
+  white-space: nowrap;
+}
+
+.contribution-day:is(:hover, :focus-visible) .contribution-tooltip {
+  visibility: visible;
+}
+
+/* Anchor to the cell without clipping the tooltip at the calendar's edges. */
+@supports (anchor-scope: --contribution-day) {
+  .contribution-day {
+    anchor-name: --contribution-day;
+    anchor-scope: --contribution-day;
+  }
+
+  .contribution-tooltip {
+    position: fixed;
+    position-anchor: --contribution-day;
+    top: calc(anchor(top) - 6px);
+    bottom: auto;
+    left: anchor(center);
+    transform: translate(-50%, -100%);
+  }
+}
+
+.contribution-level-0 { background: #ebeeea; }
+.contribution-level-1 { background: #c6dfbc; }
+.contribution-level-2 { background: #82b878; }
+.contribution-level-3 { background: #468741; }
+.contribution-level-4 { background: #24602b; }
+
+.contribution-legend {
+  display: flex;
+  direction: ltr;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  min-width: 660px;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.contribution-legend > :first-child {
+  margin-right: 5px;
+}
+
+.contribution-legend > :last-child {
+  margin-left: 5px;
+}
+
+.contribution-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+
+
 .projects-header {
   padding-block: 3rem 6rem;
 }
