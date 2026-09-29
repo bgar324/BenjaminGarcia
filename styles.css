@@ -196,11 +196,10 @@ a {
 
 .experience-heading {
   flex-wrap: wrap;
-  row-gap: 0;
+  row-gap: 0.45rem;
 }
 
 .experience-heading h3 {
-  order: 1;
   white-space: nowrap;
 }
 
@@ -230,15 +229,14 @@ a {
 }
 
 .projects-entry p,
-.experience-date,
+.experience-heading > p,
 .projects-year {
   margin: 0.65rem 0 0;
   color: var(--subtle);
   font-size: var(--text-xs);
 }
 
-.experience-date {
-  order: 2;
+.experience-heading > p {
   flex-shrink: 0;
   margin: 0;
 }
@@ -250,11 +248,6 @@ a {
   font-size: var(--text-sm);
   line-height: var(--leading-normal);
   font-weight: 500;
-}
-
-.experience-role {
-  flex-basis: 100%;
-  order: 3;
 }
 
 .about-copy p {
@@ -816,16 +809,6 @@ a {
   .experience-heading h3 {
     width: 100%;
     white-space: normal;
-  }
-
-  .experience-role {
-    flex-basis: auto;
-    order: 2;
-    margin-top: 0.35rem;
-  }
-
-  .experience-date {
-    order: 3;
   }
 
   .project-heading {
