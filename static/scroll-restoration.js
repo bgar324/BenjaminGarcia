@@ -39,8 +39,7 @@
     }
   });
 
-  addEventListener("pageshow", () => {
-
+  const restore = () => {
     try {
       const saved =
         sessionStorage.getItem(entryKey) ?? sessionStorage.getItem(latestKey);
@@ -52,15 +51,18 @@
         return;
       }
 
-      requestAnimationFrame(() => {
-        const root = document.documentElement;
-        const previousBehavior = root.style.scrollBehavior;
-        root.style.scrollBehavior = "auto";
-        scrollTo(x, y);
-        root.style.scrollBehavior = previousBehavior;
-      });
+      const root = document.documentElement;
+      const previousBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
+      scrollTo(x, y);
+      root.style.scrollBehavior = previousBehavior;
     } catch {
       history.scrollRestoration = "auto";
     }
+  };
+
+  restore();
+  addEventListener("pageshow", (event) => {
+    if (event.persisted) restore();
   });
 })();

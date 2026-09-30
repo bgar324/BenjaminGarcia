@@ -37,6 +37,16 @@
   font-display: swap;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(root),
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
 /* Type tiers — every text role uses exactly one:
    display   --text-display / 600            page h1
    eyebrow   --text-lg  / 500 / soft         line above an h1
