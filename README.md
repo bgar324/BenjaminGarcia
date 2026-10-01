@@ -9,7 +9,7 @@ Live site: [bentgarcia.com](https://www.bentgarcia.com)
 This repository contains a deliberately minimal, static portfolio with five public routes:
 
 - `/` - introduction, experience, selected work, about, GitHub contributions, and contact links
-- `/projects` - a chronological collection of projects with live-site and source links
+- `/projects` - projects grouped by year created, with live-site and source links
 - `/blog/annie` - a case study about building Annie, a personal iMessage assistant
 - `/blog/policyc` - a case study about testing request-specific policy compilation
 - `/blog/logit` - a case study about designing a workout logger that gets out of the way

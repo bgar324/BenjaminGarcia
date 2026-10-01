@@ -238,8 +238,7 @@ a {
 }
 
 .projects-entry p,
-.experience-heading > p,
-.projects-year {
+.experience-heading > p {
   margin: 0.65rem 0 0;
   color: var(--subtle);
   font-size: var(--text-xs);
@@ -412,14 +411,14 @@ a {
   max-width: 18ch;
 }
 
-.projects-row {
-  display: grid;
-  grid-template-columns: 54px minmax(0, 1fr) auto;
-  gap: 1.25rem;
+.projects-year-group + .projects-year-group {
+  margin-top: 3.5rem;
 }
 
-.projects-year {
-  margin: 0.15rem 0 0;
+.projects-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.25rem;
 }
 
 .projects-links {
@@ -833,12 +832,12 @@ a {
   }
 
   .projects-row {
-    grid-template-columns: 38px minmax(0, 1fr);
-    gap: 0.85rem 1rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
   }
 
   .projects-links {
-    grid-column: 2;
+    margin-top: 0.75rem;
   }
 }
 
