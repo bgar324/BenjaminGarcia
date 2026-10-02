@@ -14,14 +14,14 @@ This repository contains a deliberately minimal, static portfolio with five publ
 - `/blog/policyc` - a case study about testing request-specific policy compilation
 - `/blog/logit` - a case study about designing a workout logger that gets out of the way
 
-The interface uses a single-column charcoal layout, a bundled Inter type scale, and underline-to-fill link interactions. One small shared script restores each page's last scroll position within the current tab. There is no build step, framework, theme toggle, or navigation shell to maintain.
+The interface uses a single-column layout, a bundled Inter type scale, and underline-to-fill link interactions. The pages remain static HTML. Self-hosted Swup progressively enhances internal navigation without replacing the browser document; no install or build is required to serve or deploy the site.
 
 ## Highlights
 
-- Plain HTML and CSS with one dependency-free scroll-restoration script
+- Static HTML and CSS with progressive navigation and ordinary-link fallback
 - Responsive single-column layout for desktop and mobile
 - Accessible keyboard focus states and reduced-motion handling
-- Immediate content rendering with no entrance animation
+- No page-transition, entrance, or scroll animations. Native View Transitions are not enabled.
 - Canonical metadata, structured data, sitemap, robots, and web manifest
 - Bundled Inter variable font with standard 400, 500, and 600 weights
 - Resume and PolicyC paper served as public PDF assets
@@ -41,10 +41,15 @@ static/inter-variable-italic.woff2   Bundled italic page font
 static/inter-diagrams.woff2    Subset embedded in SVG image assets
 static/inter-diagrams.unicodes Glyph coverage checked before SVG emission
 static/inter-diagrams.sha256   Checksums for the generated diagram subset
+scripts/serve.py               Local preview with direct clean URLs
 scripts/requirements.txt       Pinned font-subset build dependencies
 scripts/build-inter-diagram-font.py  Rebuilds the subset from the bundled font
 scripts/embedded_inter_font.py Embeds the diagram font in SVG assets
-static/scroll-restoration.js   Restores per-page scroll position within a tab
+static/navigation.js          Owns navigation policy and scroll restoration
+static/navigation-vendor.js   Pinned Swup, Head, and Accessibility browser bundles
+static/navigation-vendor.LICENSE.txt   Third-party notices
+scripts/vendor-navigation.py  Reproduces vendor bundles with pinned archive hashes
+scripts/test-navigation.mjs   Browser navigation regressions
 scripts/generate-policyc-charts.py   Regenerates the PolicyC SVG figures
 static/favicon.svg
 static/annie-imessage-conversation.webp
@@ -77,18 +82,62 @@ vercel.json           Buildless deploy overrides, clean URLs, cache headers
 `vercel.json` pins `framework`, `buildCommand`, `installCommand`, and
 `outputDirectory` to `null`. The Vercel project predates this rewrite and still
 carries the old Astro framework preset, so those keys are what force a buildless
-static deploy. Removing them makes Vercel fall back to the preset and the
-deployment fails with no `package.json` to build.
+static deploy. Keep those overrides: the optional `package.json` is for browser
+regression tests, not an Astro build or a production runtime.
 
 ## Local Development
 
-No install or build step. Serve the directory with any static file server:
+No install or build step. Use the clean-URL preview server:
 
 ```bash
-python3 -m http.server 8000
+python3 scripts/serve.py
 ```
 
-Open [localhost:8000](http://localhost:8000).
+Open [127.0.0.1:8765](http://127.0.0.1:8765).
+
+The server serves routes such as `/projects` and `/blog/policyc` directly,
+matching Vercel's clean URLs. Python's generic `http.server` redirects these
+directory paths to trailing-slash URLs instead. If that server was used before,
+the browser may retain its permanent redirects.
+Run `python3 scripts/serve.py --port 8770` and open [127.0.0.1:8770](http://127.0.0.1:8770) for a fresh origin.
+
+### Progressive navigation
+
+`static/navigation.js` uses Swup 4.10.0, Head Plugin 2.3.1, and Accessibility
+Plugin 5.2.1. All runtime code is served locally, with no CDN dependency.
+Internal page visits keep the old `<main>` visible until the HTML is ready,
+then replace it without animation. Swup owns history, titles, metadata,
+screen-reader announcements, and focus. The initializer owns per-entry and
+per-URL scroll positions, including reloads and return links.
+
+PDFs, downloads, external links, named targets, and fragment visits retain
+browser navigation. Same-page fragments relinquish enhancement without
+reloading the document. Fetch failures fall back to full navigation; blocked
+scripts and disabled JavaScript leave ordinary links usable.
+
+New HTML routes should be added to the `pages` set in `static/navigation.js`
+to receive progressive navigation. Otherwise they use normal navigation.
+Regenerate the committed vendor bundle and license notices with
+`python3 scripts/vendor-navigation.py`; archive SHA-512 values are pinned in
+that script.
+
+### Navigation regression tests
+
+Node 20 or newer is needed only for the optional tests:
+
+```bash
+npm ci
+npx playwright install chromium firefox webkit
+npm test
+BROWSER=webkit npm test
+BROWSER=firefox npm test
+```
+
+Each run starts an isolated preview server on an available loopback port.
+The tests cover keeping content visible during loading, metadata/focus,
+distinct history-entry positions, stale responses, fragment handling, and
+failed Back navigation when the library also fails to load. Set `CHROME_BIN`
+to a local Chrome executable to use it instead of Playwright's Chromium.
 
 ## Editing Content
 

@@ -10,3 +10,5 @@ note.txt
 
 old-settings.json
 .env*.local
+
+/node_modules/

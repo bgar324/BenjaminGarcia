@@ -8,3 +8,7 @@
 note.txt
 resume-fall.pdf
 resume.tex
+node_modules
+package.json
+package-lock.json
+scripts/test-navigation.mjs
