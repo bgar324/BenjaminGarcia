@@ -129,8 +129,16 @@ the 365 dates ending at today's UTC date, and replaces only the block between
 `contributions:start` and `contributions:end` in `index.html`. Use
 `--through YYYY-MM-DD` to reproduce a particular date range. The public
 profile includes anonymized private activity, so no personal GitHub token is
-needed to read the data. An incomplete response or API failure leaves the
-previous calendar intact.
+needed to read the data. HTTP 5xx responses and connection/read timeouts get
+up to three attempts, with waits of 5 and 10 seconds between attempts.
+Other HTTP errors and invalid or incomplete calendar data fail immediately.
+Any failed refresh leaves the previous calendar intact.
+
+Run the fetch recovery regression tests with:
+
+```bash
+python3 -m unittest discover -s scripts -p 'test_generate_contributions.py' -v
+```
 
 `.github/workflows/contributions.yml` runs daily at approximately 10:23 UTC
 and can also be started manually from the Actions tab. GitHub's automatic

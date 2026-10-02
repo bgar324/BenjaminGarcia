@@ -6,6 +6,9 @@ from datetime import date, datetime, timedelta, timezone
 from html import unescape
 from pathlib import Path
 import re
+import sys
+from time import sleep
+from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -37,8 +40,23 @@ def fetch_days(end):
         CONTRIBUTIONS_URL,
         headers={"Accept": "text/html", "User-Agent": "BenjaminGarcia-contribution-calendar/1.0"},
     )
-    with urlopen(request, timeout=30) as response:
-        markup = response.read().decode("utf-8")
+    for attempt in range(3):
+        try:
+            with urlopen(request, timeout=30) as response:
+                markup = response.read().decode("utf-8")
+            break
+        except (HTTPError, URLError, TimeoutError) as error:
+            if isinstance(error, HTTPError):
+                retryable = 500 <= error.code < 600
+                error.close()
+            else:
+                retryable = isinstance(error, TimeoutError) or isinstance(error.reason, TimeoutError)
+            if not retryable or attempt == 2:
+                raise
+            delay = 5 * (attempt + 1)
+            print(f"GitHub contribution fetch failed: {error}; retrying in {delay}s",
+                  file=sys.stderr)
+            sleep(delay)
     rows = DAY_PATTERN.findall(markup)
     if not rows:
         raise ValueError("GitHub public profile returned no contribution cells")

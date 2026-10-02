@@ -20,6 +20,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - name: Test contribution fetch recovery
+        run: python3 -m unittest discover -s scripts -p 'test_generate_contributions.py' -v
       - name: Generate static calendar
         run: python3 scripts/generate-contributions.py
       - name: Publish changed calendar
