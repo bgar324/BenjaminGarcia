@@ -16,7 +16,9 @@
     return;
   }
 
-  const pages = new Set(["/", "/projects", "/blog/annie", "/blog/logit", "/blog/policyc", "/404"]);
+  // The independent homepage initializes its own Snoopy and clock scripts.
+  // Returning there needs a full document load, not a main-only replacement.
+  const pages = new Set(["/projects", "/blog/annie", "/blog/logit", "/blog/policyc", "/404"]);
   const isPage = (url) => url.origin === location.origin && !url.hash &&
     pages.has(url.pathname.replace(/\/index\.html$|\/$/, "").replace(/\.html$/, "") || "/");
   const stateKey = "__scrollRestorationId";

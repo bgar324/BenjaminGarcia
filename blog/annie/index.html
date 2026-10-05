@@ -15,9 +15,10 @@
     <link rel="manifest" href="/manifest.webmanifest?v=3" />
     <link rel="preload" href="/static/inter-page.woff2?v=1" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/styles.css?v=54" />
+    <link rel="stylesheet" href="/pages.css?v=1" />
     <script src="/static/navigation-vendor.js?v=1" defer></script>
-    <script src="/static/navigation.js?v=2" defer></script>
-    <meta name="theme-color" content="#fcfcfb" />
+    <script src="/static/navigation.js?v=3" defer></script>
+    <meta name="theme-color" content="#eeeade" />
     <meta property="og:type" content="article" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:url" content="https://www.bentgarcia.com/blog/annie" />
@@ -64,12 +65,16 @@
   <body>
     <main class="article-page">
       <nav class="article-nav" aria-label="Article navigation">
-        <a class="text-arrow-link" href="/">Benjamin Garcia</a>
+        <a class="text-arrow-link" href="/" data-no-swup>Benjamin Garcia</a>
       </nav>
 
       <article>
         <header class="article-header">
-          <h1>Building Annie, an iMessage&nbsp;assistant.</h1>
+          <div class="article-title">
+            <h1>Annie</h1>
+            <img class="article-snoopy" src="/static/snoopy/typewriter.webp" width="558" height="600" alt="Snoopy typing on a purple typewriter" />
+          </div>
+          <p class="article-deck">Building an iMessage assistant.</p>
           <p class="article-meta">
             <a href="https://github.com/bgar324/annie" target="_blank" rel="noopener noreferrer">GitHub</a>
           </p>

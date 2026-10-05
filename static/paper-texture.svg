@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="700" viewBox="0 0 700 700">
+  <filter id="paper" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feTurbulence type="turbulence" baseFrequency=".005 .008" numOctaves="3" seed="14" stitchTiles="stitch" result="folds"/>
+    <feDiffuseLighting in="folds" surfaceScale="5" diffuseConstant="1" lighting-color="#ffffff" result="creases">
+      <feDistantLight azimuth="225" elevation="48"/>
+    </feDiffuseLighting>
+    <feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="3" seed="8" stitchTiles="stitch" result="grain"/>
+    <feColorMatrix in="grain" type="saturate" values="0"/>
+    <feComponentTransfer result="fibers">
+      <feFuncR type="linear" slope=".18" intercept=".82"/>
+      <feFuncG type="linear" slope=".18" intercept=".82"/>
+      <feFuncB type="linear" slope=".18" intercept=".82"/>
+    </feComponentTransfer>
+    <feBlend in="creases" in2="fibers" mode="multiply"/>
+  </filter>
+  <path fill="#fff" filter="url(#paper)" d="M0 0h700v700H0z"/>
+</svg>

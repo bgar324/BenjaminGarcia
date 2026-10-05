@@ -15,9 +15,10 @@
     <link rel="manifest" href="/manifest.webmanifest?v=3" />
     <link rel="preload" href="/static/inter-page.woff2?v=1" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/styles.css?v=54" />
+    <link rel="stylesheet" href="/pages.css?v=1" />
     <script src="/static/navigation-vendor.js?v=1" defer></script>
-    <script src="/static/navigation.js?v=2" defer></script>
-    <meta name="theme-color" content="#fcfcfb" />
+    <script src="/static/navigation.js?v=3" defer></script>
+    <meta name="theme-color" content="#eeeade" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:url" content="https://www.bentgarcia.com/projects" />
@@ -74,8 +75,8 @@
   <body>
     <main class="projects-page">
       <header class="projects-header">
-        <a class="text-arrow-link" href="/">Benjamin Garcia</a>
-        <h1>All Projects</h1>
+        <a class="text-arrow-link" href="/" data-no-swup>Benjamin Garcia</a>
+        <h1><span class="projects-title-line">All <img class="projects-snoopy" src="/static/snoopy/bookshelf.webp" width="600" height="421" alt="" /></span>Projects</h1>
       </header>
 
       <div class="projects-archive">
