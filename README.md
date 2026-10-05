@@ -23,7 +23,7 @@ The interface uses a single-column layout, a bundled Inter type scale, and under
 - Accessible keyboard focus states and reduced-motion handling
 - No page-transition, entrance, or scroll animations. Native View Transitions are not enabled.
 - Canonical metadata, structured data, sitemap, robots, and web manifest
-- Bundled Inter variable font with standard 400, 500, and 600 weights
+- Subsetted Inter normal and italic page fonts with the full variable weight range
 - Resume and PolicyC paper served as public PDF assets
 
 ## Project Structure
@@ -36,14 +36,17 @@ blog/policyc/index.html Blog article about PolicyC
 blog/logit/index.html  Blog article about Logit
 404.html              Custom 404 page
 styles.css            Layout, typography, and interaction styles
-static/inter-variable.woff2     Bundled page font
-static/inter-variable-italic.woff2   Bundled italic page font
+static/inter-page.woff2         Subsetted normal page font
+static/inter-page-italic.woff2  Subsetted italic page font
+static/inter-variable.woff2     Full source font retained for asset generation
+static/inter-variable-italic.woff2   Full italic source font
 static/inter-diagrams.woff2    Subset embedded in SVG image assets
 static/inter-diagrams.unicodes Glyph coverage checked before SVG emission
 static/inter-diagrams.sha256   Checksums for the generated diagram subset
 scripts/serve.py               Local preview with direct clean URLs
 scripts/requirements.txt       Pinned font-subset build dependencies
-scripts/build-inter-diagram-font.py  Rebuilds the subset from the bundled font
+scripts/build-inter-page-fonts.py   Rebuilds both page subsets from full source fonts
+scripts/build-inter-diagram-font.py  Rebuilds the diagram subset from the full source font
 scripts/embedded_inter_font.py Embeds the diagram font in SVG assets
 static/navigation.js          Owns navigation policy and scroll restoration
 static/navigation-vendor.js   Pinned Swup, Head, and Accessibility browser bundles
@@ -145,8 +148,11 @@ to a local Chrome executable to use it instead of Playwright's Chromium.
 - Update the project collection in `projects/index.html`.
 - Update global visual styling and motion in `styles.css`.
 - Add portfolio articles under `blog/<slug>/index.html` and their images under `static/`.
-- Run `python3 -m pip install -r scripts/requirements.txt` once when rebuilding the diagram font. `static/inter-diagrams.unicodes` is the explicit subset input: if generator output reports a missing U+ codepoint, add it there, then run `python3 scripts/build-inter-diagram-font.py`, `python3 scripts/generate-policyc-charts.py`, and `python3 scripts/embedded_inter_font.py`. The builder derives the subset from the bundled page font and asserts that its cmap exactly matches the manifest.
-- Run `python3 scripts/generate-og-image.py` after changing homepage card copy. The generator embeds the bundled page font.
+- Run `python3 -m pip install -r scripts/requirements.txt` once before rebuilding font subsets.
+- Run `python3 scripts/build-inter-page-fonts.py` to rebuild the normal and italic page fonts. The builder combines its Unicode ranges with current rendered HTML text and preserves variable weights and layout features. Keep the full `static/inter-variable.woff2` and `static/inter-variable-italic.woff2` source files; page subsetting does not replace them.
+- Every HTML entry preloads `/static/inter-page.woff2?v=1` with `as="font"`, `type="font/woff2"`, and `crossorigin`. Both page faces use `font-display: block`; italic loads only when needed. Browsers can hide text briefly while the font loads, then show fallback if the blocking period expires. This reduces the initial fallback flash but does not guarantee one can never occur.
+- `static/inter-diagrams.unicodes` is the explicit diagram subset input. If generator output reports a missing U+ codepoint, add it there, then run `python3 scripts/build-inter-diagram-font.py`, `python3 scripts/generate-policyc-charts.py`, and `python3 scripts/embedded_inter_font.py`. The builder derives the subset from the full source font and asserts that its cmap exactly matches the manifest.
+- Run `python3 scripts/generate-og-image.py` after changing homepage card copy. The generator embeds the full source font.
 - Replace `resume.pdf` or `policyc.pdf` to publish newer document versions at the same URLs.
 
 No environment variables are required to serve the site.
