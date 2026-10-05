@@ -2,6 +2,8 @@
 
 Static HTML/CSS portfolio deployed from `main` to https://www.bentgarcia.com through Vercel. No build or install step is required.
 
+Mobile pages extend into safe areas while padding content away from them. The paper texture fades at the upper/lower edges into the same cream used by browser theme metadata. Safari controls its own toolbar rendering; physical-device confirmation is still needed. Desktop archive/article titles share the homepage's Inter size, weight, tracking, and line height with proportional Snoopy artwork; mobile titles adapt to available width. Verified in headless WebKit at 1568/390/320px without horizontal overflow.
+
 ## Roll back to the old portfolio
 
 The last old-portfolio commit is **`1551b7d3fa0090e4c1902e2ef297e43ef100c95e`**, also tagged **`portfolio-before-snoopy-2026-10-05`**. Its homepage bytes were checked against production immediately before this cutover.
