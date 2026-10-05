@@ -35,6 +35,7 @@ h1 span { display: block; }
 .experience-list { display: grid; gap: clamp(1.3125rem, calc(1.3125rem + (100dvh - 49.2rem) / 7), 3rem); }
 .experience-list li { display: grid; grid-template-columns: 5.625rem 12.8125rem minmax(0, 1fr); gap: 1.25rem; align-items: start; }
 .date, .role h3, .project-list h3 { font-weight: 700; }
+.role h3 a, .project-list h3 a { text-decoration: underline; text-underline-offset: .15em; }
 .date { white-space: nowrap; }
 .role p { opacity: .86; }
 .summary { font-size: .75rem; line-height: 1.45; }
