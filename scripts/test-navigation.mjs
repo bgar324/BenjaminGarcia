@@ -83,7 +83,7 @@ test('homepage and reading routes remain usable without JavaScript', async t => 
   const page = await pageFor(t, { javaScriptEnabled: false });
   await page.goto(base + '/');
   assert.equal(await page.locator('.snoopy-static').isVisible(), true);
-  await page.locator('a[href="/projects"]').click();
+  await page.locator('a[href="/projects"]:visible').click();
   await page.locator('.projects-page').waitFor();
   await page.locator('a[href="/blog/annie"]').click();
   await page.locator('.article-page').waitFor();

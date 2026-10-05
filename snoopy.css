@@ -41,7 +41,7 @@ h1 span { display: block; }
 .summary { font-size: .75rem; line-height: 1.45; }
 .project-list { display: grid; gap: 1.1875rem; margin-top: 1.25rem; }
 .project-list p { margin-top: .1875rem; opacity: .86; max-width: 27ch; }
-.all-projects { display: inline-block; margin-top: 1.0625rem; }
+.all-projects { display: inline-block; margin-top: 1.0625rem; text-decoration: underline; text-underline-offset: .15em; }
 .contact { color: var(--red); display: grid; grid-template-columns: 5.5rem 1fr; gap: .9375rem; margin-top: 2.4375rem; }
 .contact ul { display: grid; gap: .4375rem; }
 .contact a { display: flex; gap: .5625rem; align-items: center; }
@@ -94,4 +94,10 @@ footer { display: flex; justify-content: space-between; align-items: baseline; g
   .sheet { padding-inline: 18px; }
   h1 { font-size: 84px; }
   .snoopy, .snoopy-static { top: 5px; left: 160px; width: 66px; height: 66px; }
+}
+.mobile-section-link { display: none; }
+.work-heading { display: flex; align-items: baseline; justify-content: space-between; }
+@media (max-width: 760px) {
+  .mobile-section-link { display: inline-block; padding-block: 12px; margin-block: -12px; font-size: inherit; font-weight: 400; text-decoration: underline; text-underline-offset: .15em; white-space: nowrap; }
+  .all-projects, footer a[href="/resume.pdf"] { display: none; }
 }

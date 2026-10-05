@@ -6,6 +6,8 @@ Mobile pages extend into safe areas while padding content away from them. The pa
 
 Homepage company names and Work project titles are underlined links. Work retains its two-line name/descriptor format; no technical-description paragraph is displayed.
 
+On phones, underlined Résumé and All projects links share the Experience and Work heading rows. On desktop/tablet, Résumé remains in the footer and All projects remains below the featured list. All projects is underlined with no arrow at every size. Responsive copies expose only one link per destination at a time, including without JavaScript.
+
 ## Roll back to the old portfolio
 
 The last old-portfolio commit is **`1551b7d3fa0090e4c1902e2ef297e43ef100c95e`**, also tagged **`portfolio-before-snoopy-2026-10-05`**. Its homepage bytes were checked against production immediately before this cutover.
