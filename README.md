@@ -30,6 +30,10 @@ The homepage must fit on one screen on desktop and tablets, including the comple
 
 The mixed-font homepage uses Inter for names/roles/intro and mono for descriptions/metadata. Five Snoopy poses include daydreaming and headphones; dancing has been replaced. The background is flat cream, including the root canvas. Desktop archive rows span name, technologies, and source links. Desktop articles have a fixed title column with section-linked images/charts underneath, 150ms out/in blur-and-slide swaps, and carry-forward visuals for text-only sections. Mobile, short windows, and no-JavaScript views retain inline figures. Article footers are removed. All diagrams have transparent canvases; the PolicyC generator preserves transparency.
 
+Monospace text uses self-hosted Geist Mono for descriptions, dates, metadata, and secondary-page labels. Its Latin variable WOFF2 comes from `@fontsource-variable/geist-mono` 5.3.0; `OFL-GeistMono.txt` preserves the SIL Open Font License. Regular mono text uses weight 375; experience dates use 500 so they remain secondary to company names. Other bold labels and Inter weights are unchanged. The superseded IBM Plex and static Geist assets are removed.
+
+The three featured Work descriptions share the experience-description typography, including font size, weight, line height, color, and full opacity, on both desktop and phones.
+
 The readable width-based sizing hotfix and footer résumé underline remain in place. The local design was integrated on top of production rather than replacing that fix. The unrelated resume.tex edit, Benjamin_Garcia.pdf, website-audit.md, and Python caches are excluded.
 
 Homepage company names and Work project titles are underlined links. Work retains its two-line name/descriptor format; no technical-description paragraph is displayed.

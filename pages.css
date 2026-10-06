@@ -12,15 +12,15 @@ html:has(main.article-page, main.projects-page, main.not-found) {
 }
 body:has(main.article-page, main.projects-page, main.not-found) { background: var(--background); isolation: isolate; font-size-adjust: none; letter-spacing: normal; }
 .article-page { width: min(100% - 64px, 720px); }
-.article-nav { padding-top: 36px; font: 14px/1.5 'Courier New', Courier, monospace; }
+.article-nav { padding-top: 36px; font: 375 14px/1.5 'Geist Mono', monospace; }
 .article-nav a { color: var(--foreground); }
 .article-header { padding: 64px 0 40px; }
 .article-title { display: flex; align-items: baseline; gap: .25em; font-size: clamp(72px, 7.97194vw, 125px); }
 .article-header h1 { font: 700 1em/.90 Inter, sans-serif; letter-spacing: -.04em; max-width: none; font-size-adjust: none; }
 .article-snoopy { display: block; width: 1.35em; height: 1.35em; min-width: 0; object-fit: contain; flex: 0 1 auto; }
-.article-deck { margin: 24px 0 0; color: var(--foreground); font: 18px/1.5 'Courier New', Courier, monospace; }
+.article-deck { margin: 24px 0 0; color: var(--foreground); font: 375 18px/1.5 'Geist Mono', monospace; }
 .article-meta { margin-top: 16px; gap: 24px; }
-.article-meta a { color: var(--article-accent); font: 14px/1.5 'Courier New', Courier, monospace; text-underline-offset: 3px; }
+.article-meta a { color: var(--article-accent); font: 375 14px/1.5 'Geist Mono', monospace; text-underline-offset: 3px; }
 .article-page .article-example, .article-page article > .article-chart-switcher { max-width: 720px; margin-inline: auto; }
 .article-example { padding-block: 28px; }
 .article-body { padding-block: 48px 64px; }
@@ -31,11 +31,11 @@ body:has(main.article-page, main.projects-page, main.not-found) { background: va
 .article-body a { color: var(--article-accent); text-underline-offset: 3px; }
 .article-body blockquote { max-width: none; border-left-color: var(--article-accent); }
 .article-body blockquote p { color: var(--article-accent); font-size: 18px; }
-.article-example figcaption, .article-dashboard figcaption, .article-chart-panel figcaption { font: 12px/1.6 'Courier New', Courier, monospace; color: var(--subtle); }
+.article-example figcaption, .article-dashboard figcaption, .article-chart-panel figcaption { font: 375 12px/1.6 'Geist Mono', monospace; color: var(--subtle); }
 .article-chart-tabs { gap: 20px; }
-.article-chart-tabs label { font: 13px/1.4 'Courier New', Courier, monospace; }
+.article-chart-tabs label { font: 375 13px/1.4 'Geist Mono', monospace; }
 .article-chart-panel img, .article-diagram img { background: transparent; }
-.article-log { font-family: 'Courier New', Courier, monospace; }
+.article-log { font-family: 'Geist Mono', monospace; font-weight: 375; }
 .article-page a:focus-visible { outline: 2px solid var(--article-accent); outline-offset: 4px; }
 @media (max-width: 600px) {
   .article-page { width: calc(100% - 40px); }
@@ -53,7 +53,7 @@ body:has(main.article-page, main.projects-page, main.not-found) { background: va
 
 .projects-page { width: min(100% - 64px, 720px); padding-bottom: 64px; }
 .projects-header { padding: 36px 0 48px; }
-.projects-header .text-arrow-link { margin-bottom: 64px; color: var(--foreground); font: 14px/1.5 'Courier New', Courier, monospace; }
+.projects-header .text-arrow-link { margin-bottom: 64px; color: var(--foreground); font: 375 14px/1.5 'Geist Mono', monospace; }
 .projects-title-line { display: flex; align-items: center; gap: .25em; }
 .projects-header h1 { max-width: none; font: 700 clamp(72px, 7.97194vw, 125px)/.90 Inter, sans-serif; font-size-adjust: none; letter-spacing: -.04em; }
 .projects-snoopy { width: 1.1em; height: .78em; object-fit: contain; flex: none; }
@@ -62,9 +62,9 @@ body:has(main.article-page, main.projects-page, main.not-found) { background: va
 .projects-year-group > .section-heading { margin: 0; align-items: start; }
 .projects-year-group > .section-heading h2 { font: 700 22px/1.3 Inter, sans-serif; color: var(--article-accent); letter-spacing: -.02em; }
 .projects-row { gap: 20px; padding-block: 24px; }
-.projects-entry h2 { font: 700 16px/1.4 'Courier New', Courier, monospace; letter-spacing: normal; }
-.projects-entry p { margin-top: 6px; font: 13px/1.6 'Courier New', Courier, monospace; color: var(--muted); }
-.projects-links { font: 13px/1.5 'Courier New', Courier, monospace; color: var(--article-accent); }
+.projects-entry h2 { font: 700 16px/1.4 'Geist Mono', monospace; letter-spacing: normal; }
+.projects-entry p { margin-top: 6px; font: 375 13px/1.6 'Geist Mono', monospace; color: var(--muted); }
+.projects-links { font: 375 13px/1.5 'Geist Mono', monospace; color: var(--article-accent); }
 .projects-page a { text-underline-offset: 3px; }
 .projects-page a:focus-visible { outline: 2px solid var(--article-accent); outline-offset: 4px; }
 @media (max-width: 600px) {
@@ -139,7 +139,7 @@ body:has(main.article-page, main.projects-page, main.not-found) { background: va
 
 .not-found { width: min(88%, 800px); min-height: 100dvh; margin-inline: auto; padding-block: clamp(24px, 6dvh, 64px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(24px, 5vw, 64px); }
 .not-found h1 { margin: 0; font: 700 clamp(48px, 5.1vw, 76px)/.98 Inter, sans-serif; letter-spacing: -.04em; }
-.not-found .text-arrow-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 24px; color: var(--foreground); font: 14px/1.5 'Courier New', Courier, monospace; text-underline-offset: 3px; }
+.not-found .text-arrow-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 24px; color: var(--foreground); font: 375 14px/1.5 'Geist Mono', monospace; text-underline-offset: 3px; }
 .not-found a:focus-visible { outline: 2px solid var(--article-accent); outline-offset: 4px; }
 .not-found-snoopy { display: block; width: 100%; height: auto; max-height: min(50dvh, 360px); object-fit: contain; }
 @media (max-width: 760px) {
