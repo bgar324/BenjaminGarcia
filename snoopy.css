@@ -105,16 +105,16 @@ footer a[href="/resume.pdf"] { text-decoration: underline; text-underline-offset
 /* Short windows tighten spacing; they never scale down the reading text. */
 @media (min-width: 761px) and (max-height: 850px) and (min-aspect-ratio: 1/1) {
   .sheet { padding-block: 20px 16px; }
-  .intro { padding-block: 8px 16px; }
+  .intro { padding-block: 8px 12px; }
   h1 { font-size: 5.25rem; }
   .snoopy, .snoopy-static { top: .3rem; left: 9.975rem; width: 4.095rem; height: 4.095rem; }
   .columns { padding-block: 16px; }
-  .section-heading { margin-bottom: 16px; }
-  .experience-list { gap: 12px; }
-  .project-list { margin-top: 16px; gap: 14px; }
+  .section-heading { margin-bottom: 12px; }
+  .experience-list { gap: 10px; }
+  .project-list { margin-top: 12px; gap: 12px; }
   .all-projects { margin-top: 12px; }
-  .contact { margin-top: 20px; }
-  footer { padding-top: 16px; }
+  .contact { margin-top: 16px; }
+  footer { padding-top: 12px; }
 }
 @media (min-width: 761px) and (max-width: 1099px) and (min-aspect-ratio: 1/1) {
   .columns { gap: 2rem; }
@@ -123,5 +123,5 @@ footer a[href="/resume.pdf"] { text-decoration: underline; text-underline-offset
 @media (min-width: 761px) and (max-height: 740px) and (min-aspect-ratio: 1/1) {
   .sheet { padding-block: 12px; }
   .columns { padding-block: 12px; }
-  footer { padding-top: 12px; }
+  footer { padding-top: 8px; }
 }

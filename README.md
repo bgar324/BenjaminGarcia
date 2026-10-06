@@ -4,6 +4,8 @@ Static HTML/CSS portfolio deployed from `main` to https://www.bentgarcia.com thr
 
 Mobile pages extend into safe areas while padding content away from them. The root canvas, body, and page containers use flat cream without a texture layer. Safari controls its own toolbar rendering. Desktop reading pages use a fixed title/media column beside prose; mobile retains its inline layout.
 
+Short desktop windows use compact heading/list/contact/footer spacing without reducing reading text. A further spacing pass accommodates shorter browser content areas; WebKit checks fit 1568×714, 1568×690, 1366×768, and 1280×600. These are simulated viewports, not a guarantee about every Windows font/browser configuration.
+
 ## Approved design update
 
 The mixed-font homepage uses Inter for names/roles/intro and mono for descriptions/metadata. Five Snoopy poses include daydreaming and headphones; dancing has been replaced. The background is flat cream, including the root canvas. Desktop archive rows span name, technologies, and source links. Desktop articles have a fixed title column with section-linked images/charts underneath, 150ms out/in blur-and-slide swaps, and carry-forward visuals for text-only sections. Mobile, short windows, and no-JavaScript views retain inline figures. Article footers are removed. All diagrams have transparent canvases; the PolicyC generator preserves transparency.
