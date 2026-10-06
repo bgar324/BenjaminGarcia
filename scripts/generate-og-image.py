@@ -203,7 +203,12 @@ def main() -> None:
     for label in ("eyebrow", "headline", "lead", "domain"):
         print(f"{label:9} {copy[label]}")
 
-    image = render(build_document(copy)) if "--render" in sys.argv else (ROOT / "scripts/assets/og-approved.png").read_bytes()
+    if "--render" in sys.argv:
+        candidate = Path(tempfile.gettempdir()) / "ben-og-candidate.png"
+        candidate.write_bytes(render(build_document(copy)))
+        print(f"\nwrote review candidate {candidate}; published image and metadata unchanged")
+        return
+    image = (ROOT / "scripts/assets/og-approved.png").read_bytes()
     if OUTPUT.is_file() and OUTPUT.read_bytes() == image:
         print(f"\n{OUTPUT.relative_to(ROOT)} already current ({len(image)} bytes)")
         return
