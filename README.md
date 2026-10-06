@@ -2,7 +2,13 @@
 
 Static HTML/CSS portfolio deployed from `main` to https://www.bentgarcia.com through Vercel. No build or install step is required.
 
-Mobile pages extend into safe areas while padding content away from them. The paper texture fades at the upper/lower edges into the same cream used by browser theme metadata. Safari controls its own toolbar rendering; physical-device confirmation is still needed. Desktop archive/article titles share the homepage's Inter size, weight, tracking, and line height with proportional Snoopy artwork; mobile titles adapt to available width. Verified in headless WebKit at 1568/390/320px without horizontal overflow.
+Mobile pages extend into safe areas while padding content away from them. The root canvas, body, and page containers use flat cream without a texture layer. Safari controls its own toolbar rendering. Desktop reading pages use a fixed title/media column beside prose; mobile retains its inline layout.
+
+## Approved design update
+
+The mixed-font homepage uses Inter for names/roles/intro and mono for descriptions/metadata. Five Snoopy poses include daydreaming and headphones; dancing has been replaced. The background is flat cream, including the root canvas. Desktop archive rows span name, technologies, and source links. Desktop articles have a fixed title column with section-linked images/charts underneath, 150ms out/in blur-and-slide swaps, and carry-forward visuals for text-only sections. Mobile, short windows, and no-JavaScript views retain inline figures. Article footers are removed. All diagrams have transparent canvases; the PolicyC generator preserves transparency.
+
+The readable width-based sizing hotfix and footer résumé underline remain in place. The local design was integrated on top of production rather than replacing that fix. The unrelated resume.tex edit, Benjamin_Garcia.pdf, website-audit.md, and Python caches are excluded.
 
 Homepage company names and Work project titles are underlined links. Work retains its two-line name/descriptor format; no technical-description paragraph is displayed.
 
@@ -40,7 +46,7 @@ Use this server for extensionless routes, not `python -m http.server`.
 - `/projects`: year-grouped archive, all 20 existing entries, bookshelf Snoopy.
 - `/blog/annie`, `/blog/logit`, `/blog/policyc`: long-form articles with typewriter Snoopy. Body copy and chart data are unchanged.
 - `pages.css`: shared archive/article paper palette and typography over `styles.css`.
-- `static/snoopy/`: four homepage poses, typewriter, and bookshelf artwork derived from supplied PNGs with transparency preserved.
+- `static/snoopy/`: five homepage poses, typewriter, and bookshelf artwork derived from supplied PNGs with transparency preserved.
 - `static/navigation.js`: enhanced archive/article navigation. Homepage visits use native document loading to initialize its independent scripts.
 - `resume.pdf`, `policyc.pdf`, `perspectevolver.pdf`: existing downloadable documents, unchanged by this launch.
 
@@ -62,6 +68,6 @@ BROWSER=webkit npm test
 
 `CHROME_BIN` optionally selects an installed Chrome executable. Navigation regressions cover the homepage handoff, image cycling after reload, slow-fetch archive visibility, history scroll restoration, chart selection, and no-JavaScript navigation. The older tests tied to the retired homepage were replaced to match this contract.
 
-Before launch, exercise homepage → archive → article → home in a headless browser, check desktop/tablet/mobile overflow, all four Snoopy states, résumé and paper responses, and verify `resume.tex` is not public. After launch compare the served HTML/CSS/JS and résumé bytes against this commit, then repeat the live navigation smoke.
+Before launch, exercise homepage → archive → article → home in a headless browser, check desktop/tablet/mobile overflow, all five Snoopy states, résumé and paper responses, and verify `resume.tex` is not public. After launch compare the served HTML/CSS/JS and résumé bytes against this commit, then repeat the live navigation smoke.
 
 The original working directory's unrelated resume.tex edit and untracked files were not included in the cutover; deployment was prepared in a separate worktree. The Ben-Snoopy preview directory remains available locally.

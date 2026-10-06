@@ -10,7 +10,6 @@
       font-display: block;
     }
   </style>
-  <rect width="1130" height="620" fill="#fcfcfb" />
   <g font-family="PortfolioEmbeddedInter" fill="#2c2826">
     <text x="40" y="58" font-size="29" font-weight="650">“Logged today” requires both facts to match</text>
     <text x="1090" y="58" text-anchor="end" fill="#6b6763" font-size="21">Current dashboard invariant</text>

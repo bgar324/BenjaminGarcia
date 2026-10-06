@@ -12,7 +12,6 @@ a { color: inherit; text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: .1875rem; }
 a:focus-visible, button:focus-visible { outline: .125rem solid var(--red); outline-offset: .3125rem; }
 .sheet { position: relative; isolation: isolate; width: min(100%, 1568px); min-height: 100dvh; margin: 0 auto; padding: 2.95rem min(6vw, 100px) 1.5rem; background: var(--paper); display: flex; flex-direction: column; }
-.sheet::before { content: ''; position: absolute; z-index: -1; inset: 0; pointer-events: none; opacity: .10; mix-blend-mode: multiply; background-image: url('/static/paper-texture.svg'); background-size: 43.75rem 43.75rem; }
 p, h1, h2, h3 { margin: 0; }
 h2, h3 { font-size: inherit; }
 h2 { font-family: Inter, sans-serif; font-weight: 700; letter-spacing: -.02em; }
@@ -27,6 +26,7 @@ h1 span { display: block; }
 .snoopy[hidden] { display: none; }
 .snoopy img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .snoopy-static { object-fit: contain; }
+.intro-copy, .role, .project-list h3 { font-family: Inter, sans-serif; }
 .intro-copy .lead { font: 500 1.1875rem/1.2 Inter, sans-serif; letter-spacing: -.035em; margin-bottom: 1rem; }
 .intro-copy p + p { margin-top: .5625rem; }
 .intro-copy a { text-decoration: underline; text-underline-offset: .125rem; }
@@ -34,7 +34,8 @@ h1 span { display: block; }
 .section-heading { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.25rem; }
 .experience-list { display: grid; gap: clamp(1.3125rem, calc(1.3125rem + (100dvh - 49.2rem) / 7), 3rem); }
 .experience-list li { display: grid; grid-template-columns: 5.625rem 12.8125rem minmax(0, 1fr); gap: 1.25rem; align-items: start; }
-.date, .role h3, .project-list h3 { font-weight: 700; }
+.date { font-weight: 700; }
+.role h3, .project-list h3 { font-weight: 600; }
 .role h3 a, .project-list h3 a { text-decoration: underline; text-underline-offset: .15em; }
 .date { white-space: nowrap; }
 .role p { opacity: .86; }
@@ -68,7 +69,6 @@ footer a[href="/resume.pdf"] { text-decoration: underline; text-underline-offset
   :root { font-size: 16px; }
   body { background: var(--paper); font-size: 15px; }
   .sheet { width: 100%; margin: 0; padding: calc(24px + env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left)); min-height: 100dvh; }
-  .sheet::before { -webkit-mask-image: linear-gradient(to bottom, transparent, #000 140px, #000 calc(100% - 140px), transparent); mask-image: linear-gradient(to bottom, transparent, #000 140px, #000 calc(100% - 140px), transparent); }
   .intro { grid-template-columns: 1fr; gap: 24px; padding-block: 22px 25px; }
   h1 { font-size: 94px; }
   .snoopy, .snoopy-static { top: 6px; left: 179px; width: 73px; height: 73px; }

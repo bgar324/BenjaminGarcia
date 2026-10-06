@@ -714,16 +714,6 @@ a {
   line-height: var(--leading-relaxed);
 }
 
-.article-footer {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding-block: 2rem 5rem;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
-  font-size: var(--text-sm);
-}
 
 .not-found {
   display: flex;
@@ -777,11 +767,6 @@ a {
     font-size: var(--text-xs);
   }
 
-  .article-footer {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 1rem;
-  }
 
   .intro {
     padding-block: 4.75rem 4.5rem;

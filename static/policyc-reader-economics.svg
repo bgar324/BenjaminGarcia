@@ -11,7 +11,7 @@
     }
   </style>
 
-  <rect width="1130" height="830" fill="#fcfcfb" />
+  <!-- Transparent canvas inherits the surrounding page background. -->
   <g font-family="PortfolioEmbeddedInter" fill="#2c2826">
     <text x="40" y="58" font-size="29" font-weight="650">What a reader costs, and whether it reads</text>
     <text x="1090" y="58" text-anchor="end" fill="#6b6763" font-size="22">Per request, gpt-5-mini / gpt-5-nano readers</text>

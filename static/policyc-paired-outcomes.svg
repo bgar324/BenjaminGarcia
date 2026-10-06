@@ -16,7 +16,7 @@
       <line x1="0" y1="0" x2="0" y2="8" stroke="#8b8782" stroke-width="2" />
     </pattern>
   </defs>
-  <rect width="1130" height="900" fill="#fcfcfb" />
+  <!-- Transparent canvas inherits the surrounding page background. -->
   <g font-family="PortfolioEmbeddedInter" fill="#2c2826">
     <text x="40" y="58" font-size="29" font-weight="650">Strategy-blind paired outcomes</text>
     <text x="1090" y="58" text-anchor="end" fill="#6b6763" font-size="22">Primary semantic counts</text>

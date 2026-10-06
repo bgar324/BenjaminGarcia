@@ -4,15 +4,17 @@
   const image = button.querySelector('img');
   const poses = [
     { src: '/static/snoopy/0.png', alt: 'Snoopy wearing glasses' },
-    { src: '/static/snoopy/1.png', alt: 'Snoopy dancing with his eyes closed' },
+    { src: '/static/snoopy/1.png?v=2', alt: 'Snoopy daydreaming with his chin resting on his hands' },
     { src: '/static/snoopy/2.png', alt: 'Snoopy wearing a bow tie and holding a teacup' },
     { src: '/static/snoopy/3.png', alt: 'Snoopy in profile' },
+    { src: '/static/snoopy/headphones.webp', alt: 'Snoopy listening to music with green headphones' },
   ];
   const storageKey = 'snoopy-last-pose';
   let previous = -1;
   try {
     const saved = sessionStorage.getItem(storageKey);
-    if (saved !== null && /^[0-3]$/.test(saved)) previous = Number(saved);
+    const index = saved === null ? -1 : Number(saved);
+    if (Number.isInteger(index) && index >= 0 && index < poses.length) previous = index;
   } catch {
     // The button still works when browser storage is unavailable.
   }

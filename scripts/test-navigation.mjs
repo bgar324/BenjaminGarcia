@@ -38,7 +38,8 @@ test('returning from article and archive initializes homepage interactions', asy
   await page.goto(base + '/');
   await page.locator('a[href="/blog/policyc"]').click();
   await page.locator('.article-page').waitFor();
-  await page.locator('.article-footer a[href="/projects"]').click();
+  await page.locator('.article-nav a[href="/"]').click();
+  await page.locator('a[href="/projects"]:visible').click();
   await page.locator('.projects-page').waitFor();
   await page.locator('.projects-header a[href="/"]').click();
   await page.locator('.snoopy').waitFor({ state: 'visible' });

@@ -14,10 +14,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png?v=2" />
     <link rel="manifest" href="/manifest.webmanifest?v=3" />
     <link rel="preload" href="/static/inter-page.woff2?v=1" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="/styles.css?v=54" />
-    <link rel="stylesheet" href="/pages.css?v=8" />
+    <link rel="stylesheet" href="/styles.css?v=55" />
+    <link rel="stylesheet" href="/pages.css?v=9" />
     <script src="/static/navigation-vendor.js?v=1" defer></script>
     <script src="/static/navigation.js?v=3" defer></script>
+    <script src="/static/article-media.js?v=2" defer></script>
     <meta name="theme-color" content="#eeeade" />
     <meta property="og:type" content="article" />
     <meta property="og:locale" content="en_US" />
@@ -137,8 +138,8 @@
             <p>I was at the gym holding the app I built to replace Notes. I opened Notes.</p>
             <p>The fix was one condition. A workout counts as "logged today" only when both its Pacific date and normalized workout type match today's plan. Monday Push cannot finish Tuesday Pull.</p>
             <figure class="article-dashboard article-diagram" aria-labelledby="logit-today-caption">
-              <a href="/static/logit-logged-today.svg?v=2" target="_blank" rel="noopener noreferrer" aria-label="Open the Logit logged-today invariant figure at full size">
-                <img src="/static/logit-logged-today.svg?v=2" width="1130" height="620" loading="lazy" decoding="async" alt="A backdated Monday Push workout compared with Tuesday's Pull plan. Neither the Pacific date nor workout type matches, so the workout is not considered logged today and Pull remains available." />
+              <a href="/static/logit-logged-today.svg?v=3" target="_blank" rel="noopener noreferrer" aria-label="Open the Logit logged-today invariant figure at full size">
+                <img src="/static/logit-logged-today.svg?v=3" width="1130" height="620" loading="lazy" decoding="async" alt="A backdated Monday Push workout compared with Tuesday's Pull plan. Neither the Pacific date nor workout type matches, so the workout is not considered logged today and Pull remains available." />
               </a>
               <figcaption id="logit-today-caption"><strong>Figure 2.</strong> Both checks must pass. A Push workout dated Monday cannot clear a Pull workout scheduled for Tuesday.</figcaption>
             </figure>
@@ -167,10 +168,6 @@
           </section>
         </div>
 
-        <footer class="article-footer">
-          <a href="/projects">All projects</a>
-          <a href="https://trylogit.me" target="_blank" rel="noopener noreferrer">Logit</a>
-        </footer>
       </article>
     </main>
   </body>

@@ -11,7 +11,7 @@
     }
   </style>
 
-  <rect width="1130" height="970" fill="#fcfcfb" />
+  <!-- Transparent canvas inherits the surrounding page background. -->
   <g font-family="PortfolioEmbeddedInter" fill="#2c2826">
     <text x="40" y="58" font-size="29" font-weight="650">Which prompt did what the policy says</text>
     <text x="1090" y="58" text-anchor="end" fill="#6b6763" font-size="22">Blind-graded canaries, 16 trials per arm</text>

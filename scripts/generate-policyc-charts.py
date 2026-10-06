@@ -113,7 +113,7 @@ def svg_document(width: int, height: int, title_value: str, description: str, bo
             f'  <desc id="description">{escape(description)}</desc>',
             EMBEDDED_STYLE,
             defs,
-            f'  <rect width="{width}" height="{height}" fill="{BACKGROUND}" />',
+            '  <!-- Transparent canvas inherits the surrounding page background. -->',
             f'  <g font-family="{FONT}" fill="{INK}">',
             *(f"    {item}" for item in body),
             "  </g>",

@@ -11,7 +11,7 @@
     }
   </style>
 
-  <rect width="1130" height="762" fill="#fcfcfb" />
+  <!-- Transparent canvas inherits the surrounding page background. -->
   <g font-family="PortfolioEmbeddedInter" fill="#2c2826">
     <rect x="1" y="1" width="1128" height="760" fill="none" stroke="#2c2826" stroke-width="1.5" />
     <text x="40" y="58" font-size="29" font-weight="650">Input reduction</text>
