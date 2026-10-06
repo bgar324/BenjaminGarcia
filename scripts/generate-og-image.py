@@ -1,17 +1,12 @@
 #!/usr/bin/env python3
-"""Generate static/og.png from the homepage copy so the share card never drifts.
+"""Publish the approved 1200×630 social card with consistent cache versions.
 
-The card mirrors the homepage: site name, the h1, the intro paragraph, and the
-canonical host. All four strings are read out of index.html, so editing the site
-copy and rerunning this script is the only supported way to change the image.
+Default: copy scripts/assets/og-approved.png byte-exactly to static/og.png.
+The approved raster is the source of truth; browser/font rasterization can differ.
 
-Rendering embeds the repository's bundled Inter font in the temporary HTML,
-so the card uses the same deterministic face as the page on every machine.
-
-    python3 scripts/generate-og-image.py
-
-When the bytes change, every `static/og.png?v=N` reference in the HTML is bumped
-to N+1 so CDN and social-scraper caches fetch the new image.
+Use --render to recompose a future candidate from current homepage copy and the
+bundled font/artwork. Review that candidate before replacing the approved source.
+Changed bytes advance every static/og.png?v=N HTML reference.
 """
 
 from __future__ import annotations
@@ -34,13 +29,13 @@ WIDTH = 1200
 HEIGHT = 630
 RENDER_TIMEOUT = 90
 
-# Palette and type values copied from the :root block in styles.css.
-BACKGROUND = "#fcfcfb"
-FOREGROUND = "#2c2826"
-SOFT = "color-mix(in srgb, #2c2826 86%, #fcfcfb)"
-MUTED = "color-mix(in srgb, #2c2826 75%, #fcfcfb)"
-SUBTLE = "color-mix(in srgb, #2c2826 64%, #fcfcfb)"
-INTER_FONT = ROOT / "static" / "inter-variable.woff2"
+# Approved Snoopy card palette and bundled artwork.
+BACKGROUND = "#eeeade"
+FOREGROUND = "#233e91"
+ACCENT = "#a04413"
+ARTWORK = ROOT / "static" / "snoopy" / "og-laptop.png"
+ARTWORK_DATA_URI = "data:image/png;base64," + base64.b64encode(ARTWORK.read_bytes()).decode("ascii")
+INTER_FONT = ROOT / "static" / "inter-page.woff2"
 INTER_FONT_DATA_URI = "data:font/woff2;base64," + base64.b64encode(INTER_FONT.read_bytes()).decode("ascii")
 EMBEDDED_FONT_FAMILY = "PortfolioEmbeddedInter"
 FONT_FACE = f"""@font-face {{
@@ -92,13 +87,14 @@ def read_copy() -> dict[str, str]:
     host = canonical.split("//", 1)[-1].strip("/")
     return {
         "eyebrow": capture(
-            r'<meta property="og:site_name" content="([^"]+)"', source, "site name"
+            r'<h1>(.*?)</h1>', source.replace("</span>", "</span> "), "display name"
         ),
         "headline": capture(
-            r'<h1 id="home-heading">(.*?)</h1>', source, "homepage h1"
+            r'<p class="lead">(.*?)</p>', source, "homepage headline"
         ),
         "lead": capture(
-            r'<p class="intro-copy">(.*?)</p>', source, "intro paragraph"
+            r'<div class="intro-copy">.*?<p class="lead">.*?</p>\s*<p>(.*?)</p>',
+            source, "intro paragraph"
         ),
         # The card prints the bare domain even though the canonical host is www.
         "domain": host.removeprefix("www."),
@@ -107,67 +103,23 @@ def read_copy() -> dict[str, str]:
 
 def build_document(copy: dict[str, str]) -> str:
     return f"""<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <style>
-      {FONT_FACE}
-      html, body {{ margin: 0; padding: 0; }}
-      body {{
-        width: {WIDTH}px;
-        height: {HEIGHT}px;
-        padding: 112px 96px 90px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        background: {BACKGROUND};
-        color: {FOREGROUND};
-        font-family: {FONT};
-        font-synthesis: none;
-        font-size-adjust: 0.53;
-        letter-spacing: -0.0025em;
-        -webkit-font-smoothing: antialiased;
-      }}
-      p {{ margin: 0; }}
-      .eyebrow {{
-        font-size: 26px;
-        font-weight: 500;
-        line-height: 1;
-        color: {SOFT};
-      }}
-      h1 {{
-        margin: 51px 0 0;
-        font-size: 61px;
-        font-weight: 600;
-        line-height: 1.164;
-        letter-spacing: -0.02em;
-        font-size-adjust: 0.508;
-      }}
-      .lead {{
-        margin: 26px 0 0;
-        max-width: 900px;
-        font-size: 31px;
-        font-weight: 400;
-        line-height: 1.484;
-        color: {MUTED};
-        text-wrap: balance;
-      }}
-      .domain {{
-        margin-top: auto;
-        font-size: 26px;
-        line-height: 1;
-        color: {SUBTLE};
-      }}
-    </style>
-  </head>
-  <body>
-    <p class="eyebrow">{html.escape(copy["eyebrow"])}</p>
-    <h1>{html.escape(copy["headline"])}</h1>
-    <p class="lead">{html.escape(copy["lead"])}</p>
-    <p class="domain">{html.escape(copy["domain"])}</p>
-  </body>
-</html>
-"""
+<html lang="en"><head><meta charset="utf-8"><style>
+{FONT_FACE}
+* {{ box-sizing: border-box; }}
+body {{ margin: 0; width: {WIDTH}px; height: {HEIGHT}px; background: {BACKGROUND}; color: {FOREGROUND}; font-family: {FONT}; }}
+h1, p {{ margin: 0; }}
+h1 {{ position: absolute; left: 76px; top: 140px; font-size: 108px; font-weight: 700; line-height: .98; letter-spacing: -.055em; white-space: nowrap; }}
+.headline {{ position: absolute; left: 80px; top: 278px; width: 660px; font-size: 29px; font-weight: 600; line-height: 1.25; letter-spacing: -.025em; }}
+.subtitle {{ position: absolute; left: 80px; top: 379px; width: 650px; font-size: 22px; line-height: 1.4; letter-spacing: -.01em; }}
+.snoopy {{ position: absolute; right: 68px; top: 163px; width: 330px; height: 330px; object-fit: contain; }}
+.url {{ position: absolute; right: 76px; bottom: 45px; font: 20px 'Courier New', monospace; color: {ACCENT}; }}
+</style></head><body>
+<h1>{html.escape(copy["eyebrow"])}</h1>
+<p class="headline">{html.escape(copy["headline"])}</p>
+<p class="subtitle">{html.escape(copy["lead"])}</p>
+<img class="snoopy" src="{ARTWORK_DATA_URI}" alt="Snoopy typing on a laptop">
+<p class="url">{html.escape(copy["domain"])}</p>
+</body></html>"""
 
 
 def render(document: str) -> bytes:
@@ -251,7 +203,7 @@ def main() -> None:
     for label in ("eyebrow", "headline", "lead", "domain"):
         print(f"{label:9} {copy[label]}")
 
-    image = render(build_document(copy))
+    image = render(build_document(copy)) if "--render" in sys.argv else (ROOT / "scripts/assets/og-approved.png").read_bytes()
     if OUTPUT.is_file() and OUTPUT.read_bytes() == image:
         print(f"\n{OUTPUT.relative_to(ROOT)} already current ({len(image)} bytes)")
         return

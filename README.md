@@ -2,6 +2,10 @@
 
 Static HTML/CSS portfolio deployed from `main` to https://www.bentgarcia.com through Vercel. No build or install step is required.
 
+The social card is the approved 1200×630 Ben Garcia/laptop Snoopy image. `scripts/assets/og-approved.png` is its byte-exact source; `python3 scripts/generate-og-image.py` publishes it to `static/og.png` and advances all OG/Twitter/structured-data image versions only if bytes change. Two consecutive runs are no-ops for the approved release. `--render` creates a future candidate from homepage copy and the bundled Inter/artwork; browser/font rasterization can differ, so review it before updating the approved source. LinkedIn can require a refresh through https://www.linkedin.com/post-inspector/ after deployment.
+
+Bonterra's role is “R&D Engineer Intern” above 760px and “Research & Development Engineer Intern” on phones. CSS switches the visible wording without JavaScript.
+
 Mobile pages extend into safe areas while padding content away from them. The root canvas, body, and page containers use flat cream without a texture layer. Safari controls its own toolbar rendering. Desktop reading pages use a fixed title/media column beside prose; mobile retains its inline layout.
 
 Short desktop windows use compact heading/list/contact/footer spacing without reducing reading text. A further spacing pass accommodates shorter browser content areas; WebKit checks fit 1568×714, 1568×690, 1366×768, and 1280×600. These are simulated viewports, not a guarantee about every Windows font/browser configuration.

@@ -125,3 +125,8 @@ footer a[href="/resume.pdf"] { text-decoration: underline; text-underline-offset
   .columns { padding-block: 12px; }
   footer { padding-top: 8px; }
 }
+.role-expanded { display: none; }
+@media (max-width: 760px) {
+  .role-short { display: none; }
+  .role-expanded { display: inline; }
+}
