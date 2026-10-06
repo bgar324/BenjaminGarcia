@@ -15,7 +15,7 @@ body:has(.article-page, .projects-page)::before { content: ''; position: fixed; 
 .article-nav { padding-top: 36px; font: 14px/1.5 'Courier New', Courier, monospace; }
 .article-nav a { color: var(--foreground); }
 .article-header { padding: 64px 0 40px; }
-.article-title { display: flex; align-items: center; gap: .25em; font-size: min(7.97194vw, 12.70325dvh); }
+.article-title { display: flex; align-items: center; gap: .25em; font-size: clamp(72px, 7.97194vw, 125px); }
 .article-header h1 { font: 700 1em/.90 Inter, sans-serif; letter-spacing: -.04em; max-width: none; font-size-adjust: none; }
 .article-snoopy { display: block; width: .78em; height: .78em; object-fit: contain; flex: none; }
 .article-deck { margin: 24px 0 0; color: var(--foreground); font: 18px/1.5 'Courier New', Courier, monospace; }
@@ -58,7 +58,7 @@ body:has(.article-page, .projects-page)::before { content: ''; position: fixed; 
 .projects-header { padding: 36px 0 48px; }
 .projects-header .text-arrow-link { margin-bottom: 64px; color: var(--foreground); font: 14px/1.5 'Courier New', Courier, monospace; }
 .projects-title-line { display: flex; align-items: center; gap: .25em; }
-.projects-header h1 { max-width: none; font: 700 min(7.97194vw, 12.70325dvh)/.90 Inter, sans-serif; font-size-adjust: none; letter-spacing: -.04em; }
+.projects-header h1 { max-width: none; font: 700 clamp(72px, 7.97194vw, 125px)/.90 Inter, sans-serif; font-size-adjust: none; letter-spacing: -.04em; }
 .projects-snoopy { width: 1.1em; height: .78em; object-fit: contain; flex: none; }
 .projects-year-group { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
 .projects-year-group + .projects-year-group { margin-top: 3.5rem; }

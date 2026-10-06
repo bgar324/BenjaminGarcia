@@ -89,3 +89,17 @@ test('homepage and reading routes remain usable without JavaScript', async t => 
   await page.locator('.article-page').waitFor();
   assert.equal(await page.locator('.article-body').isVisible(), true);
 });
+
+test('short desktop windows retain reading size and use the available width', async t => {
+  const page = await pageFor(t, { viewport: { width: 1568, height: 984 } });
+  await page.goto(base + '/');
+  await page.evaluate(() => document.fonts.ready);
+  const readingSize = await page.locator('.summary').first().evaluate(e => getComputedStyle(e).fontSize);
+  for (const height of [769, 714]) {
+    await page.setViewportSize({ width: 1568, height });
+    assert.equal(await page.locator('.summary').first().evaluate(e => getComputedStyle(e).fontSize), readingSize);
+    assert.ok(await page.locator('.sheet').evaluate(e => e.getBoundingClientRect().width >= innerWidth * .95));
+    assert.ok(await page.evaluate(() => document.documentElement.scrollHeight <= innerHeight));
+    assert.ok(await page.locator('footer').evaluate(e => e.getBoundingClientRect().bottom <= innerHeight));
+  }
+});
