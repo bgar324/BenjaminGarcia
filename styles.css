@@ -1,4 +1,5 @@
-:root {
+/* Base and legacy rules stay inactive while Swup displays the homepage. */
+:root:where(:not(:has(main.sheet))) {
   --background: #fcfcfb;
   --foreground: #2c2826;
   --soft: color-mix(in srgb, var(--foreground) 86%, var(--background));
@@ -47,7 +48,7 @@
    meta      --text-xs                       dates, years, tech, in-row links
                                              static: subtle | interactive: muted */
 
-html {
+html:where(:not(:has(main.sheet))) {
   scroll-behavior: auto;
   background: var(--background);
   line-height: var(--leading-normal);
@@ -55,7 +56,7 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
-body {
+body:where(:not(:has(main.sheet))) {
   margin: 0;
   color: var(--foreground);
   font-family: var(--font-sans);
@@ -65,17 +66,18 @@ body {
   letter-spacing: var(--font-tracking-compensation);
 }
 
-*,
-*::before,
-*::after {
+:where(html:not(:has(main.sheet))),
+:where(html:not(:has(main.sheet))) *,
+:where(html:not(:has(main.sheet))) *::before,
+:where(html:not(:has(main.sheet))) *::after {
   box-sizing: border-box;
 }
 
-a {
+:where(html:not(:has(main.sheet))) a {
   color: inherit;
 }
 
-::selection {
+:where(html:not(:has(main.sheet))) ::selection {
   background: var(--foreground);
   color: var(--background);
 }
@@ -98,7 +100,7 @@ a {
   font-size: var(--text-xs);
 }
 
-.intro {
+.site-page .intro {
   padding-block-start: clamp(6rem, 14vw, 8rem);
   padding-block-end: clamp(5rem, 12vw, 6.5rem);
 }
@@ -113,7 +115,7 @@ a {
   line-height: var(--leading-normal);
 }
 
-.intro h1,
+.site-page .intro h1,
 .projects-header h1,
 .article-header h1,
 .not-found h1 {
@@ -126,7 +128,7 @@ a {
   line-height: var(--leading-tight);
 }
 
-.intro-copy {
+.site-page .intro-copy {
   max-width: 700px;
   margin: 2rem 0 0;
   color: var(--muted);
@@ -134,7 +136,7 @@ a {
   line-height: var(--leading-relaxed);
 }
 
-.intro-copy a,
+.site-page .intro-copy a,
 .about-copy a {
   color: var(--foreground);
 }
@@ -144,7 +146,7 @@ a {
   border-top: 1px solid var(--line);
 }
 
-.section-heading {
+:where(.site-page, .projects-page) .section-heading {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -158,8 +160,8 @@ a {
   font-size: var(--text-xs);
 }
 
-.project-list,
-.experience-list,
+.site-page .project-list,
+.site-page .experience-list,
 .projects-list {
   margin: 0;
   padding: 0;
@@ -203,7 +205,7 @@ a {
   white-space: nowrap;
 }
 
-.section-heading h2,
+:where(.site-page, .projects-page) .section-heading h2,
 .project h3,
 .experience-row h3,
 .projects-entry h2 {
@@ -768,7 +770,7 @@ a {
   }
 
 
-  .intro {
+  .site-page .intro {
     padding-block: 4.75rem 4.5rem;
   }
 

@@ -53,7 +53,7 @@ Use this server for extensionless routes, not `python -m http.server`.
 - `/blog/annie`, `/blog/logit`, `/blog/policyc`: long-form articles with typewriter Snoopy. Body copy and chart data are unchanged.
 - `pages.css`: shared archive/article paper palette and typography over `styles.css`.
 - `static/snoopy/`: five homepage poses, typewriter, and bookshelf artwork derived from supplied PNGs with transparency preserved.
-- `static/navigation.js`: enhanced archive/article navigation. Homepage visits use native document loading to initialize its independent scripts.
+- `static/navigation.js`: legacy-style Swup navigation across the homepage, archive, articles, and 404. The current document stays visible during fetches; only main is replaced, with no page transition animation. External sites, PDFs, downloads, and fragment fallback remain native.
 - `resume.pdf`, `policyc.pdf`, `perspectevolver.pdf`: existing downloadable documents, unchanged by this launch.
 
 Homepage text scales with viewport width, clamped to a 16–20px root size; reducing window height does not shrink reading text or the page width. The content canvas is capped at the 1568px reference width. Short landscape windows tighten vertical spacing and reduce only the display-name/artwork size. Portrait tablets retain a width-based 16–20px root size; phones retain readable scrolling text. No clipping or scroll interception is used. Archive/article display titles are width-based too. Snoopy cycles on mouse, touch, Enter, and Space. Reload selection excludes the last pose using sessionStorage; without JS a static image remains. The footer clock uses local time.
@@ -72,7 +72,11 @@ BROWSER=firefox npm test
 BROWSER=webkit npm test
 ```
 
-`CHROME_BIN` optionally selects an installed Chrome executable. Navigation regressions cover the homepage handoff, image cycling after reload, slow-fetch archive visibility, history scroll restoration, chart selection, and no-JavaScript navigation. The older tests tied to the retired homepage were replaced to match this contract.
+`CHROME_BIN` optionally selects an installed Chrome executable. Eleven navigation regressions cover same-document identity, slow-fetch visibility, repeated Snoopy/clock initialization, entry-specific Back/Forward scrolling, article-media restoration, response races, failed-history recovery, native fragments/external links/PDFs, 404 round trips, no-JavaScript fallback, and short-window readability. All pass in Chromium, Firefox, and WebKit.
+
+All routes load the same stylesheets in order: styles.css, pages.css, snoopy.css. Page-specific selectors are scoped so incoming page assets cannot restyle the outgoing view. Shared scripts load once; portfolio:before-replace cleans up homepage timers/listeners and article media, portfolio:after-replace mounts the new main, and portfolio:scroll-restored selects the correct visual immediately after restoring scroll. The MutationObserver-based media mount and native homepage handoff were removed.
+
+During a delayed homepage→article fetch, 23 sampled browser frames retained an opaque, styled main with no blank frame. Navigation requested no additional stylesheets and preserved document identity. Direct-load fonts and measured geometry match the prior production homepage, archive, Logit, and 404.
 
 Before launch, exercise homepage → archive → article → home in a headless browser, check desktop/tablet/mobile overflow, all five Snoopy states, résumé and paper responses, and verify `resume.tex` is not public. After launch compare the served HTML/CSS/JS and résumé bytes against this commit, then repeat the live navigation smoke.
 

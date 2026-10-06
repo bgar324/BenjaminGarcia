@@ -16,9 +16,7 @@
     return;
   }
 
-  // The independent homepage initializes its own Snoopy and clock scripts.
-  // Returning there needs a full document load, not a main-only replacement.
-  const pages = new Set(["/projects", "/blog/annie", "/blog/logit", "/blog/policyc", "/404"]);
+  const pages = new Set(["/", "/projects", "/blog/annie", "/blog/logit", "/blog/policyc", "/404"]);
   const isPage = (url) => url.origin === location.origin && !url.hash &&
     pages.has(url.pathname.replace(/\/index\.html$|\/$/, "").replace(/\.html$/, "") || "/");
   const stateKey = "__scrollRestorationId";
@@ -66,6 +64,7 @@
       readPosition(`scroll-position:url:${destination.url}`) || [0, 0];
     scrollTo({ left: position[0], top: position[1], behavior: "instant" });
     visible = destination;
+    document.dispatchEvent(new Event("portfolio:scroll-restored"));
   };
 
   const a11y = new SwupA11yPlugin();
@@ -115,7 +114,13 @@
     savePosition();
     visit.animation.animate = false;
   });
-  swup.hooks.before("content:replace", savePosition);
+  swup.hooks.before("content:replace", () => {
+    savePosition();
+    document.dispatchEvent(new Event("portfolio:before-replace"));
+  });
+  swup.hooks.on("content:replace", () => {
+    document.dispatchEvent(new Event("portfolio:after-replace"));
+  });
   swup.hooks.replace("content:scroll", (visit) => {
     restorePosition(visit.history.popstate);
     return true;

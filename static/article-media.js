@@ -120,16 +120,28 @@
     desktop.addEventListener('change', sync);
     reducedMotion.addEventListener('change', schedule);
     sync();
+    const onRestoredScroll = () => {
+      if (!enabled) return;
+      cancelSwap();
+      active = -1;
+      update();
+    };
+    document.addEventListener('portfolio:scroll-restored', onRestoredScroll);
     document.fonts.ready.then(schedule);
     dispose = () => {
       removeEventListener('scroll', schedule);
       removeEventListener('resize', schedule);
       desktop.removeEventListener('change', sync);
       reducedMotion.removeEventListener('change', schedule);
+      document.removeEventListener('portfolio:scroll-restored', onRestoredScroll);
       disable();
     };
   }
-  // Swup replaces main without reloading the document. Own one mounted instance.
-  new MutationObserver(mount).observe(document.body, { childList: true, subtree: true });
+  document.addEventListener('portfolio:before-replace', () => {
+    dispose();
+    dispose = () => {};
+    currentMain = null;
+  });
+  document.addEventListener('portfolio:after-replace', mount);
   mount();
 })();
