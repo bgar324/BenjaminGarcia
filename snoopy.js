@@ -76,9 +76,46 @@
     }
     updateClock();
     const timer = clock ? setInterval(updateClock, 60_000) : null;
+    const textBlocks = main.querySelectorAll('p, h1, h2, h3, a, time');
+    let fitFrame = 0;
+    function fitReadingType() {
+      fitFrame = 0;
+      main.style.removeProperty('--reading-scale');
+      if (innerWidth <= 760) return;
+      const baseSize = parseFloat(getComputedStyle(main).fontSize);
+      let low = 1;
+      let high = Math.max(1, 18 / baseSize);
+      function fits(scale) {
+        main.style.setProperty('--reading-scale', scale);
+        if (main.getBoundingClientRect().height > innerHeight ||
+            main.scrollWidth > main.clientWidth) return false;
+        for (const block of textBlocks) {
+          if (block.clientWidth && block.scrollWidth > block.clientWidth + 1) return false;
+        }
+        return true;
+      }
+      // Grow reading text, not the display name or the gaps. Wrapping sets the limit.
+      if (fits(high)) return;
+      while (high - low > .005) {
+        const size = (low + high) / 2;
+        if (fits(size)) low = size;
+        else high = size;
+      }
+      main.style.setProperty('--reading-scale', low);
+    }
+    function scheduleFit() {
+      if (currentMain !== main) return;
+      cancelAnimationFrame(fitFrame);
+      fitFrame = requestAnimationFrame(fitReadingType);
+    }
+    fitReadingType();
+    document.fonts.ready.then(scheduleFit);
+    window.addEventListener('resize', scheduleFit);
     dispose = () => {
       button.removeEventListener('click', nextPose);
       clearInterval(timer);
+      window.removeEventListener('resize', scheduleFit);
+      cancelAnimationFrame(fitFrame);
     };
   }
   document.addEventListener('portfolio:before-replace', unmount);

@@ -84,8 +84,7 @@ body:where(:not(:has(main.sheet))) {
 
 .site-page,
 .projects-page,
-.article-page,
-.not-found {
+.article-page {
   width: min(100% - 2.5rem, 700px);
   margin-inline: auto;
 }
@@ -105,8 +104,7 @@ body:where(:not(:has(main.sheet))) {
   padding-block-end: clamp(5rem, 12vw, 6.5rem);
 }
 
-.intro-greeting,
-.not-found-code {
+.intro-greeting {
   margin: 0 0 1.5rem;
   color: var(--soft);
   font-size: var(--text-lg);
@@ -117,8 +115,7 @@ body:where(:not(:has(main.sheet))) {
 
 .site-page .intro h1,
 .projects-header h1,
-.article-header h1,
-.not-found h1 {
+.article-header h1 {
   max-width: 21ch;
   margin: 0;
   font-size: var(--text-display);
@@ -395,8 +392,7 @@ body:where(:not(:has(main.sheet))) {
   margin-bottom: 6rem;
 }
 
-.projects-header h1,
-.not-found h1 {
+.projects-header h1 {
   max-width: 18ch;
 }
 
@@ -717,23 +713,11 @@ body:where(:not(:has(main.sheet))) {
 }
 
 
-.not-found {
-  display: flex;
-  min-height: 100svh;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.not-found .text-arrow-link {
-  width: fit-content;
-  margin-top: 2rem;
-}
 
 @media (max-width: 620px) {
   .site-page,
   .projects-page,
-  .article-page,
-  .not-found {
+  .article-page {
     width: min(100% - 2rem, 700px);
   }
 

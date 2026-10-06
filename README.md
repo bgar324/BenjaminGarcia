@@ -24,7 +24,7 @@ Bonterra's role is “R&D Engineer Intern” above 760px and “Research & Devel
 
 Mobile pages extend into safe areas while padding content away from them. The root canvas, body, and page containers use flat cream without a texture layer. Safari controls its own toolbar rendering. Desktop reading pages use a fixed title/media column beside prose; mobile retains its inline layout.
 
-Short desktop windows use compact heading/list/contact/footer spacing without reducing reading text. A further spacing pass accommodates shorter browser content areas; WebKit checks fit 1568×714, 1568×690, 1366×768, and 1280×600. These are simulated viewports, not a guarantee about every Windows font/browser configuration.
+The homepage must fit on one screen on desktop and tablets, including the complete footer and bottom padding. Phones at 760px or narrower retain their scrolling layout. Landscape spacing now changes continuously with available height instead of switching abruptly at 850px; the previous cutoff overflowed at intermediate heights such as 1512×871 and 1568×924.
 
 ## Approved design update
 
@@ -67,14 +67,19 @@ Use this server for extensionless routes, not `python -m http.server`.
 - `/`: `index.html`, `snoopy.css`, `snoopy.js`. Fitted desktop composition; adapted portrait tablet layout; scrolling mobile layout with orange About/contact prose.
 - `/projects`: year-grouped archive, all 20 existing entries, bookshelf Snoopy.
 - `/blog/annie`, `/blog/logit`, `/blog/policyc`: long-form articles with typewriter Snoopy. Body copy and chart data are unchanged.
-- `pages.css`: shared archive/article paper palette and typography over `styles.css`.
-- `static/snoopy/`: five homepage poses, typewriter, and bookshelf artwork derived from supplied PNGs with transparency preserved.
+- `/404`: compact cream-and-blue not-found screen with the supplied detective Snoopy and Woodstock illustration on the left, text on the right, and one Return home link. Phones stack the illustration above the text. `scripts/serve.py` serves this HTML with HTTP 404 for missing paths; Vercel uses the root `404.html`.
+- `pages.css`: shared archive/article/not-found palette and typography over `styles.css`. Article-title Snoopy is 1.35em rather than 1em and aligns to the project-name baseline; title text sizes are unchanged. The complete desktop article header starts at 89px rather than 121px, moving the name, illustration, subtitle, and media up 32px while keeping the sidebar's bottom 24px from the viewport edge.
+- `static/snoopy/`: five homepage poses, typewriter, bookshelf, and detective artwork derived from supplied PNGs with transparency preserved. `detectives.webp` is a cropped 900×750 lossless conversion of `Snoopy and Woodstock Detective Duo.png`.
 - `static/navigation.js`: legacy-style Swup navigation across the homepage, archive, articles, and 404. The current document stays visible during fetches; only main is replaced, with no page transition animation. External sites, non-résumé PDFs, downloads, and fragment fallback remain native.
 - `resume.pdf`, `policyc.pdf`, `perspectevolver.pdf`: existing downloadable documents, unchanged by this launch.
 
-Homepage text scales with viewport width, clamped to a 16–20px root size; reducing window height does not shrink reading text or the page width. The content canvas is capped at the 1568px reference width. Short landscape windows tighten vertical spacing and reduce only the display-name/artwork size. Portrait tablets retain a width-based 16–20px root size; phones retain readable scrolling text. No clipping or scroll interception is used. Archive/article display titles are width-based too. Snoopy cycles on mouse, touch, Enter, and Space. Reload selection excludes the last pose using sessionStorage; without JS a static image remains. The footer clock uses local time.
+The content canvas is capped at 1568px. CSS provides a fitted desktop/tablet fallback and keeps the phone layout scrolling. Landscape spacing interpolates between compact 34.5rem and roomy 49.2rem height budgets. Square viewports use only the portrait layout. No overflow hiding, clipping, or scroll interception is used. Snoopy cycles on mouse, touch, Enter, and Space; reload selection excludes the last pose using sessionStorage, and a static image remains without JavaScript. The footer clock uses local time.
 
-The footer résumé link is permanently underlined without changing its size or placement. The desktop sizing hotfix was verified at 1568×714 (the reported browser-content height), 1568×769, 1568×984, 1366×768, 1280×600, 1024×768, and portrait iPad sizes. Main text stays the same size when a 1568px-wide window becomes shorter. Chromium, Firefox, and WebKit passed the navigation suite and the new short-window regression.
+Above 760px, `snoopy.js` grows only reading text into spare space, up to an 18px main-text size. It measures actual wrapping, block overflow, and total sheet height, choosing the largest fitting scale within .005. The display name, illustration, and row spacing are not enlarged by this pass. Font loading and window resizing trigger a coalesced fit; navigation removes the listener and pending frame. The scale is local to the homepage and is cleared for phones. The rejected stretched-row layout is removed.
+
+Headless Chromium verified 238 desktop/tablet viewport combinations spanning 761–3440px wide and 400–1180px high, checking document overflow and visible content bounds. At 1260×871, main text grows from 13.06px to 16.11px and descriptions from 12.05px to 14.87px, without stretching row gaps. At 1568×924, descriptions reach 16.46px. Phone descriptions remain 14px with vertical scrolling. The existing browser regression now checks text growth, screenshot-sized viewports, tablet fit, and returning from a scrolled phone layout.
+
+The not-found screen was inspected at 1568×924 and 390×844; the supplied artwork retains transparency. Missing nested paths return HTTP 404, and keyboard activation of Return home restores the working homepage. All three article titles were checked at 1568/1100/820/390/320px after enlarging their typewriter Snoopy, with no horizontal overflow.
 
 SEO/canonical metadata, social image references, sitemap, robots, manifest, font assets, and deployment configuration are retained. The scheduled contribution updater is removed because this homepage does not include the contribution calendar. Its generator and tests remain available in history and source, but do not run it against the Snoopy homepage without restoring its marker block.
 
@@ -88,7 +93,7 @@ BROWSER=firefox npm test
 BROWSER=webkit npm test
 ```
 
-`CHROME_BIN` optionally selects an installed Chrome executable. Thirteen regressions cover same-document identity, slow-fetch visibility, repeated Snoopy/clock initialization, entry-specific Back/Forward scrolling, article-media restoration, response races, failed-history recovery, native fragments/external links/non-résumé PDFs, 404 round trips, no-JavaScript fallback, short-window readability, PDF overlay rendering/focus, and history cleanup. All pass in Chromium, Firefox, and WebKit; an initial Firefox bootstrap timeout passed in isolation and on the full rerun.
+`CHROME_BIN` optionally selects an installed Chrome executable. Thirteen regressions cover same-document identity, slow-fetch visibility, repeated Snoopy/clock initialization, entry-specific Back/Forward scrolling, article-media restoration, response races, failed-history recovery, native fragments/external links/non-résumé PDFs, 404 round trips, no-JavaScript fallback, adaptive reading size, PDF overlay rendering/focus, and history cleanup. The current typography and initial illustrated-404 changes pass all thirteen in Chromium; later illustration-size refinements were checked directly in the browser.
 
 All routes load the same stylesheets in order: styles.css, pages.css, snoopy.css, resume-modal.css. Page-specific selectors are scoped so incoming page assets cannot restyle the outgoing view. Shared scripts load once; portfolio:before-replace cleans up homepage timers/listeners and article media and closes the résumé modal, portfolio:after-replace mounts the new main, and portfolio:scroll-restored selects the correct visual immediately after restoring scroll. The MutationObserver-based media mount and native homepage handoff were removed.
 

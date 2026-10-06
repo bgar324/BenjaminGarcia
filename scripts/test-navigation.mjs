@@ -339,18 +339,38 @@ test('homepage, archive, articles and 404 remain usable without JavaScript', asy
   await page.locator('.sheet').waitFor();
 });
 
-test('short desktop windows retain reading size and use the available width', async t => {
-  const page = await pageFor(t, { viewport: { width: 1568, height: 984 } });
+test('homepage type uses spare height while desktop and tablet content stays on screen', async t => {
+  const page = await pageFor(t, { viewport: { width: 1260, height: 600 } });
   await page.goto(base + '/');
   await page.evaluate(() => document.fonts.ready);
-  const readingSize = await page.locator('.summary').first().evaluate(e => getComputedStyle(e).fontSize);
-  for (const height of [769, 714]) {
-    await page.setViewportSize({ width: 1568, height });
-    assert.equal(await page.locator('.summary').first().evaluate(e => getComputedStyle(e).fontSize), readingSize);
-    assert.ok(await page.locator('.sheet').evaluate(e => e.getBoundingClientRect().width >= innerWidth * .95));
-    assert.ok(await page.evaluate(() => document.documentElement.scrollHeight <= innerHeight));
-    assert.ok(await page.locator('footer').evaluate(e => e.getBoundingClientRect().bottom <= innerHeight));
+  await settle(page, '/', '.sheet');
+  const compactSize = await page.locator('.summary').first().evaluate(e => parseFloat(getComputedStyle(e).fontSize));
+  for (const [width, height] of [[1260, 871], [1512, 871], [1568, 924], [1568, 690], [1280, 600], [820, 1180], [1024, 1024]]) {
+    await page.setViewportSize({ width, height });
+    await settle(page, '/', '.sheet');
+    const metrics = await page.evaluate(() => {
+      const footer = document.querySelector('footer').getBoundingClientRect();
+      return {
+        summarySize: parseFloat(getComputedStyle(document.querySelector('.summary')).fontSize),
+        fits: document.scrollingElement.scrollHeight <= innerHeight &&
+          document.scrollingElement.scrollWidth <= innerWidth &&
+          footer.top >= 0 && footer.bottom <= innerHeight,
+      };
+    });
+    assert.ok(metrics.fits, `All content, including the footer, must fit at ${width}×${height}`);
+    if (width === 1260) {
+      assert.ok(metrics.summarySize > compactSize, 'Extra height must enlarge reading text');
+      assert.ok(metrics.summarySize >= 14, 'The sidebar-width layout must use readable descriptions');
+    }
   }
+  await page.setViewportSize({ width: 390, height: 844 });
+  await settle(page, '/', '.sheet');
+  assert.equal(await page.locator('.summary').first().evaluate(e => getComputedStyle(e).fontSize), '14px');
+  await scrollToPosition(page, 300);
+  await page.setViewportSize({ width: 1260, height: 871 });
+  await settle(page, '/', '.sheet');
+  assert.ok(await page.evaluate(() => document.scrollingElement.scrollHeight <= innerHeight),
+    'Returning from a scrolled phone layout must fit using document height, not scroll position');
 });
 
 test('résumé overlay renders the PDF and traps focus until Escape restores the trigger', async t => {
