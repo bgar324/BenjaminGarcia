@@ -1,0 +1,83 @@
+.resume-dialog, .resume-dialog * { box-sizing: border-box; }
+.resume-is-open { overflow: hidden; }
+.resume-dialog {
+  --modal-open-dur: 250ms;
+  --modal-close-dur: 150ms;
+  --modal-ease: cubic-bezier(.22, 1, .36, 1);
+  position: fixed; inset: 0; width: 100vw; max-width: none; height: 100dvh; max-height: none;
+  margin: 0; padding: 54px 170px 36px; border: 0; background: transparent;
+  color: #233e91; font: 14px/1.4 Inter, sans-serif;
+  overflow: auto; transform-origin: center; transform: scale(.96); opacity: 0; pointer-events: none;
+  transition: transform var(--modal-open-dur) var(--modal-ease), opacity var(--modal-open-dur) var(--modal-ease);
+}
+.resume-dialog[open] { display: grid; place-items: center; }
+.resume-dialog::backdrop { background: rgb(26 30 40 / .40); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.resume-dialog.is-open { transform: scale(1); opacity: 1; pointer-events: auto; }
+.resume-dialog.is-closing { transform: scale(.96); opacity: 0; pointer-events: none; transition-duration: var(--modal-close-dur); }
+.resume-shell { position: relative; width: min(660px, calc((100dvh - 110px) * .7727), calc(100vw - 380px)); }
+.resume-paper { width: 100%; max-height: calc(100dvh - 110px); overflow: auto; background: white; box-shadow: 0 12px 48px rgb(0 0 0 / .2); }
+.resume-loading { aspect-ratio: 17 / 22; display: grid; align-content: center; text-align: center; padding: 32px; margin: 0; }
+.resume-loading a { color: inherit; text-decoration: underline; }
+.resume-pdf-page { position: relative; width: 100%; background: white; }
+.resume-pdf-page + .resume-pdf-page { border-top: 1px solid #ddd; }
+.resume-pdf-page canvas { display: block; width: 100%; height: 100%; }
+.resume-reader { position: absolute; right: calc(100% + 28px); bottom: 0; width: 132px; height: auto; pointer-events: none; }
+.resume-actions { position: absolute; left: calc(100% + 16px); bottom: 0; display: grid; gap: 12px; }
+.resume-control, .resume-close { appearance: none; border: 1px solid #c5c8cf; background: #eeeade; color: #233e91; cursor: pointer; text-decoration: none; font: 500 14px/1.4 Inter, sans-serif; }
+.resume-control { --expanded-width: 128px; display: inline-flex; align-items: center; width: 48px; height: 48px; padding: 13px; flex-shrink: 0; overflow: hidden; border-radius: 999px; box-shadow: 0 2px 5px rgb(15 23 42 / .08); transform-origin: left center; -webkit-tap-highlight-color: transparent; transition: width 220ms cubic-bezier(.22, 1, .36, 1), background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 100ms ease; }
+.resume-share { --expanded-width: 112px; }
+.resume-control svg, .resume-close svg { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.resume-icon { display: block; position: relative; width: 20px; height: 20px; flex: 0 0 20px; }
+.resume-icon svg { position: absolute; inset: 0; transition: opacity 140ms ease, transform 180ms ease; }
+.resume-label { flex-shrink: 0; opacity: 0; transform: translateX(-4px); white-space: nowrap; margin-left: 9px; letter-spacing: -.01em; transition: opacity 120ms ease, transform 180ms cubic-bezier(.22, 1, .36, 1); }
+.resume-control:focus-visible { width: var(--expanded-width); }
+.resume-control:focus-visible .resume-label { opacity: 1; transform: none; }
+@media (hover: hover) and (pointer: fine) {
+  .resume-control:hover { width: var(--expanded-width); background: #fffdf5; box-shadow: 0 3px 9px rgb(15 23 42 / .12); }
+  .resume-control:hover .resume-label { opacity: 1; transform: none; }
+  .resume-close:hover { background: #fffdf5; }
+}
+.resume-control:active:not([aria-disabled="true"]) { transform: scale(.97); box-shadow: 0 1px 2px rgb(15 23 42 / .1); }
+.resume-control[aria-disabled="true"] { cursor: progress; }
+.resume-close { position: absolute; top: 0; left: calc(100% + 16px); width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; }
+.resume-dialog :focus-visible { outline: 2px solid #233e91; outline-offset: 4px; }
+.resume-message { position: absolute; top: 100%; left: 0; margin: 10px 0 0; color: white; font-size: 13px; }
+.resume-share-url { position: absolute; top: calc(100% + 36px); left: 0; width: 100%; padding: 8px; font: inherit; }
+/* PDF.js text-layer contract: selectable text sits over the rendered PDF. */
+.resume-text-layer { position: absolute; inset: 0; overflow: clip; text-align: initial; line-height: 1; text-size-adjust: none; -webkit-text-size-adjust: none; transform-origin: 0 0; --min-font-size: 1; --text-scale-factor: calc(var(--total-scale-factor) * var(--min-font-size)); --min-font-size-inv: calc(1 / var(--min-font-size)); }
+.resume-text-layer :is(span, br) { color: transparent; position: absolute; white-space: pre; cursor: text; transform-origin: 0 0; }
+.resume-text-layer > :not(.markedContent), .resume-text-layer .markedContent span:not(.markedContent) { z-index: 1; --font-height: 0; --scale-x: 1; --rotate: 0deg; font-size: calc(var(--text-scale-factor) * var(--font-height)); transform: rotate(var(--rotate)) scaleX(var(--scale-x)) scale(var(--min-font-size-inv)); }
+.resume-text-layer .markedContent { display: contents; }
+.resume-text-layer ::selection { background: rgb(35 62 145 / .25); }
+@media (hover: none) {
+  .resume-control { width: var(--expanded-width); }
+  .resume-label { opacity: 1; transform: none; }
+}
+@media (max-width: 760px) {
+  .resume-dialog { padding: calc(58px + env(safe-area-inset-top)) 16px calc(130px + env(safe-area-inset-bottom)); }
+  .resume-close { top: -52px; left: auto; right: 0; width: 44px; height: 44px; }
+  .resume-shell { width: min(calc(100vw - 32px), calc((100dvh - 200px) * .7727)); }
+  .resume-paper { max-height: calc(100dvh - 200px); }
+  .resume-reader { right: auto; left: 0; bottom: -91px; width: 64px; }
+  .resume-actions { left: auto; right: 0; top: calc(100% + 18px); bottom: auto; display: flex; gap: 8px; }
+  .resume-control { --expanded-width: 112px; width: var(--expanded-width); height: 44px; padding: 11px; font-size: 12px; }
+  .resume-share { --expanded-width: 94px; }
+  .resume-label { opacity: 1; transform: none; margin-left: 6px; }
+  .resume-message { top: calc(100% + 92px); }
+  .resume-share-url { top: calc(100% + 116px); }
+}
+.resume-share .share-check, .resume-share .share-spinner { opacity: 0; transform: scale(.75); }
+.resume-share.is-pending .share-symbol { opacity: 0; transform: scale(.75); }
+.resume-share.is-pending .share-spinner { opacity: 1; animation: resume-spin 750ms linear infinite; }
+@keyframes resume-spin { to { transform: rotate(360deg); } }
+.resume-share.is-success { width: var(--expanded-width); background: #2f7045; border-color: #8fb49b; color: white; }
+.resume-share.is-success .share-symbol { opacity: 0; transform: scale(.75); }
+.resume-share.is-success .share-check { opacity: 1; transform: scale(1); }
+.resume-share.is-success .resume-label { opacity: 1; transform: none; }
+.resume-share.is-settled { width: 48px; }
+.resume-share.is-settled .resume-label { opacity: 0; transform: translateX(-4px); }
+.resume-announcement { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 760px) { .resume-share.is-settled { width: 44px; } }
+@media (prefers-reduced-motion: reduce) {
+  .resume-dialog, .resume-control, .resume-label, .resume-icon svg { transition: none !important; animation: none !important; }
+}

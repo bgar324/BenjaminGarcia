@@ -2,6 +2,22 @@
 
 Static HTML/CSS portfolio deployed from `main` to https://www.bentgarcia.com through Vercel. No build or install step is required.
 
+## Résumé modal
+
+Clicking an ordinary résumé link opens a native dialog over the current page. It renders the unchanged PDF with a selectable text layer, places reading Snoopy outside the lower-left edge, and places Download/Share outside the lower-right edge. Button labels expand on hover or keyboard focus; touch layouts show labels directly. The backdrop dims and blurs by 4px. Opening uses the supplied 250ms scale/fade and closing uses 150ms; reduced motion skips transitions.
+
+Escape, backdrop click, and the close button dismiss it. Focus is trapped while open and restored afterward; page scrolling is locked without changing the URL. Navigation closes the dialog and releases the lock. Downloads preserve original PDF bytes. Desktop Share copies the direct PDF URL; touch devices use Web Share when available, with a selectable-link fallback. No JavaScript or modified clicks retain native PDF behavior. A render failure offers a direct PDF link.
+
+Successful clipboard sharing turns Share into a green checkmark pill labeled Copied for 1.5 seconds, then collapses to the share icon even while hovered. Native sharing uses Shared instead of claiming a clipboard copy. There is no separate visible success message. Expanded widths are measured from actual labels for equal left/right padding; the icon stays anchored during 220ms pill expansion. Pending sharing keeps keyboard focus and blocks duplicate requests, with a centered spinner. Closing clears feedback timers and ignores late results. Desktop rests at 48px and mobile at 44px after success. Chromium checks measured matching padding within 0.1px and verified pending → success → reset → fresh-hover behavior; WebKit verified touch sharing and reduced motion.
+
+Interaction references: [Radix Icon Button](https://www.radix-ui.com/themes/docs/components/icon-button) for consistent dimensions and accessible labels; [React Aria Button](https://react-aria.adobe.com/Button) for press/focus/pending states and link semantics; [Motion hover guidance](https://motion.dev/docs/hover) for avoiding touch-emulated hover. These patterns are adapted using native elements and CSS, without adding a component framework.
+
+Base controls use a light neutral border (#c5c8cf). The green success state uses a soft, lighter green border (#8fb49b), rather than a dark outline; its fill remains #2f7045.
+
+The renderer is self-hosted PDF.js 5.4.624, lazy-loaded only when opening the preview. Vendored files in static/pdfjs are package/build/pdf.min.mjs, package/build/pdf.worker.min.mjs, and package/LICENSE from `npm pack pdfjs-dist@5.4.624`. Package SHA-256: `5c387457cd03cc2e7b9c9b1ed642e8148d1ba44c3b8e5b5b771526feb24b61b9`. The Apache-2.0 license is preserved. The reading illustration is derived from the supplied Snoopy Reading on Colorful Books.png.
+
+Verified real PDF canvas/text rendering, matching download bytes, actual clipboard output, intercepted native-share payload/copy fallback, forward/backward keyboard focus, Escape/backdrop dismissal, rapid reopen, reduced motion, and failed-PDF fallback. Open/close animation intermediate frames were sampled. Desktop actions sit outside the PDF's bottom-right edge; the close button sits outside its top-right edge on the same control rail. On phones, controls stay within the viewport and the close button sits above the paper.
+
 The social card is the approved 1200×630 Ben Garcia/laptop Snoopy image. `scripts/assets/og-approved.png` is its byte-exact source; `python3 scripts/generate-og-image.py` publishes it to `static/og.png` and advances all OG/Twitter/structured-data image versions only if bytes change. Two consecutive runs are no-ops for the approved release. `--render` creates a future candidate from homepage copy and the bundled Inter/artwork; browser/font rasterization can differ, so review it before updating the approved source. LinkedIn can require a refresh through https://www.linkedin.com/post-inspector/ after deployment.
 
 Bonterra's role is “R&D Engineer Intern” above 760px and “Research & Development Engineer Intern” on phones. CSS switches the visible wording without JavaScript.
@@ -53,7 +69,7 @@ Use this server for extensionless routes, not `python -m http.server`.
 - `/blog/annie`, `/blog/logit`, `/blog/policyc`: long-form articles with typewriter Snoopy. Body copy and chart data are unchanged.
 - `pages.css`: shared archive/article paper palette and typography over `styles.css`.
 - `static/snoopy/`: five homepage poses, typewriter, and bookshelf artwork derived from supplied PNGs with transparency preserved.
-- `static/navigation.js`: legacy-style Swup navigation across the homepage, archive, articles, and 404. The current document stays visible during fetches; only main is replaced, with no page transition animation. External sites, PDFs, downloads, and fragment fallback remain native.
+- `static/navigation.js`: legacy-style Swup navigation across the homepage, archive, articles, and 404. The current document stays visible during fetches; only main is replaced, with no page transition animation. External sites, non-résumé PDFs, downloads, and fragment fallback remain native.
 - `resume.pdf`, `policyc.pdf`, `perspectevolver.pdf`: existing downloadable documents, unchanged by this launch.
 
 Homepage text scales with viewport width, clamped to a 16–20px root size; reducing window height does not shrink reading text or the page width. The content canvas is capped at the 1568px reference width. Short landscape windows tighten vertical spacing and reduce only the display-name/artwork size. Portrait tablets retain a width-based 16–20px root size; phones retain readable scrolling text. No clipping or scroll interception is used. Archive/article display titles are width-based too. Snoopy cycles on mouse, touch, Enter, and Space. Reload selection excludes the last pose using sessionStorage; without JS a static image remains. The footer clock uses local time.
@@ -72,9 +88,9 @@ BROWSER=firefox npm test
 BROWSER=webkit npm test
 ```
 
-`CHROME_BIN` optionally selects an installed Chrome executable. Eleven navigation regressions cover same-document identity, slow-fetch visibility, repeated Snoopy/clock initialization, entry-specific Back/Forward scrolling, article-media restoration, response races, failed-history recovery, native fragments/external links/PDFs, 404 round trips, no-JavaScript fallback, and short-window readability. All pass in Chromium, Firefox, and WebKit.
+`CHROME_BIN` optionally selects an installed Chrome executable. Thirteen regressions cover same-document identity, slow-fetch visibility, repeated Snoopy/clock initialization, entry-specific Back/Forward scrolling, article-media restoration, response races, failed-history recovery, native fragments/external links/non-résumé PDFs, 404 round trips, no-JavaScript fallback, short-window readability, PDF overlay rendering/focus, and history cleanup. All pass in Chromium, Firefox, and WebKit; an initial Firefox bootstrap timeout passed in isolation and on the full rerun.
 
-All routes load the same stylesheets in order: styles.css, pages.css, snoopy.css. Page-specific selectors are scoped so incoming page assets cannot restyle the outgoing view. Shared scripts load once; portfolio:before-replace cleans up homepage timers/listeners and article media, portfolio:after-replace mounts the new main, and portfolio:scroll-restored selects the correct visual immediately after restoring scroll. The MutationObserver-based media mount and native homepage handoff were removed.
+All routes load the same stylesheets in order: styles.css, pages.css, snoopy.css, resume-modal.css. Page-specific selectors are scoped so incoming page assets cannot restyle the outgoing view. Shared scripts load once; portfolio:before-replace cleans up homepage timers/listeners and article media and closes the résumé modal, portfolio:after-replace mounts the new main, and portfolio:scroll-restored selects the correct visual immediately after restoring scroll. The MutationObserver-based media mount and native homepage handoff were removed.
 
 During a delayed homepage→article fetch, 23 sampled browser frames retained an opaque, styled main with no blank frame. Navigation requested no additional stylesheets and preserved document identity. Direct-load fonts and measured geometry match the prior production homepage, archive, Logit, and 404.
 

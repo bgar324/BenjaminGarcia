@@ -33,9 +33,14 @@ async function pageFor(t, options = {}) {
   return context.newPage();
 }
 
-const settle = (page, path, selector) => page.waitForFunction(({ path, selector }) =>
-  location.pathname === path && document.querySelector(selector) &&
-  !document.documentElement.classList.contains('is-changing'), { path, selector });
+async function settle(page, path, selector) {
+  await page.waitForFunction(({ path, selector }) =>
+    location.pathname === path && document.querySelector(selector) &&
+    !document.documentElement.classList.contains('is-changing'), { path, selector });
+  // Firefox may expose the new main before its :has()-scoped styles are painted.
+  await page.evaluate(() => new Promise(resolve =>
+    requestAnimationFrame(() => requestAnimationFrame(resolve))));
+}
 
 async function enhancedPage(t, path = '/', options = {}) {
   const page = await pageFor(t, options);
@@ -262,9 +267,9 @@ test('same-page fragment links keep their document and hand scrolling back to th
   assert.equal(await page.evaluate(() => window.originalDocument), undefined);
 });
 
-test('external and PDF URLs use native navigation even without a new-tab target', async t => {
-  for (const selector of ['a[href="https://ucla.edu"]', 'footer a[href="/resume.pdf"]']) {
-    const page = await enhancedPage(t);
+test('external and non-résumé PDF URLs use native navigation even without a new-tab target', async t => {
+  for (const [path, selector] of [['/', 'a[href="https://ucla.edu"]'], ['/blog/policyc', '.article-meta a[href="/policyc.pdf"]']]) {
+    const page = await enhancedPage(t, path);
     const link = page.locator(selector);
     const destination = await link.evaluate(link => link.href);
     let navigationRequest;
@@ -346,4 +351,36 @@ test('short desktop windows retain reading size and use the available width', as
     assert.ok(await page.evaluate(() => document.documentElement.scrollHeight <= innerHeight));
     assert.ok(await page.locator('footer').evaluate(e => e.getBoundingClientRect().bottom <= innerHeight));
   }
+});
+
+test('résumé overlay renders the PDF and traps focus until Escape restores the trigger', async t => {
+  const page = await enhancedPage(t);
+  const trigger = page.locator('a[href="/resume.pdf"]:visible');
+  await trigger.click();
+  await page.locator('.resume-paper[aria-busy="false"]').waitFor();
+  assert.equal(await page.locator('.resume-pdf-page canvas').count(), 1);
+  assert.match(await page.locator('.resume-text-layer').innerText(), /Benjamin Garcia/);
+  await page.locator('.resume-close').focus();
+  for (const key of ['Tab', 'Tab', 'Tab', 'Shift+Tab', 'Shift+Tab', 'Shift+Tab']) {
+    await page.keyboard.press(key);
+    assert.equal(await page.evaluate(() => document.querySelector('.resume-dialog').contains(document.activeElement)), true);
+  }
+  await assertSameDocument(page);
+  await page.keyboard.press('Escape');
+  await page.waitForFunction(() => !document.querySelector('.resume-dialog').open);
+  assert.equal(await trigger.evaluate(e => document.activeElement === e), true);
+  assert.equal(await page.evaluate(() => document.documentElement.classList.contains('resume-is-open')), false);
+});
+
+test('history navigation closes the résumé overlay and releases scroll locking', async t => {
+  const page = await enhancedPage(t, '/projects');
+  await page.locator('.projects-header a[href="/"]').click();
+  await settle(page, '/', '.sheet');
+  await page.locator('a[href="/resume.pdf"]:visible').click();
+  await page.locator('.resume-dialog[open]').waitFor();
+  await page.goBack();
+  await settle(page, '/projects', '.projects-page');
+  assert.equal(await page.locator('.resume-dialog').evaluate(e => e.open), false);
+  assert.equal(await page.evaluate(() => document.documentElement.classList.contains('resume-is-open')), false);
+  await assertSameDocument(page);
 });
