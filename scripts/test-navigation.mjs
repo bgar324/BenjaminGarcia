@@ -339,33 +339,38 @@ test('homepage, archive, articles and 404 remain usable without JavaScript', asy
   await page.locator('.sheet').waitFor();
 });
 
-test('homepage type uses spare height while desktop and tablet content stays on screen', async t => {
+test('homepage reading text stays within desktop, tablet and phone content bounds', async t => {
   const page = await pageFor(t, { viewport: { width: 1260, height: 600 } });
   await page.goto(base + '/');
   await page.evaluate(() => document.fonts.ready);
   await settle(page, '/', '.sheet');
-  const compactSize = await page.locator('.summary').first().evaluate(e => parseFloat(getComputedStyle(e).fontSize));
-  for (const [width, height] of [[1260, 871], [1512, 871], [1568, 924], [1568, 690], [1280, 600], [820, 1180], [1024, 1024]]) {
+  for (const [width, height] of [[1260, 871], [1512, 871], [1512, 928], [1568, 924], [1568, 714], [1568, 690], [1280, 600], [1024, 768], [820, 1180], [1024, 1024]]) {
     await page.setViewportSize({ width, height });
     await settle(page, '/', '.sheet');
     const metrics = await page.evaluate(() => {
       const footer = document.querySelector('footer').getBoundingClientRect();
       return {
         summarySize: parseFloat(getComputedStyle(document.querySelector('.summary')).fontSize),
+        textFits: [...document.querySelectorAll('.sheet p, .sheet h1, .sheet h2, .sheet h3, .sheet a, .sheet time')]
+          .every(element => !element.clientWidth || element.scrollWidth <= element.clientWidth + 1),
         fits: document.scrollingElement.scrollHeight <= innerHeight &&
           document.scrollingElement.scrollWidth <= innerWidth &&
           footer.top >= 0 && footer.bottom <= innerHeight,
       };
     });
     assert.ok(metrics.fits, `All content, including the footer, must fit at ${width}×${height}`);
+    assert.ok(metrics.textFits, `Reading text must stay inside its columns at ${width}×${height}`);
     if (width === 1260) {
-      assert.ok(metrics.summarySize > compactSize, 'Extra height must enlarge reading text');
       assert.ok(metrics.summarySize >= 14, 'The sidebar-width layout must use readable descriptions');
     }
   }
-  await page.setViewportSize({ width: 390, height: 844 });
-  await settle(page, '/', '.sheet');
-  assert.equal(await page.locator('.summary').first().evaluate(e => getComputedStyle(e).fontSize), '14px');
+  for (const width of [390, 320]) {
+    await page.setViewportSize({ width, height: 844 });
+    await settle(page, '/', '.sheet');
+    assert.equal(await page.locator('.summary').first().evaluate(e => getComputedStyle(e).fontSize), '14px');
+    assert.ok(await page.evaluate(() => document.scrollingElement.scrollWidth <= innerWidth),
+      `Phone content must not overflow horizontally at ${width}px`);
+  }
   await scrollToPosition(page, 300);
   await page.setViewportSize({ width: 1260, height: 871 });
   await settle(page, '/', '.sheet');

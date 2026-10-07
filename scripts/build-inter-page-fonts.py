@@ -5,6 +5,8 @@ from __future__ import annotations
 
 import hashlib
 import os
+import subprocess
+import sys
 import tempfile
 from html.parser import HTMLParser
 from pathlib import Path
@@ -148,6 +150,7 @@ def main() -> None:
                 f"({100 * (1 - len(data) / original_size):.1f}% smaller), "
                 f"{len(requested)} codepoints; SHA-256 {hashlib.sha256(data).hexdigest()}"
             )
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "embed-page-fonts.py")], check=True)
 
 
 if __name__ == "__main__":
