@@ -81,6 +81,8 @@ Use this server for extensionless routes, not `python -m http.server`.
 
 The content canvas is capped at 1568px. CSS provides a fitted desktop/tablet fallback and keeps the phone layout scrolling. Landscape spacing interpolates between compact 34.5rem and roomy 49.2rem height budgets. Square viewports use only the portrait layout. No overflow hiding, clipping, or scroll interception is used. Snoopy cycles on mouse, touch, Enter, and Space; reload selection excludes the last pose using sessionStorage, and a static image remains without JavaScript. The footer clock uses local time.
 
+Above 760px, the footer uses three fixed grid positions: name left, résumé centered, and local clock right. Revealing the clock does not move the résumé link. Phones retain the wrapping footer and hide its résumé link.
+
 Above 760px, CSS sets reading sizes from the viewport before the first paint. Roomier landscape layouts use the larger of `.8125rem` and `min(1rem, 1.85dvh, 17px)` for main text. Narrow desktop and portrait layouts keep `.8125rem` to fit their compact date columns. Descriptions, footer text, and the introduction retain their existing size ratios. The display name, illustration, and spacing rules are unchanged. JavaScript does not measure or resize text.
 
 Phone descriptions remain 14px with vertical scrolling. The browser regression checks desktop and tablet content bounds, narrow phone overflow, and returning from a scrolled phone layout.

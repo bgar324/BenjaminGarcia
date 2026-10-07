@@ -46,6 +46,10 @@ html:has(main.sheet) { background: var(--paper); }
 .sheet footer a[href="/resume.pdf"] { text-decoration: underline; text-underline-offset: .15em; }
 .sheet .local-clock { white-space: nowrap; font-variant-numeric: tabular-nums; }
 @media (min-width: 761px) {
+  .sheet footer { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+  .sheet footer > span { grid-column: 1; }
+  .sheet footer > a { grid-column: 2; }
+  .sheet footer > .local-clock { grid-column: 3; justify-self: end; }
   /* Reading sizes depend on the viewport, never post-paint text measurements. */
   .sheet { font-size: max(.8125rem, min(1rem, 1.85dvh, 17px)); }
   .sheet .summary, .sheet .project-list p { font-size: calc(12em / 13); }
