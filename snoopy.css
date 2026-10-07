@@ -17,7 +17,12 @@ html:has(main.sheet) { background: var(--paper); }
 .sheet h1 { font-family: Inter, sans-serif; font-size: 6.25rem; font-weight: 700; line-height: .90; letter-spacing: -.04em; }
 .sheet h1 span { display: block; }
 .sheet .snoopy, .sheet .snoopy-static { position: absolute; top: .375rem; left: 11.875rem; width: 4.875rem; height: 4.875rem; }
-.sheet .snoopy { border: 0; background: none; padding: 0; cursor: pointer; border-radius: .1875rem; }
+.sheet .snoopy { border: 0; background: none; padding: 0; cursor: pointer; border-radius: .1875rem; transition: transform 120ms ease-out; }
+.sheet .snoopy:active { transform: scale(.98); }
+@media (prefers-reduced-motion: reduce) {
+  .sheet .snoopy { transition: none; }
+  .sheet .snoopy:active { transform: none; }
+}
 .sheet .snoopy[hidden] { display: none; }
 .sheet .snoopy img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .sheet .snoopy-static { object-fit: contain; }

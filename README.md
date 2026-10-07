@@ -28,7 +28,9 @@ The homepage must fit on one screen on desktop and tablets, including the comple
 
 ## Approved design update
 
-The mixed-font homepage uses Inter for names/roles/intro and mono for descriptions/metadata. Five Snoopy poses include daydreaming and headphones; dancing has been replaced. The background is flat cream, including the root canvas. Desktop archive rows span name, technologies, and source links. Desktop articles have a fixed title column with section-linked images/charts underneath, 150ms out/in blur-and-slide swaps, and carry-forward visuals for text-only sections. Mobile, short windows, and no-JavaScript views retain inline figures. Article footers are removed. All diagrams have transparent canvases; the PolicyC generator preserves transparency.
+The mixed-font homepage uses Inter for names/roles/intro and mono for descriptions/metadata. Five Snoopy poses include daydreaming and headphones; dancing has been replaced. The background is flat cream, including the root canvas. Desktop archive rows span name, technologies, and source links. Desktop articles have a fixed title column with section-linked images/charts underneath, 150ms out/in blur-and-slide swaps, and carry-forward visuals for text-only sections. Article footers are removed. All diagrams have transparent canvases; the PolicyC generator preserves transparency.
+
+Each article's HTML puts its first illustration in `.article-media-stage` beside the header inside `.article-sidebar`. At widths of at least 1100px and heights of at least 650px, CSS fixes that sidebar to the left and starts `.article-body` at the first text section. This initial layout does not wait for JavaScript. On narrower or shorter windows, both wrappers use `display: contents` and the illustration returns to the normal reading flow. Without JavaScript, the first illustration uses the same responsive placement and later illustrations remain readable in their sections. The media script moves only later section illustrations into the existing stage, returns them to their original positions on resize, and selects the current visual after Swup restores scroll. It never clones media or hides the page.
 
 Monospace text uses self-hosted Geist Mono for descriptions, dates, metadata, and secondary-page labels. Its Latin variable WOFF2 comes from `@fontsource-variable/geist-mono` 5.3.0; `OFL-GeistMono.txt` preserves the SIL Open Font License. Regular mono text uses weight 375; experience dates use 500 so they remain secondary to company names. Other bold labels and Inter weights are unchanged. The superseded IBM Plex and static Geist assets are removed.
 
@@ -36,7 +38,7 @@ Normal Inter and Geist Mono are embedded once as WOFF2 data URLs in the shared r
 
 The three featured Work descriptions share the experience-description typography, including font size, weight, line height, color, and full opacity, on both desktop and phones.
 
-The readable width-based sizing hotfix and footer résumé underline remain in place. The local design was integrated on top of production rather than replacing that fix. The unrelated resume.tex edit, Benjamin_Garcia.pdf, website-audit.md, and Python caches are excluded.
+The readable width-based sizing hotfix and footer résumé underline remain in place. The local design was integrated on top of production rather than replacing that fix. `resume.tex` is committed source but remains excluded from Vercel by `.vercelignore`; the public résumé is `resume.pdf`.
 
 Homepage company names and Work project titles are underlined links. Work retains its two-line name/descriptor format; no technical-description paragraph is displayed.
 
@@ -81,6 +83,8 @@ Use this server for extensionless routes, not `python -m http.server`.
 
 The content canvas is capped at 1568px. CSS provides a fitted desktop/tablet fallback and keeps the phone layout scrolling. Landscape spacing interpolates between compact 34.5rem and roomy 49.2rem height budgets. Square viewports use only the portrait layout. No overflow hiding, clipping, or scroll interception is used. Snoopy cycles on mouse, touch, Enter, and Space; reload selection excludes the last pose using sessionStorage, and a static image remains without JavaScript. The footer clock uses local time.
 
+Clicking Snoopy decodes the next pose before a 180ms opacity-only crossfade. A 2% press response acknowledges activation without blurring or moving the artwork. Rapid clicks finish the active dissolve before showing the latest requested pose; navigation cancels motion and removes the temporary image. Reduced motion switches poses without animation.
+
 Above 760px, the footer uses three fixed grid positions: name left, résumé centered, and local clock right. Revealing the clock does not move the résumé link. Phones retain the wrapping footer and hide its résumé link.
 
 Above 760px, CSS sets reading sizes from the viewport before the first paint. Roomier landscape layouts use the larger of `.8125rem` and `min(1rem, 1.85dvh, 17px)` for main text. Narrow desktop and portrait layouts keep `.8125rem` to fit their compact date columns. Descriptions, footer text, and the introduction retain their existing size ratios. The display name, illustration, and spacing rules are unchanged. JavaScript does not measure or resize text.
@@ -101,7 +105,7 @@ BROWSER=firefox npm test
 BROWSER=webkit npm test
 ```
 
-`CHROME_BIN` optionally selects an installed Chrome executable. Thirteen regressions cover same-document identity, slow-fetch visibility, repeated Snoopy/clock initialization, entry-specific Back/Forward scrolling, article-media restoration, response races, failed-history recovery, native fragments/external links/non-résumé PDFs, 404 round trips, no-JavaScript fallback, adaptive reading size, PDF overlay rendering/focus, and history cleanup. The current typography and initial illustrated-404 changes pass all thirteen in Chromium; later illustration-size refinements were checked directly in the browser.
+`CHROME_BIN` optionally selects an installed Chrome executable. The regressions cover same-document identity, slow-fetch visibility, repeated Snoopy/clock initialization, entry-specific Back/Forward scrolling, article-media restoration and initial placement before its script loads, response races, failed-history recovery, native fragments/external links/non-résumé PDFs, 404 round trips, no-JavaScript fallback, adaptive reading size, PDF overlay rendering/focus, and history cleanup.
 
 All routes load the same stylesheets in order: styles.css, pages.css, snoopy.css, resume-modal.css. Page-specific selectors are scoped so incoming page assets cannot restyle the outgoing view. Shared scripts load once; portfolio:before-replace cleans up homepage timers/listeners and article media and closes the résumé modal, portfolio:after-replace mounts the new main, and portfolio:scroll-restored selects the correct visual immediately after restoring scroll. The MutationObserver-based media mount and native homepage handoff were removed.
 
@@ -109,4 +113,4 @@ During a delayed homepage→article fetch, 23 sampled browser frames retained an
 
 Before launch, exercise homepage → archive → article → home in a headless browser, check desktop/tablet/mobile overflow, all five Snoopy states, résumé and paper responses, and verify `resume.tex` is not public. After launch compare the served HTML/CSS/JS and résumé bytes against this commit, then repeat the live navigation smoke.
 
-The original working directory's unrelated resume.tex edit and untracked files were not included in the cutover; deployment was prepared in a separate worktree. The Ben-Snoopy preview directory remains available locally.
+The original cutover was prepared in a separate worktree without the working directory's unrelated files. The later footer update included `resume.tex`; `.vercelignore` still prevents its publication.

@@ -115,10 +115,12 @@ test('Snoopy and clock initialize on every same-document return from all reading
   let lastPose;
   async function checkHomepage() {
     await page.locator('.snoopy').waitFor({ state: 'visible' });
-    const image = page.locator('.snoopy img');
+    const image = page.locator('.snoopy img:not([aria-hidden])');
     const initialPose = await image.getAttribute('src');
     if (lastPose) assert.notEqual(initialPose, lastPose);
     await page.locator('.snoopy').click();
+    await page.waitForFunction(previous =>
+      document.querySelector('.snoopy img:not([aria-hidden])').getAttribute('src') !== previous, initialPose);
     lastPose = await image.getAttribute('src');
     assert.notEqual(lastPose, initialPose);
     const clock = page.locator('.local-clock');
@@ -180,6 +182,82 @@ test('repeated mobile home, archive and long-article entries restore their own s
     await assertScroll(page, position);
   }
 });
+
+for (const path of ['/blog/annie', '/blog/logit', '/blog/policyc']) {
+  test(`${path} paints desktop media beside stable text before its script loads`, async t => {
+    const page = await pageFor(t, { viewport: { width: 1440, height: 900 } });
+    let release;
+    const gate = new Promise(resolve => { release = resolve; });
+    await page.route('**/static/article-media.js*', async route => {
+      await gate;
+      await route.continue();
+    });
+    const requested = page.waitForRequest('**/static/article-media.js*');
+    async function layout() {
+      return page.evaluate(() => {
+        const media = document.querySelector('.article-example, .article-chart-switcher');
+        const body = document.querySelector('.article-body');
+        const section = body.querySelector(':scope > section');
+        function bounds(element) {
+          const { x, y, width, height } = element.getBoundingClientRect();
+          return { x, y, width, height };
+        }
+        function painted(element) {
+          for (let ancestor = element; ancestor; ancestor = ancestor.parentElement) {
+            const style = getComputedStyle(ancestor);
+            if (style.display === 'none' || style.visibility !== 'visible' || Number(style.opacity) === 0) return false;
+          }
+          return element.getClientRects().length > 0;
+        }
+        return {
+          media: bounds(media),
+          body: bounds(body),
+          section: bounds(section),
+          painted: painted(media) && painted(section),
+        };
+      });
+    }
+    function assertSideBySide(metrics, phase) {
+      assert.ok(metrics.painted, `${path}: media and text must be painted ${phase}`);
+      assert.ok(metrics.media.width > 0 && metrics.media.height > 0, `${path}: media must have visible dimensions ${phase}`);
+      assert.ok(metrics.media.x >= 0 && metrics.media.x + metrics.media.width <= metrics.body.x,
+        `${path}: the first media must already be left of the body ${phase}`);
+      assert.ok(metrics.media.y >= 0 && metrics.media.y < 900 && metrics.section.y >= 0 && metrics.section.y < 900,
+        `${path}: media and the first text section must start in the viewport ${phase}`);
+    }
+    let before;
+    try {
+      // A delayed defer script blocks DOMContentLoaded, but not the first CSS layout.
+      await page.goto(base + path, { waitUntil: 'commit' });
+      await requested;
+      await page.waitForFunction(() => {
+        const image = document.querySelector('.article-example img, .article-chart-switcher img');
+        return document.querySelector('.article-body > section') &&
+          [...document.querySelectorAll('link[rel="stylesheet"]')].every(link => link.sheet) &&
+          image?.complete && image.naturalWidth > 0;
+      });
+      await page.evaluate(() => document.fonts.ready);
+      await settle(page, path, '.article-body > section');
+      before = await layout();
+      assertSideBySide(before, 'while article-media.js is blocked');
+    } finally {
+      release();
+    }
+    await page.waitForLoadState('load');
+    await settle(page, path, '.article-body > section');
+    const after = await layout();
+    assertSideBySide(after, 'after initialization');
+    for (const [element, initial, current] of [
+      ['media', before.media, after.media],
+      ['section', before.section, after.section],
+    ]) {
+      for (const property of ['x', 'y', 'width', 'height']) {
+        assert.ok(Math.abs(current[property] - initial[property]) < 1,
+          `${path}: initialization moved ${element}.${property} from ${initial[property]} to ${current[property]}`);
+      }
+    }
+  });
+}
 
 test('desktop article media mounts before history scroll restoration', async t => {
   const page = await enhancedPage(t, '/projects', { viewport: { width: 1440, height: 900 } });
@@ -325,7 +403,7 @@ test('homepage, archive, articles and 404 remain usable without JavaScript', asy
     await page.locator(`a[href="${path}"]:visible`).click();
     await page.locator('.article-page').waitFor();
     assert.equal(await page.locator('.article-body').isVisible(), true);
-    assert.equal(await page.locator('.article-media-stage').count(), 0);
+    assert.equal(await page.locator('.article-example, .article-chart-switcher').first().isVisible(), true);
     assert.equal(await page.locator('.article-body figure:not(.article-chart-panel)').first().isVisible(), true);
     if (path === '/blog/policyc') {
       await page.locator('label[for="policyc-chart-cost"]').click();

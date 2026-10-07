@@ -11,10 +11,10 @@
     dispose();
     currentMain = main;
     if (!main?.matches('.article-page')) return;
-    const header = main.querySelector('.article-header');
+    const stage = main.querySelector('.article-media-stage');
     const media = [...main.querySelectorAll('figure, fieldset.article-chart-switcher')]
       .filter(node => !node.matches('.article-chart-panel') && !node.parentElement.closest('fieldset'));
-    if (!media.length) return;
+    if (!stage || !media.length) return;
     const sections = [...main.querySelectorAll('.article-body > section')];
     let last = 0;
     const timeline = sections.map(section => {
@@ -22,11 +22,12 @@
       if (index >= 0) last = index;
       return { section, index: last };
     });
-    const stage = document.createElement('div');
-    stage.className = 'article-media-stage';
-    stage.setAttribute('role', 'region');
-    stage.setAttribute('aria-label', 'Illustration for the current article section');
-    const entries = media.map(node => ({ node, marker: document.createComment('inline article media') }));
+    // The first illustration is already in its responsive sidebar in the HTML.
+    // Only section illustrations need markers for returning to inline layouts.
+    const entries = media.map(node => ({
+      node,
+      marker: node.parentElement === stage ? null : document.createComment('inline article media'),
+    }));
     let enabled = false;
     let active = -1;
     let frame = 0;
@@ -93,10 +94,9 @@
       cancelAnimationFrame(frame);
       frame = 0;
       for (const { node, marker } of entries) {
-        if (marker.parentNode) marker.replaceWith(node);
+        if (marker?.parentNode) marker.replaceWith(node);
         node.hidden = false;
       }
-      stage.remove();
       main.classList.remove('has-side-media');
       active = -1;
     }
@@ -104,15 +104,15 @@
       if (!desktop.matches) { disable(); return; }
       if (!enabled) {
         for (const { node, marker } of entries) {
+          if (!marker) continue;
           node.before(marker);
-          stage.append(node);
           node.hidden = true;
+          stage.append(node);
         }
-        header.append(stage);
         main.classList.add('has-side-media');
         enabled = true;
       }
-      schedule();
+      update();
     }
     addEventListener('scroll', schedule, { passive: true });
     addEventListener('resize', schedule);
@@ -131,6 +131,7 @@
     dispose = () => {
       removeEventListener('scroll', schedule);
       removeEventListener('resize', schedule);
+      stage.removeEventListener('focusout', schedule);
       desktop.removeEventListener('change', sync);
       reducedMotion.removeEventListener('change', schedule);
       document.removeEventListener('portfolio:scroll-restored', onRestoredScroll);

@@ -43,6 +43,18 @@
     let current = previous < 0
       ? Math.floor(Math.random() * poses.length)
       : (previous + 1 + Math.floor(Math.random() * (poses.length - 1))) % poses.length;
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    let swapAnimation;
+    let outgoing;
+    let exitAnimation;
+    function cancelSwap() {
+      swapAnimation?.cancel();
+      exitAnimation?.cancel();
+      outgoing?.remove();
+      swapAnimation = exitAnimation = outgoing = null;
+    }
+    let swapRequest = 0;
+    let next = current;
     function showPose() {
       image.src = poses[current].src;
       image.alt = poses[current].alt;
@@ -52,9 +64,44 @@
         // Reload non-repetition requires session storage; clicking does not.
       }
     }
-    function nextPose() {
-      current = (current + 1) % poses.length;
-      showPose();
+    async function nextPose() {
+      const request = ++swapRequest;
+      next = (next + 1) % poses.length;
+      const target = next;
+      const incoming = new Image();
+      incoming.src = poses[target].src;
+      try {
+        await incoming.decode();
+        await swapAnimation?.finished.catch(() => {});
+        if (request !== swapRequest) return;
+        cancelSwap();
+        if (!reducedMotion.matches) {
+          outgoing = image.cloneNode();
+          outgoing.alt = '';
+          outgoing.setAttribute('aria-hidden', 'true');
+          outgoing.style.cssText = 'position:absolute;inset:0;pointer-events:none';
+          button.append(outgoing);
+          exitAnimation = outgoing.animate([
+            { opacity: 1 },
+            { opacity: 0 },
+          ], { duration: 180, easing: 'ease-in-out', fill: 'forwards' });
+        }
+        current = target;
+        showPose();
+        if (!reducedMotion.matches) {
+          swapAnimation = image.animate([
+            { opacity: 0 },
+            { opacity: 1 },
+          ], { duration: 180, easing: 'ease-in-out' });
+          await swapAnimation.finished;
+        }
+      } catch {
+        // A superseding click cancels motion; failed images leave the current pose intact.
+      } finally {
+        if (request === swapRequest) {
+          cancelSwap();
+        }
+      }
     }
     showPose();
     if (!preloaded) {
@@ -77,6 +124,8 @@
     updateClock();
     const timer = clock ? setInterval(updateClock, 60_000) : null;
     dispose = () => {
+      swapRequest++;
+      cancelSwap();
       button.removeEventListener('click', nextPose);
       clearInterval(timer);
     };
