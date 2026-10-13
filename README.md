@@ -40,9 +40,9 @@ The three featured Work descriptions share the experience-description typography
 
 The readable width-based sizing hotfix and footer résumé underline remain in place. The local design was integrated on top of production rather than replacing that fix. `resume.tex` is committed source but remains excluded from Vercel by `.vercelignore`; the public résumé is `resume.pdf`.
 
-Homepage company names and Work project titles are underlined links. Work retains its two-line name/descriptor format; no technical-description paragraph is displayed.
+Homepage company names and project titles are underlined links. Projects retains its two-line name/descriptor format; no technical-description paragraph is displayed.
 
-On phones, underlined Résumé and All projects links share the Experience and Work heading rows. On desktop/tablet, Résumé remains in the footer and All projects remains below the featured list. All projects is underlined with no arrow at every size. Responsive copies expose only one link per destination at a time, including without JavaScript.
+On phones, underlined Résumé and All projects links share the Experience and Projects heading rows. On desktop/tablet, Résumé remains in the footer and All projects remains below the featured list. All projects is underlined with no arrow or hover effect at every size. Responsive copies expose only one link per destination at a time, including without JavaScript.
 
 ## Roll back to the old portfolio
 
@@ -81,7 +81,7 @@ Use this server for extensionless routes, not `python -m http.server`.
 - `static/navigation.js`: legacy-style Swup navigation across the homepage, archive, articles, and 404. The current document stays visible during fetches; only main is replaced, with no page transition animation. External sites, non-résumé PDFs, downloads, and fragment fallback remain native.
 - `resume.pdf`, `policyc.pdf`, `perspectevolver.pdf`: existing downloadable documents, unchanged by this launch.
 
-The content canvas is capped at 1568px. CSS provides a fitted desktop/tablet fallback and keeps the phone layout scrolling. Landscape spacing interpolates between compact 34.5rem and roomy 49.2rem height budgets. Square viewports use only the portrait layout. No overflow hiding, clipping, or scroll interception is used. Snoopy cycles on mouse, touch, Enter, and Space; reload selection excludes the last pose using sessionStorage, and a static image remains without JavaScript. The footer clock uses local time.
+The content canvas is capped at 1568px. CSS fits the complete desktop/tablet homepage within the viewport and keeps the phone layout scrolling. Landscape spacing interpolates between compact 34.5rem and roomy 56.5rem height budgets, reserving room for wrapped text without reducing reading sizes. Square viewports use only the portrait layout. No overflow hiding, clipping, or scroll interception is used. Snoopy cycles on mouse, touch, Enter, and Space; reload selection excludes the last pose using sessionStorage, and a static image remains without JavaScript. The footer clock uses local time.
 
 Clicking Snoopy decodes the next pose before a 180ms opacity-only crossfade. A 2% press response acknowledges activation without blurring or moving the artwork. Rapid clicks finish the active dissolve before showing the latest requested pose; navigation cancels motion and removes the temporary image. Reduced motion switches poses without animation.
 

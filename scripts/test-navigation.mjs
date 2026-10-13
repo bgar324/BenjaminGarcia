@@ -422,7 +422,7 @@ test('homepage reading text stays within desktop, tablet and phone content bound
   await page.goto(base + '/');
   await page.evaluate(() => document.fonts.ready);
   await settle(page, '/', '.sheet');
-  for (const [width, height] of [[1260, 871], [1512, 871], [1512, 928], [1568, 924], [1568, 714], [1568, 690], [1280, 600], [1024, 768], [820, 1180], [1024, 1024]]) {
+  for (const [width, height] of [[1200, 800], [1280, 800], [1366, 900], [1260, 871], [1512, 871], [1512, 928], [1568, 924], [1568, 714], [1568, 690], [1280, 600], [1024, 768], [820, 1180], [1024, 1024]]) {
     await page.setViewportSize({ width, height });
     await settle(page, '/', '.sheet');
     const metrics = await page.evaluate(() => {

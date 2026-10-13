@@ -4,7 +4,7 @@ html:has(main.sheet), html:has(main.sheet) * { box-sizing: border-box; }
 body:has(main.sheet) { margin: 0; background: var(--paper); color: var(--ink); font: 375 .8125rem/1.3 'Geist Mono', monospace; }
 html:has(main.sheet) { background: var(--paper); }
 .sheet a { color: inherit; text-decoration: none; }
-.sheet a:hover { text-decoration: underline; text-underline-offset: .1875rem; }
+.sheet a:not([href="/projects"]):hover { text-decoration: underline; text-underline-offset: .1875rem; }
 .sheet a:focus-visible, .sheet button:focus-visible { outline: .125rem solid var(--red); outline-offset: .3125rem; }
 .sheet { position: relative; isolation: isolate; width: min(100%, 1568px); min-height: 100dvh; margin: 0 auto; padding: 2.95rem min(6vw, 100px) 1.5rem; background: var(--paper); display: flex; flex-direction: column; }
 .sheet p, .sheet h1, .sheet h2, .sheet h3 { margin: 0; }
@@ -118,10 +118,10 @@ html:has(main.sheet) { background: var(--paper); }
   .sheet .mobile-section-link { display: inline-block; padding-block: 12px; margin-block: -12px; font-size: inherit; font-weight: 400; text-decoration: underline; text-underline-offset: .15em; white-space: nowrap; }
   .sheet .all-projects, .sheet footer a[href="/resume.pdf"] { display: none; }
 }
-/* Interpolate spacing between the compact 34.5rem and roomy 49.2rem height budgets. */
+/* Reserve height for wrapped text before expanding desktop spacing. */
 @media (min-width: 761px) and (orientation: landscape) {
   .sheet {
-    --layout-space: clamp(0rem, calc((100dvh - 34.5rem) / 14.7), 1rem);
+    --layout-space: clamp(0rem, calc((100dvh - 34.5rem) / 22), 1rem);
     --name-size: min(calc(5.25rem + var(--layout-space)), calc((100dvh - 25rem) / 1.8));
     padding-block: calc(.6rem + 2.35 * var(--layout-space)) calc(.6rem + .9 * var(--layout-space));
   }
