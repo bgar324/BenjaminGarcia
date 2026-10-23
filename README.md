@@ -44,6 +44,8 @@ Homepage company names and project titles are underlined links. Projects retains
 
 On phones, underlined Résumé and All projects links share the Experience and Projects heading rows. On desktop/tablet, Résumé remains in the footer and All projects remains below the featured list. All projects is underlined with no arrow or hover effect at every size. Responsive copies expose only one link per destination at a time, including without JavaScript.
 
+Links retain their normal appearance on hover. Keyboard focus outlines remain visible.
+
 ## Roll back to the old portfolio
 
 The last old-portfolio commit is **`1551b7d3fa0090e4c1902e2ef297e43ef100c95e`**, also tagged **`portfolio-before-snoopy-2026-10-05`**. Its homepage bytes were checked against production immediately before this cutover.
