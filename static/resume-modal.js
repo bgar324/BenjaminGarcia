@@ -16,9 +16,9 @@
     dialog.setAttribute('aria-label', 'Benjamin Garcia résumé');
     dialog.innerHTML = `
       <div class="resume-shell">
-        <div class="resume-paper" aria-busy="true"><p class="resume-loading">Loading résumé…</p></div>
+        <div class="resume-paper" role="region" aria-label="Résumé preview" tabindex="-1" autofocus aria-busy="true"><p class="resume-loading">Loading résumé…</p></div>
         <img class="resume-reader" src="/static/snoopy/reading.webp" width="402" height="500" alt="Snoopy reading on a stack of books">
-        <button class="resume-close" type="button" aria-label="Close résumé" autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+        <button class="resume-close" type="button" aria-label="Close résumé"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
         <div class="resume-actions" aria-label="Résumé actions">
           <a class="resume-control" href="/resume.pdf" download="Benjamin-Garcia-Resume.pdf" aria-label="Download résumé"><span class="resume-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></svg></span><span class="resume-label">Download</span></a>
           <button class="resume-control resume-share" type="button" aria-label="Share résumé"><span class="resume-icon" aria-hidden="true"><svg class="share-symbol" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 10.5 6-4M9 13.5l6 4"/></svg><svg class="share-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg><svg class="share-spinner" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-8-8"/></svg></span><span class="resume-label">Share</span></button>

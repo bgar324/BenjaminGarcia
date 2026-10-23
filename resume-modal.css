@@ -41,6 +41,8 @@
 .resume-control[aria-disabled="true"] { cursor: progress; }
 .resume-close { position: absolute; top: 0; left: calc(100% + 16px); width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; }
 .resume-dialog :focus-visible { outline: 2px solid #233e91; outline-offset: 4px; }
+/* Initial focus announces the preview; actionable controls retain their focus rings. */
+.resume-paper:focus-visible { outline: none; }
 .resume-message { position: absolute; top: 100%; left: 0; margin: 10px 0 0; color: white; font-size: 13px; }
 .resume-share-url { position: absolute; top: calc(100% + 36px); left: 0; width: 100%; padding: 8px; font: inherit; }
 /* PDF.js text-layer contract: selectable text sits over the rendered PDF. */
