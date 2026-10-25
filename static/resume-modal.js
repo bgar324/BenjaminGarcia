@@ -8,7 +8,7 @@
   let libraryPromise, documentPromise;
   let generation = 0;
   let renders = [];
-  let lastWidth = 0;
+  let lastWidth = 0, lastPixelRatio = 0;
 
   function build() {
     dialog = document.createElement('dialog');
@@ -80,6 +80,8 @@
       if (ticket !== generation || !dialog.open) return;
       const width = paper.clientWidth;
       lastWidth = width;
+      const pixelRatio = devicePixelRatio || 1;
+      lastPixelRatio = pixelRatio;
       const fragment = document.createDocumentFragment();
       for (let number = 1; number <= pdf.numPages; number++) {
         const page = await pdf.getPage(number);
@@ -87,7 +89,8 @@
         const natural = page.getViewport({ scale: 1 });
         const scale = width / natural.width;
         const viewport = page.getViewport({ scale });
-        const outputScale = Math.min(devicePixelRatio || 1, 2);
+        // Supersample small PDF text at twice the display density, without a DPR cap.
+        const outputScale = pixelRatio * 2;
         const sheet = document.createElement('div');
         sheet.className = 'resume-pdf-page';
         sheet.style.height = `${viewport.height}px`;
@@ -259,7 +262,7 @@
   addEventListener('resize', () => {
     if (!dialog?.open) return;
     measureControls();
-    if (paper.clientWidth === lastWidth) return;
+    if (paper.clientWidth === lastWidth && (devicePixelRatio || 1) === lastPixelRatio) return;
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(render, 100);
   });
