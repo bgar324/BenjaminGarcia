@@ -123,11 +123,13 @@ test("repeated history entries restore their own scroll positions", async t => {
   await settle(page, "/", "I build software");
   assert.equal(await page.evaluate(() => scrollY), firstHome);
   await page.evaluate(() => scrollTo({ top: 1600, behavior: "instant" }));
+  const secondHome = await page.evaluate(() => scrollY);
+  assert.notEqual(secondHome, firstHome, "History entries must exercise distinct scroll positions");
   await page.evaluate(() => document.querySelector('a[href="/projects"]').click());
   await settle(page, "/projects", "All Projects");
   await page.goBack();
   await settle(page, "/", "I build software");
-  assert.equal(await page.evaluate(() => scrollY), 1600);
+  assert.equal(await page.evaluate(() => scrollY), secondHome);
   await page.goBack();
   await settle(page, "/blog/policyc", "Building PolicyC");
   assert.equal(await page.evaluate(() => scrollY), 800);

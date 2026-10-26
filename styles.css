@@ -161,7 +161,7 @@ a:focus-visible {
 }
 
 .content-section {
-  padding-block: 5.25rem;
+  padding-block: 2.5rem;
   border-top: 1px solid var(--line);
 }
 
@@ -170,7 +170,7 @@ a:focus-visible {
   align-items: baseline;
   justify-content: space-between;
   gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .section-link {
@@ -189,7 +189,7 @@ a:focus-visible {
 
 .project,
 .experience-row {
-  padding-block: 2.15rem;
+  padding-block: 1.375rem;
 }
 
 .projects-row {
@@ -200,6 +200,11 @@ a:focus-visible {
 .project:first-child,
 .experience-row:first-child {
   padding-top: 0;
+}
+
+.project:last-child,
+.experience-row:last-child {
+  padding-bottom: 0;
 }
 
 .projects-row:first-child {
@@ -223,10 +228,34 @@ a:focus-visible {
   min-width: 0;
 }
 
+.experience-heading,
+.project-heading {
+  --subtitle-color: #6b6b6b;
+}
+
+.experience-heading h3 a,
+.project-heading h3 a {
+  text-decoration-color: var(--subtitle-color);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.experience-heading h3 a:focus-visible,
+.project-heading h3 a:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+@media (hover: hover) {
+  .experience-heading h3 a:hover,
+  .project-heading h3 a:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
 .experience-role,
 .project-subtitle {
   margin-left: 0.4em;
-  color: #6b6b6b;
+  color: var(--subtitle-color);
   font-weight: 400;
 }
 
@@ -809,10 +838,6 @@ a:focus-visible {
 
   .intro {
     padding-block: 4.75rem 4.5rem;
-  }
-
-  .content-section {
-    padding-block: 4.25rem;
   }
 
   .experience-heading {
