@@ -52,7 +52,7 @@ html {
   background: var(--background);
   line-height: var(--leading-normal);
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgb(44 40 38 / 15%);
 }
 
 body {
@@ -63,6 +63,8 @@ body {
   font-synthesis: none;
   font-size-adjust: var(--font-size-adjust-body);
   letter-spacing: var(--font-tracking-compensation);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 *,
@@ -73,6 +75,29 @@ body {
 
 a {
   color: inherit;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+[id] {
+  scroll-margin-block-start: 1.5rem;
+}
+
+.section-link,
+.project-links a,
+.projects-links a,
+.article-meta a,
+.article-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: 4px;
+  margin-block: -12px;
+  margin-inline: -4px;
 }
 
 ::selection {
@@ -243,6 +268,7 @@ a {
 .experience-heading > p {
   flex-shrink: 0;
   margin: 0;
+  font-variant-numeric: tabular-nums;
 }
 
 .project > .project-subtitle {
@@ -297,7 +323,7 @@ a {
   outline-offset: 2px;
 }
 
-.contribution-day:is(:hover, :focus-visible) {
+.contribution-day:focus-visible {
   z-index: 1;
 }
 
@@ -324,8 +350,13 @@ a {
   white-space: nowrap;
 }
 
-.contribution-day:is(:hover, :focus-visible) .contribution-tooltip {
+.contribution-day:focus-visible .contribution-tooltip {
   visibility: visible;
+}
+
+@media (hover: hover) {
+  .contribution-day:hover { z-index: 1; }
+  .contribution-day:hover .contribution-tooltip { visibility: visible; }
 }
 
 /* Anchor to the cell without clipping the tooltip at the calendar's edges. */
@@ -516,8 +547,8 @@ a {
 .article-chart-tabs {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 0.75rem;
+  gap: 0;
+  margin: 0 -0.75rem 0.75rem;
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -529,6 +560,7 @@ a {
 .article-chart-tabs label {
   display: flex;
   min-height: 2.75rem;
+  padding-inline: 0.75rem;
   align-items: center;
   flex: 0 0 auto;
   color: var(--subtle);
@@ -539,8 +571,8 @@ a {
   user-select: none;
 }
 
-.article-chart-tabs label:hover {
-  color: var(--muted);
+@media (hover: hover) {
+  .article-chart-tabs label:hover { color: var(--muted); }
 }
 
 #policyc-chart-input:checked ~ .article-chart-tabs label[for="policyc-chart-input"],
@@ -772,8 +804,7 @@ a {
   .article-chart-tabs {
     justify-content: flex-start;
     flex-wrap: wrap;
-    column-gap: 1rem;
-    row-gap: 0.25rem;
+    gap: 0;
     overflow-x: visible;
   }
 

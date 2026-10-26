@@ -148,6 +148,7 @@ to a local Chrome executable to use it instead of Playwright's Chromium.
 - Experience headings group the linked company with an unlinked `.experience-role` span. Keep natural text wrapping; dates remain separate from the heading.
 - Update the project collection in `projects/index.html`.
 - Update global visual styling and motion in `styles.css`.
+- Keep keyboard focus visible, hover effects limited to hover-capable pointers, and native touch feedback enabled. Chart labels use padded hit areas and native radio-keyboard behavior. Preserve instant history scroll restoration rather than adding global smooth scrolling.
 - Add portfolio articles under `blog/<slug>/index.html` and their images under `static/`.
 - Run `python3 -m pip install -r scripts/requirements.txt` once before rebuilding font subsets.
 - Run `python3 scripts/build-inter-page-fonts.py` to rebuild the normal and italic page fonts. The builder combines its Unicode ranges with current rendered HTML text and preserves variable weights and layout features. Keep the full `static/inter-variable.woff2` and `static/inter-variable-italic.woff2` source files; page subsetting does not replace them.
