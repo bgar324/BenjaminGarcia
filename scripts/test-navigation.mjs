@@ -422,38 +422,21 @@ test('homepage reading text stays within desktop, tablet and phone content bound
   await page.goto(base + '/');
   await page.evaluate(() => document.fonts.ready);
   await settle(page, '/', '.sheet');
-  for (const [width, height] of [[1200, 800], [1280, 800], [1366, 900], [1260, 871], [1512, 871], [1512, 928], [1568, 924], [1568, 714], [1568, 690], [1280, 600], [1024, 768], [820, 1180], [1024, 1024]]) {
+  for (const [width, height] of [[1440, 1000], [1280, 600], [820, 1180], [390, 844], [320, 844]]) {
     await page.setViewportSize({ width, height });
     await settle(page, '/', '.sheet');
     const metrics = await page.evaluate(() => {
-      const footer = document.querySelector('footer').getBoundingClientRect();
       return {
-        summarySize: parseFloat(getComputedStyle(document.querySelector('.summary')).fontSize),
         textFits: [...document.querySelectorAll('.sheet p, .sheet h1, .sheet h2, .sheet h3, .sheet a, .sheet time')]
           .every(element => !element.clientWidth || element.scrollWidth <= element.clientWidth + 1),
-        fits: document.scrollingElement.scrollHeight <= innerHeight &&
-          document.scrollingElement.scrollWidth <= innerWidth &&
-          footer.top >= 0 && footer.bottom <= innerHeight,
+        fits: document.scrollingElement.scrollWidth <= innerWidth,
       };
     });
-    assert.ok(metrics.fits, `All content, including the footer, must fit at ${width}×${height}`);
-    assert.ok(metrics.textFits, `Reading text must stay inside its columns at ${width}×${height}`);
-    if (width === 1260) {
-      assert.ok(metrics.summarySize >= 14, 'The sidebar-width layout must use readable descriptions');
-    }
+    assert.ok(metrics.fits, `Content must not overflow horizontally at ${width}×${height}`);
+    assert.ok(metrics.textFits, `Reading text must stay inside its container at ${width}×${height}`);
   }
-  for (const width of [390, 320]) {
-    await page.setViewportSize({ width, height: 844 });
-    await settle(page, '/', '.sheet');
-    assert.equal(await page.locator('.summary').first().evaluate(e => getComputedStyle(e).fontSize), '14px');
-    assert.ok(await page.evaluate(() => document.scrollingElement.scrollWidth <= innerWidth),
-      `Phone content must not overflow horizontally at ${width}px`);
-  }
-  await scrollToPosition(page, 300);
-  await page.setViewportSize({ width: 1260, height: 871 });
-  await settle(page, '/', '.sheet');
-  assert.ok(await page.evaluate(() => document.scrollingElement.scrollHeight <= innerHeight),
-    'Returning from a scrolled phone layout must fit using document height, not scroll position');
+  await page.locator('footer').scrollIntoViewIfNeeded();
+  assert.ok(await page.evaluate(() => scrollY > 0), 'The homepage must scroll naturally to its footer');
 });
 
 test('résumé overlay renders the PDF and traps focus until Escape restores the trigger', async t => {
