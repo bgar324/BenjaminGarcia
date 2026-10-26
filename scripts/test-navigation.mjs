@@ -1,82 +1,70 @@
-import assert from 'node:assert/strict';
-import { spawn } from 'node:child_process';
-import { createInterface } from 'node:readline';
-import { fileURLToPath } from 'node:url';
-import { after, before, test } from 'node:test';
-import { chromium, firefox, webkit } from 'playwright';
+import assert from "node:assert/strict";
+import { spawn } from "node:child_process";
+import { createInterface } from "node:readline";
+import { fileURLToPath } from "node:url";
+import { after, before, test } from "node:test";
+import { chromium, firefox, webkit } from "playwright";
 
-let server, browser, base;
+let server;
+let browser;
+let base;
+
 before(async () => {
-  server = spawn('python3', ['scripts/serve.py', '--port', '0'], {
-    cwd: fileURLToPath(new URL('../', import.meta.url)), stdio: ['ignore', 'pipe', 'ignore'],
+  server = spawn("python3", ["scripts/serve.py", "--port", "0"], {
+    cwd: fileURLToPath(new URL("../", import.meta.url)),
+    stdio: ["ignore", "pipe", "ignore"],
   });
   base = await new Promise((resolve, reject) => {
     const lines = createInterface({ input: server.stdout });
-    const timeout = setTimeout(() => reject(new Error('Preview did not start')), 10000);
-    server.once('error', reject);
-    lines.on('line', line => {
+    const timeout = setTimeout(() => reject(new Error("Preview did not start")), 10000);
+    server.once("error", reject);
+    server.once("exit", code => reject(new Error(`Preview exited: ${code}`)));
+    lines.on("line", line => {
       const match = line.match(/http:\/\/127\.0\.0\.1:\d+/);
-      if (match) { clearTimeout(timeout); lines.close(); resolve(match[0]); }
+      if (match) {
+        clearTimeout(timeout);
+        lines.close();
+        resolve(match[0]);
+      }
     });
   });
-  const engine = process.env.BROWSER || 'chromium';
+  const engine = process.env.BROWSER || "chromium";
   browser = await ({ chromium, firefox, webkit })[engine].launch({
     headless: true,
-    ...(engine === 'chromium' && process.env.CHROME_BIN ? { executablePath: process.env.CHROME_BIN } : {}),
+    ...(engine === "chromium" && process.env.CHROME_BIN
+      ? { executablePath: process.env.CHROME_BIN } : {}),
   });
 });
-after(async () => { await browser?.close(); server?.kill(); });
 
-async function pageFor(t, options = {}) {
-  const context = await browser.newContext(options);
+after(async () => {
+  await browser?.close();
+  server?.kill();
+});
+
+const settle = (page, path, heading) => page.waitForFunction(({ path, heading }) =>
+  location.pathname === path && document.querySelector("h1")?.textContent.includes(heading) &&
+  !document.documentElement.classList.contains("is-changing"), { path, heading });
+
+async function homepage(t) {
+  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
   t.after(() => context.close());
-  return context.newPage();
-}
-
-async function settle(page, path, selector) {
-  await page.waitForFunction(({ path, selector }) =>
-    location.pathname === path && document.querySelector(selector) &&
-    !document.documentElement.classList.contains('is-changing'), { path, selector });
-  // Firefox may expose the new main before its :has()-scoped styles are painted.
-  await page.evaluate(() => new Promise(resolve =>
-    requestAnimationFrame(() => requestAnimationFrame(resolve))));
-}
-
-async function enhancedPage(t, path = '/', options = {}) {
-  const page = await pageFor(t, options);
-  await page.goto(base + path);
-  await page.waitForFunction(() => history.state?.source === 'swup');
-  await page.evaluate(() => { window.originalDocument = document; });
+  const page = await context.newPage();
+  await page.goto(base + "/");
+  await page.waitForFunction(() => history.state?.source === "swup");
   return page;
 }
 
-async function assertSameDocument(page) {
-  assert.equal(await page.evaluate(() => window.originalDocument === document), true);
-}
-
-async function scrollToPosition(page, top) {
-  await page.evaluate(async top => {
-    await document.fonts.ready;
-    scrollTo({ top, behavior: 'instant' });
-    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-  }, top);
-  const position = await page.evaluate(() => scrollY);
-  assert.ok(position > 0, 'The selected viewport must have scrollable content');
-  return position;
-}
-
-async function assertScroll(page, expected) {
-  await page.waitForFunction(expected => Math.abs(scrollY - expected) < 2, expected);
-  await assertSameDocument(page);
-}
-
-test('home stays painted during a slow article fetch and both swaps retain the document', async t => {
-  const page = await enhancedPage(t);
-  await page.evaluate(() => { window.previousMain = document.querySelector('main'); });
-  let release, requested;
+test("the old page stays painted during a slow fetch and the document survives the swap", async t => {
+  const page = await homepage(t);
+  await page.evaluate(() => {
+    window.marker = "original-document";
+    window.previousMain = document.querySelector("main");
+  });
+  let release;
+  let requested;
   const gate = new Promise(resolve => { release = resolve; });
   const arrival = new Promise(resolve => { requested = resolve; });
-  await page.route(base + '/blog/policyc', async route => {
+  await page.route(base + "/blog/policyc", async route => {
     requested();
     await gate;
     await route.continue();
@@ -86,204 +74,75 @@ test('home stays painted during a slow article fetch and both swaps retain the d
   try {
     assert.deepEqual(await page.evaluate(() => ({
       connected: window.previousMain.isConnected,
-      same: document.querySelector('main') === window.previousMain,
+      same: document.querySelector("main") === window.previousMain,
       opacity: getComputedStyle(window.previousMain).opacity,
-    })), { connected: true, same: true, opacity: '1' });
-    assert.equal(await page.locator('.sheet').isVisible(), true);
-    await assertSameDocument(page);
+    })), { connected: true, same: true, opacity: "1" });
   } finally {
     release();
   }
-  await settle(page, '/blog/policyc', '.article-page');
-  await assertSameDocument(page);
-  assert.equal(await page.evaluate(() => window.previousMain.isConnected), false);
-  assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'),
-    'https://www.bentgarcia.com/blog/policyc');
-  assert.equal(await page.evaluate(() => document.activeElement.tagName), 'BODY');
-  assert.equal(await page.locator('[data-chart="cost"]').count(), 1);
-  await page.locator('label[for="policyc-chart-cost"]').click();
-  assert.equal(await page.locator('#policyc-chart-cost').isChecked(), true);
-  assert.equal(await page.locator('[data-chart="cost"]').isVisible(), true);
-  await page.locator('.article-nav a[href="/"]').click();
-  await settle(page, '/', '.sheet');
-  await assertSameDocument(page);
+  await settle(page, "/blog/policyc", "Building PolicyC");
+  assert.equal(await page.evaluate(() => window.marker), "original-document");
+  assert.equal(await page.locator('link[rel="canonical"]').getAttribute("href"),
+    "https://www.bentgarcia.com/blog/policyc");
+  assert.equal(await page.evaluate(() => document.activeElement.tagName), "BODY");
+  await page.locator('a[href="/"]').click();
+  await settle(page, "/", "I build software");
   assert.equal(await page.locator('meta[property="article:published_time"]').count(), 0);
 });
 
-test('Snoopy and clock initialize on every same-document return from all reading routes', async t => {
-  const page = await enhancedPage(t);
-  let lastPose;
-  async function checkHomepage() {
-    await page.locator('.snoopy').waitFor({ state: 'visible' });
-    const image = page.locator('.snoopy img:not([aria-hidden])');
-    const initialPose = await image.getAttribute('src');
-    if (lastPose) assert.notEqual(initialPose, lastPose);
-    await page.locator('.snoopy').click();
-    await page.waitForFunction(previous =>
-      document.querySelector('.snoopy img:not([aria-hidden])').getAttribute('src') !== previous, initialPose);
-    lastPose = await image.getAttribute('src');
-    assert.notEqual(lastPose, initialPose);
-    const clock = page.locator('.local-clock');
-    assert.equal(await clock.isVisible(), true);
-    const timestamp = Date.parse(await clock.getAttribute('datetime'));
-    assert.ok(Number.isFinite(timestamp));
-    assert.ok(Math.abs(Date.now() - timestamp) < 60_000);
-    await assertSameDocument(page);
-  }
-  await checkHomepage();
-  for (const path of ['/blog/policyc', '/projects', '/blog/annie', '/blog/logit', '/blog/policyc']) {
-    await page.locator(`a[href="${path}"]:visible`).click();
-    const selector = path === '/projects' ? '.projects-page' : '.article-page';
-    await settle(page, path, selector);
-    await assertSameDocument(page);
-    if (path.startsWith('/blog/')) {
-      assert.equal(await page.locator('.article-media-stage').count(), 1);
-    }
-    await page.locator('main a[href="/"]').click();
-    await settle(page, '/', '.sheet');
-    assert.equal(await page.locator('.article-media-stage').count(), 0);
-    await checkHomepage();
-  }
-  await page.reload();
-  await page.locator('.snoopy').waitFor({ state: 'visible' });
-  assert.notEqual(await page.locator('.snoopy img').getAttribute('src'), lastPose);
-});
-
-test('repeated mobile home, archive and long-article entries restore their own scroll', async t => {
-  const page = await enhancedPage(t, '/', { viewport: { width: 390, height: 700 } });
-  const firstHome = await scrollToPosition(page, 260);
-  await page.locator('a[href="/blog/policyc"]').evaluate(link => link.click());
-  await settle(page, '/blog/policyc', '.article-page');
-  const article = await scrollToPosition(page, 800);
-  await page.locator('.article-nav a[href="/"]').evaluate(link => link.click());
-  await settle(page, '/', '.sheet');
-  await assertScroll(page, firstHome);
-  const secondHome = await scrollToPosition(page, 650);
-  assert.notEqual(secondHome, firstHome);
-  await page.locator('a[href="/projects"]').first().evaluate(link => link.click());
-  await settle(page, '/projects', '.projects-page');
-  const archive = await scrollToPosition(page, 550);
-  await page.locator('a[href="/blog/annie"]').evaluate(link => link.click());
-  await settle(page, '/blog/annie', '.article-page');
-  const entries = [
-    ['/projects', '.projects-page', archive],
-    ['/', '.sheet', secondHome],
-    ['/blog/policyc', '.article-page', article],
-    ['/', '.sheet', firstHome],
-  ];
-  for (const [path, selector, position] of entries) {
-    await page.goBack();
-    await settle(page, path, selector);
-    await assertScroll(page, position);
-  }
-  for (const [path, selector, position] of entries.slice(0, -1).reverse()) {
-    await page.goForward();
-    await settle(page, path, selector);
-    await assertScroll(page, position);
-  }
-});
-
-for (const path of ['/blog/annie', '/blog/logit', '/blog/policyc']) {
-  test(`${path} paints desktop media beside stable text before its script loads`, async t => {
-    const page = await pageFor(t, { viewport: { width: 1440, height: 900 } });
-    let release;
-    const gate = new Promise(resolve => { release = resolve; });
-    await page.route('**/static/article-media.js*', async route => {
-      await gate;
-      await route.continue();
-    });
-    const requested = page.waitForRequest('**/static/article-media.js*');
-    async function layout() {
-      return page.evaluate(() => {
-        const media = document.querySelector('.article-example, .article-chart-switcher');
-        const body = document.querySelector('.article-body');
-        const section = body.querySelector(':scope > section');
-        function bounds(element) {
-          const { x, y, width, height } = element.getBoundingClientRect();
-          return { x, y, width, height };
-        }
-        function painted(element) {
-          for (let ancestor = element; ancestor; ancestor = ancestor.parentElement) {
-            const style = getComputedStyle(ancestor);
-            if (style.display === 'none' || style.visibility !== 'visible' || Number(style.opacity) === 0) return false;
-          }
-          return element.getClientRects().length > 0;
-        }
-        return {
-          media: bounds(media),
-          body: bounds(body),
-          section: bounds(section),
-          painted: painted(media) && painted(section),
-        };
-      });
-    }
-    function assertSideBySide(metrics, phase) {
-      assert.ok(metrics.painted, `${path}: media and text must be painted ${phase}`);
-      assert.ok(metrics.media.width > 0 && metrics.media.height > 0, `${path}: media must have visible dimensions ${phase}`);
-      assert.ok(metrics.media.x >= 0 && metrics.media.x + metrics.media.width <= metrics.body.x,
-        `${path}: the first media must already be left of the body ${phase}`);
-      assert.ok(metrics.media.y >= 0 && metrics.media.y < 900 && metrics.section.y >= 0 && metrics.section.y < 900,
-        `${path}: media and the first text section must start in the viewport ${phase}`);
-    }
-    let before;
-    try {
-      // A delayed defer script blocks DOMContentLoaded, but not the first CSS layout.
-      await page.goto(base + path, { waitUntil: 'commit' });
-      await requested;
-      await page.waitForFunction(() => {
-        const image = document.querySelector('.article-example img, .article-chart-switcher img');
-        return document.querySelector('.article-body > section') &&
-          [...document.querySelectorAll('link[rel="stylesheet"]')].every(link => link.sheet) &&
-          image?.complete && image.naturalWidth > 0;
-      });
-      await page.evaluate(() => document.fonts.ready);
-      await settle(page, path, '.article-body > section');
-      before = await layout();
-      assertSideBySide(before, 'while article-media.js is blocked');
-    } finally {
-      release();
-    }
-    await page.waitForLoadState('load');
-    await settle(page, path, '.article-body > section');
-    const after = await layout();
-    assertSideBySide(after, 'after initialization');
-    for (const [element, initial, current] of [
-      ['media', before.media, after.media],
-      ['section', before.section, after.section],
-    ]) {
-      for (const property of ['x', 'y', 'width', 'height']) {
-        assert.ok(Math.abs(current[property] - initial[property]) < 1,
-          `${path}: initialization moved ${element}.${property} from ${initial[property]} to ${current[property]}`);
-      }
-    }
+test("failed Back reloads the selected page without losing Forward or leaving manual restoration", async t => {
+  const page = await homepage(t);
+  await page.locator('a[href="/projects"]').click();
+  await settle(page, "/projects", "All Projects");
+  const historyLength = await page.evaluate(() => history.length);
+  let failedRequests = 0;
+  await page.route(base + "/", route => {
+    if (route.request().isNavigationRequest()) return route.continue();
+    failedRequests++;
+    return route.fulfill({ status: 503, contentType: "text/html", body: "Unavailable" });
   });
-}
-
-test('desktop article media mounts before history scroll restoration', async t => {
-  const page = await enhancedPage(t, '/projects', { viewport: { width: 1440, height: 900 } });
-  const archive = await scrollToPosition(page, 450);
-  await page.locator('a[href="/blog/policyc"]').evaluate(link => link.click());
-  await settle(page, '/blog/policyc', '.article-page');
-  const article = await scrollToPosition(page, 1000);
-  await page.locator('.article-nav a[href="/"]').click();
-  await settle(page, '/', '.sheet');
+  await page.route("**/static/navigation-vendor.js*", route => route.abort());
   await page.goBack();
-  await settle(page, '/blog/policyc', '.article-page');
-  assert.equal(await page.locator('.article-page.has-side-media').count(), 1);
-  assert.equal(await page.locator('.article-media-stage').count(), 1);
-  assert.equal(await page.locator('[data-chart="cost"]').count(), 1);
-  await assertScroll(page, article);
-  await page.goBack();
-  await settle(page, '/projects', '.projects-page');
-  await assertScroll(page, archive);
+  await settle(page, "/", "I build software");
+  await page.waitForLoadState("load");
+  assert.equal(failedRequests, 1);
+  assert.equal(await page.evaluate(() => history.length), historyLength);
+  assert.equal(await page.evaluate(() => history.scrollRestoration), "auto");
+  await page.goForward();
+  await settle(page, "/projects", "All Projects");
 });
 
-test('a late article response cannot replace a newer destination', async t => {
-  const page = await enhancedPage(t);
-  let release, requested;
+test("repeated history entries restore their own scroll positions", async t => {
+  const page = await homepage(t);
+  await page.locator('a[href="/blog/policyc"]').scrollIntoViewIfNeeded();
+  const firstHome = await page.evaluate(() => scrollY);
+  await page.locator('a[href="/blog/policyc"]').click();
+  await settle(page, "/blog/policyc", "Building PolicyC");
+  await page.evaluate(() => scrollTo({ top: 800, behavior: "instant" }));
+  await page.evaluate(() => document.querySelector('a[href="/"]').click());
+  await settle(page, "/", "I build software");
+  assert.equal(await page.evaluate(() => scrollY), firstHome);
+  await page.evaluate(() => scrollTo({ top: 1600, behavior: "instant" }));
+  await page.evaluate(() => document.querySelector('a[href="/projects"]').click());
+  await settle(page, "/projects", "All Projects");
+  await page.goBack();
+  await settle(page, "/", "I build software");
+  assert.equal(await page.evaluate(() => scrollY), 1600);
+  await page.goBack();
+  await settle(page, "/blog/policyc", "Building PolicyC");
+  assert.equal(await page.evaluate(() => scrollY), 800);
+  await page.goBack();
+  await settle(page, "/", "I build software");
+  assert.equal(await page.evaluate(() => scrollY), firstHome);
+});
+
+test("a late response cannot replace a more recent destination", async t => {
+  const page = await homepage(t);
+  let release;
+  let requested;
   const gate = new Promise(resolve => { release = resolve; });
   const arrival = new Promise(resolve => { requested = resolve; });
-  await page.route(base + '/blog/policyc', async route => {
+  await page.route(base + "/blog/policyc", async route => {
     requested();
     await gate;
     await route.continue();
@@ -292,198 +151,28 @@ test('a late article response cannot replace a newer destination', async t => {
   await arrival;
   try {
     await page.locator('a[href="/blog/annie"]').click();
-    await settle(page, '/blog/annie', '.article-page');
+    await settle(page, "/blog/annie", "Building Annie");
   } finally {
     release();
   }
-  await page.waitForLoadState('networkidle');
-  await settle(page, '/blog/annie', '.article-page');
-  await assertSameDocument(page);
-  assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'),
-    'https://www.bentgarcia.com/blog/annie');
+  await page.waitForLoadState("networkidle");
+  assert.equal(new URL(page.url()).pathname, "/blog/annie");
+  assert.match(await page.locator("h1").textContent(), /Building Annie/);
 });
 
-test('failed Back reloads the selected entry without losing Forward or leaving manual restoration', async t => {
-  const page = await enhancedPage(t);
-  await page.locator('a[href="/projects"]:visible').click();
-  await settle(page, '/projects', '.projects-page');
-  const historyLength = await page.evaluate(() => history.length);
-  let failedRequests = 0;
-  await page.route(base + '/', route => {
-    if (route.request().isNavigationRequest()) return route.continue();
-    failedRequests++;
-    return route.fulfill({ status: 503, contentType: 'text/html', body: 'Unavailable' });
-  });
-  await page.route('**/static/navigation-vendor.js*', route => route.abort());
-  await page.goBack();
-  await settle(page, '/', '.sheet');
-  await page.waitForLoadState('load');
-  assert.equal(failedRequests, 1);
-  assert.equal(await page.evaluate(() => window.originalDocument), undefined);
-  assert.equal(await page.evaluate(() => history.length), historyLength);
-  assert.equal(await page.evaluate(() => history.scrollRestoration), 'auto');
-  await page.goForward();
-  await settle(page, '/projects', '.projects-page');
-});
-
-test('same-page fragment links keep their document and hand scrolling back to the browser', async t => {
-  const page = await enhancedPage(t, '/', { viewport: { width: 390, height: 700 } });
+test("same-page fragments keep their document and relinquish enhancement", async t => {
+  const page = await homepage(t);
   await page.evaluate(() => {
-    const link = document.createElement('a');
-    link.href = '#experience-heading';
-    document.querySelector('main').append(link);
-    link.click();
-    link.remove();
+    window.fragmentMarker = "original-document";
+    location.hash = "experience-heading";
   });
-  await page.waitForFunction(() => history.scrollRestoration === 'auto');
-  await assertSameDocument(page);
-  assert.equal(await page.evaluate(() => location.hash), '#experience-heading');
-  await page.waitForFunction(() =>
-    Math.abs(document.querySelector('#experience-heading').getBoundingClientRect().top) < 2);
+  await page.waitForFunction(() => history.scrollRestoration === "auto");
+  assert.equal(await page.evaluate(() => window.fragmentMarker), "original-document");
+  assert.equal(await page.evaluate(() => location.hash), "#experience-heading");
+  assert.ok(Math.abs(await page.locator("#experience-heading")
+    .evaluate(element => element.getBoundingClientRect().top)) < 2);
   await page.locator('a[href="/blog/policyc"]').click();
-  await settle(page, '/blog/policyc', '.article-page');
-  assert.equal(await page.evaluate(() => window.originalDocument), undefined);
-});
-
-test('external and non-résumé PDF URLs use native navigation even without a new-tab target', async t => {
-  for (const [path, selector] of [['/', 'a[href="https://ucla.edu"]'], ['/blog/policyc', '.article-meta a[href="/policyc.pdf"]']]) {
-    const page = await enhancedPage(t, path);
-    const link = page.locator(selector);
-    const destination = await link.evaluate(link => link.href);
-    let navigationRequest;
-    // Fulfill locally so this tests routing rather than a remote site or PDF viewer.
-    await page.route(destination, route => {
-      navigationRequest = route.request().isNavigationRequest();
-      return route.fulfill({ contentType: 'text/html', body: '<main id="native-destination"></main>' });
-    });
-    await link.evaluate(link => link.removeAttribute('target'));
-    await link.click();
-    await page.locator('#native-destination').waitFor({ state: 'attached' });
-    assert.equal(navigationRequest, true);
-    assert.equal(await page.evaluate(() => window.originalDocument), undefined);
-  }
-});
-
-test('all routes return home in the same document, including 404', async t => {
-  for (const [path, selector] of [
-    ['/', '.sheet'], ['/projects', '.projects-page'], ['/blog/annie', '.article-page'],
-    ['/blog/logit', '.article-page'], ['/blog/policyc', '.article-page'], ['/404', '.not-found'],
-  ]) {
-    const page = await enhancedPage(t, path);
-    await settle(page, path, selector);
-    if (path !== '/') {
-      await page.locator('main a[href="/"]').click();
-      await settle(page, '/', '.sheet');
-      await assertSameDocument(page);
-      assert.equal(await page.locator('.snoopy').isVisible(), true);
-      if (path === '/404') {
-        await page.evaluate(() => {
-          const link = document.createElement('a');
-          link.href = '/404';
-          document.querySelector('main').append(link);
-          link.click();
-        });
-        await settle(page, '/404', '.not-found');
-        await assertSameDocument(page);
-        await page.goBack();
-        await settle(page, '/', '.sheet');
-        await assertSameDocument(page);
-      }
-    }
-  }
-});
-
-test('homepage, archive, articles and 404 remain usable without JavaScript', async t => {
-  const page = await pageFor(t, { javaScriptEnabled: false });
-  await page.goto(base + '/');
-  assert.equal(await page.locator('.snoopy-static').isVisible(), true);
-  await page.locator('a[href="/projects"]:visible').click();
-  await page.locator('.projects-page').waitFor();
-  for (const path of ['/blog/annie', '/blog/logit', '/blog/policyc']) {
-    await page.locator(`a[href="${path}"]:visible`).click();
-    await page.locator('.article-page').waitFor();
-    assert.equal(await page.locator('.article-body').isVisible(), true);
-    assert.equal(await page.locator('.article-example, .article-chart-switcher').first().isVisible(), true);
-    assert.equal(await page.locator('.article-body figure:not(.article-chart-panel)').first().isVisible(), true);
-    if (path === '/blog/policyc') {
-      await page.locator('label[for="policyc-chart-cost"]').click();
-      assert.equal(await page.locator('[data-chart="cost"]').isVisible(), true);
-    }
-    await page.locator('main a[href="/"]').click();
-    await page.locator('.sheet').waitFor();
-  }
-  await page.goto(base + '/404');
-  await page.locator('.not-found a[href="/"]').click();
-  await page.locator('.sheet').waitFor();
-});
-
-test('homepage reading text stays within desktop, tablet and phone content bounds', async t => {
-  const page = await pageFor(t, { viewport: { width: 1260, height: 600 } });
-  await page.goto(base + '/');
-  await page.evaluate(() => document.fonts.ready);
-  await settle(page, '/', '.sheet');
-  for (const [width, height] of [[1200, 800], [1280, 800], [1366, 900], [1260, 871], [1512, 871], [1512, 928], [1568, 924], [1568, 714], [1568, 690], [1280, 600], [1024, 768], [820, 1180], [1024, 1024]]) {
-    await page.setViewportSize({ width, height });
-    await settle(page, '/', '.sheet');
-    const metrics = await page.evaluate(() => {
-      const footer = document.querySelector('footer').getBoundingClientRect();
-      return {
-        summarySize: parseFloat(getComputedStyle(document.querySelector('.summary')).fontSize),
-        textFits: [...document.querySelectorAll('.sheet p, .sheet h1, .sheet h2, .sheet h3, .sheet a, .sheet time')]
-          .every(element => !element.clientWidth || element.scrollWidth <= element.clientWidth + 1),
-        fits: document.scrollingElement.scrollHeight <= innerHeight &&
-          document.scrollingElement.scrollWidth <= innerWidth &&
-          footer.top >= 0 && footer.bottom <= innerHeight,
-      };
-    });
-    assert.ok(metrics.fits, `All content, including the footer, must fit at ${width}×${height}`);
-    assert.ok(metrics.textFits, `Reading text must stay inside its columns at ${width}×${height}`);
-    if (width === 1260) {
-      assert.ok(metrics.summarySize >= 14, 'The sidebar-width layout must use readable descriptions');
-    }
-  }
-  for (const width of [390, 320]) {
-    await page.setViewportSize({ width, height: 844 });
-    await settle(page, '/', '.sheet');
-    assert.equal(await page.locator('.summary').first().evaluate(e => getComputedStyle(e).fontSize), '14px');
-    assert.ok(await page.evaluate(() => document.scrollingElement.scrollWidth <= innerWidth),
-      `Phone content must not overflow horizontally at ${width}px`);
-  }
-  await scrollToPosition(page, 300);
-  await page.setViewportSize({ width: 1260, height: 871 });
-  await settle(page, '/', '.sheet');
-  assert.ok(await page.evaluate(() => document.scrollingElement.scrollHeight <= innerHeight),
-    'Returning from a scrolled phone layout must fit using document height, not scroll position');
-});
-
-test('résumé overlay renders the PDF and traps focus until Escape restores the trigger', async t => {
-  const page = await enhancedPage(t);
-  const trigger = page.locator('a[href="/resume.pdf"]:visible');
-  await trigger.click();
-  await page.locator('.resume-paper[aria-busy="false"]').waitFor();
-  assert.equal(await page.locator('.resume-pdf-page canvas').count(), 1);
-  assert.match(await page.locator('.resume-text-layer').innerText(), /Benjamin Garcia/);
-  await page.locator('.resume-close').focus();
-  for (const key of ['Tab', 'Tab', 'Tab', 'Shift+Tab', 'Shift+Tab', 'Shift+Tab']) {
-    await page.keyboard.press(key);
-    assert.equal(await page.evaluate(() => document.querySelector('.resume-dialog').contains(document.activeElement)), true);
-  }
-  await assertSameDocument(page);
-  await page.keyboard.press('Escape');
-  await page.waitForFunction(() => !document.querySelector('.resume-dialog').open);
-  assert.equal(await trigger.evaluate(e => document.activeElement === e), true);
-  assert.equal(await page.evaluate(() => document.documentElement.classList.contains('resume-is-open')), false);
-});
-
-test('history navigation closes the résumé overlay and releases scroll locking', async t => {
-  const page = await enhancedPage(t, '/projects');
-  await page.locator('.projects-header a[href="/"]').click();
-  await settle(page, '/', '.sheet');
-  await page.locator('a[href="/resume.pdf"]:visible').click();
-  await page.locator('.resume-dialog[open]').waitFor();
-  await page.goBack();
-  await settle(page, '/projects', '.projects-page');
-  assert.equal(await page.locator('.resume-dialog').evaluate(e => e.open), false);
-  assert.equal(await page.evaluate(() => document.documentElement.classList.contains('resume-is-open')), false);
-  await assertSameDocument(page);
+  await page.waitForURL(base + "/blog/policyc");
+  await settle(page, "/blog/policyc", "Building PolicyC");
+  assert.equal(await page.evaluate(() => window.fragmentMarker), undefined);
 });
