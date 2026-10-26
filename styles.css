@@ -235,9 +235,7 @@ a:focus-visible {
 
 .experience-heading h3 a,
 .project-heading h3 a {
-  text-decoration-color: var(--subtitle-color);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  text-decoration: none;
 }
 
 .experience-heading h3 a:focus-visible,
