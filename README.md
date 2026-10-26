@@ -145,6 +145,7 @@ to a local Chrome executable to use it instead of Playwright's Chromium.
 ## Editing Content
 
 - Update homepage structure and copy in `index.html`.
+- Experience headings group the linked company with an unlinked `.experience-role` span. Keep natural text wrapping; dates remain separate from the heading.
 - Update the project collection in `projects/index.html`.
 - Update global visual styling and motion in `styles.css`.
 - Add portfolio articles under `blog/<slug>/index.html` and their images under `static/`.

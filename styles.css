@@ -195,12 +195,17 @@ a {
 }
 
 .experience-heading {
-  flex-wrap: wrap;
-  row-gap: 0.45rem;
+  flex-wrap: nowrap;
 }
 
 .experience-heading h3 {
-  white-space: nowrap;
+  min-width: 0;
+}
+
+.experience-role {
+  margin-left: 0.4em;
+  color: #6b6b6b;
+  font-weight: 400;
 }
 
 .section-heading h2,
@@ -240,7 +245,6 @@ a {
   margin: 0;
 }
 
-.experience-role,
 .project > .project-subtitle {
   margin: 0.65rem 0 0;
   color: var(--soft);
@@ -791,32 +795,9 @@ a {
     padding-block: 4.25rem;
   }
 
-  .experience-row {
-    display: flex;
-    flex-direction: column;
-  }
-
   .experience-heading {
-    display: contents;
-  }
-
-  .experience-heading h3 {
-    order: 1;
-    width: 100%;
-    white-space: normal;
-  }
-
-  .experience-role {
-    order: 2;
-  }
-
-  .experience-heading > p {
-    order: 3;
-    margin-top: 0.3rem;
-  }
-
-  .experience-summary {
-    order: 4;
+    flex-direction: column;
+    gap: 0.3rem;
   }
 
   .project-heading {
