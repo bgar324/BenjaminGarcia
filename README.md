@@ -28,7 +28,7 @@ Open http://localhost:8782. Use this server rather than a generic static server 
 | `static/` | Images, fonts, and vendored browser assets |
 | `scripts/` | Preview server, asset generators, and checks |
 
-The homepage uses a naturally scrolling, single-column layout at every screen size, with Inter text, a white background, neutral colors, and an interactive Snoopy illustration. Experience entries keep company, role, description, and dates together; projects, about, and contact follow below. Article and archive typography share the neutral palette; code samples retain monospace. Native links and readable content remain available without JavaScript.
+The desktop and tablet homepage fits within one viewport. Phones use a scrolling layout. Native links and readable content remain available without JavaScript.
 
 ## Update content and assets
 
@@ -62,7 +62,7 @@ python3 -m pip install -r scripts/requirements.txt
 python3 -m unittest discover -s scripts -p 'test_*.py'
 ```
 
-Before publishing, check homepage, archive, and article navigation at desktop and phone sizes. Exercise Snoopy with pointer and keyboard input, open and dismiss the résumé dialog, and confirm that the homepage scrolls to its footer without horizontal overflow or viewport-dependent text shrinking.
+Before publishing, check homepage, archive, and article navigation at desktop and phone sizes. Exercise the résumé dialog with pointer and keyboard input, and confirm that the desktop homepage does not scroll.
 
 ## Deploy
 
