@@ -252,7 +252,6 @@ a:focus-visible {
 
 .experience-role,
 .project-subtitle {
-  margin-left: 0.4em;
   color: var(--subtitle-color);
   font-weight: 400;
 }
