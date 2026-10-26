@@ -83,10 +83,6 @@ a:focus-visible {
   border-radius: 2px;
 }
 
-[id] {
-  scroll-margin-block-start: 1.5rem;
-}
-
 .section-link,
 .project-links a,
 .projects-links a,
@@ -227,7 +223,8 @@ a:focus-visible {
   min-width: 0;
 }
 
-.experience-role {
+.experience-role,
+.project-subtitle {
   margin-left: 0.4em;
   color: #6b6b6b;
   font-weight: 400;
@@ -269,14 +266,6 @@ a:focus-visible {
   flex-shrink: 0;
   margin: 0;
   font-variant-numeric: tabular-nums;
-}
-
-.project > .project-subtitle {
-  margin: 0.65rem 0 0;
-  color: var(--soft);
-  font-size: var(--text-sm);
-  line-height: var(--leading-normal);
-  font-weight: 500;
 }
 
 .about-copy p {

@@ -145,7 +145,7 @@ to a local Chrome executable to use it instead of Playwright's Chromium.
 ## Editing Content
 
 - Update homepage structure and copy in `index.html`.
-- Experience headings group the linked company with an unlinked `.experience-role` span. Keep natural text wrapping; dates remain separate from the heading.
+- Experience and selected-project headings pair the linked name with an unlinked, muted role or subtitle. Keep natural text wrapping; dates and longer descriptions remain separate.
 - Update the project collection in `projects/index.html`.
 - Update global visual styling and motion in `styles.css`.
 - Keep keyboard focus visible, hover effects limited to hover-capable pointers, and native touch feedback enabled. Chart labels use padded hit areas and native radio-keyboard behavior. Preserve instant history scroll restoration rather than adding global smooth scrolling.
