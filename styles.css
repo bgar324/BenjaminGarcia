@@ -235,6 +235,51 @@ a:focus-visible {
   text-decoration: none;
 }
 
+:is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a {
+  position: relative;
+  display: inline-block;
+  padding-inline-end: 20px;
+}
+
+:is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a::before,
+:is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a::after {
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-start: calc(50% - 7px);
+  width: 14px;
+  height: 14px;
+  color: var(--subtle);
+  pointer-events: none;
+}
+
+:is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a::before {
+  content: "";
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+:is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a::after {
+  content: "";
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M4.5 9.5l5-5m-4 0h4v4' fill='none' stroke='black' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+#work .project-heading h3 a::after {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3.5 7h7m-3-3 3 3-3 3' fill='none' stroke='black' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+:is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a:focus-visible::before,
+:is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a:focus-visible::after {
+  color: var(--foreground);
+}
+
+@media (hover: hover) {
+  :is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a:hover::before,
+  :is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a:hover::after {
+    color: inherit;
+  }
+}
+
 .experience-heading h3 a:focus-visible,
 .project-heading h3 a:focus-visible {
   text-decoration-color: currentColor;
