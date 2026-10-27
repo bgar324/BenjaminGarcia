@@ -17,7 +17,7 @@ This repository contains a deliberately minimal, static portfolio with six publi
 
 The interface uses a single-column layout, a bundled Inter type scale, and underline-to-fill link interactions. The pages remain static HTML. Self-hosted Swup progressively enhances internal navigation without replacing the browser document; no install or build is required to serve or deploy the site.
 
-The Snoopy page uses its own assets under `snoopy/` and ordinary full-page links so its legacy styles and scripts cannot leak into the main portfolio. It shares the current `/resume.pdf` and links to the main project archive and articles.
+The Snoopy page preserves the final full Snoopy design from `2c204ef`, immediately before the neutral redesign: cream background, oversized blue name, and two-column desktop layout. It uses isolated assets under `snoopy/` and ordinary full-page links so its legacy styles and scripts cannot leak into the main portfolio. It shares the current `/resume.pdf` and links to the main project archive and articles.
 
 ## Highlights
 
