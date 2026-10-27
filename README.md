@@ -6,15 +6,18 @@ Live site: [bentgarcia.com](https://www.bentgarcia.com)
 
 ## Overview
 
-This repository contains a deliberately minimal, static portfolio with five public routes:
+This repository contains a deliberately minimal, static portfolio with six public routes:
 
-- `/` - introduction, experience, projects, campus involvement, about, GitHub contributions, and contact links
+- `/` - introduction, experience, projects, On campus, about, GitHub contributions, and contact links
 - `/projects` - projects grouped by year created, with live-site and source links
+- `/snoopy` - preserved Snoopy portfolio, with isolated styles, pose cycling, a local clock, and a résumé preview
 - `/blog/annie` - a case study about building Annie, a personal iMessage assistant
 - `/blog/policyc` - a case study about testing request-specific policy compilation
 - `/blog/logit` - a case study about designing a workout logger that gets out of the way
 
 The interface uses a single-column layout, a bundled Inter type scale, and underline-to-fill link interactions. The pages remain static HTML. Self-hosted Swup progressively enhances internal navigation without replacing the browser document; no install or build is required to serve or deploy the site.
+
+The Snoopy page uses its own assets under `snoopy/` and ordinary full-page links so its legacy styles and scripts cannot leak into the main portfolio. It shares the current `/resume.pdf` and links to the main project archive and articles.
 
 ## Highlights
 
