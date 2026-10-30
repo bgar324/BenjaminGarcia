@@ -11,7 +11,7 @@ This repository contains a deliberately minimal, static portfolio with six publi
 - `/` - introduction, experience, projects, On campus, about, GitHub contributions, and contact links
 - `/projects` - projects grouped by year created, with live-site and source links
 - `/snoopy` - preserved Snoopy portfolio, with isolated styles, pose cycling, a local clock, and a résumé preview
-- `/resume` - full-height PDF viewer with a 📄 tab icon and a direct PDF link. `/resume.pdf` remains available unchanged.
+- `/resume.pdf` - direct résumé PDF. The site uses 👤 as its fallback favicon without adding a wrapper around the PDF viewer.
 - `/blog/annie` - a case study about building Annie, a personal iMessage assistant
 - `/blog/policyc` - a case study about testing request-specific policy compilation
 - `/blog/logit` - a case study about designing a workout logger that gets out of the way

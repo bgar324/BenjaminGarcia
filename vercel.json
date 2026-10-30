@@ -7,6 +7,11 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/resume",
+      "destination": "/resume.pdf",
+      "permanent": true
+    },
+    {
       "source": "/static/resume.pdf",
       "destination": "/resume.pdf",
       "permanent": true
