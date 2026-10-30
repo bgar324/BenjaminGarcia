@@ -220,6 +220,7 @@
     message.textContent = '';
     dialog.querySelector('.resume-share-url').hidden = true;
     if (!dialog.open) dialog.showModal();
+    document.querySelector('link[rel="icon"][type="image/svg+xml"]').href = '/static/resume-favicon.svg';
     measureControls();
     document.fonts.ready.then(measureControls);
     document.documentElement.classList.add('resume-is-open');
@@ -239,6 +240,7 @@
     cancelRendering();
     dialog.classList.remove('is-open', 'is-closing');
     document.documentElement.classList.remove('resume-is-open');
+    document.querySelector('link[rel="icon"][type="image/svg+xml"]').href = '/static/favicon.svg?v=5';
     if (trigger?.isConnected) trigger.focus({ preventScroll: true });
     trigger = null;
   }
