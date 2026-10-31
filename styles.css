@@ -77,6 +77,61 @@ a {
   color: inherit;
 }
 
+main a:not(:has(img)) {
+  font-weight: 500;
+  text-decoration-line: underline;
+  text-decoration-color: #d9d9d9;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+main a:not(:has(img))::after {
+  content: "";
+  display: inline-block;
+  flex-shrink: 0;
+  width: 11px;
+  height: 11px;
+  max-width: 0;
+  margin-left: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translate(-2px, 2px);
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12h14m-7-7 7 7-7 7' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 11px 11px no-repeat;
+  transition: max-width 300ms cubic-bezier(0, 0, 0.2, 1),
+    margin-left 300ms cubic-bezier(0, 0, 0.2, 1),
+    transform 300ms cubic-bezier(0, 0, 0.2, 1),
+    opacity 300ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+main a:is([target="_blank"], [href^="mailto:"])::after {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 17 17 7M8 7h9v9' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+main a:focus-visible {
+  text-decoration-color: #545454;
+}
+
+main a:focus-visible::after {
+  max-width: 11px;
+  margin-left: 2px;
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+@media (hover: hover) {
+  main a:hover {
+    text-decoration-color: #545454;
+  }
+
+  main a:hover::after {
+    max-width: 11px;
+    margin-left: 2px;
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
 a:focus-visible {
   outline: 2px solid var(--foreground);
   outline-offset: 4px;
@@ -107,6 +162,85 @@ a:focus-visible {
 .not-found {
   width: min(100% - 2.5rem, 700px);
   margin-inline: auto;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .intro > *,
+  .section-heading,
+  .experience-row,
+  .project,
+  .about-copy > p,
+  .contribution-region,
+  .projects-header > *,
+  .projects-row,
+  .article-nav,
+  .article-header,
+  .article-example,
+  .article-body,
+  .article-footer,
+  .not-found > * {
+    animation: fade-in-up 700ms ease-out both;
+    animation-delay: 120ms;
+  }
+
+  .intro > :first-child,
+  .projects-header > :first-child,
+  .article-nav,
+  .not-found > :first-child {
+    animation-delay: 0ms;
+  }
+
+  .intro > :nth-child(2),
+  .projects-header > :nth-child(2),
+  .article-header,
+  .not-found > :nth-child(2) {
+    animation-delay: 60ms;
+  }
+
+  :is(.experience-row, .project, .projects-row, .about-copy > p):nth-child(1) {
+    animation-delay: 180ms;
+  }
+
+  :is(.experience-row, .project, .projects-row, .about-copy > p):nth-child(2) {
+    animation-delay: 240ms;
+  }
+
+  :is(.experience-row, .project, .projects-row, .about-copy > p):nth-child(3),
+  .contribution-region {
+    animation-delay: 300ms;
+  }
+
+  :is(.experience-row, .project, .projects-row):nth-child(4) {
+    animation-delay: 360ms;
+  }
+
+  :is(.experience-row, .project, .projects-row):nth-child(5) {
+    animation-delay: 420ms;
+  }
+
+  :is(.experience-row, .project, .projects-row):nth-child(n + 6) {
+    animation-delay: 480ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main a,
+  main a::after {
+    transition: none !important;
+  }
 }
 
 .project-links,
@@ -230,67 +364,6 @@ a:focus-visible {
   --subtitle-color: #6b6b6b;
 }
 
-.experience-heading h3 a,
-.project-heading h3 a {
-  text-decoration: none;
-}
-
-:is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a {
-  position: relative;
-  display: inline-block;
-  padding-inline-end: 20px;
-}
-
-:is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a::before,
-:is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a::after {
-  position: absolute;
-  inset-inline-end: 0;
-  inset-block-start: calc(50% - 7px);
-  width: 14px;
-  height: 14px;
-  color: var(--subtle);
-  pointer-events: none;
-}
-
-:is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a::before {
-  content: "";
-  border: 1px solid currentColor;
-  border-radius: 50%;
-}
-
-:is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a::after {
-  content: "";
-  background: currentColor;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M4.5 9.5l5-5m-4 0h4v4' fill='none' stroke='black' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-#work .project-heading h3 a::after {
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3.5 7h7m-3-3 3 3-3 3' fill='none' stroke='black' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-}
-
-:is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a:focus-visible::before,
-:is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a:focus-visible::after {
-  color: var(--foreground);
-}
-
-@media (hover: hover) {
-  :is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a:hover::before,
-  :is(#experience, #campus, #work) :is(.experience-heading, .project-heading) h3 a:hover::after {
-    color: inherit;
-  }
-}
-
-.experience-heading h3 a:focus-visible,
-.project-heading h3 a:focus-visible {
-  text-decoration-color: currentColor;
-}
-
-@media (hover: hover) {
-  .experience-heading h3 a:hover,
-  .project-heading h3 a:hover {
-    text-decoration-color: currentColor;
-  }
-}
 
 .experience-role,
 .project-subtitle {

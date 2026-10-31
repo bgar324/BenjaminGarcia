@@ -16,7 +16,7 @@ This repository contains a deliberately minimal, static portfolio with six publi
 - `/blog/policyc` - a case study about testing request-specific policy compilation
 - `/blog/logit` - a case study about designing a workout logger that gets out of the way
 
-The interface uses a single-column layout and a bundled Inter type scale. Homepage company and campus links use outlined circled northeast arrows; project write-ups use circled right arrows. Icons match the link text on hover and keyboard focus without moving. The pages remain static HTML. Self-hosted Swup progressively enhances internal navigation without replacing the browser document; no install or build is required to serve or deploy the site.
+The interface uses a single-column layout and a bundled Inter type scale. Text links retain a muted underline, then darken it and reveal an 11px arrow over 300ms on hover or keyboard focus. New-tab and email links use northeast arrows; internal page links use right arrows. Entrance motion matches the reference at [chloemaillot.fr](https://chloemaillot.fr/): a 700ms ease-out fade from 4px blur and a 10px downward offset, with 60ms stagger steps capped at 480ms. Existing typography, colors, and layout are preserved. The pages remain static HTML. Self-hosted Swup progressively enhances internal navigation without replacing the browser document; no install or build is required to serve or deploy the site.
 
 The Snoopy page preserves the final full Snoopy design from `2c204ef`, immediately before the neutral redesign: cream background, oversized blue name, and two-column desktop layout. It uses isolated assets under `snoopy/` and ordinary full-page links so its legacy styles and scripts cannot leak into the main portfolio. It shares the current `/resume.pdf` and links to the main project archive and articles.
 
@@ -25,7 +25,7 @@ The Snoopy page preserves the final full Snoopy design from `2c204ef`, immediate
 - Static HTML and CSS with progressive navigation and ordinary-link fallback
 - Responsive single-column layout for desktop and mobile
 - Accessible keyboard focus states and reduced-motion handling
-- No page-transition, entrance, or scroll animations. Native View Transitions are not enabled.
+- CSS entrance animations on initial load and internal page replacement; reduced-motion preferences disable entrances and link transitions. Native View Transitions are not enabled.
 - Canonical metadata, structured data, sitemap, robots, and web manifest
 - Subsetted Inter normal and italic page fonts with the full variable weight range
 - Resume and PolicyC paper served as public PDF assets
@@ -114,7 +114,7 @@ Run `python3 scripts/serve.py --port 8770` and open [127.0.0.1:8770](http://127.
 `static/navigation.js` uses Swup 4.10.0, Head Plugin 2.3.1, and Accessibility
 Plugin 5.2.1. All runtime code is served locally, with no CDN dependency.
 Internal page visits keep the old `<main>` visible until the HTML is ready,
-then replace it without animation. Swup owns history, titles, metadata,
+then replace it with CSS entrance motion unless reduced motion is requested. Swup owns history, titles, metadata,
 screen-reader announcements, and focus. The initializer owns per-entry and
 per-URL scroll positions, including reloads and return links.
 
@@ -150,7 +150,7 @@ to a local Chrome executable to use it instead of Playwright's Chromium.
 ## Editing Content
 
 - Update homepage structure and copy in `index.html`.
-- Experience and selected-project headings pair the linked name with an unlinked, muted role or subtitle. Name underlines match the subtitle at rest and the name on hover or keyboard focus. Keep natural text wrapping; dates and longer descriptions remain separate.
+- Experience and selected-project headings pair the linked name with an unlinked, muted role or subtitle. Links keep a light underline at rest, then darken it and reveal an arrow on hover or keyboard focus. Keep natural text wrapping; dates and longer descriptions remain separate.
 - Update the project collection in `projects/index.html`.
 - Update global visual styling and motion in `styles.css`. Homepage entries use tighter spacing than section boundaries; first and last entries do not add extra padding against section headings or dividers.
 - Keep keyboard focus visible, hover effects limited to hover-capable pointers, and native touch feedback enabled. Chart labels use padded hit areas and native radio-keyboard behavior. Preserve instant history scroll restoration rather than adding global smooth scrolling.
