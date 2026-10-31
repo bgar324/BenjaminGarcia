@@ -26,6 +26,7 @@ The Snoopy page preserves the final full Snoopy design from `2c204ef`, immediate
 - Responsive single-column layout for desktop and mobile
 - Accessible keyboard focus states and reduced-motion handling
 - CSS entrance animations play on the first visit to each page per tab. Return links, Back/Forward, and reloads skip replays. Reduced-motion preferences disable entrances and link transitions. Native View Transitions are not enabled.
+- Entrances preserve the blur effect while running. Backwards fill and explicit `animationend` teardown release the filter and transform when each entrance finishes, avoiding stale blurred text layers in WebKit during scrolling.
 - Canonical metadata, structured data, sitemap, robots, and web manifest
 - Subsetted Inter normal and italic page fonts with the full variable weight range
 - Resume and PolicyC paper served as public PDF assets
@@ -143,8 +144,9 @@ BROWSER=firefox npm test
 
 Each run starts an isolated preview server on an available loopback port.
 The tests cover keeping content visible during loading, metadata/focus,
-distinct history-entry positions, stale responses, fragment handling, and
-failed Back navigation when the library also fails to load. Set `CHROME_BIN`
+distinct history-entry positions, stale responses, fragment handling, finished
+entrances releasing filters/transforms during scrolling, and failed Back
+navigation when the library also fails to load. Set `CHROME_BIN`
 to a local Chrome executable to use it instead of Playwright's Chromium.
 
 ## Editing Content

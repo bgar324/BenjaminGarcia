@@ -1,4 +1,10 @@
 (() => {
+  document.addEventListener("animationend", (event) => {
+    if (event.animationName === "fade-in-up") {
+      event.target.style.animation = "none";
+    }
+  });
+
   const pagePath = (url) => url.pathname.replace(/\/index\.html$|\/$/, "").replace(/\.html$/, "") || "/";
   const enteredPages = new Set();
   const prepareEntrance = (url = location.href, returning = false) => {

@@ -178,3 +178,23 @@ test("same-page fragments keep their document and relinquish enhancement", async
   await settle(page, "/blog/policyc", "Building PolicyC");
   assert.equal(await page.evaluate(() => window.fragmentMarker), undefined);
 });
+
+test("finished entrances release filters and transforms while scrolling", async t => {
+  const page = await homepage(t);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.evaluate(async () => {
+    scrollTo(0, 300);
+    await Promise.all(document.getAnimations().map(animation => animation.finished));
+    await new Promise(requestAnimationFrame);
+    await new Promise(requestAnimationFrame);
+  });
+  const retainedLayers = await page.locator(".intro > *, .experience-row").evaluateAll(elements =>
+    elements.filter(element => {
+      const style = getComputedStyle(element);
+      return style.filter !== "none" || style.transform !== "none";
+    }).map(element => element.textContent.trim().slice(0, 80)));
+  assert.deepEqual(retainedLayers, []);
+  await page.evaluate(() => scrollTo(0, 900));
+  assert.equal(await page.locator(".experience-row").nth(2).evaluate(element =>
+    getComputedStyle(element).opacity), "1");
+});
