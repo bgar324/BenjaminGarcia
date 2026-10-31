@@ -1,4 +1,21 @@
 (() => {
+  const pagePath = (url) => url.pathname.replace(/\/index\.html$|\/$/, "").replace(/\.html$/, "") || "/";
+  const enteredPages = new Set();
+  const prepareEntrance = (url = location.href, returning = false) => {
+    const path = pagePath(new URL(url, location.href));
+    let seen = enteredPages.has(path);
+    try {
+      const key = `entrance:${path}`;
+      seen ||= sessionStorage.getItem(key) === "seen";
+      sessionStorage.setItem(key, "seen");
+    } catch {
+      // In-memory tracking still prevents replays during enhanced navigation.
+    }
+    document.documentElement.toggleAttribute("data-return-visit", returning || seen);
+    enteredPages.add(path);
+  };
+  prepareEntrance();
+
   if (!("scrollRestoration" in history)) return;
   history.scrollRestoration = "auto";
   const currentUrl = () => `${location.pathname}${location.search}`;
@@ -18,7 +35,7 @@
 
   const pages = new Set(["/", "/projects", "/blog/annie", "/blog/logit", "/blog/policyc", "/404"]);
   const isPage = (url) => url.origin === location.origin && !url.hash &&
-    pages.has(url.pathname.replace(/\/index\.html$|\/$/, "").replace(/\.html$/, "") || "/");
+    pages.has(pagePath(url));
   const stateKey = "__scrollRestorationId";
   const positions = new Map();
 
@@ -113,7 +130,10 @@
     savePosition();
     visit.animation.animate = false;
   });
-  swup.hooks.before("content:replace", savePosition);
+  swup.hooks.before("content:replace", (visit) => {
+    savePosition();
+    prepareEntrance(visit.to.url, visit.history.popstate);
+  });
   swup.hooks.replace("content:scroll", (visit) => {
     restorePosition(visit.history.popstate);
     return true;

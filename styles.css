@@ -177,6 +177,10 @@ a:focus-visible {
   }
 }
 
+:root[data-return-visit] {
+  --entrance-animation: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .intro > *,
   .section-heading,
@@ -192,7 +196,7 @@ a:focus-visible {
   .article-body,
   .article-footer,
   .not-found > * {
-    animation: fade-in-up 700ms ease-out both;
+    animation: var(--entrance-animation, fade-in-up) 700ms ease-out both;
     animation-delay: 120ms;
   }
 
