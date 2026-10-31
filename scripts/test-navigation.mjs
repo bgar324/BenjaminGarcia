@@ -198,3 +198,28 @@ test("finished entrances release filters and transforms while scrolling", async 
   assert.equal(await page.locator(".experience-row").nth(2).evaluate(element =>
     getComputedStyle(element).opacity), "1");
 });
+
+test("refresh replays entrances without replaying return navigation", async t => {
+  const page = await homepage(t);
+  const headingFrames = () => page.locator("h1").evaluate(async element => {
+    const frames = [];
+    for (let i = 0; i < 12; i++) {
+      frames.push(Number(getComputedStyle(element).opacity));
+      await new Promise(requestAnimationFrame);
+    }
+    return frames;
+  });
+  await page.locator('a[href="/projects"]').click();
+  await settle(page, "/projects", "All Projects");
+  await page.locator('a[href="/"]').click();
+  await settle(page, "/", "I build software");
+  assert.ok((await headingFrames()).every(opacity => opacity === 1));
+  await page.reload({ waitUntil: "domcontentloaded" });
+  assert.ok((await headingFrames()).some(opacity => opacity > 0 && opacity < 1));
+  await page.locator('a[href="/projects"]').click();
+  await settle(page, "/projects", "All Projects");
+  assert.ok((await headingFrames()).every(opacity => opacity === 1));
+  await page.goBack();
+  await settle(page, "/", "I build software");
+  assert.ok((await headingFrames()).every(opacity => opacity === 1));
+});

@@ -7,7 +7,7 @@
 
   const pagePath = (url) => url.pathname.replace(/\/index\.html$|\/$/, "").replace(/\.html$/, "") || "/";
   const enteredPages = new Set();
-  const prepareEntrance = (url = location.href, returning = false) => {
+  const prepareEntrance = (url = location.href, { returning = false, replay = false } = {}) => {
     const path = pagePath(new URL(url, location.href));
     let seen = enteredPages.has(path);
     try {
@@ -17,10 +17,12 @@
     } catch {
       // In-memory tracking still prevents replays during enhanced navigation.
     }
-    document.documentElement.toggleAttribute("data-return-visit", returning || seen);
+    document.documentElement.toggleAttribute("data-return-visit", returning || (seen && !replay));
     enteredPages.add(path);
   };
-  prepareEntrance();
+  prepareEntrance(location.href, {
+    replay: performance.getEntriesByType("navigation")[0]?.type === "reload",
+  });
 
   if (!("scrollRestoration" in history)) return;
   history.scrollRestoration = "auto";
@@ -138,7 +140,7 @@
   });
   swup.hooks.before("content:replace", (visit) => {
     savePosition();
-    prepareEntrance(visit.to.url, visit.history.popstate);
+    prepareEntrance(visit.to.url, { returning: visit.history.popstate });
   });
   swup.hooks.replace("content:scroll", (visit) => {
     restorePosition(visit.history.popstate);

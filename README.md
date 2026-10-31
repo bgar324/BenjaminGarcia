@@ -25,7 +25,7 @@ The Snoopy page preserves the final full Snoopy design from `2c204ef`, immediate
 - Static HTML and CSS with progressive navigation and ordinary-link fallback
 - Responsive single-column layout for desktop and mobile
 - Accessible keyboard focus states and reduced-motion handling
-- CSS entrance animations play on the first visit to each page per tab. Return links, Back/Forward, and reloads skip replays. Reduced-motion preferences disable entrances and link transitions. Native View Transitions are not enabled.
+- CSS entrance animations play on the first visit to each page per tab and on refresh. Return links and Back/Forward skip replays. Reduced-motion preferences disable entrances and link transitions. Native View Transitions are not enabled.
 - Entrances preserve the blur effect while running. Backwards fill and explicit `animationend` teardown release the filter and transform when each entrance finishes, avoiding stale blurred text layers in WebKit during scrolling.
 - Canonical metadata, structured data, sitemap, robots, and web manifest
 - Subsetted Inter normal and italic page fonts with the full variable weight range
@@ -115,7 +115,7 @@ Run `python3 scripts/serve.py --port 8770` and open [127.0.0.1:8770](http://127.
 `static/navigation.js` uses Swup 4.10.0, Head Plugin 2.3.1, and Accessibility
 Plugin 5.2.1. All runtime code is served locally, with no CDN dependency.
 Internal page visits keep the old `<main>` visible until the HTML is ready,
-then replace it with CSS entrance motion only for a page's first visit in the tab, unless reduced motion is requested. Per-page session storage prevents replays on return links and reloads; Back/Forward always skips entrances. If storage is blocked, enhanced navigation still tracks visited pages in memory. Swup owns history, titles, metadata,
+then replace it with CSS entrance motion only for a page's first visit in the tab, unless reduced motion is requested. Per-page session storage prevents replays on return links; Back/Forward always skips entrances. Explicit refreshes replay the entrance without clearing visited-page tracking. If storage is blocked, enhanced navigation still tracks visited pages in memory. Swup owns history, titles, metadata,
 screen-reader announcements, and focus. The initializer owns per-entry and
 per-URL scroll positions, including reloads and return links.
 
