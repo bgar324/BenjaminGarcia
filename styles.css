@@ -85,7 +85,8 @@ main a:not(:has(img)) {
   transition: text-decoration-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-main a:not(:has(img))::after {
+main a:not(:has(img))::after,
+main a.text-arrow-link[href="/"]::before {
   content: "";
   display: inline-block;
   flex-shrink: 0;
@@ -100,12 +101,36 @@ main a:not(:has(img))::after {
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12h14m-7-7 7 7-7 7' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 11px 11px no-repeat;
   transition: max-width 300ms cubic-bezier(0, 0, 0.2, 1),
     margin-left 300ms cubic-bezier(0, 0, 0.2, 1),
+    margin-right 300ms cubic-bezier(0, 0, 0.2, 1),
     transform 300ms cubic-bezier(0, 0, 0.2, 1),
     opacity 300ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 main a:is([target="_blank"], [href^="mailto:"])::after {
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 17 17 7M8 7h9v9' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+main a.text-arrow-link[href="/"]::after {
+  display: none;
+}
+
+main a.text-arrow-link[href="/"]::before {
+  margin-right: 0;
+  transform: translate(2px, 2px);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 12H5m7-7-7 7 7 7' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+main a.text-arrow-link[href="/"]:focus-visible::before {
+  max-width: 11px;
+  margin-right: 2px;
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main a.text-arrow-link[href="/"]::before {
+    transition: none;
+  }
 }
 
 main a:focus-visible {
@@ -127,6 +152,13 @@ main a:focus-visible::after {
   main a:hover::after {
     max-width: 11px;
     margin-left: 2px;
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  main a.text-arrow-link[href="/"]:hover::before {
+    max-width: 11px;
+    margin-right: 2px;
     opacity: 1;
     transform: translate(0, 0);
   }

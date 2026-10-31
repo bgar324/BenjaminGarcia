@@ -27,6 +27,7 @@ The Snoopy page preserves the final full Snoopy design from `2c204ef`, immediate
 - Accessible keyboard focus states and reduced-motion handling
 - CSS entrance animations play on the first visit to each page per tab and on refresh. Return links and Back/Forward skip replays. Reduced-motion preferences disable entrances and link transitions. Native View Transitions are not enabled.
 - Entrances preserve the blur effect while running. Backwards fill and explicit `animationend` teardown release the filter and transform when each entrance finishes, avoiding stale blurred text layers in WebKit during scrolling.
+- Back-to-home navigation reveals a left-pointing arrow before the link label; other internal links retain right-pointing arrows after their labels.
 - Canonical metadata, structured data, sitemap, robots, and web manifest
 - Subsetted Inter normal and italic page fonts with the full variable weight range
 - Resume and PolicyC paper served as public PDF assets
