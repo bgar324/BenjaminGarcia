@@ -62,7 +62,6 @@ scripts/test-navigation.mjs   Browser navigation regressions
 scripts/generate-policyc-charts.py   Regenerates the PolicyC SVG figures
 static/favicon-dog-{32,192,512}.png  Dog sticker tab and app icons
 static/apple-touch-icon-dog.png     Dog sticker Apple touch icon
-static/resume-favicon.svg          📄 for the résumé viewer
 static/annie-imessage-conversation.webp
 static/annie-deepseek-usage.webp
 static/logit-workout.webp
@@ -165,7 +164,7 @@ to a local Chrome executable to use it instead of Playwright's Chromium.
 - `static/inter-diagrams.unicodes` is the explicit diagram subset input. If generator output reports a missing U+ codepoint, add it there, then run `python3 scripts/build-inter-diagram-font.py`, `python3 scripts/generate-policyc-charts.py`, and `python3 scripts/embedded_inter_font.py`. The builder derives the subset from the full source font and asserts that its cmap exactly matches the manifest.
 - Run `python3 scripts/generate-og-image.py` after changing homepage card copy. The generator embeds the full source font.
 - Replace `resume.pdf` or `policyc.pdf` to publish newer document versions at the same URLs.
-- Dog favicons use dedicated `favicon-dog-*` and `apple-touch-icon-dog.png` URLs. All seven HTML entries use these files and the cache-busted ICO fallback; bump icon filenames and the manifest query when replacing them. `favicon.ico` also supports browsers requesting the default path. Keep the sticker's transparent background and white border.
+- Dog favicons use dedicated `favicon-dog-*` and `apple-touch-icon-dog.png` URLs. All seven HTML entries use these files and the cache-busted ICO fallback; bump icon filenames and the manifest query when replacing them. `favicon.ico` also supports browsers requesting the default path. Keep the sticker's transparent background and white border. The résumé dialog never changes the tab icon.
 
 No environment variables are required to serve the site.
 
