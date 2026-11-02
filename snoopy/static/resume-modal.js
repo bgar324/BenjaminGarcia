@@ -220,7 +220,9 @@
     message.textContent = '';
     dialog.querySelector('.resume-share-url').hidden = true;
     if (!dialog.open) dialog.showModal();
-    document.querySelector('link[rel="icon"][type="image/svg+xml"]').href = '/static/resume-favicon.svg';
+    document.getElementById('site-favicon').setAttribute('type', 'image/svg+xml');
+    document.getElementById('site-favicon').setAttribute('sizes', 'any');
+    document.getElementById('site-favicon').href = '/static/resume-favicon.svg';
     measureControls();
     document.fonts.ready.then(measureControls);
     document.documentElement.classList.add('resume-is-open');
@@ -240,7 +242,9 @@
     cancelRendering();
     dialog.classList.remove('is-open', 'is-closing');
     document.documentElement.classList.remove('resume-is-open');
-    document.querySelector('link[rel="icon"][type="image/svg+xml"]').href = '/static/favicon.svg?v=5';
+    document.getElementById('site-favicon').setAttribute('type', 'image/png');
+    document.getElementById('site-favicon').setAttribute('sizes', '32x32');
+    document.getElementById('site-favicon').href = '/static/favicon-dog-32.png';
     if (trigger?.isConnected) trigger.focus({ preventScroll: true });
     trigger = null;
   }

@@ -11,7 +11,7 @@ This repository contains a deliberately minimal, static portfolio with six publi
 - `/` - introduction, experience, projects, On campus, about, GitHub contributions, and contact links
 - `/projects` - projects grouped by year created, with live-site and source links
 - `/snoopy` - preserved Snoopy portfolio, with isolated styles, pose cycling, a local clock, and a résumé preview
-- `/resume.pdf` - direct résumé PDF. The site uses 👤 as its fallback favicon without adding a wrapper around the PDF viewer.
+- `/resume.pdf` - direct résumé PDF. The site uses the dog sticker as its fallback favicon without adding a wrapper around the PDF viewer.
 - `/blog/annie` - a case study about building Annie, a personal iMessage assistant
 - `/blog/policyc` - a case study about testing request-specific policy compilation
 - `/blog/logit` - a case study about designing a workout logger that gets out of the way
@@ -60,8 +60,9 @@ static/navigation-vendor.LICENSE.txt   Third-party notices
 scripts/vendor-navigation.py  Reproduces vendor bundles with pinned archive hashes
 scripts/test-navigation.mjs   Browser navigation regressions
 scripts/generate-policyc-charts.py   Regenerates the PolicyC SVG figures
-static/favicon.svg
-static/resume-favicon.svg          📄 for the résumé viewer; favicon.svg uses 👤
+static/favicon-dog-{32,192,512}.png  Dog sticker tab and app icons
+static/apple-touch-icon-dog.png     Dog sticker Apple touch icon
+static/resume-favicon.svg          📄 for the résumé viewer
 static/annie-imessage-conversation.webp
 static/annie-deepseek-usage.webp
 static/logit-workout.webp
@@ -164,6 +165,7 @@ to a local Chrome executable to use it instead of Playwright's Chromium.
 - `static/inter-diagrams.unicodes` is the explicit diagram subset input. If generator output reports a missing U+ codepoint, add it there, then run `python3 scripts/build-inter-diagram-font.py`, `python3 scripts/generate-policyc-charts.py`, and `python3 scripts/embedded_inter_font.py`. The builder derives the subset from the full source font and asserts that its cmap exactly matches the manifest.
 - Run `python3 scripts/generate-og-image.py` after changing homepage card copy. The generator embeds the full source font.
 - Replace `resume.pdf` or `policyc.pdf` to publish newer document versions at the same URLs.
+- Dog favicons use dedicated `favicon-dog-*` and `apple-touch-icon-dog.png` URLs. All seven HTML entries use these files and the cache-busted ICO fallback; bump icon filenames and the manifest query when replacing them. `favicon.ico` also supports browsers requesting the default path. Keep the sticker's transparent background and white border.
 
 No environment variables are required to serve the site.
 
