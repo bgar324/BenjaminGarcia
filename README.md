@@ -16,15 +16,7 @@ This repository contains a deliberately minimal, static portfolio with six publi
 - `/blog/policyc` - a case study about testing request-specific policy compilation
 - `/blog/logit` - a case study about designing a workout logger that gets out of the way
 
-The homepage is an editorial work gallery with a warm paper palette, a large serif introduction, fixed desktop navigation, and stacked media previews. It features Lindy, PerspectEvolver, Meta × MLH, Bonterra, Todd Agriscience, and TensorStax, followed by personal projects and about/campus information. On mobile the navigation moves into the header and captions stack beneath each preview.
-
-The homepage social preview can be regenerated with `node scripts/generate-portfolio-og.mjs` (with the same optional `CHROME_BIN`).
-
-`portfolio.css` scopes the new design to the homepage. `static/portfolio.js` initializes on both direct loads and Swup page changes. Videos load only when entering the viewport, pause offscreen or when the tab is hidden, and offer manual pause/play controls. Reduced-motion and data-saving preferences disable automatic playback. No-JavaScript visits retain static posters and ordinary links. Existing articles, the archive, and the preserved Snoopy page retain their own layouts.
-
-The supplied media is under `static/work/`: silent H.264 excerpts with fast-start metadata, JPEG video posters, and the supplied brand images. Lindy uses a 20-second excerpt starting at 00:14; PerspectEvolver uses a 28-second product demonstration starting at 01:40. The TensorStax GIF is converted to MP4, and the Meta clip is retained. Source files stay outside the repository.
-
-Run `npm ci` and `npm test` after installing Playwright Chromium, or set `CHROME_BIN` to an installed Chrome executable. All browser checks launch headlessly with isolated profiles. The gallery suite checks five viewport widths, media assets, reduced motion, manual playback, offscreen pausing, article return navigation, and JavaScript-disabled access. Optionally set `GALLERY_SCREENSHOTS` to an existing output directory to save desktop and mobile images.
+The interface uses a single-column layout and a bundled Inter type scale. Text links retain a muted underline, then darken it and reveal an 11px arrow over 300ms on hover or keyboard focus. New-tab and email links use northeast arrows; internal page links use right arrows. Entrance motion matches the reference at [chloemaillot.fr](https://chloemaillot.fr/): a 700ms ease-out fade from 4px blur and a 10px downward offset, with 60ms stagger steps capped at 480ms. Existing typography, colors, and layout are preserved. The pages remain static HTML. Self-hosted Swup progressively enhances internal navigation without replacing the browser document; no install or build is required to serve or deploy the site.
 
 The Snoopy page preserves the final full Snoopy design from `2c204ef`, immediately before the neutral redesign: cream background, oversized blue name, and two-column desktop layout. It uses isolated assets under `snoopy/` and ordinary full-page links so its legacy styles and scripts cannot leak into the main portfolio. It shares the current `/resume.pdf` and links to the main project archive and articles.
 

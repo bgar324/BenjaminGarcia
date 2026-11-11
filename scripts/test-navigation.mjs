@@ -86,7 +86,7 @@ test("the old page stays painted during a slow fetch and the document survives t
     "https://www.bentgarcia.com/blog/policyc");
   assert.equal(await page.evaluate(() => document.activeElement.tagName), "BODY");
   await page.locator('a[href="/"]').click();
-  await settle(page, "/", "Benjamin Garcia is a software engineer");
+  await settle(page, "/", "I build software");
   assert.equal(await page.locator('meta[property="article:published_time"]').count(), 0);
 });
 
@@ -103,7 +103,7 @@ test("failed Back reloads the selected page without losing Forward or leaving ma
   });
   await page.route("**/static/navigation-vendor.js*", route => route.abort());
   await page.goBack();
-  await settle(page, "/", "Benjamin Garcia is a software engineer");
+  await settle(page, "/", "I build software");
   await page.waitForLoadState("load");
   assert.equal(failedRequests, 1);
   assert.equal(await page.evaluate(() => history.length), historyLength);
@@ -120,7 +120,7 @@ test("repeated history entries restore their own scroll positions", async t => {
   await settle(page, "/blog/policyc", "Building PolicyC");
   await page.evaluate(() => scrollTo({ top: 800, behavior: "instant" }));
   await page.evaluate(() => document.querySelector('a[href="/"]').click());
-  await settle(page, "/", "Benjamin Garcia is a software engineer");
+  await settle(page, "/", "I build software");
   assert.equal(await page.evaluate(() => scrollY), firstHome);
   await page.evaluate(() => scrollTo({ top: 1600, behavior: "instant" }));
   const secondHome = await page.evaluate(() => scrollY);
@@ -128,13 +128,13 @@ test("repeated history entries restore their own scroll positions", async t => {
   await page.evaluate(() => document.querySelector('a[href="/projects"]').click());
   await settle(page, "/projects", "All Projects");
   await page.goBack();
-  await settle(page, "/", "Benjamin Garcia is a software engineer");
+  await settle(page, "/", "I build software");
   assert.equal(await page.evaluate(() => scrollY), secondHome);
   await page.goBack();
   await settle(page, "/blog/policyc", "Building PolicyC");
   assert.equal(await page.evaluate(() => scrollY), 800);
   await page.goBack();
-  await settle(page, "/", "Benjamin Garcia is a software engineer");
+  await settle(page, "/", "I build software");
   assert.equal(await page.evaluate(() => scrollY), firstHome);
 });
 
@@ -212,7 +212,7 @@ test("refresh replays entrances without replaying return navigation", async t =>
   await page.locator('a[href="/projects"]').click();
   await settle(page, "/projects", "All Projects");
   await page.locator('a[href="/"]').click();
-  await settle(page, "/", "Benjamin Garcia is a software engineer");
+  await settle(page, "/", "I build software");
   assert.ok((await headingFrames()).every(opacity => opacity === 1));
   await page.reload({ waitUntil: "domcontentloaded" });
   assert.ok((await headingFrames()).some(opacity => opacity > 0 && opacity < 1));
@@ -220,6 +220,6 @@ test("refresh replays entrances without replaying return navigation", async t =>
   await settle(page, "/projects", "All Projects");
   assert.ok((await headingFrames()).every(opacity => opacity === 1));
   await page.goBack();
-  await settle(page, "/", "Benjamin Garcia is a software engineer");
+  await settle(page, "/", "I build software");
   assert.ok((await headingFrames()).every(opacity => opacity === 1));
 });
