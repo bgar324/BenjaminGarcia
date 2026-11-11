@@ -168,6 +168,7 @@
     }
   });
 
+  swup.hooks.on("page:view", () => document.dispatchEvent(new Event("portfolio:page-ready")));
   restorePosition(true);
   addEventListener("pagehide", savePosition);
   addEventListener("hashchange", () => {
