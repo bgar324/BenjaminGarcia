@@ -1014,3 +1014,14 @@ a:focus-visible {
     margin-top: 0.75rem;
   }
 }
+
+.experience-role::before { content: "/ "; }
+.experience-heading h3 a,
+.project-heading h3 a,
+.projects-entry h2 a,
+.experience-heading h3 a:hover,
+.project-heading h3 a:hover,
+.projects-entry h2 a:hover { text-decoration: none; }
+.experience-heading h3 a::after,
+.project-heading h3 a::after,
+.projects-entry h2 a::after { display: none; }

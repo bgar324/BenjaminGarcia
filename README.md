@@ -153,7 +153,7 @@ to a local Chrome executable to use it instead of Playwright's Chromium.
 ## Editing Content
 
 - Update homepage structure and copy in `index.html`.
-- Experience and selected-project headings pair the linked name with an unlinked, muted role or subtitle. Links keep a light underline at rest, then darken it and reveal an arrow on hover or keyboard focus. Keep natural text wrapping; dates and longer descriptions remain separate.
+- Experience and campus headings use a linked company followed by a muted `/ Role`; the separator inherits the role color. Selected projects pair the linked name with a muted subtitle. Role and project heading links have no underline or decorative hover arrow; keyboard focus remains visible. Keep natural text wrapping; dates and descriptions remain separate.
 - Update the project collection in `projects/index.html`.
 - Update global visual styling and motion in `styles.css`. Homepage entries use tighter spacing than section boundaries; first and last entries do not add extra padding against section headings or dividers.
 - Keep keyboard focus visible, hover effects limited to hover-capable pointers, and native touch feedback enabled. Chart labels use padded hit areas and native radio-keyboard behavior. Preserve instant history scroll restoration rather than adding global smooth scrolling.
