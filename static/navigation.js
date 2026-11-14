@@ -4,6 +4,12 @@
       event.target.style.animation = "none";
     }
   });
+  document.addEventListener("change", (event) => {
+    if (!event.target.matches(".project-filters input")) return;
+    document.querySelectorAll(".projects-row").forEach((row) => {
+      row.style.animation = "none";
+    });
+  });
 
   const pagePath = (url) => url.pathname.replace(/\/index\.html$|\/$/, "").replace(/\.html$/, "") || "/";
   const enteredPages = new Set();

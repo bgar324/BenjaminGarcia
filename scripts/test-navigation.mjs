@@ -199,6 +199,49 @@ test("finished entrances release filters and transforms while scrolling", async 
     getComputedStyle(element).opacity), "1");
 });
 
+test("the archive filters and visible projects enter together in reading order", async t => {
+  const page = await homepage(t);
+  await page.locator('a[href="/projects"]').click();
+  await settle(page, "/projects", "All Projects");
+  const frames = await page.evaluate(async () => {
+    const rows = [...document.querySelectorAll(".projects-row")]
+      .filter(element => getComputedStyle(element).display !== "none");
+    const filters = document.querySelector(".project-filters");
+    const frames = [];
+    for (let i = 0; i < 80; i++) {
+      frames.push({
+        filters: Number(getComputedStyle(filters).opacity),
+        rows: rows.map(element => Number(getComputedStyle(element).opacity)),
+      });
+      await new Promise(requestAnimationFrame);
+    }
+    return frames;
+  });
+  assert.ok(frames.some(frame => frame.filters > 0 && frame.filters < 1),
+    "The filter row must enter rather than appear immediately");
+  assert.equal(frames[0].rows.length, 6, "Campus projects are the default visible entries");
+  assert.ok(frames[0].rows.every((_, index) =>
+    frames.some(frame => frame.rows[index] > 0 && frame.rows[index] < 1)),
+    "Every visible project must fade in");
+  assert.ok(frames.some(frame =>
+    frame.rows[0] > frame.rows[1] && frame.rows[1] > frame.rows[2]),
+    "Visible projects must enter in reading order, not all at once");
+  assert.ok(frames.at(-1).rows.every(opacity => opacity === 1));
+  for (const filter of ["personal", "all", "campus"]) {
+    await page.locator(`label[for="filter-${filter}"]`).click();
+    const replayed = await page.evaluate(async () => {
+      for (let i = 0; i < 12; i++) {
+        const rows = [...document.querySelectorAll(".projects-row")]
+          .filter(element => getComputedStyle(element).display !== "none");
+        if (rows.some(element => getComputedStyle(element).opacity !== "1")) return true;
+        await new Promise(requestAnimationFrame);
+      }
+      return false;
+    });
+    assert.equal(replayed, false, "Filtering must not replay the page entrance");
+  }
+});
+
 test("refresh replays entrances without replaying return navigation", async t => {
   const page = await homepage(t);
   const headingFrames = () => page.locator("h1").evaluate(async element => {

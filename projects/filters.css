@@ -57,7 +57,28 @@
 
 .projects-page .projects-row {
   padding-block: 0;
-  animation: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .projects-page:has(#filter-campus:checked) .projects-row:nth-child(1 of [data-campus]) {
+    animation-delay: 180ms;
+  }
+
+  .projects-page:has(#filter-campus:checked) .projects-row:nth-child(2 of [data-campus]) {
+    animation-delay: 240ms;
+  }
+
+  .projects-page:has(#filter-campus:checked) .projects-row:nth-child(3 of [data-campus]) {
+    animation-delay: 300ms;
+  }
+
+  .projects-page:has(#filter-campus:checked) .projects-row:nth-child(4 of [data-campus]) {
+    animation-delay: 360ms;
+  }
+
+  .projects-page:has(#filter-campus:checked) .projects-row:nth-child(5 of [data-campus]) {
+    animation-delay: 420ms;
+  }
 }
 
 .projects-page:has(#filter-personal:checked) .projects-row[data-campus],
