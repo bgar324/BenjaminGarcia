@@ -1,220 +1,91 @@
-# Benjamin Garcia Portfolio
+# Benjamin Garcia's portfolio
 
-Personal portfolio for Benjamin Garcia, written in plain HTML and CSS and deployed on Vercel.
+My personal website, with selected projects, work experience, campus involvement, and articles about things I've built.
 
-Live site: [bentgarcia.com](https://www.bentgarcia.com)
+**[bentgarcia.com](https://www.bentgarcia.com)**
 
-## Overview
+The site uses static HTML, CSS, and JavaScript, hosted on Vercel. There is no application build step or backend. Swup handles navigation between pages, with ordinary links as a fallback when JavaScript is unavailable.
 
-This repository contains a deliberately minimal, static portfolio with six public routes:
+## Run locally
 
-- `/` - introduction, experience, projects, On campus, about, GitHub contributions, and contact links
-- `/projects` - one project list with All, Personal, and Campus filters, defaulting to Campus, plus live-site and source links
-- `/snoopy` - preserved Snoopy portfolio, with isolated styles, pose cycling, a local clock, and a résumé preview
-- `/resume.pdf` - direct résumé PDF. The site uses the dog sticker as its fallback favicon without adding a wrapper around the PDF viewer.
-- `/blog/annie` - a case study about building Annie, a personal iMessage assistant
-- `/blog/policyc` - a case study about testing request-specific policy compilation
-- `/blog/logit` - a case study about designing a workout logger that gets out of the way
-
-The interface uses a single-column layout and a bundled Inter type scale. Text links retain a muted underline, then darken it and reveal an 11px arrow over 300ms on hover or keyboard focus. New-tab and email links use northeast arrows; internal page links use right arrows. Entrance motion matches the reference at [chloemaillot.fr](https://chloemaillot.fr/): a 700ms ease-out fade from 4px blur and a 10px downward offset, with 60ms stagger steps capped at 480ms. Existing typography, colors, and layout are preserved. The pages remain static HTML. Self-hosted Swup progressively enhances internal navigation without replacing the browser document; no install or build is required to serve or deploy the site.
-
-The Snoopy page preserves the final full Snoopy design from `2c204ef`, immediately before the neutral redesign: cream background, oversized blue name, and two-column desktop layout. It uses isolated assets under `snoopy/` and ordinary full-page links so its legacy styles and scripts cannot leak into the main portfolio. It shares the current `/resume.pdf` and links to the main project archive and articles.
-
-## Highlights
-
-- Static HTML and CSS with progressive navigation and ordinary-link fallback
-- Responsive single-column layout for desktop and mobile
-- Accessible keyboard focus states and reduced-motion handling
-- CSS entrance animations play on the first visit to each page per tab and on refresh. Return links and Back/Forward skip replays. Reduced-motion preferences disable entrances and link transitions. Native View Transitions are not enabled.
-- Entrances preserve the blur effect while running. Backwards fill and explicit `animationend` teardown release the filter and transform when each entrance finishes, avoiding stale blurred text layers in WebKit during scrolling.
-- Back-to-home navigation reveals a left-pointing arrow before the link label; other internal links retain right-pointing arrows after their labels.
-- Canonical metadata, structured data, sitemap, robots, and web manifest
-- Subsetted Inter normal and italic page fonts with the full variable weight range
-- Resume and PolicyC paper served as public PDF assets
-
-## Project Structure
-
-```text
-index.html            Home page
-projects/index.html   Complete project collection
-blog/annie/index.html   Blog article about Annie
-blog/policyc/index.html Blog article about PolicyC
-blog/logit/index.html  Blog article about Logit
-404.html              Custom 404 page
-styles.css            Layout, typography, and interaction styles
-static/inter-page.woff2         Subsetted normal page font
-static/inter-page-italic.woff2  Subsetted italic page font
-static/inter-variable.woff2     Full source font retained for asset generation
-static/inter-variable-italic.woff2   Full italic source font
-static/inter-diagrams.woff2    Subset embedded in SVG image assets
-static/inter-diagrams.unicodes Glyph coverage checked before SVG emission
-static/inter-diagrams.sha256   Checksums for the generated diagram subset
-scripts/serve.py               Local preview with direct clean URLs
-scripts/requirements.txt       Pinned font-subset build dependencies
-scripts/build-inter-page-fonts.py   Rebuilds both page subsets from full source fonts
-scripts/build-inter-diagram-font.py  Rebuilds the diagram subset from the full source font
-scripts/embedded_inter_font.py Embeds the diagram font in SVG assets
-static/navigation.js          Owns navigation policy and scroll restoration
-static/navigation-vendor.js   Pinned Swup, Head, and Accessibility browser bundles
-static/navigation-vendor.LICENSE.txt   Third-party notices
-scripts/vendor-navigation.py  Reproduces vendor bundles with pinned archive hashes
-scripts/test-navigation.mjs   Browser navigation regressions
-scripts/generate-policyc-charts.py   Regenerates the PolicyC SVG figures
-static/favicon-dog-{32,192,512}.png  Dog sticker tab and app icons
-static/apple-touch-icon-dog.png     Dog sticker Apple touch icon
-static/annie-imessage-conversation.webp
-static/annie-deepseek-usage.webp
-static/logit-workout.webp
-static/logit-workout-square.webp
-static/logit-iterations.png
-static/logit-logged-today.svg
-static/policyc-input-reduction.svg
-static/policyc-preservation.svg
-static/policyc-cost-reduction.svg
-static/policyc-billed-cost.svg
-static/policyc-latency.svg
-static/policyc-compiler-pipeline.svg
-static/policyc-compiler-pipeline-v09.svg
-static/policyc-study-protocol.svg
-static/policyc-paired-outcomes.svg
-static/policyc-polaris-pipeline.svg
-static/policyc-canary-protocol.svg
-static/policyc-canary-arms.svg
-static/policyc-reader-economics.svg
-manifest.webmanifest
-sitemap.xml
-robots.txt
-policyc.pdf
-resume.pdf
-vercel.json           Buildless deploy overrides, clean URLs, cache headers
-```
-
-`vercel.json` pins `framework`, `buildCommand`, `installCommand`, and
-`outputDirectory` to `null`. The Vercel project predates this rewrite and still
-carries the old Astro framework preset, so those keys are what force a buildless
-static deploy. Keep those overrides: the optional `package.json` is for browser
-regression tests, not an Astro build or a production runtime.
-
-## Local Development
-
-No install or build step. Use the clean-URL preview server:
+Python 3 is enough to preview the site. No package installation or environment variables are required.
 
 ```bash
 python3 scripts/serve.py
 ```
 
-Open [127.0.0.1:8765](http://127.0.0.1:8765).
+Open [localhost:8765](http://127.0.0.1:8765). To use another port:
 
-The server serves routes such as `/projects` and `/blog/policyc` directly,
-matching Vercel's clean URLs. Python's generic `http.server` redirects these
-directory paths to trailing-slash URLs instead. If that server was used before,
-the browser may retain its permanent redirects.
-Run `python3 scripts/serve.py --port 8770` and open [127.0.0.1:8770](http://127.0.0.1:8770) for a fresh origin.
+```bash
+python3 scripts/serve.py --port 8770
+```
 
-### Progressive navigation
+The preview server supports the same clean URLs as production, such as `/projects` and `/blog/annie`.
 
-`static/navigation.js` uses Swup 4.10.0, Head Plugin 2.3.1, and Accessibility
-Plugin 5.2.1. All runtime code is served locally, with no CDN dependency.
-Internal page visits keep the old `<main>` visible until the HTML is ready,
-then replace it with CSS entrance motion only for a page's first visit in the tab, unless reduced motion is requested. Per-page session storage prevents replays on return links; Back/Forward always skips entrances. Explicit refreshes replay the entrance without clearing visited-page tracking. If storage is blocked, enhanced navigation still tracks visited pages in memory. Swup owns history, titles, metadata,
-screen-reader announcements, and focus. The initializer owns per-entry and
-per-URL scroll positions, including reloads and return links.
+## Pages and files
 
-PDFs, downloads, external links, named targets, and fragment visits retain
-browser navigation. Same-page fragments relinquish enhancement without
-reloading the document. Fetch failures fall back to full navigation; blocked
-scripts and disabled JavaScript leave ordinary links usable.
+| Path | Contents |
+| --- | --- |
+| `index.html` | Homepage |
+| `projects/index.html` | Project archive, with Personal and Campus filters |
+| `blog/` | Articles about Annie, Logit, and PolicyC |
+| `snoopy/` | An earlier version of the portfolio, preserved at `/snoopy` |
+| `styles.css` | Shared layout and typography |
+| `projects/filters.css` | Project archive filters |
+| `static/` | Images, fonts, and browser scripts |
+| `scripts/` | Preview server, asset generators, and tests |
+| `resume.pdf` | Résumé |
+| `policyc.pdf` | PolicyC paper |
+| `vercel.json` | Deployment, clean URLs, and cache settings |
 
-New HTML routes should be added to the `pages` set in `static/navigation.js`
-to receive progressive navigation. Otherwise they use normal navigation.
-Regenerate the committed vendor bundle and license notices with
-`python3 scripts/vendor-navigation.py`; archive SHA-512 values are pinned in
-that script.
+Pages are edited directly in HTML. Articles live at `blog/<slug>/index.html`, with images in `static/`.
 
-### Navigation regression tests
+## Tests
 
-Node 20 or newer is needed only for the optional tests:
+The navigation tests require Node.js 20 or newer:
 
 ```bash
 npm ci
-npx playwright install chromium firefox webkit
+npx playwright install chromium
 npm test
-BROWSER=webkit npm test
+```
+
+Each run starts its own preview server. The suite covers page navigation, browser history, scroll restoration, entrance animations, and failure recovery.
+
+To test other browsers, install their Playwright binaries and select an engine:
+
+```bash
+npx playwright install firefox webkit
 BROWSER=firefox npm test
+BROWSER=webkit npm test
 ```
 
-Each run starts an isolated preview server on an available loopback port.
-The tests cover keeping content visible during loading, metadata/focus,
-distinct history-entry positions, stale responses, fragment handling, finished
-entrances releasing filters/transforms during scrolling, and failed Back
-navigation when the library also fails to load. Set `CHROME_BIN`
-to a local Chrome executable to use it instead of Playwright's Chromium.
+`CHROME_BIN` can point to an existing Chrome executable instead of Playwright's Chromium.
 
-## Editing Content
+## Generated assets
 
-- Update homepage structure and copy in `index.html`.
-- Experience and campus headings use a linked company followed by a muted `/ Role`; project headings use a linked name followed by a muted `/ Subtitle`. Separators inherit the role or subtitle color. Role and project heading links have no underline or decorative hover arrow; keyboard focus remains visible. Keep natural text wrapping; dates and descriptions remain separate.
-- Update the project collection in `projects/index.html`. Mark campus entries with `data-campus`; the remaining entries appear under Personal. The native radio filters use scoped CSS in `projects/filters.css` and work without JavaScript. Their typography and color-only selection match the PolicyC chart tabs; retain visible keyboard focus and 44px touch targets.
-- On the project archive, link the project name to its website or primary artifact and reserve the right column for GitHub, matching the other entries. Logit's name links to its website; PolicyC's name links to `/policyc.pdf`; Annie has an unlinked name and GitHub only. Keep blog links on the homepage rather than in these archive entries or their structured data.
-- Update global visual styling and motion in `styles.css`. Homepage entries use tighter spacing than section boundaries; first and last entries do not add extra padding against section headings or dividers.
-- Keep keyboard focus visible, hover effects limited to hover-capable pointers, and native touch feedback enabled. Chart labels use padded hit areas and native radio-keyboard behavior. Preserve instant history scroll restoration rather than adding global smooth scrolling.
-- Add portfolio articles under `blog/<slug>/index.html` and their images under `static/`.
-- Run `python3 -m pip install -r scripts/requirements.txt` once before rebuilding font subsets.
-- Run `python3 scripts/build-inter-page-fonts.py` to rebuild the normal and italic page fonts. The builder combines its Unicode ranges with current rendered HTML text and preserves variable weights and layout features. Keep the full `static/inter-variable.woff2` and `static/inter-variable-italic.woff2` source files; page subsetting does not replace them.
-- Every HTML entry preloads `/static/inter-page.woff2?v=1` with `as="font"`, `type="font/woff2"`, and `crossorigin`. Both page faces use `font-display: block`; italic loads only when needed. Browsers can hide text briefly while the font loads, then show fallback if the blocking period expires. This reduces the initial fallback flash but does not guarantee one can never occur.
-- `static/inter-diagrams.unicodes` is the explicit diagram subset input. If generator output reports a missing U+ codepoint, add it there, then run `python3 scripts/build-inter-diagram-font.py`, `python3 scripts/generate-policyc-charts.py`, and `python3 scripts/embedded_inter_font.py`. The builder derives the subset from the full source font and asserts that its cmap exactly matches the manifest.
-- Run `python3 scripts/generate-og-image.py` after changing homepage card copy. The generator embeds the full source font.
-- Replace `resume.pdf` or `policyc.pdf` to publish newer document versions at the same URLs.
-- Dog favicons use dedicated `favicon-dog-*` and `apple-touch-icon-dog.png` URLs. All seven HTML entries use these files and the cache-busted ICO fallback; bump icon filenames and the manifest query when replacing them. `favicon.ico` also supports browsers requesting the default path. Keep the sticker's transparent background and white border. The résumé dialog never changes the tab icon.
+Most content is edited by hand. A few assets have generators:
 
-No environment variables are required to serve the site.
+| Asset | Command |
+| --- | --- |
+| GitHub contribution calendar | `python3 scripts/generate-contributions.py` |
+| Social preview image | `python3 scripts/generate-og-image.py` |
+| PolicyC figures | `python3 scripts/generate-policyc-charts.py` |
+| Page font subsets | `python3 scripts/build-inter-page-fonts.py` |
+| Diagram font subset | `python3 scripts/build-inter-diagram-font.py` |
+| Fonts embedded in SVGs | `python3 scripts/embedded_inter_font.py` |
+| Bundled navigation libraries | `python3 scripts/vendor-navigation.py` |
 
-### Daily GitHub calendar
-
-The homepage ends with a contribution calendar below About, generated as HTML
-and styled by `styles.css`.
-CSS tooltips show each day's count on hover or keyboard focus, using the site's
-colors and typography. They stay centered over the cell; CSS anchor positioning
-lets them extend beyond the calendar's bounds in supporting browsers.
-The tooltips do not intercept pointer movement between cells. Hovering a cell
-does not outline it; keyboard focus retains a visible indicator.
-On narrow screens, the full year remains horizontally scrollable, but the
-scroller opens at the newest months.
-The calendar makes no browser API calls and works with JavaScript disabled.
-It shows all
-GitHub contributions, not just commits, including private contribution counts
-shared on the profile. No repository names or commit details are published.
-
-To refresh locally, run:
+Font generation requires the Python dependencies in `scripts/requirements.txt`:
 
 ```bash
-python3 scripts/generate-contributions.py
+python3 -m pip install -r scripts/requirements.txt
 ```
 
-The generator fetches GitHub's public profile contribution calendar, selects
-the 365 dates ending at today's UTC date, and replaces only the block between
-`contributions:start` and `contributions:end` in `index.html`. Use
-`--through YYYY-MM-DD` to reproduce a particular date range. The public
-profile includes anonymized private activity, so no personal GitHub token is
-needed to read the data. HTTP 5xx responses and connection/read timeouts get
-up to three attempts, with waits of 5 and 10 seconds between attempts.
-Other HTTP errors and invalid or incomplete calendar data fail immediately.
-Any failed refresh leaves the previous calendar intact.
+The contribution calendar reads public GitHub profile data without a personal access token. A [scheduled workflow](.github/workflows/contributions.yml) refreshes it daily. Failed refreshes leave the previous calendar in place.
 
-Run the fetch recovery regression tests with:
+## Deployment
 
-```bash
-python3 -m unittest discover -s scripts -p 'test_generate_contributions.py' -v
-```
+Pushes to `main` deploy through the GitHub-to-Vercel integration. The site is served directly from the repository.
 
-`.github/workflows/contributions.yml` runs daily at approximately 10:23 UTC
-and can also be started manually from the Actions tab. GitHub's automatic
-workflow token is used by checkout and the final commit/push, not to read
-your profile data. The workflow commits only `index.html` when it changes.
-The existing GitHub-to-Vercel integration deploys the resulting push.
-
-The schedule becomes active once the workflow is pushed to `main`. Repository
-rules must allow its token to push to `main`; GitHub may delay scheduled jobs
-or disable them after 60 days without repository activity. Check the Actions
-run and resulting Vercel deployment after enabling it. If a refresh fails, the
-site keeps the last successful calendar.
+The explicit `null` build settings in `vercel.json` override the Vercel project's older Astro configuration. They allow deployment without installing packages or running a framework build.
