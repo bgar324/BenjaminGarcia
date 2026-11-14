@@ -1,0 +1,66 @@
+.projects-page .projects-header {
+  padding-bottom: 1.75rem;
+}
+
+.project-filters {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 0 -0.75rem 2.75rem;
+  padding: 0;
+  border: 0;
+}
+
+.filter-legend,
+.project-filters input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.project-filters label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  min-width: 44px;
+  padding-inline: 0.75rem;
+  flex: 0 0 auto;
+  color: var(--subtle);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: var(--leading-normal);
+  cursor: pointer;
+  user-select: none;
+}
+
+.project-filters input:checked + label {
+  color: var(--foreground);
+}
+
+@media (hover: hover) {
+  .project-filters label:hover { color: var(--muted); }
+  .project-filters input:checked + label:hover { color: var(--foreground); }
+}
+
+.project-filters input:focus-visible + label {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+}
+
+.projects-page .projects-list {
+  display: grid;
+  gap: 2.75rem;
+}
+
+.projects-page .projects-row {
+  padding-block: 0;
+  animation: none;
+}
+
+.projects-page:has(#filter-personal:checked) .projects-row[data-campus],
+.projects-page:has(#filter-campus:checked) .projects-row:not([data-campus]) {
+  display: none;
+}

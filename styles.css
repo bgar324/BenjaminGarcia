@@ -1015,7 +1015,8 @@ a:focus-visible {
   }
 }
 
-.experience-role::before { content: "/ "; }
+.experience-role::before,
+.project-subtitle::before { content: "/ "; }
 .experience-heading h3 a,
 .project-heading h3 a,
 .projects-entry h2 a,

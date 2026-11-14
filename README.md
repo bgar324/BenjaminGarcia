@@ -9,7 +9,7 @@ Live site: [bentgarcia.com](https://www.bentgarcia.com)
 This repository contains a deliberately minimal, static portfolio with six public routes:
 
 - `/` - introduction, experience, projects, On campus, about, GitHub contributions, and contact links
-- `/projects` - projects grouped by year created, with live-site and source links
+- `/projects` - one project list with All, Personal, and Campus filters, defaulting to Campus, plus live-site and source links
 - `/snoopy` - preserved Snoopy portfolio, with isolated styles, pose cycling, a local clock, and a résumé preview
 - `/resume.pdf` - direct résumé PDF. The site uses the dog sticker as its fallback favicon without adding a wrapper around the PDF viewer.
 - `/blog/annie` - a case study about building Annie, a personal iMessage assistant
@@ -153,8 +153,9 @@ to a local Chrome executable to use it instead of Playwright's Chromium.
 ## Editing Content
 
 - Update homepage structure and copy in `index.html`.
-- Experience and campus headings use a linked company followed by a muted `/ Role`; the separator inherits the role color. Selected projects pair the linked name with a muted subtitle. Role and project heading links have no underline or decorative hover arrow; keyboard focus remains visible. Keep natural text wrapping; dates and descriptions remain separate.
-- Update the project collection in `projects/index.html`.
+- Experience and campus headings use a linked company followed by a muted `/ Role`; project headings use a linked name followed by a muted `/ Subtitle`. Separators inherit the role or subtitle color. Role and project heading links have no underline or decorative hover arrow; keyboard focus remains visible. Keep natural text wrapping; dates and descriptions remain separate.
+- Update the project collection in `projects/index.html`. Mark campus entries with `data-campus`; the remaining entries appear under Personal. The native radio filters use scoped CSS in `projects/filters.css` and work without JavaScript. Their typography and color-only selection match the PolicyC chart tabs; retain visible keyboard focus and 44px touch targets.
+- On the project archive, link the project name to its website or primary artifact and reserve the right column for GitHub, matching the other entries. Logit's name links to its website; PolicyC's name links to `/policyc.pdf`; Annie has an unlinked name and GitHub only. Keep blog links on the homepage rather than in these archive entries or their structured data.
 - Update global visual styling and motion in `styles.css`. Homepage entries use tighter spacing than section boundaries; first and last entries do not add extra padding against section headings or dividers.
 - Keep keyboard focus visible, hover effects limited to hover-capable pointers, and native touch feedback enabled. Chart labels use padded hit areas and native radio-keyboard behavior. Preserve instant history scroll restoration rather than adding global smooth scrolling.
 - Add portfolio articles under `blog/<slug>/index.html` and their images under `static/`.

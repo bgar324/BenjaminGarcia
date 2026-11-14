@@ -14,9 +14,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon-dog.png" />
     <link rel="manifest" href="/manifest.webmanifest?v=dog-20261101" />
     <link rel="preload" href="/static/inter-page.woff2?v=1" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="/styles.css?v=70" />
+    <link rel="stylesheet" href="/styles.css?v=71" />
+    <link rel="stylesheet" href="/projects/filters.css?v=2" />
     <script src="/static/navigation-vendor.js?v=1" defer></script>
-    <script src="/static/navigation.js?v=5" defer></script>
+    <script src="/static/navigation.js?v=7" defer></script>
     <meta name="theme-color" content="#fcfcfb" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
@@ -48,11 +49,11 @@
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "item": { "@type": "CreativeWork", "name": "Folio", "dateCreated": "2026", "url": "https://github.com/bgar324/Folio", "keywords": "Swift, AppKit, Tectonic, macOS" } },
             { "@type": "ListItem", "position": 2, "item": { "@type": "CreativeWork", "name": "AgentAgora", "dateCreated": "2026", "url": "https://hypothesis-studio.vercel.app", "sameAs": "https://github.com/bgar324/AgentAgora", "keywords": "Python, FastAPI, Next.js, Supabase" } },
-            { "@type": "ListItem", "position": 3, "item": { "@type": "CreativeWork", "name": "Annie", "dateCreated": "2026", "url": "https://www.bentgarcia.com/blog/annie", "sameAs": "https://github.com/bgar324/annie", "keywords": "TypeScript, Fastify, SQLite, Google APIs, Notion MCP" } },
+            { "@type": "ListItem", "position": 3, "item": { "@type": "CreativeWork", "name": "Annie", "dateCreated": "2026", "url": "https://github.com/bgar324/annie", "keywords": "TypeScript, Fastify, SQLite, Google APIs, Notion MCP" } },
             { "@type": "ListItem", "position": 4, "item": { "@type": "CreativeWork", "name": "Post", "dateCreated": "2026", "url": "https://github.com/bgar324/post", "keywords": "React, TypeScript, Express, PostgreSQL, Gmail API" } },
             { "@type": "ListItem", "position": 5, "item": { "@type": "CreativeWork", "name": "PRD", "dateCreated": "2026", "url": "https://github.com/bgar324/prd", "keywords": "Go, Bubble Tea, GitHub CLI" } },
-            { "@type": "ListItem", "position": 6, "item": { "@type": "CreativeWork", "name": "PolicyC", "dateCreated": "2026", "url": "https://www.bentgarcia.com/blog/policyc", "sameAs": "https://github.com/bgar324/policyc", "keywords": "TypeScript, Python, OpenAI API, SQLite" } },
-            { "@type": "ListItem", "position": 7, "item": { "@type": "CreativeWork", "name": "Logit", "dateCreated": "2026", "url": "https://www.bentgarcia.com/blog/logit", "sameAs": ["https://trylogit.me", "https://github.com/bgar324/log-it"], "keywords": "TypeScript, Tailwind, Postgres" } },
+            { "@type": "ListItem", "position": 6, "item": { "@type": "CreativeWork", "name": "PolicyC", "dateCreated": "2026", "url": "https://www.bentgarcia.com/policyc.pdf", "sameAs": "https://github.com/bgar324/policyc", "keywords": "TypeScript, Python, OpenAI API, SQLite" } },
+            { "@type": "ListItem", "position": 7, "item": { "@type": "CreativeWork", "name": "Logit", "dateCreated": "2026", "url": "https://trylogit.me", "sameAs": "https://github.com/bgar324/log-it", "keywords": "TypeScript, Tailwind, Postgres" } },
             { "@type": "ListItem", "position": 8, "item": { "@type": "CreativeWork", "name": "ACM Hack Website", "dateCreated": "2026", "url": "https://hack.uclaacm.com", "keywords": "JavaScript, CSS" } },
             { "@type": "ListItem", "position": 9, "item": { "@type": "CreativeWork", "name": "exploretech.la Website", "dateCreated": "2026", "url": "https://exploretech.la", "keywords": "JavaScript, HTML, SCSS" } },
             { "@type": "ListItem", "position": 10, "item": { "@type": "CreativeWork", "name": "Poly Clubs", "dateCreated": "2026", "url": "https://poly-clubs.vercel.app/", "keywords": "Next.js, Tailwind, TypeScript, Supabase, Framer Motion" } },
@@ -78,11 +79,17 @@
         <h1>All Projects</h1>
       </header>
 
+      <fieldset class="project-filters">
+        <legend class="filter-legend">Filter projects</legend>
+        <input type="radio" name="project-filter" id="filter-all" value="all" />
+        <label for="filter-all">All</label>
+        <input type="radio" name="project-filter" id="filter-personal" value="personal" />
+        <label for="filter-personal">Personal</label>
+        <input type="radio" name="project-filter" id="filter-campus" value="campus" checked />
+        <label for="filter-campus">Campus</label>
+      </fieldset>
+
       <div class="projects-archive">
-        <section class="projects-year-group" aria-labelledby="projects-year-2026">
-          <div class="section-heading">
-            <h2 id="projects-year-2026">2026</h2>
-          </div>
           <ol class="projects-list">
             <li class="projects-row">
               <div class="projects-entry">
@@ -104,8 +111,11 @@
             </li>
             <li class="projects-row">
               <div class="projects-entry">
-                <h2><a href="/blog/annie">Annie</a></h2>
+                <h2>Annie</h2>
                 <p>TypeScript · Fastify · SQLite · Google APIs · Notion MCP</p>
+              </div>
+              <div class="projects-links">
+                <a href="https://github.com/bgar324/annie" target="_blank" rel="noopener noreferrer" aria-label="Annie source on GitHub">GitHub</a>
               </div>
             </li>
             <li class="projects-row">
@@ -128,17 +138,23 @@
             </li>
             <li class="projects-row">
               <div class="projects-entry">
-                <h2><a href="/blog/policyc">PolicyC</a></h2>
+                <h2><a href="/policyc.pdf" target="_blank" rel="noopener noreferrer">PolicyC</a></h2>
                 <p>TypeScript · Python · OpenAI API · SQLite</p>
+              </div>
+              <div class="projects-links">
+                <a href="https://github.com/bgar324/policyc" target="_blank" rel="noopener noreferrer" aria-label="PolicyC source on GitHub">GitHub</a>
               </div>
             </li>
             <li class="projects-row">
               <div class="projects-entry">
-                <h2><a href="/blog/logit">Logit</a></h2>
+                <h2><a href="https://trylogit.me" target="_blank" rel="noopener noreferrer">Logit</a></h2>
                 <p>TypeScript · Tailwind · Postgres</p>
               </div>
+              <div class="projects-links">
+                <a href="https://github.com/bgar324/log-it" target="_blank" rel="noopener noreferrer" aria-label="Logit source on GitHub">GitHub</a>
+              </div>
             </li>
-            <li class="projects-row">
+            <li class="projects-row" data-campus>
               <div class="projects-entry">
                 <h2><a href="https://hack.uclaacm.com" target="_blank" rel="noopener noreferrer">ACM Hack Website</a></h2>
                 <p>JavaScript · CSS</p>
@@ -147,7 +163,7 @@
                 <a href="https://github.com/uclaacm/hack.uclaacm.com" target="_blank" rel="noopener noreferrer" aria-label="ACM Hack Website source on GitHub">GitHub</a>
               </div>
             </li>
-            <li class="projects-row">
+            <li class="projects-row" data-campus>
               <div class="projects-entry">
                 <h2><a href="https://exploretech.la" target="_blank" rel="noopener noreferrer">exploretech.la Website</a></h2>
                 <p>JavaScript · HTML · SCSS</p>
@@ -156,7 +172,7 @@
                 <a href="https://github.com/exploretech-la/website" target="_blank" rel="noopener noreferrer" aria-label="exploretech.la Website source on GitHub">GitHub</a>
               </div>
             </li>
-            <li class="projects-row">
+            <li class="projects-row" data-campus>
               <div class="projects-entry">
                 <h2><a href="https://poly-clubs.vercel.app/" target="_blank" rel="noopener noreferrer">Poly Clubs</a></h2>
                 <p>Next.js · Tailwind · TypeScript · Supabase · Framer Motion</p>
@@ -165,14 +181,6 @@
                 <a href="https://github.com/bgar324/poly-clubs" target="_blank" rel="noopener noreferrer" aria-label="Poly Clubs source on GitHub">GitHub</a>
               </div>
             </li>
-          </ol>
-        </section>
-
-        <section class="projects-year-group" aria-labelledby="projects-year-2025">
-          <div class="section-heading">
-            <h2 id="projects-year-2025">2025</h2>
-          </div>
-          <ol class="projects-list">
             <li class="projects-row">
               <div class="projects-entry">
                 <h2><a href="https://gitproof.dev" target="_blank" rel="noopener noreferrer">GitProof</a></h2>
@@ -191,7 +199,7 @@
                 <a href="https://github.com/bgar324/hacktech-25-brjk" target="_blank" rel="noopener noreferrer" aria-label="Het.AI source on GitHub">GitHub</a>
               </div>
             </li>
-            <li class="projects-row">
+            <li class="projects-row" data-campus>
               <div class="projects-entry">
                 <h2><a href="https://mtsaccs.org/" target="_blank" rel="noopener noreferrer">Computer Science Club Website</a></h2>
                 <p>Next.js · Tailwind · TypeScript · Vercel</p>
@@ -209,7 +217,7 @@
                 <a href="https://github.com/bgar324/Rift-Report/" target="_blank" rel="noopener noreferrer" aria-label="Rift Report source on GitHub">GitHub</a>
               </div>
             </li>
-            <li class="projects-row">
+            <li class="projects-row" data-campus>
               <div class="projects-entry">
                 <h2><a href="https://caduceuswebsitev1.vercel.app/" target="_blank" rel="noopener noreferrer">15th Annual HPC Website</a></h2>
                 <p>Next.js · Tailwind · Vercel · shadcn-ui</p>
@@ -218,7 +226,7 @@
                 <a href="https://github.com/bgar324/caduceus-club-website" target="_blank" rel="noopener noreferrer" aria-label="15th Annual HPC Website source on GitHub">GitHub</a>
               </div>
             </li>
-            <li class="projects-row">
+            <li class="projects-row" data-campus>
               <div class="projects-entry">
                 <h2><a href="https://v1.mtsaccs.org" target="_blank" rel="noopener noreferrer">Computer Science Club Website (v1)</a></h2>
                 <p>React.js · Bootstrap · Netlify</p>
@@ -236,14 +244,6 @@
                 <a href="https://github.com/bgar324/BenjaminGarcia" target="_blank" rel="noopener noreferrer" aria-label="Benjamin Garcia source on GitHub">GitHub</a>
               </div>
             </li>
-          </ol>
-        </section>
-
-        <section class="projects-year-group" aria-labelledby="projects-year-2024">
-          <div class="section-heading">
-            <h2 id="projects-year-2024">2024</h2>
-          </div>
-          <ol class="projects-list">
             <li class="projects-row">
               <div class="projects-entry">
                 <h2>Roadmap Maker</h2>
@@ -272,7 +272,6 @@
               </div>
             </li>
           </ol>
-        </section>
       </div>
     </main>
   </body>
