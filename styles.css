@@ -1317,6 +1317,7 @@ a:focus-visible {
   width: calc(100% / 9);
   height: 280px;
   outline: none;
+  z-index: var(--layer, 1);
 }
 
 .king-collage img {
@@ -1327,7 +1328,7 @@ a:focus-visible {
   max-width: none;
   pointer-events: none;
   translate: -50% 0;
-  transform: translate(var(--shift), var(--offset)) rotate(var(--angle));
+  transform: translateX(var(--shift));
   transform-origin: center 70%;
   transition: transform 280ms cubic-bezier(.22, 1, .36, 1);
   height: auto;
@@ -1356,6 +1357,14 @@ a:focus-visible {
   outline: 2px solid var(--foreground);
   outline-offset: 4px;
 }
+
+.king-collage li:nth-child(2),
+.king-collage li:nth-child(8) { --layer: 2; }
+.king-collage li:nth-child(3),
+.king-collage li:nth-child(7) { --layer: 3; }
+.king-collage li:nth-child(4),
+.king-collage li:nth-child(6) { --layer: 4; }
+.king-collage li:nth-child(5) { --layer: 5; }
 
 @media (max-width: 620px) {
   .king-collage {
