@@ -1,4 +1,20 @@
 (() => {
+  const footerTimeFormat = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Los_Angeles",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZoneName: "short",
+  });
+  const updateFooterTime = () => {
+    const clock = document.querySelector("[data-footer-time]");
+    if (!clock) return;
+    const now = new Date();
+    clock.dateTime = now.toISOString();
+    clock.textContent = footerTimeFormat.format(now);
+  };
+  updateFooterTime();
+  setInterval(updateFooterTime, 1000);
+
   document.addEventListener("animationend", (event) => {
     if (event.animationName === "fade-in-up") {
       event.target.style.animation = "none";
@@ -15,6 +31,8 @@
   const enteredPages = new Set();
   const prepareEntrance = (url = location.href, { returning = false, replay = false } = {}) => {
     const path = pagePath(new URL(url, location.href));
+    // Explicit archive visits replay its entrance; history traversal keeps its place.
+    replay ||= path === "/projects" && !returning;
     let seen = enteredPages.has(path);
     try {
       const key = `entrance:${path}`;
@@ -143,6 +161,10 @@
   swup.hooks.before("visit:start", (visit) => {
     savePosition();
     visit.animation.animate = false;
+  });
+  swup.hooks.on("page:view", () => {
+    updateFooterTime();
+    document.dispatchEvent(new Event("portfolio:pageview"));
   });
   swup.hooks.before("content:replace", (visit) => {
     savePosition();

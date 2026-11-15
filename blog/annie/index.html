@@ -14,9 +14,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon-dog.png" />
     <link rel="manifest" href="/manifest.webmanifest?v=dog-20261101" />
     <link rel="preload" href="/static/inter-page.woff2?v=1" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="/styles.css?v=72" />
+    <link rel="stylesheet" href="/styles.css?v=88" />
     <script src="/static/navigation-vendor.js?v=1" defer></script>
-    <script src="/static/navigation.js?v=8" defer></script>
+    <script src="/static/navigation.js?v=11" defer></script>
+    <script src="/static/portfolio.js?v=5" defer></script>
     <meta name="theme-color" content="#fcfcfb" />
     <meta property="og:type" content="article" />
     <meta property="og:locale" content="en_US" />
@@ -68,6 +69,10 @@
       </nav>
 
       <article>
+        <div class="portfolio-media portfolio-media-project">
+          <video data-preview-src="/demos/annie.mp4" poster="/static/portfolio/annie-poster.jpg" width="1440" height="1080" muted loop playsinline preload="none" aria-hidden="true"></video>
+        </div>
+
         <header class="article-header">
           <h1>Building Annie, an iMessage&nbsp;assistant.</h1>
           <p class="article-meta">
@@ -75,24 +80,23 @@
           </p>
         </header>
 
+        <div class="article-body">
+          <section aria-labelledby="origin-heading">
+            <h2 id="origin-heading">Overview</h2>
+            <p>I spent my first two weeks at Lindy on the email and meetings team. When work started on Lindy Teammate, Lindy's assistant for Slack, my work shifted to integrations, guardrails, MCP support, migration infrastructure, and the new dashboard.</p>
+            <p>I used Lindy's executive assistant enough that opening Gmail started to feel unnecessary. Its daily brief merged my calendar and inbox into a short list of what needed attention. A few weeks in, I wanted the brief to ask what I planned to do that day and add my answer to a Notion task list I share with a friend. I wanted one loop: get the brief, answer one question, and update the shared list without leaving Messages.</p>
+            <p>When the internship ended, my access ended too. Keeping the phone assistant cost $50 a month. I liked the product, but I did not need a platform built for many customers. I needed Google and Notion.</p>
+            <p>The code was new, but the product decisions were not. Lindy had taught me to treat integrations, permissions, migrations, and traces as product work, not plumbing. Annie came together quickly because I was shrinking a system I already understood to one user, one phone, and the tools I needed.</p>
         <figure class="article-example" aria-labelledby="annie-conversation-caption">
           <a href="/static/annie-imessage-conversation.webp?v=2" target="_blank" rel="noopener noreferrer" aria-label="Open the Annie iMessage conversation at full size">
             <img src="/static/annie-imessage-conversation.webp?v=2" width="1995" height="1676" decoding="async" alt="iMessage conversation in which Annie summarizes two calendar events and triages three email inboxes" />
           </a>
           <figcaption id="annie-conversation-caption">An iMessage conversation with Annie about my calendar and inbox.</figcaption>
         </figure>
-
-        <div class="article-body">
-          <section aria-labelledby="origin-heading">
-            <h2 id="origin-heading">The assistant I lost when my internship ended</h2>
-            <p>I spent my first two weeks at Lindy on the email and meetings team. When work started on Lindy Teammate, Lindy's assistant for Slack, my work shifted to integrations, guardrails, MCP support, migration infrastructure, and the new dashboard.</p>
-            <p>I used Lindy's executive assistant enough that opening Gmail started to feel unnecessary. Its daily brief merged my calendar and inbox into a short list of what needed attention. A few weeks in, I wanted the brief to ask what I planned to do that day and add my answer to a Notion task list I share with a friend. I wanted one loop: get the brief, answer one question, and update the shared list without leaving Messages.</p>
-            <p>When the internship ended, my access ended too. Keeping the phone assistant cost $50 a month. I liked the product, but I did not need a platform built for many customers. I needed Google and Notion.</p>
-            <p>The code was new, but the product decisions were not. Lindy had taught me to treat integrations, permissions, migrations, and traces as product work, not plumbing. Annie came together quickly because I was shrinking a system I already understood to one user, one phone, and the tools I needed.</p>
           </section>
 
           <section aria-labelledby="smaller-heading">
-            <h2 id="smaller-heading">I did not need thirty integrations</h2>
+            <h2 id="smaller-heading">Scope and integrations</h2>
             <p>At Lindy, I learned that breadth has a cost. While debugging bug reports, I often found that the model was not the part that failed. It had been given several versioned actions with nearly identical names. A correct interpretation could still end with the wrong tool.</p>
             <p>Put those actions beside more than thirty integrations and the model has to choose among tools that look interchangeable. More context did not make it smarter. It gave the model more ways to be wrong.</p>
             <p>Pi's approach to coding helped me make the opposite choice. I removed anything I did not use. Annie has Google and Notion because those are the two integrations I need. The provider registry contains eight tools, and only two can write.</p>
@@ -103,7 +107,7 @@
           </section>
 
           <section aria-labelledby="notion-heading">
-            <h2 id="notion-heading">The Notion guard guarded too much</h2>
+            <h2 id="notion-heading">Notion permissions</h2>
             <p>Notion took the most work to get right. My first guard stored one connection-wide snapshot of every Notion tool Annie allowed. If any one of those schemas changed, Annie would stop every valid Notion request and tell me to reconnect my account.</p>
             <p>The old guard's drift fixture shows the failure. Adding an optional filter to <code>notion-search</code> changed its SHA-256 fingerprint. A request for <code>notion-update-page</code> would still stop, although that tool and the credentials were unchanged.</p>
             <dl class="article-log" aria-label="Reproduction of the retired Notion schema guard">
@@ -119,7 +123,7 @@
           </section>
 
           <section aria-labelledby="model-heading">
-            <h2 id="model-heading">The cheapest model was enough</h2>
+            <h2 id="model-heading">Model and cost</h2>
             <p>I tried Gemini first because the free tier was convenient. The rate limits interrupted normal use often enough that I moved on. I did not run a formal model comparison. I picked the next inexpensive option, DeepSeek V4 Flash, and it handled the work.</p>
             <p>I bought $2 of credit. After the first week, Annie had used about $0.20. At that pace, $2 lasts roughly two months, or about $12 a year. The Lindy phone experience would have cost $50 each month.</p>
             <figure class="article-dashboard">
@@ -133,7 +137,7 @@
           </section>
 
           <section aria-labelledby="voice-heading">
-            <h2 id="voice-heading">I wanted her to be a little annoyed</h2>
+            <h2 id="voice-heading">Voice and tone</h2>
             <p>I chose the name Annie because I think it is beautiful. The acronym came later: Assistant for Notion, Notifications, iMessage, and Email.</p>
             <p>I did not want the polished customer-support voice that most assistants default to.</p>
             <blockquote><p>I wanted Annie to sound like someone who wanted to help, but was honestly a little annoyed that you asked.</p></blockquote>
@@ -141,7 +145,7 @@
           </section>
 
           <section aria-labelledby="trace-heading">
-            <h2 id="trace-heading">A failure should leave a trace</h2>
+            <h2 id="trace-heading">Failure tracing</h2>
             <p>An agent can fail in too many places for its own explanation to be trustworthy. The model can choose the wrong tool, a provider can reject the call, or a worker can stop halfway through. Agents also invent plausible explanations for failures they did not understand.</p>
             <p>I designed Annie around a durable trace instead. Every inbound message gets a trace ID. Events from the queue, model, tool calls, providers, and outbound delivery are written to SQLite in order with sensitive values redacted. If a run cannot finish, the fallback comes from code, not the model:</p>
             <blockquote aria-label="Deterministic failure reply"><p>I couldn't complete that request. Trace: <code>tr_3d5e93de1fd84326b04fe3b932d6b65b</code></p></blockquote>
@@ -149,7 +153,7 @@
           </section>
 
           <section aria-labelledby="reliability-heading">
-            <h2 id="reliability-heading">Reliability comes before another integration</h2>
+            <h2 id="reliability-heading">Reflection</h2>
             <p>I tend to pad products with capabilities. I added a nutrition tab and rest timer to Logit after people asked for them, even though I barely use either one. Annie has made me resist that habit.</p>
             <p>I think Annie is finished for now. I do not have a list of integrations waiting to be added. Staying small is part of the point.</p>
             <p>The code still does unglamorous work. The Sendblue receiver rereads a 60-second overlap so a restart does not miss a message. SQLite records each accepted message and queue job together. Annie never retries a provider write when the provider may already have accepted it.</p>
@@ -157,10 +161,6 @@
           </section>
         </div>
 
-        <footer class="article-footer">
-          <a href="/projects">All projects</a>
-          <a href="https://github.com/bgar324/annie" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </footer>
       </article>
     </main>
   </body>

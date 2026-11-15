@@ -14,9 +14,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon-dog.png" />
     <link rel="manifest" href="/manifest.webmanifest?v=dog-20261101" />
     <link rel="preload" href="/static/inter-page.woff2?v=1" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="/styles.css?v=72" />
+    <link rel="stylesheet" href="/styles.css?v=88" />
     <script src="/static/navigation-vendor.js?v=1" defer></script>
-    <script src="/static/navigation.js?v=8" defer></script>
+    <script src="/static/navigation.js?v=11" defer></script>
+    <script src="/static/portfolio.js?v=5" defer></script>
     <meta name="theme-color" content="#fcfcfb" />
     <meta property="og:type" content="article" />
     <meta property="og:locale" content="en_US" />
@@ -68,13 +69,6 @@
       </nav>
 
       <article>
-        <header class="article-header">
-          <h1>Building PolicyC, a policy&nbsp;compiler.</h1>
-          <p class="article-meta">
-            <a href="/policyc.pdf" target="_blank" rel="noopener noreferrer">Paper</a>
-            <a href="https://github.com/bgar324/policyc" target="_blank" rel="noopener noreferrer">GitHub</a>
-          </p>
-        </header>
 
         <fieldset class="article-chart-switcher">
           <legend class="visually-hidden">PolicyC compiler progression charts</legend>
@@ -129,10 +123,17 @@
             </figure>
           </div>
         </fieldset>
+        <header class="article-header">
+          <h1>Building PolicyC, a policy&nbsp;compiler.</h1>
+          <p class="article-meta">
+            <a href="/policyc.pdf" target="_blank" rel="noopener noreferrer">Read paper</a>
+            <a href="https://github.com/bgar324/policyc" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </p>
+        </header>
 
         <div class="article-body">
           <section aria-labelledby="origin-heading">
-            <h2 id="origin-heading">The request was small. The prompt was not</h2>
+            <h2 id="origin-heading">Overview</h2>
             <p>At Lindy, I could inspect the system prompts behind several agents. Each prompt mixed rules about safety, privacy, tools, formatting, and behavior.</p>
             <p>The mismatch was obvious on ordinary requests. An email accepting lunch did not need every sensitive-data rule in the system. Those rules were still present on requests that could never activate them.</p>
             <p>During the launch of Lindy Teammate, I watched a trivial greeting pull in an enormous amount of input context. Some of that may have been an internal accounting problem, but the prompts themselves contained plenty that the request could never activate.</p>
@@ -141,7 +142,7 @@
           </section>
 
           <section aria-labelledby="system-heading">
-            <h2 id="system-heading">I made the policy explicit before I tried to compile it</h2>
+            <h2 id="system-heading">Policy representation and compiler design</h2>
             <p>Starting from an arbitrary natural-language prompt would have combined three research problems: extracting policies, selecting the relevant ones, and emitting them without changing their meaning. When an answer failed, I would not know which layer caused it.</p>
             <p>I isolated the compiler with a synthetic enterprise-agent policy system and synthetic requests. No private production data entered the studies. Compiler 0.5 began with 39 manually structured policy nodes. Compiler 0.9 has 44 across six domains. Each node has a stable ID, activation triggers, dependencies, severity, instructions, obligations, and prohibitions.</p>
             <p>Compilers 0.5 through 0.7 detected intents, selected nodes, closed every declared dependency, and emitted a stable list of rules. Compiler 0.8 inserted one request predicate before emission. That fixed the shape of one bug, but it still left policy semantics split between regular expressions and prose.</p>
@@ -185,7 +186,7 @@
           </section>
 
           <section aria-labelledby="evidence-heading">
-            <h2 id="evidence-heading">Five frozen studies, five new held-out sets</h2>
+            <h2 id="evidence-heading">Study design</h2>
             <p>Once I inspected a frozen study, its cases became development evidence and were never reused as fresh held-out evidence. Compilers 0.5 through 0.9 therefore faced different case sets. Their sequence shows what each version exposed, not a controlled comparison between versions.</p>
             <p>Every case declared its request, context, obligations, prohibitions, tool expectations, and semantic rubric independently of the candidate prompt. The same request ran three times under the full policy and three times under the compiled slice using one pinned GPT-5 mini snapshot.</p>
             <figure class="article-dashboard article-diagram" aria-labelledby="policyc-protocol-caption">
@@ -200,7 +201,7 @@
           </section>
 
           <section aria-labelledby="compiler-05-heading">
-            <h2 id="compiler-05-heading">Compiler 0.5 proved that the active slice could be tiny</h2>
+            <h2 id="compiler-05-heading">Compiler 0.5: the active slice</h2>
             <p>The first frozen study used 50 held-out cases, three samples per condition, and 300 model executions. It had no provider tools. Compiler 0.5 introduced a compact universal kernel for rules that every request still needed.</p>
             <p>Mean actual input tokens fell by 98.23%. Uncached-equivalent cost fell by 67.80%, actual billed cost fell by 23.01%, and latency was 19.95% lower than under the full policy.</p>
             <p>The behavioral result was weaker. Conditional critical-obligation preservation reached 85.98%, below the 95% target. Fifteen paired outputs passed under the full policy and failed under the compiled slice.</p>
@@ -209,7 +210,7 @@
           </section>
 
           <section aria-labelledby="compiler-06-heading">
-            <h2 id="compiler-06-heading">Compiler 0.6 showed that equal averages could hide losses</h2>
+            <h2 id="compiler-06-heading">Compiler 0.6: averages and hidden losses</h2>
             <p>Compiler 0.6 removed the leaked directive, added policies derived from confirmed 0.5 regressions, and expanded the study to web and synthetic function-tool cases. Its fresh 50-case run again used 300 model executions.</p>
             <p>Input reduction reached 89.69%, and conditional preservation reached 86.49%. The full and compiled conditions both had marginal pass rates of about 53.6%. Three complete pairs were semantically ungradable, so the strategy pass-rate denominators differ. Read alone, the averages still looked like parity.</p>
             <p>Among 136 determinate pairs, 64 passed in both conditions, ten passed only under the full policy, nine passed only under the compiler, and 53 failed in both. A compiler-only success on one request could not cancel the loss of a critical behavior on another.</p>
@@ -217,7 +218,7 @@
           </section>
 
           <section aria-labelledby="compiler-07-heading">
-            <h2 id="compiler-07-heading">Compiler 0.7 found the semantic gap</h2>
+            <h2 id="compiler-07-heading">Compiler 0.7: the semantic gap</h2>
             <p>Compiler 0.7 grew the graph to 43 nodes, hardened tool-availability handling, and incorporated selected regressions from 0.6. I froze a new 60-case set and ran three samples through the full and compiled conditions, producing 360 model executions and all 180 complete pairs.</p>
             <p>Mean input fell by 93.75%, but the compiled condition preserved only 130 of 163 full-policy successes, or 79.75%. Across 180 pairs, 130 passed in both conditions, 33 passed only under the full policy, 11 passed only under the compiler, and six failed in both. The version passed only two of its six preregistered gates.</p>
             <p>Post-lock attribution made the 0.7 failure concrete: 21 regressions came from emitter wording or semantic loss, seven from selector errors, two from a context-interface asymmetry, and three primarily from model variance.</p>
@@ -234,7 +235,7 @@
           </section>
 
           <section aria-labelledby="compiler-08-heading">
-            <h2 id="compiler-08-heading">Compiler 0.8 proved that a safe predicate could still be too narrow</h2>
+            <h2 id="compiler-08-heading">Compiler 0.8: confirmation predicates</h2>
             <p>Compiler 0.8 added a specialization stage after dependency closure. Seven confirmation policies gained an alternative branch for requests that had already authorized the exact action. Any unknown or ambiguous state kept the conservative ask, so the new path failed closed.</p>
             <p>I built the <code>explicit_confirmation</code> predicate from six spent 0.7 regressions, all phrased as "I confirm," and fifteen negative controls. It fixed every development case. In the 36-execution Phase G development run, all 18 compiler-slice executions called the confirmed tool with the confirmed arguments instead of asking again.</p>
             <p>The fresh held-out set exposed the fit immediately. Its authors wrote "no need to check back," "everyone's confirmed," "I've been through the list," and "go ahead." The predicate matched none of the four act-side cases. Compiler 0.8 preserved 100 of 132 full-policy successes, or 75.76%, while reducing mean input by 94.76% and uncached-equivalent cost by 66.00%.</p>
@@ -242,7 +243,7 @@
           </section>
 
           <section aria-labelledby="compiler-09-heading">
-            <h2 id="compiler-09-heading">Compiler 0.9 changed the architecture, not the verdict</h2>
+            <h2 id="compiler-09-heading">Compiler 0.9: a typed frontend</h2>
             <p>Version 0.9 made PolicyC a compiler in the ordinary sense. A frontend reads each request once into a typed state. Policy nodes declare branches over that state. One obligation table encodes precedence. Partial evaluation chooses branches, applies masks, lowers unavailable tools, and records every decision. The emitter became a printer.</p>
             <p>The study frontend used one schema-bound extractor call per request and persisted its output as part of the run identity. On 23 paraphrase fixtures, it read 21 correctly, compared with 12 for the deterministic reader. It recognized all six fresh authorization phrasings; the deterministic reader recognized one.</p>
             <p>Reading the 60 held-out requests cost $0.2678. That compile-time extraction spend is reported beside the execution study, not netted into its cost reductions: the 17.21% billed and 58.69% uncached-equivalent figures compare only the paired full-policy and compiled execution conditions.</p>
@@ -259,14 +260,14 @@
           </section>
 
           <section aria-labelledby="economics-heading">
-            <h2 id="economics-heading">Compression was stable. Economics were not</h2>
+            <h2 id="economics-heading">Cost and latency</h2>
             <p>Input reduction was the most stable result across the project. Every compiler removed between 89.69% and 98.23% of mean actual input. Uncached-equivalent cost fell between 55.36% and 67.80%.</p>
             <p>The observed bill moved less. Actual billed-cost reduction ranged from 12.14% to 24.50%. Version 0.8 saved 18.03%, and 0.9's paired execution saved 17.21%; the latter excludes the separately reported $0.2678 extractor pass. Repeated full prompts benefited from prompt caching, while request-specific slices changed. Tool fees also mattered.</p>
             <p>Latency moved in every direction. Compiler 0.8 was 7.07% faster than its full-policy condition, while 0.9 was 13.36% slower. Smaller context was useful, but it was not a direct proxy for the bill or wall-clock speed.</p>
           </section>
 
           <section aria-labelledby="compiler-010-heading">
-            <h2 id="compiler-010-heading">Compiler 0.10 failed its gate before it cost anything</h2>
+            <h2 id="compiler-010-heading">Compiler 0.10: the offline gate</h2>
             <p>Version 0.10 extended the state where v5 found gaps: current-information language, field contracts for artifact edits, the consequence of external disclosure, effect-aware masking so a pending confirmation suppresses acting tools but keeps reads. It passed every visible test.</p>
             <p>Before I paid for a sixth study, I scored the deterministic reader once against five hidden slices someone else had written: 180 rows, 440 assertions. It matched 333 of 440, and 93 of 180 rows fully. That is frontend label agreement, not preservation, and it is a failed gate. The slices were spent on the score and never diagnosed. No paid run was made from 0.10.</p>
             <p>Three regularities were now visible across 0.7, 0.8, and 0.9. Each version fixed the classes its development set named and lost to the classes the next fresh set named. Each fix fitted to a spent case generalized worst. And the compiled prompt's size and its behavior were governed by different things: a prompt at 3% of the original could still ask for a confirmation the user had just given.</p>
@@ -274,14 +275,14 @@
           </section>
 
           <section aria-labelledby="noise-heading">
-            <h2 id="noise-heading">The reference only agrees with itself 90% of the time</h2>
+            <h2 id="noise-heading">Reference consistency</h2>
             <p>The preservation metric conditions on one sample of the full policy passing. Nobody had asked how often a second sample of the full policy passes. The v5 grades already had three full-policy samples per case, so the answer cost nothing: over 177 ordered pairs, a second sample reproduced the first sample's pass 90.4% of the time. Thirteen of 60 cases split.</p>
             <p>A byte-identical copy of the full prompt would have failed my 95% gate. Compiler 0.9's 75.91% is 14.5 points below the reference's self-consistency, not 19 below the gate. That is the honest comparison, and it is why the preservation chart at the top of this article now carries a second line.</p>
             <p>One correction I had to make to my own language: 90.4% is a baseline, not a ceiling. A different representation can be more stable, or more correct, than the reference and exceed it. From here every result I report has three numbers side by side: did the arm do what the policy says, did it do what the full prompt did, and how often does the full prompt agree with itself.</p>
           </section>
 
           <section aria-labelledby="polaris-heading">
-            <h2 id="polaris-heading">Polaris: keep the policy's words and let a model read them</h2>
+            <h2 id="polaris-heading">Polaris: preserving the source policy</h2>
             <p>Every compiler so far rewrote the policy before any branch ran. Tracing five cases stage by stage showed that authoring was where conditions died: "confirmation when appropriate" became always ask; "notes only when they help" became a mandatory format; "prefer drafts" became "do not draft." Only 18 of 97 visible cases ever took a branch. The other 79 shipped those defaults.</p>
             <p>So I built an emission path that keeps the source's own bytes. A hand-audited map of 61 clauses, one per paragraph, line-anchored and hash-checked, with dependencies that travel and a rule that a clause can be removed only by a structural fact the case declares. I called the second approach Polaris.</p>
             <p>The first thing it measured was embarrassing. The clause slice is 3,259 tokens, 80% below the full policy, and it is the same prompt for every visible case. Nothing was pruned; the whole reduction is deduplication. The synthetic policy repeats nine boilerplate lines in twenty sections: 13,371 of its 16,123 tokens. Real policy prose is about 2,450 tokens. A real prompt that does not repeat itself would gain almost nothing from this, and some of my 90%+ reductions had been this corpus's redundancy all along.</p>
@@ -301,7 +302,7 @@
           </section>
 
           <section aria-labelledby="reader-heading">
-            <h2 id="reader-heading">Canary 3: a model read what the regex could not</h2>
+            <h2 id="reader-heading">Model-reader experiments</h2>
             <p>The third canary held the clause slice fixed and added one thing: a gpt-5-mini call that reads the verbatim clauses and the request, resolves the policy's own conditions, and writes directives. Only the directives are appended. No <code>RequestState</code>, no regex, no enumerated authorization vocabulary anywhere on the path. The reader prompt was written before any case existed and never revised.</p>
             <p>On the four fresh confirmation phrasings the author wrote ("word for word the text is…", "read it back and it is exactly…", "carry on…"), the deterministic frontend read <code>authorization: absent</code> on every one, so the compiler asked on every sample. The model reader read three as confirmed, wrote "proceed, do not ask for further confirmation," and the answering model acted on all six corresponding trials. Its one miss was in the safe direction.</p>
             <figure class="article-dashboard article-diagram" aria-labelledby="policyc-canary-arms-caption">
@@ -316,7 +317,7 @@
           </section>
 
           <section aria-labelledby="cheap-heading">
-            <h2 id="cheap-heading">Cheaper readers kept the rule and lost the request</h2>
+            <h2 id="cheap-heading">Reader cost and failure modes</h2>
             <p>The break-even budget followed from the arithmetic: the reader arm's own answer already ran at $0.0035 and 7.6 seconds, so the reader could spend about $0.001 and under a second for the pipeline to beat the full policy on both. Canary 4 held the reader contract fixed and varied only the model and reasoning effort, with a gate before any answer run: a reader that told the assistant to obtain confirmation on more than one of the five confirmed actions was killed.</p>
             <p>All three were. Mini at minimal effort, with zero reasoning tokens, wrote seven contradictory resolutions on one confirmed forward and settled on "only after the user confirms." Nano at minimal returned an empty reading on every confirmed action. Nano at low effort read every confirmed action as "ask" and the privileged external send as "proceed." Every cheap reader was right on the unconfirmed cases and wrong on the confirmed ones. They kept the rule and lost the request, which is exactly what the regex had done.</p>
             <p>I thought the failure was search: finding the request-dependent rules in three thousand tokens of clauses. So I audited the whole policy once, offline, for every sentence whose effect depends on what the request says, froze sixteen conditions over twelve clauses, and wrote a second reader contract. The conditions of the retained clauses are listed for the reader, and it must answer each exactly once with a verdict, a quote, and a directive; the runtime rejects anything else. Alongside, a single-call arm lists the same sentences in the answer prompt with no reader at all, to ask whether a separate reader was needed.</p>
@@ -333,17 +334,13 @@
           </section>
 
           <section aria-labelledby="stop-heading">
-            <h2 id="stop-heading">Where I stopped</h2>
+            <h2 id="stop-heading">Reflection and limitations</h2>
             <p>Ten paid studies, about $6.90 of provider spend, one pinned model. What they established: most policy text is inactive for most requests, and a compiled prompt removes it reliably, though on a redundant corpus much of that is deduplication. Deterministic compilation preserves three quarters to six sevenths of the reference's critical passes against a reference that reproduces itself nine times in ten. And the gap is made of reading, not slicing: the model acts on directives, the directive that generalizes comes from a model reading the policy's own sentences, and that reading costs about what the whole full-policy answer costs. Every attempt to buy it cheaper produced a reader that kept the rule and lost the request.</p>
             <p>What it does not establish: any preservation rate for the reader architecture, which has eight cases behind it; whether the reference reader's directives change behavior under the second contract, which I designed and did not run; anything about another provider, where caching or reasoning prices could move the arithmetic either way.</p>
             <p>I stopped here because the bound has a mechanism attached, and because the next question is not mine to answer with a synthetic policy: whether the price of reading the request falls with better models, cached readings across repeated requests, or a deterministic fast path with a semantic fallback on the ambiguous fraction of traffic. Everything needed to answer it is in the repository: the frozen sets, the locked rubrics and labels, the condition index over the source, a reader contract that makes a reading a checkable verdict, a gate that decides before money is spent, and every raw response.</p>
           </section>
         </div>
 
-        <footer class="article-footer">
-          <a href="/projects">All projects</a>
-          <a href="/policyc.pdf" target="_blank" rel="noopener noreferrer">Paper</a>
-        </footer>
       </article>
     </main>
   </body>

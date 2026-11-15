@@ -12,3 +12,8 @@ node_modules
 package.json
 package-lock.json
 scripts/test-navigation.mjs
+videos/
+/demos/*
+!/demos/annie.mp4
+!/demos/logit.mp4
+__pycache__/

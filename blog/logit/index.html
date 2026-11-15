@@ -14,9 +14,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon-dog.png" />
     <link rel="manifest" href="/manifest.webmanifest?v=dog-20261101" />
     <link rel="preload" href="/static/inter-page.woff2?v=1" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="/styles.css?v=72" />
+    <link rel="stylesheet" href="/styles.css?v=88" />
     <script src="/static/navigation-vendor.js?v=1" defer></script>
-    <script src="/static/navigation.js?v=8" defer></script>
+    <script src="/static/navigation.js?v=11" defer></script>
+    <script src="/static/portfolio.js?v=5" defer></script>
     <meta name="theme-color" content="#fcfcfb" />
     <meta property="og:type" content="article" />
     <meta property="og:locale" content="en_US" />
@@ -68,24 +69,21 @@
       </nav>
 
       <article>
+        <div class="portfolio-media portfolio-media-project">
+          <video data-preview-src="/demos/logit.mp4?v=2" poster="/static/portfolio/logit-poster.jpg?v=2" width="1440" height="1080" muted loop playsinline preload="none" aria-hidden="true"></video>
+        </div>
+
         <header class="article-header">
           <h1>Building Logit, a workout&nbsp;logger.</h1>
           <p class="article-meta">
-            <a href="https://trylogit.me" target="_blank" rel="noopener noreferrer">Logit</a>
+            <a href="https://trylogit.me" target="_blank" rel="noopener noreferrer">Visit Logit</a>
             <a href="https://github.com/bgar324/log-it" target="_blank" rel="noopener noreferrer">GitHub</a>
           </p>
         </header>
 
-        <figure class="article-example logit-hero" aria-labelledby="logit-workout-caption">
-          <a href="/static/logit-workout.webp?v=4" target="_blank" rel="noopener noreferrer" aria-label="Open the full Logit workout screen">
-            <img src="/static/logit-workout-square.webp?v=2" width="721" height="721" decoding="async" alt="Dark Logit workout-entry screen for a Pull session showing the full Lat Pulldown card with last-hit date, two suggested sets, and previous results" />
-          </a>
-          <figcaption id="logit-workout-caption">Logit loads the exercises in my split, shows the last set under each field, and suggests a starting point for today. I use this screen between sets.</figcaption>
-        </figure>
-
         <div class="article-body">
           <section aria-labelledby="notes-heading">
-            <h2 id="notes-heading">Apple Notes worked until I had to search it</h2>
+            <h2 id="notes-heading">Overview</h2>
             <p>I started lifting in high school. Five or six years later, I still write down every set. At first, I used Apple Notes:</p>
             <blockquote aria-label="Example Apple Notes workout entry"><p><code>lat pulldown:<br />175x7<br />175x7</code></p></blockquote>
             <p>Writing a workout took seconds. Finding one later was awful. I would be sitting at a bench, phone in hand, searching for the last day I benched and scanning a huge note for two numbers.</p>
@@ -94,16 +92,22 @@
           </section>
 
           <section aria-labelledby="leave-heading">
-            <h2 id="leave-heading">I wanted to log the set and leave</h2>
+            <h2 id="leave-heading">The logging flow</h2>
             <p>On a normal gym day, I tap Logit from my home screen. It tells me today's split and gives me one big button, usually <em>Log Pull</em> or <em>Log Push</em>. The exercises are already there.</p>
             <p>I enter the sets, save, and close it. I do not want six cards explaining the workout I just did. I definitely do not want to browse a dashboard between sets.</p>
             <blockquote><p>I want people to see the application, do the thing, and then leave.</p></blockquote>
             <p>I tried building it in Expo first. A native app meant another toolchain, an Apple developer fee, and store review. None of that made the logger better. I already knew Next.js and React, so I made the site installable and put it on my home screen.</p>
             <p>The best infrastructure is a sidewalk. You use it. You do not stand there admiring it before you go somewhere. That is what I want from Logit.</p>
+        <figure class="article-example logit-hero" aria-labelledby="logit-workout-caption">
+          <a href="/static/logit-workout.webp?v=4" target="_blank" rel="noopener noreferrer" aria-label="Open the full Logit workout screen">
+            <img src="/static/logit-workout-square.webp?v=2" width="721" height="721" decoding="async" alt="Dark Logit workout-entry screen for a Pull session showing the full Lat Pulldown card with last-hit date, two suggested sets, and previous results" />
+          </a>
+          <figcaption id="logit-workout-caption">Logit loads the exercises in my split, shows the last set under each field, and suggests a starting point for today. I use this screen between sets.</figcaption>
+        </figure>
           </section>
 
           <section aria-labelledby="iterations-heading">
-            <h2 id="iterations-heading">Eight folders later</h2>
+            <h2 id="iterations-heading">Design iterations</h2>
             <p>My disk has eight folders with some version of "logit" in the name. One is literally called <code>logit-fuck</code>. They are not eight releases. A few are barely projects. They are what I left behind each time I got annoyed enough to restart the interface.</p>
             <p>An early README called Logit a "sophisticated fitness tracking platform with AI-powered insights." It promised a bento dashboard, nutrition, analytics, and onboarding that asked for height, weight, body fat, gender, age, health information, equipment, and training preferences before anyone logged a set.</p>
             <p>I was building a fitness platform before I had built a good logger. A later concept file opens with "logit is about LOGGING WORKOUTS." That line was right.</p>
@@ -118,7 +122,7 @@
           </section>
 
           <section aria-labelledby="history-heading">
-            <h2 id="history-heading">Put the last set next to this set</h2>
+            <h2 id="history-heading">History and set suggestions</h2>
             <p>Notes made me hunt for history. Logit puts it under the field.</p>
             <p>In the Pull workout above, Lat Pulldown says I last hit it on May 22. Under today's input is the previous set, 190 pounds for seven reps. The field already has a starting suggestion. I do not leave the form or search anything.</p>
             <p>Explicit rules generate the suggestion. Logit looks at up to five recent sessions for that exercise, where the exercise appears in the workout, and how long it has been since I last did it. Then it builds later sets from the way I usually back off weight and reps.</p>
@@ -127,7 +131,7 @@
           </section>
 
           <section aria-labelledby="tuesday-heading">
-            <h2 id="tuesday-heading">The bug that sent me back to Notes</h2>
+            <h2 id="tuesday-heading">What counts as logged today</h2>
             <p>I skipped Push on a Monday. On Tuesday, the app showed Pull. I backdated Monday's workout before I started, and Logit decided Tuesday's workout was already done. The Pull button disappeared.</p>
             <p>I was at the gym holding the app I built to replace Notes. I opened Notes.</p>
             <p>The fix was one condition. A workout counts as "logged today" only when both its Pacific date and normalized workout type match today's plan. Monday Push cannot finish Tuesday Pull.</p>
@@ -142,7 +146,7 @@
           </section>
 
           <section aria-labelledby="requests-heading">
-            <h2 id="requests-heading">I added things I do not use</h2>
+            <h2 id="requests-heading">Feature tradeoffs</h2>
             <p>I did not plan to put Nutrition in Logit. Someone asked for it, so I added it. The rest timer arrived the same way. I barely use either one.</p>
             <p>The nutrition request soon became a photo request. The person who asked could not reliably guess the calories and protein in a meal. Could Logit look at a plate and estimate both?</p>
             <p>I knew how to build that. A vision model would read the photo, then Logit would parse the response and fill the form. Every meal would cost money to log. I would also own another feature I did not want to maintain.</p>
@@ -153,7 +157,7 @@
           </section>
 
           <section aria-labelledby="finished-heading">
-            <h2 id="finished-heading">Finished means I can stop thinking about it</h2>
+            <h2 id="finished-heading">Reflection</h2>
             <p>Logit has helped me improve. That is enough. I do not need a complete fitness platform.</p>
             <p>I bounce between Ghostty, Kitty, iTerm, cmux, and tmux. Switching takes a few minutes because the basic commands do not change. A workout logger should ask even less of me.</p>
             <p>I may remove Nutrition and the timer. I may redo the progress summary if I can keep the home screen free of charts. I do not need a roadmap just to prove the project is alive.</p>
@@ -162,10 +166,6 @@
           </section>
         </div>
 
-        <footer class="article-footer">
-          <a href="/projects">All projects</a>
-          <a href="https://trylogit.me" target="_blank" rel="noopener noreferrer">Logit</a>
-        </footer>
       </article>
     </main>
   </body>

@@ -64,12 +64,12 @@ test("the old page stays painted during a slow fetch and the document survives t
   let requested;
   const gate = new Promise(resolve => { release = resolve; });
   const arrival = new Promise(resolve => { requested = resolve; });
-  await page.route(base + "/blog/policyc", async route => {
+  await page.route(base + "/blog/logit", async route => {
     requested();
     await gate;
     await route.continue();
   });
-  await page.locator('a[href="/blog/policyc"]').click();
+  await page.locator('a[href="/blog/logit"]').click();
   await arrival;
   try {
     assert.deepEqual(await page.evaluate(() => ({
@@ -80,10 +80,10 @@ test("the old page stays painted during a slow fetch and the document survives t
   } finally {
     release();
   }
-  await settle(page, "/blog/policyc", "Building PolicyC");
+  await settle(page, "/blog/logit", "Building Logit");
   assert.equal(await page.evaluate(() => window.marker), "original-document");
   assert.equal(await page.locator('link[rel="canonical"]').getAttribute("href"),
-    "https://www.bentgarcia.com/blog/policyc");
+    "https://www.bentgarcia.com/blog/logit");
   assert.equal(await page.evaluate(() => document.activeElement.tagName), "BODY");
   await page.locator('a[href="/"]').click();
   await settle(page, "/", "I build software");
@@ -114,10 +114,10 @@ test("failed Back reloads the selected page without losing Forward or leaving ma
 
 test("repeated history entries restore their own scroll positions", async t => {
   const page = await homepage(t);
-  await page.locator('a[href="/blog/policyc"]').scrollIntoViewIfNeeded();
+  await page.locator('a[href="/blog/logit"]').scrollIntoViewIfNeeded();
   const firstHome = await page.evaluate(() => scrollY);
-  await page.locator('a[href="/blog/policyc"]').click();
-  await settle(page, "/blog/policyc", "Building PolicyC");
+  await page.locator('a[href="/blog/logit"]').click();
+  await settle(page, "/blog/logit", "Building Logit");
   await page.evaluate(() => scrollTo({ top: 800, behavior: "instant" }));
   await page.evaluate(() => document.querySelector('a[href="/"]').click());
   await settle(page, "/", "I build software");
@@ -131,7 +131,7 @@ test("repeated history entries restore their own scroll positions", async t => {
   await settle(page, "/", "I build software");
   assert.equal(await page.evaluate(() => scrollY), secondHome);
   await page.goBack();
-  await settle(page, "/blog/policyc", "Building PolicyC");
+  await settle(page, "/blog/logit", "Building Logit");
   assert.equal(await page.evaluate(() => scrollY), 800);
   await page.goBack();
   await settle(page, "/", "I build software");
@@ -144,12 +144,14 @@ test("a late response cannot replace a more recent destination", async t => {
   let requested;
   const gate = new Promise(resolve => { release = resolve; });
   const arrival = new Promise(resolve => { requested = resolve; });
-  await page.route(base + "/blog/policyc", async route => {
+  // Video range requests can keep the page busy; wait for this response, not network idle.
+  const lateResponse = page.waitForResponse(response => response.url() === base + "/blog/logit");
+  await page.route(base + "/blog/logit", async route => {
     requested();
     await gate;
     await route.continue();
   });
-  await page.locator('a[href="/blog/policyc"]').click();
+  await page.locator('a[href="/blog/logit"]').click();
   await arrival;
   try {
     await page.locator('a[href="/blog/annie"]').click();
@@ -157,7 +159,10 @@ test("a late response cannot replace a more recent destination", async t => {
   } finally {
     release();
   }
-  await page.waitForLoadState("networkidle");
+  await (await lateResponse).finished();
+  await page.evaluate(async () => {
+    for (let i = 0; i < 12; i++) await new Promise(requestAnimationFrame);
+  });
   assert.equal(new URL(page.url()).pathname, "/blog/annie");
   assert.match(await page.locator("h1").textContent(), /Building Annie/);
 });
@@ -173,9 +178,9 @@ test("same-page fragments keep their document and relinquish enhancement", async
   assert.equal(await page.evaluate(() => location.hash), "#experience-heading");
   assert.ok(Math.abs(await page.locator("#experience-heading")
     .evaluate(element => element.getBoundingClientRect().top)) < 2);
-  await page.locator('a[href="/blog/policyc"]').click();
-  await page.waitForURL(base + "/blog/policyc");
-  await settle(page, "/blog/policyc", "Building PolicyC");
+  await page.locator('a[href="/blog/logit"]').click();
+  await page.waitForURL(base + "/blog/logit");
+  await settle(page, "/blog/logit", "Building Logit");
   assert.equal(await page.evaluate(() => window.fragmentMarker), undefined);
 });
 
@@ -242,7 +247,7 @@ test("the archive filters and visible projects enter together in reading order",
   }
 });
 
-test("refresh replays entrances without replaying return navigation", async t => {
+test("refresh and explicit archive visits replay entrances while return history does not", async t => {
   const page = await homepage(t);
   const headingFrames = () => page.locator("h1").evaluate(async element => {
     const frames = [];
@@ -261,7 +266,7 @@ test("refresh replays entrances without replaying return navigation", async t =>
   assert.ok((await headingFrames()).some(opacity => opacity > 0 && opacity < 1));
   await page.locator('a[href="/projects"]').click();
   await settle(page, "/projects", "All Projects");
-  assert.ok((await headingFrames()).every(opacity => opacity === 1));
+  assert.ok((await headingFrames()).some(opacity => opacity > 0 && opacity < 1));
   await page.goBack();
   await settle(page, "/", "I build software");
   assert.ok((await headingFrames()).every(opacity => opacity === 1));

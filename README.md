@@ -31,7 +31,7 @@ The preview server supports the same clean URLs as production, such as `/project
 | `blog/` | Articles about Annie, Logit, and PolicyC |
 | `snoopy/` | An earlier version of the portfolio, preserved at `/snoopy` |
 | `styles.css` | Shared layout and typography |
-| `projects/filters.css` | Project archive filters |
+| `projects/filters.css` | Project archive layout and filters |
 | `static/` | Images, fonts, and browser scripts |
 | `scripts/` | Preview server, asset generators, and tests |
 | `resume.pdf` | Résumé |
@@ -39,6 +39,8 @@ The preview server supports the same clean URLs as production, such as `/project
 | `vercel.json` | Deployment, clean URLs, and cache settings |
 
 Pages are edited directly in HTML. Articles live at `blog/<slug>/index.html`, with images in `static/`.
+
+Homepage cards use muted inline video previews. King's photo collage supports hover and keyboard focus, with less motion when requested.
 
 ## Tests
 
@@ -68,7 +70,6 @@ Most content is edited by hand. A few assets have generators:
 
 | Asset | Command |
 | --- | --- |
-| GitHub contribution calendar | `python3 scripts/generate-contributions.py` |
 | Social preview image | `python3 scripts/generate-og-image.py` |
 | PolicyC figures | `python3 scripts/generate-policyc-charts.py` |
 | Page font subsets | `python3 scripts/build-inter-page-fonts.py` |
@@ -82,10 +83,10 @@ Font generation requires the Python dependencies in `scripts/requirements.txt`:
 python3 -m pip install -r scripts/requirements.txt
 ```
 
-The contribution calendar reads public GitHub profile data without a personal access token. A [scheduled workflow](.github/workflows/contributions.yml) refreshes it daily. Failed refreshes leave the previous calendar in place.
-
 ## Deployment
 
 Pushes to `main` deploy through the GitHub-to-Vercel integration. The site is served directly from the repository.
 
 The explicit `null` build settings in `vercel.json` override the Vercel project's older Astro configuration. They allow deployment without installing packages or running a framework build.
+
+`.vercelignore` keeps demo source files and the `videos/` editing projects out of deployments. Only `demos/annie.mp4` and `demos/logit.mp4` are published from `demos/`.
