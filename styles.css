@@ -1025,6 +1025,10 @@ a:focus-visible {
 .portfolio-media-tensorstax > .portfolio-brand-logo { width: 17.6%; }
 .portfolio-media-acm-hack > .portfolio-brand-logo { width: 31%; }
 
+:is(.portfolio-media-meta, .portfolio-media-bonterra, .portfolio-media-todd, .portfolio-media-tensorstax, .portfolio-media-exploretech) > .portfolio-brand-logo {
+  filter: brightness(0) invert(1);
+}
+
 .portfolio-media-bonterra {
   background: #170e25;
 }
@@ -1302,7 +1306,7 @@ a:focus-visible {
   --photo-width: clamp(140px, 16vw, 180px);
   --scoot: 24px;
   position: relative;
-  height: 340px;
+  height: 404px;
   margin: 0 40px;
   padding: 0;
   list-style: none;
@@ -1312,7 +1316,7 @@ a:focus-visible {
 .king-collage li {
   --shift: 0px;
   position: absolute;
-  top: 32px;
+  top: calc(32px + var(--arc-offset, 64px));
   left: calc(var(--i) * 100% / 9);
   width: calc(100% / 9);
   height: 280px;
@@ -1328,8 +1332,8 @@ a:focus-visible {
   max-width: none;
   pointer-events: none;
   translate: -50% 0;
-  transform: translateX(var(--shift));
-  transform-origin: center 70%;
+  transform: translateX(var(--shift)) rotate(var(--arc-angle, 0deg));
+  transform-origin: center;
   transition: transform 280ms cubic-bezier(.22, 1, .36, 1);
   height: auto;
   border: 7px solid #fff;
@@ -1359,12 +1363,21 @@ a:focus-visible {
 }
 
 .king-collage li:nth-child(2),
-.king-collage li:nth-child(8) { --layer: 2; }
+.king-collage li:nth-child(8) { --layer: 2; --arc-offset: 36px; }
 .king-collage li:nth-child(3),
-.king-collage li:nth-child(7) { --layer: 3; }
+.king-collage li:nth-child(7) { --layer: 3; --arc-offset: 16px; }
 .king-collage li:nth-child(4),
-.king-collage li:nth-child(6) { --layer: 4; }
-.king-collage li:nth-child(5) { --layer: 5; }
+.king-collage li:nth-child(6) { --layer: 4; --arc-offset: 4px; }
+.king-collage li:nth-child(5) { --layer: 5; --arc-offset: 0px; }
+
+.king-collage li:nth-child(1) { --arc-angle: -16deg; }
+.king-collage li:nth-child(2) { --arc-angle: -12deg; }
+.king-collage li:nth-child(3) { --arc-angle: -8deg; }
+.king-collage li:nth-child(4) { --arc-angle: -4deg; }
+.king-collage li:nth-child(6) { --arc-angle: 4deg; }
+.king-collage li:nth-child(7) { --arc-angle: 8deg; }
+.king-collage li:nth-child(8) { --arc-angle: 12deg; }
+.king-collage li:nth-child(9) { --arc-angle: 16deg; }
 
 @media (max-width: 620px) {
   .king-collage {
