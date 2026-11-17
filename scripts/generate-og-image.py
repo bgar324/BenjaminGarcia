@@ -106,65 +106,66 @@ def read_copy() -> dict[str, str]:
 
 
 def build_document(copy: dict[str, str]) -> str:
+    icon = "data:image/png;base64," + base64.b64encode(
+        (ROOT / "static" / "favicon-dog-512.png").read_bytes()
+    ).decode("ascii")
+    headline = html.escape(copy["headline"]).replace(" that ", "<br>that ", 1)
     return f"""<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <style>
       {FONT_FACE}
-      html, body {{ margin: 0; padding: 0; }}
-      body {{
+      * {{ box-sizing: border-box; }}
+      html, body {{
+        margin: 0;
         width: {WIDTH}px;
         height: {HEIGHT}px;
-        padding: 112px 96px 90px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
+        overflow: hidden;
+      }}
+      body {{
+        position: relative;
+        font-family: {FONT};
         background: {BACKGROUND};
         color: {FOREGROUND};
-        font-family: {FONT};
-        font-synthesis: none;
-        font-size-adjust: 0.53;
-        letter-spacing: -0.0025em;
-        -webkit-font-smoothing: antialiased;
       }}
-      p {{ margin: 0; }}
-      .eyebrow {{
-        font-size: 26px;
+      .king {{
+        position: absolute;
+        left: 15px;
+        top: 135px;
+        width: 350px;
+        height: 350px;
+      }}
+      .copy {{ position: absolute; left: 385px; top: 160px; }}
+      .name {{
+        margin-bottom: 34px;
+        font-size: 27px;
         font-weight: 500;
-        line-height: 1;
-        color: {SOFT};
+        letter-spacing: -0.7px;
       }}
       h1 {{
-        margin: 51px 0 0;
-        font-size: 61px;
+        margin: 0;
+        font-size: 70px;
         font-weight: 600;
-        line-height: 1.164;
-        letter-spacing: -0.02em;
-        font-size-adjust: 0.508;
-      }}
-      .lead {{
-        margin: 26px 0 0;
-        max-width: 900px;
-        font-size: 31px;
-        font-weight: 400;
-        line-height: 1.484;
-        color: {MUTED};
-        text-wrap: balance;
+        letter-spacing: -3.3px;
+        line-height: 1.06;
       }}
       .domain {{
-        margin-top: auto;
-        font-size: 26px;
-        line-height: 1;
-        color: {SUBTLE};
+        position: absolute;
+        bottom: 52px;
+        left: 60px;
+        font-size: 23px;
+        color: #777570;
       }}
     </style>
   </head>
   <body>
-    <p class="eyebrow">{html.escape(copy["eyebrow"])}</p>
-    <h1>{html.escape(copy["headline"])}</h1>
-    <p class="lead">{html.escape(copy["lead"])}</p>
-    <p class="domain">{html.escape(copy["domain"])}</p>
+    <img class="king" src="{icon}" alt="" />
+    <div class="copy">
+      <div class="name">{html.escape(copy["eyebrow"])}</div>
+      <h1>{headline}</h1>
+    </div>
+    <div class="domain">{html.escape(copy["domain"])}</div>
   </body>
 </html>
 """
