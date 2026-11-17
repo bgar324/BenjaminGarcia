@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
-"""Generate static/og.png from the homepage copy so the share card never drifts.
+"""Generate static/og-king.png from the homepage headline, name and domain.
 
-The card mirrors the homepage: site name, the h1, the intro paragraph, and the
-canonical host. All four strings are read out of index.html, so editing the site
-copy and rerunning this script is the only supported way to change the image.
+The card combines the dog favicon with copy read from index.html.
+Rendering it again with unchanged inputs is a no-op.
 
 Rendering embeds the repository's bundled Inter font in the temporary HTML,
 so the card uses the same deterministic face as the page on every machine.
 
     python3 scripts/generate-og-image.py
 
-When the bytes change, every `static/og.png?v=N` reference in the HTML is bumped
-to N+1 so CDN and social-scraper caches fetch the new image.
+When the bytes change, HTML image references advance to the next version.
+The new filename also avoids caches associated with the older static/og.png.
 """
 
 from __future__ import annotations
@@ -28,7 +27,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HOMEPAGE = ROOT / "index.html"
-OUTPUT = ROOT / "static" / "og.png"
+OUTPUT = ROOT / "static" / "og-king.png"
 
 WIDTH = 1200
 HEIGHT = 630
@@ -226,8 +225,8 @@ def render(document: str) -> bytes:
 
 
 def bump_cache_version() -> int | None:
-    """Advance every `static/og.png?v=N` reference; returns the new version."""
-    pattern = re.compile(r"(static/og\.png\?v=)(\d+)")
+    """Advance share-image references, including the previous image filename."""
+    pattern = re.compile(r"(static/og(?:-king)?\.png\?v=)(\d+)")
     pages = sorted(
         path for path in ROOT.glob("**/*.html") if ".worktrees" not in path.parts
     )
@@ -241,7 +240,7 @@ def bump_cache_version() -> int | None:
     new_version = max(versions) + 1
     for page in pages:
         source = page.read_text(encoding="utf-8")
-        updated = pattern.sub(rf"\g<1>{new_version}", source)
+        updated = pattern.sub(f"static/og-king.png?v={new_version}", source)
         if updated != source:
             page.write_text(updated, encoding="utf-8")
     return new_version
@@ -261,7 +260,7 @@ def main() -> None:
     version = bump_cache_version()
     print(f"\nwrote {OUTPUT.relative_to(ROOT)} ({len(image)} bytes)")
     if version is not None:
-        print(f"bumped share-image references to static/og.png?v={version}")
+        print(f"bumped share-image references to static/og-king.png?v={version}")
 
 
 if __name__ == "__main__":
