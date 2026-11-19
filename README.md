@@ -42,6 +42,8 @@ Pages are edited directly in HTML. Articles live at `blog/<slug>/index.html`, wi
 
 Homepage cards use muted inline video previews. King's photo collage supports hover and keyboard focus, with less motion when requested.
 
+The homepage footer has a small Christmas tree emoji.
+
 ## Tests
 
 The navigation tests require Node.js 20 or newer:

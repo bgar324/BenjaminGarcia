@@ -1,0 +1,27 @@
+.footer-tree {
+  flex-shrink: 0;
+  font: 28px / 1 "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+}
+
+.site-footer:has(.footer-tree) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 620px) {
+  .site-footer:has(.footer-tree) {
+    gap: 12px;
+    text-align: left;
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+  }
+  .footer-tree {
+    font-size: 24px;
+  }
+  .site-footer:has(.footer-tree) .footer-links {
+    flex-wrap: nowrap;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+}
+
